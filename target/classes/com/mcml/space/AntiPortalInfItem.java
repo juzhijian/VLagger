@@ -12,12 +12,11 @@ public class AntiPortalInfItem
     @EventHandler
     public void onEntityPortal(EntityPortalEvent event) {
         if (VLagger.AntiPortalInfItemenable == true) {
-            if (event.getEntityType() == EntityType.MINECART | event.getEntityType() == EntityType.MINECART_CHEST | event.getEntityType() == EntityType.MINECART_FURNACE | event.getEntityType() == EntityType.MINECART_HOPPER | event.getEntityType() == EntityType.MINECART_TNT) {
+            if (event.getEntityType() == EntityType.MINECART_CHEST || event.getEntityType() == EntityType.MINECART_FURNACE || event.getEntityType() == EntityType.MINECART_HOPPER) {
                 event.setCancelled(true);
                 event.getEntity().remove();
                 Bukkit.broadcastMessage("§a§l[VLagger]§c抱歉！禁止矿车通过地狱门防止作弊！");
             }
         }
-
     }
 }
