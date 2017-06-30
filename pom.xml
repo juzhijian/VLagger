@@ -1,31 +1,57 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>git_VLagger</groupId>
-  <artifactId>git_VLagger</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <groupId>VLagger</groupId>
+  <artifactId>VLagger</artifactId>
+  <version>b</version>
   <name>VLagger</name>
   <description>VLagger 是一款 MineCraft Bukkit 服务端插件，主要作用为优化运行、修复漏洞、限制动作的一款插件。</description>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+			<resource>
+				<targetPath>.</targetPath>
+				<directory>${basedir}/src/</directory>
+			</resource>
+	</resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <executions>  
+                  <execution>  
+                      <id>default-compile</id>  
+                      <phase>compile</phase>  
+                      <goals>  
+                          <goal>compile</goal>  
+                      </goals>  
+                  </execution>  
+              </executions>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <repositories>
+    <repository>
+        <id>spigot-repo</id>
+        <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+    </repository>
+ </repositories>
+ <dependencies>
+    <!--Spigot API-->
+    <dependency>
+         <groupId>org.spigotmc</groupId>
+         <artifactId>spigot-api</artifactId>
+         <version>1.8.3-R0.1-SNAPSHOT</version>
+    </dependency>
+    <!--Bukkit API-->
+    <dependency>
+         <groupId>org.bukkit</groupId>
+         <artifactId>bukkit</artifactId>
+         <version>1.8.3-R0.1-SNAPSHOT</version>
+    </dependency>
+ </dependencies>
 </project>
-<dependencies>
-        <dependency>
-            <groupId>net.md-5</groupId>
-            <artifactId>bungeecord-api</artifactId>
-            <version>1.7-SNAPSHOT</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-        <!--Spigot API-->
-        <dependency>
-           <groupId>org.spigotmc</groupId>
-           <artifactId>spigot-api</artifactId>
-           <version>1.8.3-R0.1-SNAPSHOT</version>
-           <scope>provided</scope>
-        </dependency>
-        <!--Bukkit API-->
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.8.3-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>

@@ -1,0 +1,16 @@
+machine:
+  java:
+    version: openjdk7
+  notify:
+    branches:
+      only:
+        - master
+dependencies:
+  override:
+    - git config --global user.email "circle@circleci.com"
+    - git config --global user.name "CircleCI"
+    - chmod +x scripts/build.sh
+    - ./scripts/build.sh
+test:
+  post:
+    - yes|mv -f ./target/VLagger-b.jar $CIRCLE_ARTIFACTS/VLagger-b$CIRCLE_BUILD_NUM.jar
