@@ -9,5 +9,5 @@ package com.mcml.space;
  * @author Administrator
  */
 public class AllSet {
-    public static int Version = 255;
+    public static int Version = 256;
 }
