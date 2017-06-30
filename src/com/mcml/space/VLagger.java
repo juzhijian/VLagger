@@ -29,7 +29,7 @@ public class VLagger extends JavaPlugin
     public static boolean AntiInfItemenable;
     public static boolean AntiPortalInfItemenable;
     public static boolean AntiNetherHopperInfItemenable;
-    public static Object AntiRPGITEMenable;
+    public static boolean AntiRPGITEMenable;
     public static boolean NoCrowdedEntityenable;
     public static int NoCrowdedEntityPerChunkLimit;
     public static boolean TilesClearenable;
@@ -419,7 +419,7 @@ public class VLagger extends JavaPlugin
         AntiInfItemenable = NoBugConfig.getBoolean("AntiInfItem.enable");
         AntiPortalInfItemenable = NoBugConfig.getBoolean("AntiPortalInfItem.enable");
         AntiNetherHopperInfItemenable = NoBugConfig.getBoolean("AntiNetherHopperInfItem.enable");
-        AntiRPGITEMenable = NoBugConfig.get("AntiRPGITEM.enable");
+        AntiRPGITEMenable = NoBugConfig.getBoolean("AntiRPGITEM.enable");
         AntiCrashSignenable = NoBugConfig.getBoolean("AntiCrashSign.enable");
         AntiSkullCrashenable = NoBugConfig.getBoolean("AntiSkullCrash.enable");
         NoDoubleOnlineenanle = NoBugConfig.getBoolean("NoDoubleOnline.enable");
