@@ -37,10 +37,11 @@ public class AntiInfItem
         if (VLagger.AntiInfItemenable == true) {
             Block block = event.getBlock();
             int i;
-            if (block.getTypeId() == 23) {
+            if (block.getType() == Material.DISPENSER) {
                 BlockState blockin = block.getState();
                 Inventory Inventory = ((Dispenser) blockin).getInventory();
-                for (i = 0; i < Inventory.getSize(); i++) {
+                int invs = Inventory.getSize();
+                for (i = 0; i < invs; i++) {
                     if (Inventory.getItem(i) != null) {
                         if (Inventory.getItem(i).getAmount() < 0) {
                             Inventory.getItem(i).setType(Material.AIR);
@@ -49,10 +50,11 @@ public class AntiInfItem
                         }
                     }
                 }
-            } else if (block.getType() == Material.DROPPER||block.getType() == Material.DISPENSER) {
+            } else if (block.getType() == Material.DROPPER) {
                 BlockState blockin = block.getState();
                 Inventory Inventory = ((Dropper) blockin).getInventory();
-                for (i = 0; i < Inventory.getSize(); i++) {
+                int invs = Inventory.getSize();
+                for (i = 0; i < invs; i++) {
                     if ((Inventory.getItem(i) != null) && (Inventory.getItem(i).getAmount() < 0)) {
                         Inventory.getItem(i).setType(Material.AIR);
                         event.setCancelled(true);
