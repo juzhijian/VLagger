@@ -12,13 +12,16 @@ public class TilesClear
     public void run() {
         if (VLagger.TilesClearenable == true) {
             List<World> worlds = Bukkit.getWorlds();
-            for (int i = 0; i < worlds.size(); i++) {
+            int ws = worlds.size();
+            for (int i = 0; i < ws; i++) {
                 World world = worlds.get(i);
                 Chunk[] loadedChunks = world.getLoadedChunks();
-                for (int ii = 0; ii < loadedChunks.length; ii++) {
+                int lcl = loadedChunks.length;
+                for (int ii = 0; ii < lcl; ii++) {
                     Chunk chunk = loadedChunks[ii];
                     BlockState[] tiles = chunk.getTileEntities();
-                    for (int iii = 0; iii < tiles.length; iii++) {
+                    int tl = tiles.length;
+                    for (int iii = 0; iii < tl; iii++) {
                         BlockState tile = tiles[iii];
                         try {
                             if (tile.isPlaced() == false) {
