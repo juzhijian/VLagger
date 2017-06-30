@@ -20,7 +20,7 @@ public class NoEggChangeSpawner
             return;
         }
         if (VLagger.NoEggChangeSpawnerenable == true) {
-            if (e.getItem().getType() == Material.MONSTER_EGG | e.getItem().getType() == Material.MONSTER_EGGS) {
+            if (e.getItem().getType() == Material.MONSTER_EGG || e.getItem().getType() == Material.MONSTER_EGGS) {
                 if (e.getClickedBlock().getType() == Material.MOB_SPAWNER) {
                     e.setCancelled(true);
                     e.getPlayer().sendMessage("§a§l[VLagger]§c抱歉，禁止使用刷怪蛋修改刷怪笼");
