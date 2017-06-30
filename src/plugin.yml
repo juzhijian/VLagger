@@ -1,6 +1,6 @@
 name: VLagger
 version: 2.0.0
-main: com.mcml.space.VLagger
+main: com.mcml.space.core.VLagger
 commands:
   vlg:
     description: VLagger
