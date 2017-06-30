@@ -72,6 +72,7 @@ public class VLagger extends JavaPlugin
     public static boolean AntiBreakUseingChestenable;
     public static boolean BlockCommanderenable;
     public static File PluginFile;
+	public static boolean AutoUpdate;
 
     @Override
     public void onEnable() {
@@ -302,12 +303,14 @@ public class VLagger extends JavaPlugin
         if (MainConfig.getInt("Version") != AllSet.Version) {
             MainConfig.set("Version", AllSet.Version);
             MainConfig.set("PluginPrefix", "§a§l[Vlagger]");
+            MainConfig.set("AutoUpdate", false);
             try {
                 MainConfig.save(MainConfigFile);
             } catch (IOException ex) {
             }
         }
         PluginPrefix = MainConfig.getString("PluginPrefix");
+        AutoUpdate = MainConfig.getBoolean("AutoUpdate");
 
         FileConfiguration ClearLagConfig = load(ClearLagConfigFile);
         if (ClearLagConfig.getInt("Version") != AllSet.Version) {

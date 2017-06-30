@@ -11,7 +11,7 @@ public class AntiCrashSign
     public void SignCheckChange(SignChangeEvent event) {
         if (VLagger.AntiCrashSignenable == true) {
             for (int i = 0; i < 4; i++) {
-                if (event.getLine(i).length() > 127) {
+                if (event.getLine(i).length() > 100) {
                     event.setCancelled(true);
                     event.getPlayer().sendMessage("§a§l[VLagger]§c您输入的内容太长了！");
                 }

@@ -20,7 +20,8 @@ public class ChunkUnloader
             for (int i = 0; i < worlds.size(); i++) {
                 World world = worlds.get(i);
 				Chunk[] loadedChunks = world.getLoadedChunks();
-				for(int ii=0;ii<loadedChunks.length;ii++){
+				int lcl = loadedChunks.length;
+				for(int ii=0;ii<lcl;ii++){
 					Chunk chunk = loadedChunks[ii];
 					if(world.isChunkInUse(chunk.getX(),chunk.getZ())==false){
 						if(chunk.isLoaded() == true & ChunkKeeper.ShouldKeepList.contains(chunk)==false){
