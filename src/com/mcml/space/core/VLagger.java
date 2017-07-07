@@ -9,6 +9,9 @@ import org.bukkit.entity.*;
 import org.bukkit.event.*;
 import org.bukkit.plugin.java.*;
 
+import com.mcml.space.eventlimitor.AntiSpam;
+import com.mcml.space.eventlimitor.AutoRespawn;
+import com.mcml.space.eventlimitor.BlockCommander;
 import com.mcml.space.fix.AntiBedExplode;
 import com.mcml.space.fix.AntiCrashSign;
 import com.mcml.space.fix.AntiDoorInfItem;
@@ -20,11 +23,8 @@ import com.mcml.space.fix.AntiPortalInfItem;
 import com.mcml.space.fix.AntiRPGITEM;
 import com.mcml.space.fix.AntiRedstone;
 import com.mcml.space.fix.AntiSkullCrash;
-import com.mcml.space.fix.AntiSpam;
-import com.mcml.space.optimize.AutoRespawn;
 import com.mcml.space.optimize.AutoSaveOfListener;
 import com.mcml.space.optimize.AutoSaveofTask;
-import com.mcml.space.optimize.BlockCommander;
 import com.mcml.space.optimize.ChunkKeeper;
 import com.mcml.space.optimize.ChunkUnloader;
 import com.mcml.space.optimize.ChunkUnloaderofListener;
@@ -82,6 +82,9 @@ public class VLagger extends JavaPlugin
     File file;
     public static VLagger MainThis;
     public FileConfiguration config;
+	public static String AutoRespawnRespawnTitleMainMessage;
+    public static boolean AutoRespawnRespawnTitleenable;
+    public static String AutoRespawnRespawnTitleMiniMessage;
     private static File ClearLagConfigFile;
     private static File NoBugConfigFile;
     private static File MainConfigFile;
@@ -483,6 +486,9 @@ public class VLagger extends JavaPlugin
             EventConfig.set("BlockCommander.List.worldname./tpa", true);
             EventConfig.set("BlockCommander.List.worldname./tpa.Message", "WIFI没信号，不能传送。");
             EventConfig.set("AutoRespawn.enable", true);
+            EventConfig.set("AutoRespawn.RespawnTitle.enable", true);
+            EventConfig.set("AutoRespawn.RespawnTitle.MainMessage", "§e你死了！");
+            EventConfig.set("AutoRespawn.RespawnTitle.MiniMessage", "§c已为您自动复活！");
             try {
                 EventConfig.save(EventConfigFile);
             } catch (IOException ex) {
@@ -494,6 +500,9 @@ public class VLagger extends JavaPlugin
         NoEggChangeSpawnerenable = EventConfig.getBoolean("NoEggChangeSpawner");
         BlockCommanderenable = EventConfig.getBoolean("BlockCommander.enable");
         AutoRespawnenable = EventConfig.getBoolean("AutoRespawn.enable");
+        AutoRespawnRespawnTitleenable = EventConfig.getBoolean("AutoRespawn.RespawnTitle.enable");
+        AutoRespawnRespawnTitleMainMessage = EventConfig.getString("AutoRespawn.RespawnTitle.MainMessage");
+        AutoRespawnRespawnTitleMiniMessage = EventConfig.getString("AutoRespawn.RespawnTitle.MiniMessage");
     }
 
     private static void AutoSetServer() {

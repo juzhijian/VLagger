@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mcml.space.optimize;
+package com.mcml.space.eventlimitor;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -25,6 +25,8 @@ public class AutoRespawn implements Listener {
 				public void run() {
 					try {
 						player.spigot().respawn();
+						if(VLagger.AutoRespawnRespawnTitleenable == true){
+						}
 					} catch (Throwable ex) {
 						VLagger.MainThis.getLogger().info("提示:您的服务器不是Spigot服务端？无法启用自动复活功能！");
 					}
