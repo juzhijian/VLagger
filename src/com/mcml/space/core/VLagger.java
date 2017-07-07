@@ -141,7 +141,8 @@ public class VLagger extends JavaPlugin
         getLogger().info("命令拦截模块...");
         getLogger().info("自动重生模块...");
         getLogger().info("------加载完毕------");
-        getLogger().info("乐乐感谢您的使用——有Bug务必反馈，QQ1207223090");
+        getLogger().info("乐乐感谢您的使用——有建议务必反馈，QQ1207223090");
+        getLogger().info("您可以在插件根目录找到本插件的说明文档 说明文档.txt");
         getLogger().info("|||Vlvxingze/VLagger PluginCD小组作品.|||");
         if (AutoSetenable == true) {
             VLagger.AutoSetServer();
