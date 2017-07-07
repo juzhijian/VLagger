@@ -30,3 +30,6 @@ public class AntiDoorInfItem
 		}
     }
 }
+/**
+@author jiongjionger
+*/
