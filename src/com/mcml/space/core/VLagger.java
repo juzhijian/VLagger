@@ -116,7 +116,7 @@ public class VLagger extends JavaPlugin
         EventConfigFile = new File(this.getDataFolder(), "EventConfig.yml");
         PluginFile = this.getFile();
         MainThis = this;
-        VLagger.LoadConfig();
+        LoadConfig();
         getLogger().info("VLagger —— 新一代的优化/稳定插件");
         getLogger().info("~(@^_^@)~ 玩的开心！~");
         getLogger().info("清理内存模块...");
@@ -320,7 +320,7 @@ public class VLagger extends JavaPlugin
                     }
                 }
                 if (args[0].equalsIgnoreCase("reload")) {
-                    VLagger.LoadConfig();
+                    LoadConfig();
                     sender.sendMessage("§a§l[VLagger]配置已经成功重载！");
                     return true;
                 }
@@ -332,7 +332,8 @@ public class VLagger extends JavaPlugin
         return false;
     }
 
-    private static void LoadConfig() {
+    private void LoadConfig() {
+    	this.saveResource("ConfigHelper.txt", true);
         FileConfiguration MainConfig = load(MainConfigFile);
         if (MainConfig.getInt("Version") != AllSet.Version) {
             MainConfig.set("Version", AllSet.Version);
