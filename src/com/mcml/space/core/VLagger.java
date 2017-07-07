@@ -9,9 +9,9 @@ import org.bukkit.entity.*;
 import org.bukkit.event.*;
 import org.bukkit.plugin.java.*;
 
-import com.mcml.space.eventlimitor.AntiSpam;
-import com.mcml.space.eventlimitor.AutoRespawn;
-import com.mcml.space.eventlimitor.BlockCommander;
+import com.mcml.space.doevent.AntiSpam;
+import com.mcml.space.doevent.AutoRespawn;
+import com.mcml.space.doevent.BlockCommander;
 import com.mcml.space.fix.AntiBedExplode;
 import com.mcml.space.fix.AntiCrashSign;
 import com.mcml.space.fix.AntiDoorInfItem;
@@ -140,7 +140,7 @@ public class VLagger extends JavaPlugin
         getLogger().info("反玩家刷屏机器模块...");
         getLogger().info("限制刷怪蛋修改刷怪笼模块...");
         getLogger().info("显性内存清理模块...");
-        getLogger().info("计划传送模块...");
+        getLogger().info("计划预加载传送模块...");
         getLogger().info("命令拦截模块...");
         getLogger().info("自动重生模块...");
         getLogger().info("------加载完毕------");

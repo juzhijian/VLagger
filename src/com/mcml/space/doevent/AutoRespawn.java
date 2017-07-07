@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mcml.space.eventlimitor;
+package com.mcml.space.doevent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
