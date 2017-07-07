@@ -30,4 +30,6 @@ public class AntiDoorInfItem
 		}
     }
 }
-//部分代码来自 https://github.com/jiongjionger/NeverLag
+/**
+@author jiongjionger
+*/
