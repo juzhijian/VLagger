@@ -29,7 +29,7 @@ public class AutoRespawn implements Listener {
 						VLagger.MainThis.getLogger().info("提示:您的服务器不是Spigot服务端？无法启用自动复活功能！");
 					}
 				}
-			}, 3);
+			}, 1);
 		}
 	}
 }
