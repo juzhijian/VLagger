@@ -333,7 +333,7 @@ public class VLagger extends JavaPlugin
     }
 
     private void LoadConfig() {
-    	this.saveResource("ConfigHelper.txt", true);
+    	this.saveResource("说明文档.txt", true);
         FileConfiguration MainConfig = load(MainConfigFile);
         if (MainConfig.getInt("Version") != AllSet.Version) {
             MainConfig.set("Version", AllSet.Version);
