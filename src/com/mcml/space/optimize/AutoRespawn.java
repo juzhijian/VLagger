@@ -20,7 +20,7 @@ public class AutoRespawn implements Listener {
 	@EventHandler
 	public void AutoRespawner(PlayerDeathEvent event) {
 		if (VLagger.AutoRespawnenable == true) {
-			Player player = event.getEntity();
+			final Player player = event.getEntity();
 			Bukkit.getScheduler().runTaskLater(VLagger.MainThis, new Runnable() {
 				public void run() {
 					try {
