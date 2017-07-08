@@ -83,6 +83,8 @@ public class VLagger extends JavaPlugin
     File file;
     public static VLagger MainThis;
     public FileConfiguration config;
+	public static boolean WaterFlowLimitorenable;
+	public static long WaterFlowLimitorPeriod;
 	public static String AutoRespawnRespawnTitleMainMessage;
     public static boolean AutoRespawnRespawnTitleenable;
     public static String AutoRespawnRespawnTitleMiniMessage;
@@ -394,6 +396,8 @@ public class VLagger extends JavaPlugin
             ClearLagConfig.set("HeapClear.Period", 600);
             ClearLagConfig.set("HeapClear.Message", "§e服务器清理内存中... ԅ(¯ㅂ¯ԅ)");
             ClearLagConfig.set("TeleportPreLoader.enable", true);
+            ClearLagConfig.set("WaterFlowLimitor.enable", true);
+            ClearLagConfig.set("WaterFlowLimitor.Period", 200L);
             try {
                 ClearLagConfig.save(ClearLagConfigFile);
             } catch (IOException ex) {
@@ -433,6 +437,8 @@ public class VLagger extends JavaPlugin
         HeapClearPeriod = ClearLagConfig.getInt("HeapClear.Period");
         HeapClearMessage = ClearLagConfig.getString("HeapClear.Message");
         TeleportPreLoaderenable = ClearLagConfig.getBoolean("TeleportPreLoader");
+        WaterFlowLimitorenable = ClearLagConfig.getBoolean("WaterFlowLimitor.enable");
+        WaterFlowLimitorPeriod = ClearLagConfig.getLong("WaterFlowLimitor.Period");
 
         FileConfiguration NoBugConfig = load(NoBugConfigFile);
         if (NoBugConfig.getInt("Version") != AllSet.Version) {

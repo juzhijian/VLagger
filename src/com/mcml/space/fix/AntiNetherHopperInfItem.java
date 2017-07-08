@@ -13,7 +13,7 @@ public class AntiNetherHopperInfItem
     @EventHandler
     public void onHopper(InventoryMoveItemEvent event) {
         if (VLagger.AntiNetherHopperInfItemenable == true) {
-            if ((event.getInitiator().getHolder() instanceof Hopper)) {
+            if (event.getInitiator().getHolder() instanceof Hopper && event.getSource().getHolder() instanceof Hopper) {
                 Hopper to = (Hopper) event.getInitiator().getHolder();
                 Hopper from = (Hopper)event.getSource().getHolder();
                 if (to.getWorld().getEnvironment() == World.Environment.NETHER) {
