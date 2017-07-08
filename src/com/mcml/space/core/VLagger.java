@@ -1,13 +1,20 @@
 package com.mcml.space.core;
 
-import java.io.*;
-import java.util.*;
-import org.bukkit.*;
-import org.bukkit.command.*;
-import org.bukkit.configuration.file.*;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
-import org.bukkit.plugin.java.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import com.mcml.space.doevent.AntiSpam;
 import com.mcml.space.doevent.AutoRespawn;
@@ -54,14 +61,14 @@ public class VLagger extends JavaPlugin implements Listener {
 	public static String HeapShutWarnMessage;
 	public static int HeapShutWaitingTime;
 	public static boolean TPSSleepenable;
-	public static long TPSSleepPeriod;
+	public static long TPSSleepPerTickSleepMs;
 	private static boolean AutoSetenable;
 	public static boolean AutoSaveenable;
 	public static boolean ClearItemenable;
 	public static boolean NooneRestartenable;
 	public static boolean ChunkKeeperenable;
 	public static boolean ChunkUnloaderenable;
-	private static int NooneRestartCheckInterval;
+	public static int NooneRestartTimeLong;
 	public static int AutoSaveInterval;
 	public static boolean AntiInfItemenable;
 	public static boolean AntiPortalInfItemenable;
@@ -82,9 +89,11 @@ public class VLagger extends JavaPlugin implements Listener {
 	public static String PluginPrefix;
 	public static boolean AntiInfRailenable;
 	public static boolean AutoRespawnenable;
-	File file;
 	public static VLagger MainThis;
 	public FileConfiguration config;
+	public static List<String> ClearItemNoClearItemType;
+	public static boolean ClearItemNoCleatDeath;
+	public static boolean ClearItemNoClearTeleport;
 	public static String NoEggChangeSpawnerTipMessage;
 	public static String AntiBreakUseingChestWarnMessage;
 	public static String AntiBedExplodeTipMessage;
@@ -102,7 +111,7 @@ public class VLagger extends JavaPlugin implements Listener {
 	public static String AutoRespawnRespawnTitleMainMessage;
 	public static boolean AutoRespawnRespawnTitleenable;
 	public static String AutoRespawnRespawnTitleMiniMessage;
-	private static File ClearLagConfigFile;
+	public static File ClearLagConfigFile;
 	private static File NoBugConfigFile;
 	private static File MainConfigFile;
 	public static File EventConfigFile;
@@ -120,7 +129,7 @@ public class VLagger extends JavaPlugin implements Listener {
 	public static String HeapClearMessage;
 	public static boolean AntiCheatBookenable;
 	public static String AntiCheatBookWarnMessage;
-	public static ArrayList<EntityType> NoCrowdedEntityTypeList = new ArrayList<EntityType>();
+	public static ArrayList<EntityType> NoCrowdedEntityTypeList;
 	public static boolean TeleportPreLoaderenable;
 	public static boolean AntiBedExplodeenable;
 	public static boolean AntiBreakUseingChestenable;
@@ -163,6 +172,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		getLogger().info("流水限制模块...");
 		getLogger().info("火焰限制模块...");
 		getLogger().info("队列登入游戏模块...");
+		getLogger().info("生成限制模块...");
 		getLogger().info("------加载完毕------");
 		getLogger().info("乐乐感谢您的使用——有建议务必反馈，QQ1207223090");
 		getLogger().info("您可以在插件根目录找到本插件的说明文档 说明文档.txt");
@@ -201,13 +211,13 @@ public class VLagger extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(new FireLimitor(), this);
 		Bukkit.getPluginManager().registerEvents(new QueueLinePlayerLogin(), this);
 		Bukkit.getPluginManager().registerEvents(new AutoUpdateCheck(), this);
+		Bukkit.getPluginManager().registerEvents(new NoOneRestart(), this);
 		NoExplodeofBlock.RegisterEvents();
 
 		ChunkKeeper.ChunkKeeperofTask();
 		Bukkit.getScheduler().runTaskTimer(this, new TilesClear(), TilesClearInterval * 20, TilesClearInterval * 20);
 		getServer().getScheduler().runTaskTimer(this, new ChunkUnloader(), 0, ChunkUnloaderInterval * 20);
 		getServer().getScheduler().runTaskTimer(this, new AutoSaveofTask(), 240 * 20, 240 * 20);
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new NoOneRestart(), NooneRestartCheckInterval * 20,NooneRestartCheckInterval * 20);
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HeapShut(), 1 * 60 * 20, 1 * 60 * 20);
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new TPSSleep(), 1, 1);
 		Bukkit.getScheduler().runTaskTimer(this, new HeapClear(), HeapClearPeriod * 20, HeapClearPeriod * 20);
@@ -240,7 +250,6 @@ public class VLagger extends JavaPlugin implements Listener {
 					sender.sendMessage("§e/vlg autosave 查阅关于自动储存的内容");
 					sender.sendMessage("§e/vlg tpssleep 查阅关于主线程停顿");
 					sender.sendMessage("§e/vlg autoset 查阅关于自动配端");
-					sender.sendMessage("§e/vlg noonerestart 查阅关于无人重启");
 					sender.sendMessage("§e/vlg antiattack 查阅关于反压测模块");
 				}
 				if (args[0].equalsIgnoreCase("antiattack")) {
@@ -256,17 +265,6 @@ public class VLagger extends JavaPlugin implements Listener {
 								NetWorker.DownloadAntiAttack();
 							}
 						});
-					}
-				}
-				if (args[0].equalsIgnoreCase("noonerestart")) {
-					if (args.length == 1) {
-						sender.sendMessage("§a后置参数:");
-						sender.sendMessage("§enow 立即执行一次无人重启");
-						return true;
-					}
-					if (args[1].equalsIgnoreCase("now")) {
-						Bukkit.getScheduler().runTask(this, new NoOneRestart());
-						sender.sendMessage("§e操作已经执行完毕！");
 					}
 				}
 				if (args[0].equalsIgnoreCase("autoset")) {
@@ -323,6 +321,7 @@ public class VLagger extends JavaPlugin implements Listener {
 						sender.sendMessage("§eclearheap 强制用java回收内存");
 						sender.sendMessage("§ecleartiles 执行一次清理无用tiles");
 						sender.sendMessage("§eclearchunk 执行一次检测清理区块");
+						sender.sendMessage("§eheapshut 执行一次濒临崩溃内存检测");
 						sender.sendMessage("§echunkunloadlog 查阅区块卸载计数器");
 						return true;
 					}
@@ -343,6 +342,10 @@ public class VLagger extends JavaPlugin implements Listener {
 					if (args[1].equalsIgnoreCase("clearchunk")) {
 						getServer().getScheduler().runTask(this, new ChunkUnloader());
 						sender.sendMessage("§6区块清理完毕！");
+					}
+					if (args[1].equalsIgnoreCase("heapshut")) {
+						getServer().getScheduler().runTask(this, new HeapShut());
+						sender.sendMessage("§6Tiles清理完毕！");
 					}
 					if (args[1].equalsIgnoreCase("chunkunloadlog")) {
 						sender.sendMessage("§a截止到目前，插件已经卸载了" + ChunkUnloader.ChunkUnloaderTimes + "个无用区块");
@@ -417,13 +420,19 @@ public class VLagger extends JavaPlugin implements Listener {
 			ClearLagConfig.set("HeapShut.WarnMessage", "服务器会在15秒后重启，请玩家不要游戏，耐心等待！ ╮(╯_╰)╭");
 			ClearLagConfig.set("HeapShut.WaitingTime", 15);
 			ClearLagConfig.set("TPSSleep.enable", false);
-			ClearLagConfig.set("TPSSleep.Period", 10);
+			ClearLagConfig.set("TPSSleep.PerTickSleepMs", 10);
 			ClearLagConfig.set("AutoSet.enable", true);
 			ClearLagConfig.set("AutoSave.enable", true);
 			ClearLagConfig.set("AutoSave.Interval", 15);
 			ClearLagConfig.set("ClearItem.enable", true);
+			ClearLagConfig.set("ClearItem.NoCleatDeath", true);
+			ClearLagConfig.set("ClearItem.NoClearTeleport", true);
+			List<String> MeterialList = new ArrayList<String>();
+			MeterialList.add("DIAMOND");
+			MeterialList.add("DIAMOND_SWORD");
+			ClearLagConfig.set("ClearItem.NoClearItemType", MeterialList);
 			ClearLagConfig.set("NooneRestart.enable", true);
-			ClearLagConfig.set("NooneRestart.CheckInterval", 6000);
+			ClearLagConfig.set("NooneRestart.TimeLong", 1200);
 			ClearLagConfig.set("ChunkKeeper.enable", true);
 			ClearLagConfig.set("ChunkUnloader.enable", true);
 			ClearLagConfig.set("NoCrowdedEntity.enable", true);
@@ -455,12 +464,19 @@ public class VLagger extends JavaPlugin implements Listener {
 			ClearLagConfig.set("FireLimitor.enable", true);
 			ClearLagConfig.set("FireLimitor.Period", 3000L);
 			ClearLagConfig.set("QueueLinePlayerLogin.enable", false);
-			ClearLagConfig.set("QueueLinePlayerLogin.Period", 1500L);
+			ClearLagConfig.set("QueueLinePlayerLogin.Period", 500L);
+			ClearLagConfig.set("WorldSpawnLimitor.worldname.enable", true);
+			ClearLagConfig.set("WorldSpawnLimitor.worldname.PerChunkMonsters", 3);
+			ClearLagConfig.set("WorldSpawnLimitor.worldname.PerChunkAnimals", 3);
+			ClearLagConfig.set("WorldSpawnLimitor.worldname.PerChunkAmbient", 10);
 			try {
 				ClearLagConfig.save(ClearLagConfigFile);
 			} catch (IOException ex) {
 			}
 		}
+		ClearItemNoClearItemType = ClearLagConfig.getStringList("ClearItem.NoClearItemTypeClearItem.NoClearItemType");
+		ClearItemNoCleatDeath = ClearLagConfig.getBoolean("ClearItem.NoCleatDeath");
+		ClearItemNoClearTeleport = ClearLagConfig.getBoolean("ClearItem.NoClearTeleport");
 		QueueLinePlayerLoginenable = ClearLagConfig.getBoolean("QueueLinePlayerLogin.enable");
 		QueueLinePlayerLoginPeriod = ClearLagConfig.getLong("QueueLinePlayerLogin.Period");
 		HeapShutenable = ClearLagConfig.getBoolean("HeapShut.enable");
@@ -468,13 +484,13 @@ public class VLagger extends JavaPlugin implements Listener {
 		HeapShutWarnMessage = ClearLagConfig.getString("HeapShut.WarnMessage");
 		HeapShutWaitingTime = ClearLagConfig.getInt("HeapShut.WaitingTime");
 		TPSSleepenable = ClearLagConfig.getBoolean("TPSSleep.enable");
-		TPSSleepPeriod = ClearLagConfig.getLong("TPSSleep.Period");
+		TPSSleepPerTickSleepMs = ClearLagConfig.getLong("TPSSleep.PerTickSleepMs");
 		AutoSetenable = ClearLagConfig.getBoolean("AutoSet.enable");
 		AutoSaveenable = ClearLagConfig.getBoolean("AutoSave.enable");
 		AutoSaveInterval = ClearLagConfig.getInt("AutoSave.Interval");
 		ClearItemenable = ClearLagConfig.getBoolean("ClearItem.enable");
 		NooneRestartenable = ClearLagConfig.getBoolean("NooneRestart.enable");
-		NooneRestartCheckInterval = ClearLagConfig.getInt("NooneRestart.CheckInterval");
+		NooneRestartTimeLong = ClearLagConfig.getInt("NooneRestart.TimeLong");
 		ChunkKeeperenable = ClearLagConfig.getBoolean("ChunkKeeper.enable");
 		ChunkUnloaderenable = ClearLagConfig.getBoolean("ChunkUnloader.enable");
 		NoCrowdedEntityenable = ClearLagConfig.getBoolean("NoCrowdedEntity.enable");

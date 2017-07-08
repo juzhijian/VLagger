@@ -8,7 +8,7 @@ public class TPSSleep
     public void run() {
         if (VLagger.TPSSleepenable == true) {
             try {
-                Thread.sleep(VLagger.TPSSleepPeriod);
+                Thread.sleep(VLagger.TPSSleepPerTickSleepMs);
             } catch (InterruptedException ex) {
             }
         }

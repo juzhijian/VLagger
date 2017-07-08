@@ -1,8 +1,11 @@
 package com.mcml.space.optimize;
 
 import java.util.HashMap;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,7 +21,18 @@ public class AutoSaveOfListener
     private HashMap<Player, Integer> TaskId = new HashMap<Player, Integer>();
     private static HashMap<Player, Chunk> PlayerInChunkMap = new HashMap<Player, Chunk>();
     private static HashMap<Player, Chunk> PlayerClickedMap = new HashMap<Player, Chunk>();
-
+    
+    public AutoSaveOfListener(){
+    	if(VLagger.AutoSaveenable == true){
+    		List<World> worlds = Bukkit.getWorlds();
+        	int ws = worlds.size();
+        	for(int i = 0;i < ws;i++){
+        		worlds.get(i).setAutoSave(false);
+        	}
+    	}
+    }
+    
+    
     @EventHandler
     public void JoinTaskGiver(PlayerJoinEvent e) {
         if (VLagger.AutoSaveenable == false) {

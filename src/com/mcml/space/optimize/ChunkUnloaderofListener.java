@@ -13,6 +13,7 @@ public class ChunkUnloaderofListener
     public void onWorldLoad(WorldInitEvent event) {
         if (VLagger.ChunkUnloaderenable == true) {
             event.getWorld().setKeepSpawnInMemory(false);
+            VLagger.MainThis.getLogger().info("已为世界 " + event.getWorld().getName() + " 设定不保留出生区块.");
         }
     }
 }
