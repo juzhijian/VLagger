@@ -29,7 +29,6 @@ public class AutoRespawn implements Listener {
 							player.sendTitle(VLagger.AutoRespawnRespawnTitleMainMessage, VLagger.AutoRespawnRespawnTitleMiniMessage);
 						}
 					} catch (Throwable ex) {
-						VLagger.MainThis.getLogger().info("提示:您的服务器不是Spigot服务端？无法启用自动复活功能！");
 					}
 				}
 			}, 1);
