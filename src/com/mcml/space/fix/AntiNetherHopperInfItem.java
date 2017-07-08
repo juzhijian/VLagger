@@ -14,9 +14,12 @@ public class AntiNetherHopperInfItem
     public void onHopper(InventoryMoveItemEvent event) {
         if (VLagger.AntiNetherHopperInfItemenable == true) {
             if ((event.getInitiator().getHolder() instanceof Hopper)) {
-                Hopper hopper = (Hopper) event.getInitiator().getHolder();
-                if (hopper.getWorld().getEnvironment() == World.Environment.NETHER) {
-                    event.setCancelled(true);
+                Hopper to = (Hopper) event.getInitiator().getHolder();
+                Hopper from = (Hopper)event.getSource().getHolder();
+                if (to.getWorld().getEnvironment() == World.Environment.NETHER) {
+                	if(to.getChunk() != from.getChunk()){
+                		event.setCancelled(true);
+                	}
                 }
             }
         }

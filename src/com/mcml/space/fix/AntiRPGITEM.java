@@ -12,8 +12,7 @@ public class AntiRPGITEM
     @EventHandler(ignoreCancelled = true)
     public void pickup(PlayerPickupItemEvent event) {
         if (VLagger.AntiRPGITEMenable == true) {
-            int count = event.getRemaining();
-            if (count <= 0) {
+            if (event.getRemaining() <= 0) {
                 event.getItem().remove();
             }
         }
