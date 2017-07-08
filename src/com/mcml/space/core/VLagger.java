@@ -149,12 +149,17 @@ public class VLagger extends JavaPlugin
         getLogger().info("计划预加载传送模块...");
         getLogger().info("命令拦截模块...");
         getLogger().info("自动重生模块...");
+        getLogger().info("流水限制模块...");
+        getLogger().info("火焰限制模块...");
         getLogger().info("------加载完毕------");
         getLogger().info("乐乐感谢您的使用——有建议务必反馈，QQ1207223090");
         getLogger().info("您可以在插件根目录找到本插件的说明文档 说明文档.txt");
         getLogger().info("|||Vlvxingze/VLagger PluginCD小组作品.|||");
         if (AutoSetenable == true) {
-            VLagger.AutoSetServer();
+        	try {
+				VLagger.AutoSetServer();
+			} catch (IOException|InterruptedException e) {
+			}
         }
 
         Bukkit.getPluginManager().registerEvents(new AntiInfItem(), this);
@@ -244,7 +249,10 @@ public class VLagger extends JavaPlugin
                         sender.sendMessage("§eset 执行一次配端操作");
                     }
                     if(args[1].equalsIgnoreCase("set")){
-                        VLagger.AutoSetServer();
+                        try {
+							VLagger.AutoSetServer();
+						} catch (IOException|InterruptedException e) {
+						}
                         sender.sendMessage("§a配端完成！重启服务器即可生效！");
                     }
                 }
@@ -537,55 +545,80 @@ public class VLagger extends JavaPlugin
         AutoRespawnRespawnTitleMiniMessage = EventConfig.getString("AutoRespawn.RespawnTitle.MiniMessage");
     }
 
-    private static void AutoSetServer() {
+    private static void AutoSetServer() throws IOException, InterruptedException {
         File BukkitFile = new File("bukkit.yml");
-        FileConfiguration bukkit = load(BukkitFile);
-        bukkit.set("chunk-gc.period-in-ticks", 300);
-        bukkit.set("chunk-gc.load-threshold", 400);
-        bukkit.set("ticks-per.autosave", 0);
-        bukkit.set("ticks-per.monster-spawns", 3);
-        bukkit.set("VLagger.Changed", "如果Config的AutoSet开启，该参数会被改变。");
-        File SpigotFile = new File("spigot.yml");
-        FileConfiguration spigot = load(SpigotFile);
-        spigot.set("settings.user-cache-size", 5000);
-        spigot.set("settings.save-user-cache-on-stop-only", true);
-        spigot.set("world-settings.default.view-distance", 4);
-        spigot.set("world-settings.default.chunks-per-tick", 350);
-        spigot.set("world-settings.default.max-tick-time.tile", 10);
-        spigot.set("world-settings.default.max-tick-time.entity", 20);
-        spigot.set("world-settings.default.entity-activation-range.animals", 12);
-        spigot.set("world-settings.default.entity-activation-range.monsters", 24);
-        spigot.set("world-settings.default.entity-activation-range.misc", 2);
-        spigot.set("world-settings.default.entity-tracking-range.other", 48);
-        spigot.set("world-settings.default.random-light-updates", false);
-        spigot.set("world-settings.default.save-structure-info", false);
-        spigot.set("world-settings.default.max-entity-collisions", 2);
-        spigot.set("world-settings.default.max-tnt-per-tick", 20);
-        spigot.set("VLagger.Changed", "如果Config的AutoSet开启，该参数会被改变。");
-        try {
+        if(BukkitFile.exists()){
+        	FileConfiguration bukkit = load(BukkitFile);
+        	File backupBukkitFile = new File("backup_bukkit.yml");
+        	if(backupBukkitFile.exists() == false){
+        		backupBukkitFile.createNewFile();
+        		bukkit.save(backupBukkitFile);
+        	}
+            bukkit.set("chunk-gc.period-in-ticks", 300);
+            bukkit.set("chunk-gc.load-threshold", 400);
+            bukkit.set("ticks-per.autosave", 0);
+            bukkit.set("ticks-per.monster-spawns", 3);
+            bukkit.set("VLagger.Changed", "如果Config的AutoSet开启，该参数会被改变。");
             bukkit.save(BukkitFile);
+        }
+        File SpigotFile = new File("spigot.yml");
+        if(SpigotFile.exists()){
+        	FileConfiguration spigot = load(SpigotFile);
+        	File backupSpigotFile = new File("backup_spigot.yml");
+        	if(backupSpigotFile.exists() == false){
+        		backupSpigotFile.createNewFile();
+        		spigot.save(backupSpigotFile);
+        	}
+            spigot.set("settings.user-cache-size", 5000);
+            spigot.set("settings.save-user-cache-on-stop-only", true);
+            spigot.set("world-settings.default.view-distance", 4);
+            spigot.set("world-settings.default.chunks-per-tick", 350);
+            spigot.set("world-settings.default.max-tick-time.tile", 10);
+            spigot.set("world-settings.default.max-tick-time.entity", 20);
+            spigot.set("world-settings.default.entity-activation-range.animals", 12);
+            spigot.set("world-settings.default.entity-activation-range.monsters", 24);
+            spigot.set("world-settings.default.entity-activation-range.misc", 2);
+            spigot.set("world-settings.default.entity-tracking-range.other", 48);
+            spigot.set("world-settings.default.random-light-updates", false);
+            spigot.set("world-settings.default.save-structure-info", false);
+            spigot.set("world-settings.default.max-entity-collisions", 2);
+            spigot.set("world-settings.default.max-tnt-per-tick", 20);
+            spigot.set("VLagger.Changed", "如果Config的AutoSet开启，该参数会被改变。");
             spigot.save(SpigotFile);
-        } catch (IOException ex) {
         }
-        if (bukkit.getInt("VLagger.SetStep") == 1) {
-            bukkit.set("VLagger.SetStep", 2);
-            try {
-                bukkit.save(BukkitFile);
-            } catch (IOException ex) {
-            }
+        File PaperFile = new File("paper.yml");
+        if(PaperFile.exists()){
+        	FileConfiguration paper = load(PaperFile);
+        	File backupPaperFile = new File("backup_paper.yml");
+        	if(backupPaperFile.exists() == false){
+        		backupPaperFile.createNewFile();
+        		paper.save(backupPaperFile);
+        	}
+            paper.set("world-settings.default.keep-spawn-loaded", false);
+            paper.set("world-settings.default.optimize-explosions", true);
+            paper.set("world-settings.default.fast-drain.lava", true);
+            paper.set("world-settings.default.fast-drain.water", true);
+            paper.set("world-settings.default.use-async-lighting", true);
+            paper.set("world-settings.default.tick-next-tick-list-cap", 8000);
+            paper.set("world-settings.default.tick-next-tick-list-cap-ignores-redstone", true);
+            paper.save(PaperFile);
         }
-        if (bukkit.getInt("VLagger.SetStep") == 0) {
-            bukkit.set("VLagger.SetStep", 1);
-            try {
-                bukkit.save(BukkitFile);
-            } catch (IOException ex) {
+        if(BukkitFile.exists()){
+        	FileConfiguration bukkit = load(BukkitFile);
+        	if (bukkit.getInt("VLagger.SetStep") == 1) {
+                bukkit.set("VLagger.SetStep", 2);
+                try {
+                    bukkit.save(BukkitFile);
+                } catch (IOException ex) {
+                }
             }
-            MainThis.getLogger().info("成功改动服务器配端，正在重启来启用它.");
-            try {
+            if (bukkit.getInt("VLagger.SetStep") == 0) {
+                bukkit.set("VLagger.SetStep", 1);
+                    bukkit.save(BukkitFile);
+                MainThis.getLogger().info("成功改动服务器配端，正在重启来启用它.");
                 Thread.sleep(4000);
-            } catch (InterruptedException e) {
+                Bukkit.shutdown();
             }
-            Bukkit.shutdown();
         }
     }
 
