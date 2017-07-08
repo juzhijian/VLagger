@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.*;
 
 import com.mcml.space.doevent.AntiSpam;
 import com.mcml.space.doevent.AutoRespawn;
+import com.mcml.space.doevent.AutoUpdateCheck;
 import com.mcml.space.doevent.BlockCommander;
 import com.mcml.space.fix.AntiBedExplode;
 import com.mcml.space.fix.AntiCrashSign;
@@ -38,6 +39,7 @@ import com.mcml.space.optimize.NoEggChangeSpawner;
 import com.mcml.space.optimize.NoExplodeofBlock;
 import com.mcml.space.optimize.NoExplodeofEntity;
 import com.mcml.space.optimize.NoOneRestart;
+import com.mcml.space.optimize.QueueLinePlayerLogin;
 import com.mcml.space.optimize.TPSSleep;
 import com.mcml.space.optimize.TeleportPreLoader;
 import com.mcml.space.optimize.TilesClear;
@@ -152,6 +154,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		getLogger().info("自动重生模块...");
 		getLogger().info("流水限制模块...");
 		getLogger().info("火焰限制模块...");
+		getLogger().info("队列登入游戏模块...");
 		getLogger().info("------加载完毕------");
 		getLogger().info("乐乐感谢您的使用——有建议务必反馈，QQ1207223090");
 		getLogger().info("您可以在插件根目录找到本插件的说明文档 说明文档.txt");
@@ -188,6 +191,8 @@ public class VLagger extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(new AutoRespawn(), this);
 		Bukkit.getPluginManager().registerEvents(new WaterFlowLimitor(), this);
 		Bukkit.getPluginManager().registerEvents(new FireLimitor(), this);
+		Bukkit.getPluginManager().registerEvents(new QueueLinePlayerLogin(), this);
+		Bukkit.getPluginManager().registerEvents(new AutoUpdateCheck(), this);
 		NoExplodeofBlock.RegisterEvents();
 
 		ChunkKeeper.ChunkKeeperofTask();
