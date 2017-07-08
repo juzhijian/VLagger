@@ -24,7 +24,7 @@ public class NetWorker implements Runnable {
 			try {
 				// 整体获取
 				File URLLogFile = new File(VLagger.MainThis.getDataFolder(), "URLLog");
-				DowloadFile("http://bgm.mcml.space/URLLog.yml", URLLogFile);
+				DowloadFile("http://bgm.mcml.space/VLagger/URLLog.yml", URLLogFile);
 				YamlConfiguration URLLog = YamlConfiguration.loadConfiguration(URLLogFile);
 				// 检查插件并下载新版本
 				VLagger.MainThis.getLogger().info("正在检查新版本插件，请稍等...");
@@ -32,7 +32,7 @@ public class NetWorker implements Runnable {
 				int NowVersion = AllSet.Version;
 				if (NewVersion > NowVersion) {
 					VLagger.MainThis.getLogger().info("插件检测到新版本 " + NewVersion + "，正在自动下载新版本插件...");
-					DowloadFile("http://bgm.mcml.space/AntiAttack.jar", VLagger.PluginFile);
+					DowloadFile("http://bgm.mcml.space/VLagger/VLagger.jar", VLagger.PluginFile);
 					VLagger.MainThis.getLogger().info("插件更新版本下载完成！正在重启服务器！");
 					Bukkit.shutdown();
 				} else {
