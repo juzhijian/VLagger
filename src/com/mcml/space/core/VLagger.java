@@ -40,6 +40,7 @@ import com.mcml.space.optimize.NoOneRestart;
 import com.mcml.space.optimize.TPSSleep;
 import com.mcml.space.optimize.TeleportPreLoader;
 import com.mcml.space.optimize.TilesClear;
+import com.mcml.space.optimize.WaterFlowLimitor;
 import com.mcml.space.util.AllSet;
 import com.mcml.space.util.NetWorker;
 
@@ -174,6 +175,7 @@ public class VLagger extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new AntiBedExplode(), this);
         Bukkit.getPluginManager().registerEvents(new BlockCommander(), this);
         Bukkit.getPluginManager().registerEvents(new AutoRespawn(), this);
+        Bukkit.getPluginManager().registerEvents(new WaterFlowLimitor(), this);
         NoExplodeofBlock.RegisterEvents();
 
         ChunkKeeper.ChunkKeeperofTask();
