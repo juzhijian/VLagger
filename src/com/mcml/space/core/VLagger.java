@@ -28,6 +28,7 @@ import com.mcml.space.optimize.AutoSaveofTask;
 import com.mcml.space.optimize.ChunkKeeper;
 import com.mcml.space.optimize.ChunkUnloader;
 import com.mcml.space.optimize.ChunkUnloaderofListener;
+import com.mcml.space.optimize.FireLimitor;
 import com.mcml.space.optimize.HeapClear;
 import com.mcml.space.optimize.HeapShut;
 import com.mcml.space.optimize.ItemClear;
@@ -83,6 +84,8 @@ public class VLagger extends JavaPlugin
     File file;
     public static VLagger MainThis;
     public FileConfiguration config;
+	public static boolean FireLimitorenable;
+	public static long FireLimitorPeriod;
 	public static boolean WaterFlowLimitorenable;
 	public static long WaterFlowLimitorPeriod;
 	public static String AutoRespawnRespawnTitleMainMessage;
@@ -178,6 +181,7 @@ public class VLagger extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new BlockCommander(), this);
         Bukkit.getPluginManager().registerEvents(new AutoRespawn(), this);
         Bukkit.getPluginManager().registerEvents(new WaterFlowLimitor(), this);
+        Bukkit.getPluginManager().registerEvents(new FireLimitor(),this);
         NoExplodeofBlock.RegisterEvents();
 
         ChunkKeeper.ChunkKeeperofTask();
@@ -208,6 +212,21 @@ public class VLagger extends JavaPlugin
                     sender.sendMessage("§e/vlg tpssleep 查阅关于主线程停顿");
                     sender.sendMessage("§e/vlg autoset 查阅关于自动配端");
                     sender.sendMessage("§e/vlg noonerestart 查阅关于无人重启");
+                    sender.sendMessage("§e/vlg antiattack 查阅关于反压测模块");
+                }
+                if(args[0].equalsIgnoreCase("antiattack")){
+                    if(args.length == 1){
+                        sender.sendMessage("§a后置参数:");
+                        sender.sendMessage("§edownload 下载反压测模块");
+                    }
+                    if(args[1].equalsIgnoreCase("download")){
+                        Bukkit.getScheduler().runTaskAsynchronously(this, new Runnable(){
+                        	public void run(){
+                        		NetWorker.DownloadAntiAttack();
+                        	}
+                        });
+                        sender.sendMessage("§e操作开始执行中...");
+                    }
                 }
                 if(args[0].equalsIgnoreCase("noonerestart")){
                     if(args.length == 1){
@@ -398,6 +417,8 @@ public class VLagger extends JavaPlugin
             ClearLagConfig.set("TeleportPreLoader.enable", true);
             ClearLagConfig.set("WaterFlowLimitor.enable", true);
             ClearLagConfig.set("WaterFlowLimitor.Period", 200L);
+            ClearLagConfig.set("FireLimitor.enable", true);
+            ClearLagConfig.set("FireLimitor.Period", 3000L);
             try {
                 ClearLagConfig.save(ClearLagConfigFile);
             } catch (IOException ex) {
@@ -440,6 +461,8 @@ public class VLagger extends JavaPlugin
         TeleportPreLoaderenable = ClearLagConfig.getBoolean("TeleportPreLoader");
         WaterFlowLimitorenable = ClearLagConfig.getBoolean("WaterFlowLimitor.enable");
         WaterFlowLimitorPeriod = ClearLagConfig.getLong("WaterFlowLimitor.Period");
+        FireLimitorenable = ClearLagConfig.getBoolean("FireLimitor.enable");
+        FireLimitorPeriod = ClearLagConfig.getLong("FireLimitor.Period");
 
         FileConfiguration NoBugConfig = load(NoBugConfigFile);
         if (NoBugConfig.getInt("Version") != AllSet.Version) {

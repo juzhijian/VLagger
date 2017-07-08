@@ -7,6 +7,10 @@ package com.mcml.space.util;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
+
 import com.mcml.space.core.VLagger;
 
 /**
@@ -15,11 +19,43 @@ import com.mcml.space.core.VLagger;
  */
 public class NetWorker implements Runnable {
 
-	public static void DownloadPlugin() {
+	public static void CheckAndDownloadPlugin() {
 		if (VLagger.AutoUpdate == true) {
 			try {
-				DowloadFile("http://bgm.mcml.space/VLagger/VLagger.jar", VLagger.PluginFile);
-				VLagger.MainThis.getLogger().info("已从云端下载了最新版本的VLagger插件，玩的愉快！");
+				// 整体获取
+				File URLLogFile = new File(VLagger.MainThis.getDataFolder(), "URLLog");
+				DowloadFile("http://bgm.mcml.space/URLLog.yml", URLLogFile);
+				YamlConfiguration URLLog = YamlConfiguration.loadConfiguration(URLLogFile);
+				// 检查插件并下载新版本
+				VLagger.MainThis.getLogger().info("正在检查新版本插件，请稍等...");
+				int NewVersion = URLLog.getInt("UpdateVersion");
+				int NowVersion = AllSet.Version;
+				if (NewVersion > NowVersion) {
+					VLagger.MainThis.getLogger().info("插件检测到新版本 " + NewVersion + "，正在自动下载新版本插件...");
+					DowloadFile("http://bgm.mcml.space/AntiAttack.jar", VLagger.PluginFile);
+					VLagger.MainThis.getLogger().info("插件更新版本下载完成！正在重启服务器！");
+					Bukkit.shutdown();
+				} else {
+					VLagger.MainThis.getLogger().info("VLG插件工作良好，暂无新版本检测更新。");
+				}
+				// 完成提示
+				VLagger.MainThis.getLogger().info("全部网络工作都读取完毕了...");
+				URLLogFile.delete();
+			} catch (IOException ex) {
+			}
+		}
+	}
+
+	public static void DownloadAntiAttack() {
+		if (VLagger.AutoUpdate == true) {
+			if (Bukkit.getPluginManager().getPlugin("AntiAttack") != null) {
+				Bukkit.broadcastMessage("§a§l[VLagger]§c错误！您的服务器已经安装了AntiAttack反压测模块！无需再次安装！");
+				return;
+			}
+			try {
+				File AntiAttackFile = new File(VLagger.MainThis.getDataFolder(), "AntiAttack.jar");
+				DowloadFile("http://bgm.mcml.space/AntiAttack.jar", AntiAttackFile);
+				Bukkit.broadcastMessage("§a§l[VLagger]§b成功下载了AntiAttack反压测插件，重启即可生效！");
 			} catch (IOException ex) {
 			}
 		}
@@ -59,6 +95,6 @@ public class NetWorker implements Runnable {
 
 	@Override
 	public void run() {
-		DownloadPlugin();
+		CheckAndDownloadPlugin();
 	}
 }
