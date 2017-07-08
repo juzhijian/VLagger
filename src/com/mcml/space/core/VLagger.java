@@ -199,8 +199,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		Bukkit.getScheduler().runTaskTimer(this, new TilesClear(), TilesClearInterval * 20, TilesClearInterval * 20);
 		getServer().getScheduler().runTaskTimer(this, new ChunkUnloader(), 0, ChunkUnloaderInterval * 20);
 		getServer().getScheduler().runTaskTimer(this, new AutoSaveofTask(), 240 * 20, 240 * 20);
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new NoOneRestart(), NooneRestartCheckInterval * 20,
-				NooneRestartCheckInterval * 20);
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new NoOneRestart(), NooneRestartCheckInterval * 20,NooneRestartCheckInterval * 20);
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HeapShut(), 1 * 60 * 20, 1 * 60 * 20);
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new TPSSleep(), 1, 1);
 		Bukkit.getScheduler().runTaskTimer(this, new HeapClear(), HeapClearPeriod * 20, HeapClearPeriod * 20);
