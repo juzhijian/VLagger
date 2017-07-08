@@ -7,6 +7,8 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockIgniteEvent;
+import org.bukkit.event.block.BlockIgniteEvent.IgniteCause;
+
 import com.mcml.space.core.VLagger;
 
 public class FireLimitor implements Listener {
@@ -16,6 +18,9 @@ public class FireLimitor implements Listener {
 	@EventHandler
 	public void WhenFireLimitor(BlockIgniteEvent event) {
 		if (VLagger.FireLimitorenable == true) {
+			if(event.getCause() == IgniteCause.FLINT_AND_STEEL){
+				return;
+			}
 			Block block = event.getBlock();
 			if (CheckFast(block.getChunk())) {
 				event.setCancelled(true);

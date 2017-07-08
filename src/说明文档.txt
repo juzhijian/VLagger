@@ -73,6 +73,15 @@ HeapClear: #显性内存清理
   Message: "§e服务器清理内存中... ԅ(¯ㅂ¯ԅ)" #清理时的提示信息是什么
 TeleportPreLoader: #区块预加载
   enable: true #是否开启区块预加载
+WaterFlowLimitor: #流水限制
+  enable: true #是否开启高空、大量流水限制
+  Period: 200 #每多少毫秒允许一次流水
+FireLimitor: #火焰限制
+  enable: true #是否限制火焰蔓延
+  Period: 3000 #每多少毫秒允许一次火焰蔓延
+QueueLinePlayerLogin: #队列化登入
+  enable: false #是否开启队列化登入玩家
+  Period: 1500 #每多少毫秒允许一个登陆请求，其他请求会被停顿。
 
 4.NoBugConfig —— 为修复漏洞（包括MC漏洞和部分插件漏洞）配置文件
 Version: 256 #版本号，请勿修改
@@ -124,10 +133,12 @@ BlockCommander: #命令禁止者（多世界）该配置对OP无效
         Message: "不好使，不可以用back!"
       /tpa: #禁止的命令
         Message: "WIFI没信号，不能传送。"
-AutoRespawn: #是否自动复活玩家
-  enable: true #开启自动复活玩家
-
-
+AutoRespawn: #自动复活
+  enable: true #是否自动复活玩家
+  RespawnTitle: #复活文字
+    enable: true #是否在复活时屏幕中央显示文字（仅1.8.8+）
+    MainMessage: "§e你死了！" #大标题文字
+    MiniMessage: "§c已为您自动复活！" #小标题文字
 
 感谢您对 VLagger 插件的支持，本插件由PCD小组全员开发。
 您可以随时查阅本插件的发布帖子在MCBBS（或ZUIMC论坛）：
