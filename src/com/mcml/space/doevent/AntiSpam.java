@@ -11,7 +11,7 @@ import com.mcml.space.core.VLagger;
 public class AntiSpam
         implements Listener {
 
-    private final static HashMap CheckList = new HashMap();
+    private final static HashMap<String, Long> CheckList = new HashMap<String, Long>();
 
     private static boolean CheckFast(String bs) {
         if (CheckList.containsKey(bs)) {
@@ -32,7 +32,7 @@ public class AntiSpam
                 event.setCancelled(true);
                 p.sendMessage(VLagger.PluginPrefix + VLagger.AntiSpamWarnMessage);
             }
-            CheckList.put(pn, Long.valueOf(System.currentTimeMillis()));
+            CheckList.put(pn, System.currentTimeMillis());
         }
     }
 }
