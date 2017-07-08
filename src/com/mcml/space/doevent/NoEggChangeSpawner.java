@@ -1,4 +1,4 @@
-package com.mcml.space.optimize;
+package com.mcml.space.doevent;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,7 +26,7 @@ public class NoEggChangeSpawner
             if (e.getItem().getType() == Material.MONSTER_EGG || e.getItem().getType() == Material.MONSTER_EGGS) {
                 if (e.getClickedBlock().getType() == Material.MOB_SPAWNER) {
                     e.setCancelled(true);
-                    e.getPlayer().sendMessage("§a§l[VLagger]§c抱歉，禁止使用刷怪蛋修改刷怪笼");
+                    e.getPlayer().sendMessage(VLagger.PluginPrefix + VLagger.NoEggChangeSpawnerTipMessage);
                 }
             }
         }

@@ -15,7 +15,7 @@ public class AntiCrashSign
             for (int i = 0; i < 4; i++) {
                 if (event.getLine(i).length() > 100) {
                     event.setCancelled(true);
-                    event.getPlayer().sendMessage("§a§l[VLagger]§c您输入的内容太长了！");
+                    event.getPlayer().sendMessage(VLagger.PluginPrefix + VLagger.AntiCrashSignWarnMessage);
                 }
             }
         }

@@ -25,7 +25,7 @@ public class AntiInfItem
                 if (event.getItem().getAmount() <= 0) {
                     event.setCancelled(true);
                     player.setItemInHand(null);
-                    player.sendMessage("§a§l[VLagger]§c警告！不允许使用负数物品！");
+                    player.sendMessage(VLagger.PluginPrefix + VLagger.AntiInfItemClickcWarnMessage);
                 }
             }
         }
@@ -45,7 +45,9 @@ public class AntiInfItem
                         if (Inventory.getItem(i).getAmount() < 0) {
                             Inventory.getItem(i).setType(Material.AIR);
                             event.setCancelled(true);
-                            Bukkit.broadcastMessage("§a§l[VLagger]§c在 §b" + event.getBlock().getLocation().toString() + " §c发现一个负数物品的发射器！内部负数物品已经移除！");
+                            String WarnMessage = VLagger.PluginPrefix + VLagger.AntiInfItemBlockcWarnMessage;
+                            WarnMessage = WarnMessage.replaceAll("%block%", block.toString());
+                            Bukkit.broadcastMessage(WarnMessage);
                         }
                     }
                 }
@@ -57,7 +59,9 @@ public class AntiInfItem
                     if ((Inventory.getItem(i) != null) && (Inventory.getItem(i).getAmount() < 0)) {
                         Inventory.getItem(i).setType(Material.AIR);
                         event.setCancelled(true);
-                        Bukkit.broadcastMessage("§a§l[VLagger]§c在 §b" + event.getBlock().getLocation().toString() + " §c发现一个负数物品的发射器！内部负数物品已经移除！");
+                        String WarnMessage = VLagger.PluginPrefix + VLagger.AntiInfItemBlockcWarnMessage;
+                        WarnMessage = WarnMessage.replaceAll("%block%", block.toString());
+                        Bukkit.broadcastMessage(WarnMessage);
                     }
                 }
             }

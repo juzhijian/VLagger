@@ -20,7 +20,7 @@ public class BlockCommander implements Listener {
             }
             if (event.getMessage().contains(":")) {
                 event.setCancelled(true);
-                p.sendMessage("抱歉，您不能使用冒号代插件来输入命令");
+                p.sendMessage(VLagger.PluginPrefix + VLagger.BlockCommanderNoColonTip);
             }
             if (config.getBoolean("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage()) == true) {
                 event.setCancelled(true);

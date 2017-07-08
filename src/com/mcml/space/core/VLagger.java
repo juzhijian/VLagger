@@ -13,6 +13,7 @@ import com.mcml.space.doevent.AntiSpam;
 import com.mcml.space.doevent.AutoRespawn;
 import com.mcml.space.doevent.AutoUpdateCheck;
 import com.mcml.space.doevent.BlockCommander;
+import com.mcml.space.doevent.NoEggChangeSpawner;
 import com.mcml.space.fix.AntiBedExplode;
 import com.mcml.space.fix.AntiCrashSign;
 import com.mcml.space.fix.AntiDoorInfItem;
@@ -35,7 +36,6 @@ import com.mcml.space.optimize.HeapShut;
 import com.mcml.space.optimize.ItemClear;
 import com.mcml.space.optimize.NoCrowdEntity;
 import com.mcml.space.optimize.NoDoubleOnline;
-import com.mcml.space.optimize.NoEggChangeSpawner;
 import com.mcml.space.optimize.NoExplodeofBlock;
 import com.mcml.space.optimize.NoExplodeofEntity;
 import com.mcml.space.optimize.NoOneRestart;
@@ -85,6 +85,14 @@ public class VLagger extends JavaPlugin implements Listener {
 	File file;
 	public static VLagger MainThis;
 	public FileConfiguration config;
+	public static String NoEggChangeSpawnerTipMessage;
+	public static String AntiBreakUseingChestWarnMessage;
+	public static String AntiBedExplodeTipMessage;
+	public static String AntiCrashSignWarnMessage;
+	public static String AntiPortalInfItemWarnMessage;
+	public static String AntiInfItemClickcWarnMessage;
+	public static String AntiInfItemBlockcWarnMessage;
+	public static String BlockCommanderNoColonTip;
 	public static boolean QueueLinePlayerLoginenable;
 	public static long QueueLinePlayerLoginPeriod;
 	public static boolean FireLimitorenable;
@@ -499,10 +507,14 @@ public class VLagger extends JavaPlugin implements Listener {
 		if (NoBugConfig.getInt("Version") != AllSet.Version) {
 			NoBugConfig.set("Version", AllSet.Version);
 			NoBugConfig.set("AntiInfItem.enable", true);
+			NoBugConfig.set("AntiInfItem.ClickcWarnMessage", "§c警告！不允许使用负数物品！");
+			NoBugConfig.set("AntiInfItem.BlockcWarnMessage", "§c在  §b%block% §c发现一个负数物品的发射器！内部负数物品已经移除！");
 			NoBugConfig.set("AntiPortalInfItem.enable", true);
+			NoBugConfig.set("AntiPortalInfItem.WarnMessage", "§c抱歉！禁止矿车通过地狱门防止作弊！");
 			NoBugConfig.set("AntiNetherHopperInfItem.enable", true);
 			NoBugConfig.set("AntiRPGITEM.enable", true);
 			NoBugConfig.set("AntiCrashSign.enable", true);
+			NoBugConfig.set("AntiCrashSign.WarnMessage", "§c您输入的内容太长了！");
 			NoBugConfig.set("AntiSkullCrash.enable", true);
 			NoBugConfig.set("NoDoubleOnline.enable", true);
 			NoBugConfig.set("NoDoubleOnline.KickMessage", "抱歉，服务器中您已经在线了。ԅ(¯ㅂ¯ԅ)");
@@ -511,13 +523,21 @@ public class VLagger extends JavaPlugin implements Listener {
 			NoBugConfig.set("AntiCheatBook.enable", true);
 			NoBugConfig.set("AntiCheatBook.WarnMessage", "§c严禁利用超级书Bug！");
 			NoBugConfig.set("AntiBedExplode.enable", true);
+			NoBugConfig.set("AntiBedExplode.TipMessage", "§r你不能在这里睡觉");
 			NoBugConfig.set("AntiBreakUseingChest.enable", true);
+			NoBugConfig.set("AntiBreakUseingChest.WarnMessage", "§c抱歉！您不可以破坏一个正在被使用的容器");
 			NoBugConfig.set("AntiInfRail.enable", true);
 			try {
 				NoBugConfig.save(NoBugConfigFile);
 			} catch (IOException ex) {
 			}
 		}
+		AntiBreakUseingChestWarnMessage = NoBugConfig.getString("AntiBreakUseingChest.WarnMessage");
+		AntiBedExplodeTipMessage = NoBugConfig.getString("AntiBedExplode.TipMessage");
+		AntiCrashSignWarnMessage = NoBugConfig.getString("AntiCrashSign.WarnMessage");
+		AntiPortalInfItemWarnMessage = NoBugConfig.getString("AntiPortalInfItem.WarnMessage");
+		AntiInfItemClickcWarnMessage = NoBugConfig.getString("AntiInfItem.ClickcWarnMessage");
+		AntiInfItemBlockcWarnMessage = NoBugConfig.getString("AntiInfItem.BlockcWarnMessage");
 		AntiInfItemenable = NoBugConfig.getBoolean("AntiInfItem.enable");
 		AntiPortalInfItemenable = NoBugConfig.getBoolean("AntiPortalInfItem.enable");
 		AntiNetherHopperInfItemenable = NoBugConfig.getBoolean("AntiNetherHopperInfItem.enable");
@@ -541,7 +561,9 @@ public class VLagger extends JavaPlugin implements Listener {
 			EventConfig.set("AntiSpam.Period", 2F);
 			EventConfig.set("AntiSpam.WarnMessage", "§c请慢点说话，别激动嘛！ _(:з」∠)_");
 			EventConfig.set("NoEggChangeSpawner.enable", true);
+			EventConfig.set("NoEggChangeSpawner.TipMessage", "§c抱歉，禁止使用刷怪蛋修改刷怪笼");
 			EventConfig.set("BlockCommander.enable", true);
+			EventConfig.set("BlockCommander.NoColonTip", "§r您不可以用冒号代替插件来执行指令！");
 			EventConfig.set("BlockCommander.List.NoSpawnWorld./spawn", true);
 			EventConfig.set("BlockCommander.List.NoSpawnWorld./spawn.Message", "想在这个世界回城？没门！");
 			EventConfig.set("BlockCommander.List.worldname./back", true);
@@ -557,6 +579,8 @@ public class VLagger extends JavaPlugin implements Listener {
 			} catch (IOException ex) {
 			}
 		}
+		NoEggChangeSpawnerTipMessage = EventConfig.getString("NoEggChangeSpawner.TipMessage");
+		BlockCommanderNoColonTip = EventConfig.getString("BlockCommander.NoColonTip");
 		AntiSpamenable = EventConfig.getBoolean("AntiSpam.enable");
 		AntiSpamPeriod = EventConfig.getLong("AntiSpam.Period");
 		AntiSpamWarnMessage = EventConfig.getString("AntiSpam.WarnMessage");
