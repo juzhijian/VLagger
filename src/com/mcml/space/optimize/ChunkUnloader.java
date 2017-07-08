@@ -1,14 +1,9 @@
 package com.mcml.space.optimize;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
-
 import com.mcml.space.core.VLagger;
 
 public class ChunkUnloader

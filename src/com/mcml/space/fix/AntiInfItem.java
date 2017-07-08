@@ -12,8 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-
 import com.mcml.space.core.VLagger;
 
 public class AntiInfItem
@@ -25,7 +23,6 @@ public class AntiInfItem
             Player player = event.getPlayer();
             if (event.getItem() != null) {
                 if (event.getItem().getAmount() <= 0) {
-                    ItemStack item = event.getItem();
                     event.setCancelled(true);
                     player.setItemInHand(null);
                     player.sendMessage("§a§l[VLagger]§c警告！不允许使用负数物品！");

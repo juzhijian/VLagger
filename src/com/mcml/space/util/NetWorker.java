@@ -7,8 +7,6 @@ package com.mcml.space.util;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import org.bukkit.Bukkit;
-
 import com.mcml.space.core.VLagger;
 
 /**

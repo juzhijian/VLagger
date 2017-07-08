@@ -106,7 +106,7 @@ public class VLagger extends JavaPlugin
     public static String HeapClearMessage;
     public static boolean AntiCheatBookenable;
     public static String AntiCheatBookWarnMessage;
-    public static ArrayList<EntityType> NoCrowdedEntityTypeList = new ArrayList();
+    public static ArrayList<EntityType> NoCrowdedEntityTypeList = new ArrayList<EntityType>();
     public static boolean TeleportPreLoaderenable;
     public static boolean AntiBedExplodeenable;
     public static boolean AntiBreakUseingChestenable;
@@ -374,7 +374,7 @@ public class VLagger extends JavaPlugin
             ClearLagConfig.set("ChunkUnloader.enable", true);
             ClearLagConfig.set("NoCrowdedEntity.enable", true);
             ClearLagConfig.set("NoCrowdedEntity.PerChunkLimit", 30);
-            List<String> entt = new ArrayList();
+            List<String> entt = new ArrayList<String>();
             entt.add("ZOMBIE");
             entt.add("SKELETON");
             entt.add("SPIDER");
@@ -421,7 +421,8 @@ public class VLagger extends JavaPlugin
         NoCrowdedEntityPerChunkLimit = ClearLagConfig.getInt("NoCrowdedEntity.PerChunkLimit");
         List<String> NoCrowdedEntityTypeStringList = ClearLagConfig.getStringList("NoCrowdedEntity.TypeList");
         for (int i = 0; i < NoCrowdedEntityTypeStringList.size(); i++) {
-            EntityType et = EntityType.fromName(NoCrowdedEntityTypeStringList.get(i));
+            @SuppressWarnings("deprecation")
+			EntityType et = EntityType.fromName(NoCrowdedEntityTypeStringList.get(i));
             NoCrowdedEntityTypeList.add(et);
         }
         TilesClearenable = ClearLagConfig.getBoolean("TilesClear.enable");
@@ -562,39 +563,6 @@ public class VLagger extends JavaPlugin
             } catch (InterruptedException e) {
             }
             Bukkit.shutdown();
-        }
-    }
-
-    private static void SetServerBack() {
-        File BukkitFile = new File("bukkit.yml");
-        FileConfiguration bukkit = load(BukkitFile);
-        bukkit.set("chunk-gc.period-in-ticks", 650);
-        bukkit.set("chunk-gc.load-threshold", 0);
-        bukkit.set("ticks-per.autosave", 6000);
-        bukkit.set("ticks-per.monster-spawns", 1);
-        bukkit.set("VLagger.Changed", "如果Config的AutoSet开启，该参数会被改变。");
-        bukkit.set("VLagger.SetStep", 0);
-        File SpigotFile = new File("spigot.yml");
-        FileConfiguration spigot = load(SpigotFile);
-        spigot.set("settings.user-cache-size", 1000);
-        spigot.set("settings.save-user-cache-on-stop-only", false);
-        spigot.set("world-settings.default.view-distance", 10);
-        spigot.set("world-settings.default.chunks-per-tick", 650);
-        spigot.set("world-settings.default.max-tick-time.tile", 50);
-        spigot.set("world-settings.default.max-tick-time.entity", 50);
-        spigot.set("world-settings.default.entity-activation-range.animals", 48);
-        spigot.set("world-settings.default.entity-activation-range.monsters", 48);
-        spigot.set("world-settings.default.entity-activation-range.misc", 48);
-        spigot.set("world-settings.default.entity-tracking-range.other", 64);
-        spigot.set("world-settings.default.random-light-updates", true);
-        spigot.set("world-settings.default.save-structure-info", true);
-        spigot.set("world-settings.default.max-entity-collisions", 10);
-        spigot.set("world-settings.default.max-tnt-per-tick", 100);
-        spigot.set("VLagger.Changed", "如果Config的AutoSet开启，该参数会被改变。");
-        try {
-            bukkit.save(BukkitFile);
-            spigot.save(SpigotFile);
-        } catch (IOException ex) {
         }
     }
 

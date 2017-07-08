@@ -14,6 +14,9 @@ public class NoExplodeofBlock
     public static void RegisterEvents(){
         try {
             Class<?> myclass = Class.forName("org.bukkit.event.block.BlockExplodeEvent");
+            if(myclass == null){
+            	return;
+            }
             VLagger.MainThis.getServer().getPluginManager().registerEvents(new NoExplodeofBlock(), VLagger.MainThis);
         } catch (ClassNotFoundException ex) {
         }

@@ -16,7 +16,7 @@ import com.mcml.space.core.VLagger;
 public class ItemClear
         implements Listener {
 
-    public static ArrayList<Chunk> DeathChunk = new ArrayList();
+    public static ArrayList<Chunk> DeathChunk = new ArrayList<Chunk>();
 
     public ItemClear() {
         Bukkit.getScheduler().runTaskTimerAsynchronously(VLagger.MainThis, new Runnable() {

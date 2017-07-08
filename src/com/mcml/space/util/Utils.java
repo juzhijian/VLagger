@@ -14,7 +14,7 @@ import org.bukkit.entity.*;
  */
 public class Utils {
     public static ArrayList<Player> getonlinePlayers() {
-        ArrayList<Player> onlinePlayers = new ArrayList();
+        ArrayList<Player> onlinePlayers = new ArrayList<Player>();
         List<World> worlds = Bukkit.getWorlds();
         for (int i = 0; i < worlds.size(); i++) {
             World world = worlds.get(i);
@@ -24,7 +24,7 @@ public class Utils {
         return onlinePlayers;
     }
 	public static ArrayList<Chunk> getShouldUseChunk(final Chunk chunk){
-		ArrayList<Chunk> chunks = new ArrayList();
+		ArrayList<Chunk> chunks = new ArrayList<Chunk>();
 		int svd = Bukkit.getViewDistance()/2;
 		World world = chunk.getWorld();
 		for(int x = chunk.getX()-svd;x<chunk.getX()+svd;x++){

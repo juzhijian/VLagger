@@ -1,7 +1,6 @@
 package com.mcml.space.optimize;
 
 import java.util.List;
-import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

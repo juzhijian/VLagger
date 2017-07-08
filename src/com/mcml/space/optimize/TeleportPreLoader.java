@@ -12,7 +12,7 @@ import com.mcml.space.util.Utils;
 public class TeleportPreLoader implements Listener {
 
     @EventHandler
-    public void TeleportPreLoader(PlayerTeleportEvent e) {
+    public void TeleportLoader(PlayerTeleportEvent e) {
         if (VLagger.TeleportPreLoaderenable == true) {
             e.setCancelled(true);
             final Location toLoc = e.getTo();

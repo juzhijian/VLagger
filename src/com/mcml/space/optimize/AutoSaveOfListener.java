@@ -15,9 +15,9 @@ import com.mcml.space.core.VLagger;
 public class AutoSaveOfListener
         implements Listener {
 
-    private HashMap<Player, Integer> TaskId = new HashMap();
-    private static HashMap<Player, Chunk> PlayerInChunkMap = new HashMap();
-    private static HashMap<Player, Chunk> PlayerClickedMap = new HashMap();
+    private HashMap<Player, Integer> TaskId = new HashMap<Player, Integer>();
+    private static HashMap<Player, Chunk> PlayerInChunkMap = new HashMap<Player, Chunk>();
+    private static HashMap<Player, Chunk> PlayerClickedMap = new HashMap<Player, Chunk>();
 
     @EventHandler
     public void JoinTaskGiver(PlayerJoinEvent e) {

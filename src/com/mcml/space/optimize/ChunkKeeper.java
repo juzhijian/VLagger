@@ -1,7 +1,6 @@
 package com.mcml.space.optimize;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import org.bukkit.Bukkit;
@@ -17,8 +16,8 @@ import com.mcml.space.util.Utils;
 public class ChunkKeeper
         implements Listener {
 
-    public static HashMap<Chunk, Integer> ChunkTimes = new HashMap();
-    public static ArrayList<Chunk> ShouldKeepList = new ArrayList();
+    public static HashMap<Chunk, Integer> ChunkTimes = new HashMap<Chunk, Integer>();
+    public static ArrayList<Chunk> ShouldKeepList = new ArrayList<Chunk>();
 
     @EventHandler
     public void onChunkUnload(ChunkUnloadEvent event) {

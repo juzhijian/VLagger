@@ -22,6 +22,7 @@ public class AutoRespawn implements Listener {
 		if (VLagger.AutoRespawnenable == true) {
 			final Player player = event.getEntity();
 			Bukkit.getScheduler().runTaskLater(VLagger.MainThis, new Runnable() {
+				@SuppressWarnings("deprecation")
 				public void run() {
 					try {
 						player.spigot().respawn();

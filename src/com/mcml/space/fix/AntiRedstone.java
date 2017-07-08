@@ -13,7 +13,7 @@ import com.mcml.space.core.VLagger;
 public class AntiRedstone
         implements Listener {
 
-    private final static HashMap CheckList = new HashMap();
+    private final static HashMap<String, Long> CheckList = new HashMap<String, Long>();
     private static boolean TipCooldown;
 
     public AntiRedstone() {
