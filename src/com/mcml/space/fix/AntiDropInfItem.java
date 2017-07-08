@@ -18,3 +18,7 @@ public class AntiDropInfItem
 		}
     }
 }
+/**
+@author jiongjionger
+部分源码来自 https://github.com/jiongjionger/NeverLag
+*/
