@@ -609,6 +609,7 @@ public class VLagger extends JavaPlugin implements Listener {
 	}
 
 	private static void AutoSetServer() throws IOException, InterruptedException {
+		long heapmb = Runtime.getRuntime().maxMemory() / 1024 / 1024;
 		File BukkitFile = new File("bukkit.yml");
 		if (BukkitFile.exists()) {
 			FileConfiguration bukkit = load(BukkitFile);
@@ -617,10 +618,16 @@ public class VLagger extends JavaPlugin implements Listener {
 				backupBukkitFile.createNewFile();
 				bukkit.save(backupBukkitFile);
 			}
-			bukkit.set("chunk-gc.period-in-ticks", 300);
+			if(heapmb <= 6000){
+				bukkit.set("chunk-gc.period-in-ticks", 300);
+			}else{
+				bukkit.set("chunk-gc.period-in-ticks", 500);
+			}
 			bukkit.set("chunk-gc.load-threshold", 400);
 			bukkit.set("ticks-per.autosave", 0);
-			bukkit.set("ticks-per.monster-spawns", 3);
+			if(heapmb <= 6000){
+				bukkit.set("ticks-per.monster-spawns", 3);
+			}
 			bukkit.set("VLagger.Changed", "如果Config的AutoSet开启，该参数会被改变。");
 			bukkit.save(BukkitFile);
 		}
@@ -632,18 +639,39 @@ public class VLagger extends JavaPlugin implements Listener {
 				backupSpigotFile.createNewFile();
 				spigot.save(backupSpigotFile);
 			}
-			spigot.set("settings.user-cache-size", 5000);
-			spigot.set("settings.save-user-cache-on-stop-only", true);
-			spigot.set("world-settings.default.view-distance", 4);
-			spigot.set("world-settings.default.chunks-per-tick", 350);
-			spigot.set("world-settings.default.max-tick-time.tile", 10);
-			spigot.set("world-settings.default.max-tick-time.entity", 20);
+			if(heapmb <= 2000){
+				spigot.set("settings.save-user-cache-on-stop-only", true);
+			}
+			if(heapmb >= 6000){
+				spigot.set("settings.user-cache-size", 5000);
+			}
+			if(heapmb >= 10000){
+				spigot.set("world-settings.default.view-distance", 4);
+			}else if(heapmb >= 6000){
+				spigot.set("world-settings.default.view-distance", 3);
+			}else{
+				spigot.set("world-settings.default.view-distance", 2);
+			}
+			if(heapmb <= 4000){
+				spigot.set("world-settings.default.chunks-per-tick", 150);
+			}else{
+				spigot.set("world-settings.default.chunks-per-tick", 350);
+			}
+			if(heapmb <= 4000){
+				spigot.set("world-settings.default.max-tick-time.tile", 10);
+				spigot.set("world-settings.default.max-tick-time.entity", 20);
+			}else{
+				spigot.set("world-settings.default.max-tick-time.tile", 20);
+				spigot.set("world-settings.default.max-tick-time.entity", 30);
+			}
 			spigot.set("world-settings.default.entity-activation-range.animals", 12);
 			spigot.set("world-settings.default.entity-activation-range.monsters", 24);
 			spigot.set("world-settings.default.entity-activation-range.misc", 2);
 			spigot.set("world-settings.default.entity-tracking-range.other", 48);
 			spigot.set("world-settings.default.random-light-updates", false);
-			spigot.set("world-settings.default.save-structure-info", false);
+			if(heapmb <= 4000){
+				spigot.set("world-settings.default.save-structure-info", false);
+			}
 			spigot.set("world-settings.default.max-entity-collisions", 2);
 			spigot.set("world-settings.default.max-tnt-per-tick", 20);
 			spigot.set("VLagger.Changed", "如果Config的AutoSet开启，该参数会被改变。");
@@ -662,7 +690,9 @@ public class VLagger extends JavaPlugin implements Listener {
 			paper.set("world-settings.default.fast-drain.lava", true);
 			paper.set("world-settings.default.fast-drain.water", true);
 			paper.set("world-settings.default.use-async-lighting", true);
-			paper.set("world-settings.default.tick-next-tick-list-cap", 8000);
+			if(heapmb <= 6000){
+				paper.set("world-settings.default.tick-next-tick-list-cap", 8000);
+			}
 			paper.set("world-settings.default.tick-next-tick-list-cap-ignores-redstone", true);
 			paper.save(PaperFile);
 		}
