@@ -42,7 +42,7 @@ public class AntiInfItem
                 int invs = Inventory.getSize();
                 for (i = 0; i < invs; i++) {
                     if (Inventory.getItem(i) != null) {
-                        if (Inventory.getItem(i).getAmount() < 0) {
+                        if (Inventory.getItem(i).getAmount() <= 0) {
                             Inventory.getItem(i).setType(Material.AIR);
                             event.setCancelled(true);
                             String WarnMessage = VLagger.PluginPrefix + VLagger.AntiInfItemBlockcWarnMessage;
@@ -56,13 +56,15 @@ public class AntiInfItem
                 Inventory Inventory = ((Dropper) blockin).getInventory();
                 int invs = Inventory.getSize();
                 for (i = 0; i < invs; i++) {
-                    if ((Inventory.getItem(i) != null) && (Inventory.getItem(i).getAmount() < 0)) {
-                        Inventory.getItem(i).setType(Material.AIR);
-                        event.setCancelled(true);
-                        String WarnMessage = VLagger.PluginPrefix + VLagger.AntiInfItemBlockcWarnMessage;
-                        WarnMessage = WarnMessage.replaceAll("%block%", block.toString());
-                        Bukkit.broadcastMessage(WarnMessage);
-                    }
+                	if(Inventory.getItem(i) != null){
+                		if (Inventory.getItem(i).getAmount() <= 0) {
+                            Inventory.getItem(i).setType(Material.AIR);
+                            event.setCancelled(true);
+                            String WarnMessage = VLagger.PluginPrefix + VLagger.AntiInfItemBlockcWarnMessage;
+                            WarnMessage = WarnMessage.replaceAll("%block%", block.toString());
+                            Bukkit.broadcastMessage(WarnMessage);
+                        }
+                	}
                 }
             }
         }
