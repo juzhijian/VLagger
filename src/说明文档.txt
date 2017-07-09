@@ -85,6 +85,12 @@ FireLimitor: #火焰限制
 QueueLinePlayerLogin: #队列化登入
   enable: false #是否开启队列化登入玩家
   Period: 1500 #每多少毫秒允许一个登陆请求，其他请求会被停顿。
+WorldSpawnLimitor: #世界生物生成限制
+  worldname: #世界名字
+    enable: true #是否开启限制
+    PerChunkMonsters: 3 #每个区块允许多少个怪物生成
+    PerChunkAnimals: 3 #每个区块允许多少个动物生成
+    PerChunkAmbient: 10 #每个区块周围允许多少个攻击性生物生成
 
 4.NoBugConfig —— 为修复漏洞（包括MC漏洞和部分插件漏洞）配置文件
 Version: 256 #版本号，请勿修改
