@@ -129,7 +129,7 @@ public class VLagger extends JavaPlugin implements Listener {
 	public static String HeapClearMessage;
 	public static boolean AntiCheatBookenable;
 	public static String AntiCheatBookWarnMessage;
-	public static ArrayList<EntityType> NoCrowdedEntityTypeList;
+	public static ArrayList<EntityType> NoCrowdedEntityTypeList = new ArrayList<EntityType>();
 	public static boolean TeleportPreLoaderenable;
 	public static boolean AntiBedExplodeenable;
 	public static boolean AntiBreakUseingChestenable;
@@ -618,14 +618,14 @@ public class VLagger extends JavaPlugin implements Listener {
 				backupBukkitFile.createNewFile();
 				bukkit.save(backupBukkitFile);
 			}
-			if(heapmb <= 6000){
+			if (heapmb <= 6000) {
 				bukkit.set("chunk-gc.period-in-ticks", 300);
-			}else{
+			} else {
 				bukkit.set("chunk-gc.period-in-ticks", 500);
 			}
 			bukkit.set("chunk-gc.load-threshold", 400);
 			bukkit.set("ticks-per.autosave", 0);
-			if(heapmb <= 6000){
+			if (heapmb <= 6000) {
 				bukkit.set("ticks-per.monster-spawns", 3);
 			}
 			bukkit.set("VLagger.Changed", "如果Config的AutoSet开启，该参数会被改变。");
@@ -639,28 +639,28 @@ public class VLagger extends JavaPlugin implements Listener {
 				backupSpigotFile.createNewFile();
 				spigot.save(backupSpigotFile);
 			}
-			if(heapmb <= 2000){
+			if (heapmb <= 2000) {
 				spigot.set("settings.save-user-cache-on-stop-only", true);
 			}
-			if(heapmb >= 6000){
+			if (heapmb >= 6000) {
 				spigot.set("settings.user-cache-size", 5000);
 			}
-			if(heapmb >= 10000){
+			if (heapmb >= 10000) {
 				spigot.set("world-settings.default.view-distance", 4);
-			}else if(heapmb >= 6000){
+			} else if (heapmb >= 6000) {
 				spigot.set("world-settings.default.view-distance", 3);
-			}else{
+			} else {
 				spigot.set("world-settings.default.view-distance", 2);
 			}
-			if(heapmb <= 4000){
+			if (heapmb <= 4000) {
 				spigot.set("world-settings.default.chunks-per-tick", 150);
-			}else{
+			} else {
 				spigot.set("world-settings.default.chunks-per-tick", 350);
 			}
-			if(heapmb <= 4000){
+			if (heapmb <= 4000) {
 				spigot.set("world-settings.default.max-tick-time.tile", 10);
 				spigot.set("world-settings.default.max-tick-time.entity", 20);
-			}else{
+			} else {
 				spigot.set("world-settings.default.max-tick-time.tile", 20);
 				spigot.set("world-settings.default.max-tick-time.entity", 30);
 			}
@@ -669,7 +669,7 @@ public class VLagger extends JavaPlugin implements Listener {
 			spigot.set("world-settings.default.entity-activation-range.misc", 2);
 			spigot.set("world-settings.default.entity-tracking-range.other", 48);
 			spigot.set("world-settings.default.random-light-updates", false);
-			if(heapmb <= 4000){
+			if (heapmb <= 4000) {
 				spigot.set("world-settings.default.save-structure-info", false);
 			}
 			spigot.set("world-settings.default.max-entity-collisions", 2);
@@ -690,7 +690,7 @@ public class VLagger extends JavaPlugin implements Listener {
 			paper.set("world-settings.default.fast-drain.lava", true);
 			paper.set("world-settings.default.fast-drain.water", true);
 			paper.set("world-settings.default.use-async-lighting", true);
-			if(heapmb <= 6000){
+			if (heapmb <= 6000) {
 				paper.set("world-settings.default.tick-next-tick-list-cap", 8000);
 			}
 			paper.set("world-settings.default.tick-next-tick-list-cap-ignores-redstone", true);
