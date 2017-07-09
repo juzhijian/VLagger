@@ -91,6 +91,8 @@ public class VLagger extends JavaPlugin implements Listener {
 	public static boolean AutoRespawnenable;
 	public static VLagger MainThis;
 	public FileConfiguration config;
+	public static String AntiSpamDirtyWarnMessage;
+	public static List<String> AntiSpamDirtyList;
 	public static List<String> ClearItemNoClearItemType;
 	public static boolean ClearItemNoCleatDeath;
 	public static boolean ClearItemNoClearTeleport;
@@ -116,8 +118,8 @@ public class VLagger extends JavaPlugin implements Listener {
 	private static File MainConfigFile;
 	public static File EventConfigFile;
 	public static boolean AntiSpamenable;
-	public static long AntiSpamPeriod;
-	public static String AntiSpamWarnMessage;
+	public static long AntiSpamPeriodPeriod;
+	public static String AntiSpamPeriodWarnMessage;
 	public static boolean AntiSkullCrashenable;
 	public static boolean NoDoubleOnlineenanle;
 	public static String NoDoubleOnlineKickMessage;
@@ -173,6 +175,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		getLogger().info("火焰限制模块...");
 		getLogger().info("队列登入游戏模块...");
 		getLogger().info("生成限制模块...");
+		getLogger().info("脏话屏蔽模块...");
 		getLogger().info("------加载完毕------");
 		getLogger().info("乐乐感谢您的使用——有建议务必反馈，QQ1207223090");
 		getLogger().info("您可以在插件根目录找到本插件的说明文档 说明文档.txt");
@@ -574,8 +577,18 @@ public class VLagger extends JavaPlugin implements Listener {
 		if (EventConfig.getInt("Version") != AllSet.Version) {
 			EventConfig.set("Version", AllSet.Version);
 			EventConfig.set("AntiSpam.enable", true);
-			EventConfig.set("AntiSpam.Period", 2F);
-			EventConfig.set("AntiSpam.WarnMessage", "§c请慢点说话，别激动嘛！ _(:з」∠)_");
+			EventConfig.set("AntiSpam.Period.Period", 2F);
+			EventConfig.set("AntiSpam.Period.WarnMessage", "§c请慢点说话，别激动嘛！ _(:з」∠)_");
+			List<String> dirty = new ArrayList<String>();
+			dirty.add("操你妈");
+			dirty.add("妈逼");
+			dirty.add("SB");
+			dirty.add("弱智");
+			dirty.add("智障");
+			dirty.add("杂种");
+			dirty.add("狗娘");
+			EventConfig.set("AntiSpam.Dirty.List", dirty);
+			EventConfig.set("AntiSpam.Dirty.WarnMessage", "§c啥事那么大搞得你想骂人啊~ _(:з」∠)_");
 			EventConfig.set("NoEggChangeSpawner.enable", true);
 			EventConfig.set("NoEggChangeSpawner.TipMessage", "§c抱歉，禁止使用刷怪蛋修改刷怪笼");
 			EventConfig.set("BlockCommander.enable", true);
@@ -595,11 +608,13 @@ public class VLagger extends JavaPlugin implements Listener {
 			} catch (IOException ex) {
 			}
 		}
+		AntiSpamDirtyWarnMessage = EventConfig.getString("AntiSpam.Dirty.WarnMessage");
+		AntiSpamDirtyList = EventConfig.getStringList("AntiSpam.Dirty.List");
 		NoEggChangeSpawnerTipMessage = EventConfig.getString("NoEggChangeSpawner.TipMessage");
 		BlockCommanderNoColonTip = EventConfig.getString("BlockCommander.NoColonTip");
 		AntiSpamenable = EventConfig.getBoolean("AntiSpam.enable");
-		AntiSpamPeriod = EventConfig.getLong("AntiSpam.Period");
-		AntiSpamWarnMessage = EventConfig.getString("AntiSpam.WarnMessage");
+		AntiSpamPeriodPeriod = EventConfig.getLong("AntiSpam.Period.Period");
+		AntiSpamPeriodWarnMessage = EventConfig.getString("AntiSpam.Period.WarnMessage");
 		NoEggChangeSpawnerenable = EventConfig.getBoolean("NoEggChangeSpawner");
 		BlockCommanderenable = EventConfig.getBoolean("BlockCommander.enable");
 		AutoRespawnenable = EventConfig.getBoolean("AutoRespawn.enable");
