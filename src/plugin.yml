@@ -1,7 +1,7 @@
 name: VLagger
 version: 2.0.0
 main: com.mcml.space.core.VLagger
-build: $BUILD_NUMBER
+build: %BUILD_NUMBER%
 commands:
   vlg:
     description: VLagger
