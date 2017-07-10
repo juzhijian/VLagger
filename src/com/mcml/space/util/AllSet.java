@@ -6,7 +6,7 @@ package com.mcml.space.util;
 
 /**
  *
- * @author Administrator
+ * @author Vlvxingze
  */
 public class AllSet {
     public static int Version = 265;
