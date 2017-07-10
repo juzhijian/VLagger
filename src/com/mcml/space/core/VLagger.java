@@ -177,7 +177,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		getLogger().info("乐乐感谢您的使用——有建议务必反馈，QQ1207223090");
 		getLogger().info("您可以在插件根目录找到本插件的说明文档 说明文档.txt");
 		getLogger().info("|||Vlvxingze/VLagger PluginCD小组作品.|||");
-		Bukkit.getConsoleSender().sendMessage("§a您正在使用 VLagger 构建号  %BUILD_NUMBER%");
+		Bukkit.getConsoleSender().sendMessage("§a您正在使用 VLagger构建号  %BUILD_NUMBER%");
 		if (AutoSetenable == true) {
 			try {
 				VLagger.AutoSetServer();
