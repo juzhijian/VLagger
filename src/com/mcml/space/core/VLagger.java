@@ -592,7 +592,7 @@ public class VLagger extends JavaPlugin implements Listener {
 			EventConfig.set("AntiSpam.Dirty.WarnMessage", "§c啥事那么大搞得你想骂人啊~ _(:з」∠)_");
 			EventConfig.set("NoEggChangeSpawner.enable", true);
 			EventConfig.set("NoEggChangeSpawner.TipMessage", "§c抱歉，禁止使用刷怪蛋修改刷怪笼");
-			EventConfig.set("BlockCommander.enable", true);
+			EventConfig.set("BlockCommander.enable", false);
 			EventConfig.set("BlockCommander.NoColonTip", "§r您不可以用冒号代替插件来执行指令！");
 			EventConfig.set("BlockCommander.List.NoSpawnWorld./spawn", true);
 			EventConfig.set("BlockCommander.List.NoSpawnWorld./spawn.Message", "想在这个世界回城？没门！");
@@ -640,7 +640,6 @@ public class VLagger extends JavaPlugin implements Listener {
 				bukkit.set("chunk-gc.period-in-ticks", 500);
 			}
 			bukkit.set("chunk-gc.load-threshold", 400);
-			bukkit.set("ticks-per.autosave", 0);
 			if (heapmb <= 6000) {
 				bukkit.set("ticks-per.monster-spawns", 3);
 			}

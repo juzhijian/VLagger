@@ -18,10 +18,6 @@ public class BlockCommander implements Listener {
             if (p.hasPermission("VLagger.admin") == true) {
                 return;
             }
-            if (event.getMessage().contains(":")) {
-                event.setCancelled(true);
-                p.sendMessage(VLagger.PluginPrefix + VLagger.BlockCommanderNoColonTip);
-            }
             if (config.getBoolean("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage()) == true) {
                 event.setCancelled(true);
                 p.sendMessage(VLagger.PluginPrefix + config.getString("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage() + ".Message"));
