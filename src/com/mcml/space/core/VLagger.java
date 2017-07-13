@@ -32,8 +32,7 @@ import com.mcml.space.fix.AntiPortalInfItem;
 import com.mcml.space.fix.AntiRPGITEM;
 import com.mcml.space.fix.AntiRedstone;
 import com.mcml.space.fix.AntiSkullCrash;
-import com.mcml.space.optimize.AutoSaveOfListener;
-import com.mcml.space.optimize.AutoSaveofTask;
+import com.mcml.space.optimize.AutoSave;
 import com.mcml.space.optimize.ChunkKeeper;
 import com.mcml.space.optimize.ChunkUnloader;
 import com.mcml.space.optimize.ChunkUnloaderofListener;
@@ -91,6 +90,9 @@ public class VLagger extends JavaPlugin implements Listener {
 	public static boolean AutoRespawnenable;
 	public static VLagger MainThis;
 	public FileConfiguration config;
+	public static boolean AntiCrashChatenable;
+	public static String AntiCrashChatSpecialStringWarnMessage;
+	public static String AntiCrashChatColorChatWarnMessage;
 	public static String AntiSpamDirtyWarnMessage;
 	public static List<String> AntiSpamDirtyList;
 	public static List<String> ClearItemNoClearItemType;
@@ -201,7 +203,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(new ItemClear(), this);
 		Bukkit.getPluginManager().registerEvents(new ChunkUnloaderofListener(), this);
 		Bukkit.getPluginManager().registerEvents(new AntiInfRail(), this);
-		Bukkit.getPluginManager().registerEvents(new AutoSaveOfListener(), this);
+		Bukkit.getPluginManager().registerEvents(new AutoSave(), this);
 		Bukkit.getPluginManager().registerEvents(new AntiSkullCrash(), this);
 		Bukkit.getPluginManager().registerEvents(new NoDoubleOnline(), this);
 		Bukkit.getPluginManager().registerEvents(new NoEggChangeSpawner(), this);
@@ -221,7 +223,6 @@ public class VLagger extends JavaPlugin implements Listener {
 		ChunkKeeper.ChunkKeeperofTask();
 		Bukkit.getScheduler().runTaskTimer(this, new TilesClear(), TilesClearInterval * 20, TilesClearInterval * 20);
 		getServer().getScheduler().runTaskTimer(this, new ChunkUnloader(), 0, ChunkUnloaderInterval * 20);
-		getServer().getScheduler().runTaskTimer(this, new AutoSaveofTask(), 240 * 20, 240 * 20);
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HeapShut(), 1 * 60 * 20, 1 * 60 * 20);
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new TPSSleep(), 1, 1);
 		Bukkit.getScheduler().runTaskTimer(this, new HeapClear(), HeapClearPeriod * 20, HeapClearPeriod * 20);
@@ -358,13 +359,8 @@ public class VLagger extends JavaPlugin implements Listener {
 				if (args[0].equalsIgnoreCase("autosave")) {
 					if (args.length == 1) {
 						sender.sendMessage("§a后置参数:");
-						sender.sendMessage("§esave 立即存储所有玩家数据");
 						sender.sendMessage("§esavethis 将自己所在区块存储");
 						return true;
-					}
-					if (args[1].equalsIgnoreCase("save")) {
-						Bukkit.getScheduler().runTask(this, new AutoSaveofTask());
-						sender.sendMessage("§e成功储存了所有玩家的游戏数据");
 					}
 					if (args[1].equalsIgnoreCase("savethis")) {
 						Player p = (Player) sender;
@@ -547,11 +543,17 @@ public class VLagger extends JavaPlugin implements Listener {
 			NoBugConfig.set("AntiBreakUseingChest.enable", true);
 			NoBugConfig.set("AntiBreakUseingChest.WarnMessage", "§c抱歉！您不可以破坏一个正在被使用的容器");
 			NoBugConfig.set("AntiInfRail.enable", true);
+			NoBugConfig.set("AntiCrashChat.enable", true);
+			NoBugConfig.set("AntiCrashChat.SpecialStringWarnMessage", "§c严禁使用崩服代码炸服！");
+			NoBugConfig.set("AntiCrashChat.ColorChatWarnMessage", "§c抱歉！为了防止服务器被破坏，服务器禁止使用颜色代码.");
 			try {
 				NoBugConfig.save(NoBugConfigFile);
 			} catch (IOException ex) {
 			}
 		}
+		AntiCrashChatenable = NoBugConfig.getBoolean("AntiCrashChat.enable");
+		AntiCrashChatSpecialStringWarnMessage = NoBugConfig.getString("AntiCrashChat.SpecialStringWarnMessage");
+		AntiCrashChatColorChatWarnMessage = NoBugConfig.getString("AntiCrashChat.ColorChatWarnMessage");
 		AntiBreakUseingChestWarnMessage = NoBugConfig.getString("AntiBreakUseingChest.WarnMessage");
 		AntiBedExplodeTipMessage = NoBugConfig.getString("AntiBedExplode.TipMessage");
 		AntiCrashSignWarnMessage = NoBugConfig.getString("AntiCrashSign.WarnMessage");

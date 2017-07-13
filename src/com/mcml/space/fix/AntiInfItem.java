@@ -43,7 +43,7 @@ public class AntiInfItem
                 for (i = 0; i < invs; i++) {
                     if (Inventory.getItem(i) != null) {
                         if (Inventory.getItem(i).getAmount() <= 0) {
-                            Inventory.getItem(i).setType(Material.AIR);
+                            block.setType(Material.AIR);
                             event.setCancelled(true);
                             String WarnMessage = VLagger.PluginPrefix + VLagger.AntiInfItemBlockcWarnMessage;
                             WarnMessage = WarnMessage.replaceAll("%block%", block.toString());

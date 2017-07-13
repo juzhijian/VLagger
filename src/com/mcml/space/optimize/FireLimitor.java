@@ -18,7 +18,7 @@ public class FireLimitor implements Listener {
 	@EventHandler
 	public void WhenFireLimitor(BlockIgniteEvent event) {
 		if (VLagger.FireLimitorenable == true) {
-			if(event.getCause() == IgniteCause.FLINT_AND_STEEL){
+			if (event.getCause() == IgniteCause.FLINT_AND_STEEL) {
 				return;
 			}
 			Block block = event.getBlock();

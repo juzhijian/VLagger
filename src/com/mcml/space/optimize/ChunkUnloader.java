@@ -14,7 +14,8 @@ public class ChunkUnloader
     public void run() {
         if (VLagger.ChunkUnloaderenable == true) {
             List<World> worlds = Bukkit.getWorlds();
-            for (int i = 0; i < worlds.size(); i++) {
+            int ws = worlds.size();
+            for (int i = 0; i < ws; i++) {
                 World world = worlds.get(i);
 				Chunk[] loadedChunks = world.getLoadedChunks();
 				int lcl = loadedChunks.length;
