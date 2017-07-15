@@ -90,6 +90,7 @@ public class VLagger extends JavaPlugin implements Listener {
 	public static boolean AutoRespawnenable;
 	public static VLagger MainThis;
 	public FileConfiguration config;
+	public static boolean ProtectFarmenable;
 	public static boolean AntiCrashChatenable;
 	public static String AntiCrashChatSpecialStringWarnMessage;
 	public static String AntiCrashChatColorChatWarnMessage;
@@ -606,11 +607,13 @@ public class VLagger extends JavaPlugin implements Listener {
 			EventConfig.set("AutoRespawn.RespawnTitle.enable", true);
 			EventConfig.set("AutoRespawn.RespawnTitle.MainMessage", "§e你死了！");
 			EventConfig.set("AutoRespawn.RespawnTitle.MiniMessage", "§c已为您自动复活！");
+			EventConfig.set("ProtectFarm.enable", true);
 			try {
 				EventConfig.save(EventConfigFile);
 			} catch (IOException ex) {
 			}
 		}
+		ProtectFarmenable = EventConfig.getBoolean("ProtectFarm.enable");
 		AntiSpamDirtyWarnMessage = EventConfig.getString("AntiSpam.Dirty.WarnMessage");
 		AntiSpamDirtyList = EventConfig.getStringList("AntiSpam.Dirty.List");
 		NoEggChangeSpawnerTipMessage = EventConfig.getString("NoEggChangeSpawner.TipMessage");
