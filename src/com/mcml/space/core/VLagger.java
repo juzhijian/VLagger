@@ -20,6 +20,7 @@ import com.mcml.space.doevent.AntiSpam;
 import com.mcml.space.doevent.AutoRespawn;
 import com.mcml.space.doevent.AutoUpdateCheck;
 import com.mcml.space.doevent.BlockCommander;
+import com.mcml.space.doevent.FarmProtecter;
 import com.mcml.space.doevent.NoEggChangeSpawner;
 import com.mcml.space.fix.AntiBedExplode;
 import com.mcml.space.fix.AntiCrashSign;
@@ -222,6 +223,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(new QueueLinePlayerLogin(), this);
 		Bukkit.getPluginManager().registerEvents(new AutoUpdateCheck(), this);
 		Bukkit.getPluginManager().registerEvents(new NoOneRestart(), this);
+		Bukkit.getPluginManager().registerEvents(new FarmProtecter(), this);
 		NoExplodeofBlock.RegisterEvents();
 
 		ChunkKeeper.ChunkKeeperofTask();
