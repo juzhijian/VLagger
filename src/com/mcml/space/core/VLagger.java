@@ -183,6 +183,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		getLogger().info("队列登入游戏模块...");
 		getLogger().info("生成限制模块...");
 		getLogger().info("脏话屏蔽模块...");
+		getLogger().info("耕地保护模块...");
 		getLogger().info("------加载完毕------");
 		getLogger().info("乐乐感谢您的使用——有建议务必反馈，QQ1207223090");
 		getLogger().info("您可以在插件根目录找到本插件的说明文档 说明文档.txt");
