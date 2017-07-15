@@ -25,6 +25,7 @@ import com.mcml.space.fix.AntiBedExplode;
 import com.mcml.space.fix.AntiCrashSign;
 import com.mcml.space.fix.AntiDoorInfItem;
 import com.mcml.space.fix.AntiDropInfItem;
+import com.mcml.space.fix.AntiFakeDeath;
 import com.mcml.space.fix.AntiInfItem;
 import com.mcml.space.fix.AntiInfRail;
 import com.mcml.space.fix.AntiNetherHopperInfItem;
@@ -90,6 +91,8 @@ public class VLagger extends JavaPlugin implements Listener {
 	public static boolean AutoRespawnenable;
 	public static VLagger MainThis;
 	public FileConfiguration config;
+	public static String AntiFakeDeathKickMessage;
+	public static boolean AntiFakeDeathenable;
 	public static boolean ProtectFarmenable;
 	public static boolean AntiCrashChatenable;
 	public static String AntiCrashChatSpecialStringWarnMessage;
@@ -228,6 +231,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new TPSSleep(), 1, 1);
 		Bukkit.getScheduler().runTaskTimer(this, new HeapClear(), HeapClearPeriod * 20, HeapClearPeriod * 20);
 		Bukkit.getScheduler().runTaskAsynchronously(this, new NetWorker());
+		Bukkit.getScheduler().runTaskTimer(this, new AntiFakeDeath(), 7 * 20, 7 * 20);
 	}
 
 	@Override
@@ -547,11 +551,15 @@ public class VLagger extends JavaPlugin implements Listener {
 			NoBugConfig.set("AntiCrashChat.enable", true);
 			NoBugConfig.set("AntiCrashChat.SpecialStringWarnMessage", "§c严禁使用崩服代码炸服！");
 			NoBugConfig.set("AntiCrashChat.ColorChatWarnMessage", "§c抱歉！为了防止服务器被破坏，服务器禁止使用颜色代码.");
+			NoBugConfig.set("AntiFakeDeath.enable", true);
+			NoBugConfig.set("AntiFakeDeath.KickMessage", "§c严禁卡假死BUG！");
 			try {
 				NoBugConfig.save(NoBugConfigFile);
 			} catch (IOException ex) {
 			}
 		}
+		AntiFakeDeathenable = NoBugConfig.getBoolean("AntiFakeDeath.enable");
+		AntiFakeDeathKickMessage = NoBugConfig.getString("AntiFakeDeath.KickMessage");
 		AntiCrashChatenable = NoBugConfig.getBoolean("AntiCrashChat.enable");
 		AntiCrashChatSpecialStringWarnMessage = NoBugConfig.getString("AntiCrashChat.SpecialStringWarnMessage");
 		AntiCrashChatColorChatWarnMessage = NoBugConfig.getString("AntiCrashChat.ColorChatWarnMessage");

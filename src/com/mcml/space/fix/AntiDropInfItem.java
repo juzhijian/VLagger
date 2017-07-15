@@ -12,7 +12,7 @@ public class AntiDropInfItem
     @EventHandler(ignoreCancelled = true)
     public void CheckDropNoBugInfItem(PlayerDropItemEvent e) {
 		if(VLagger.AntiDropInfItemenable == true){
-			if (e.getPlayer() == null || e.getPlayer().isOnline()==false || e.getPlayer().isValid()==false) {
+			if (e.getPlayer() == null || e.getPlayer().isOnline()==false) {
 				e.setCancelled(true);
 			}
 		}

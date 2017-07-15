@@ -1,5 +1,6 @@
 package com.mcml.space.fix;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
@@ -12,16 +13,16 @@ public class AntiCrashSign
     @EventHandler
     public void SignCheckChange(SignChangeEvent event) {
         if (VLagger.AntiCrashSignenable == true) {
-            for (int i = 0; i < 4; i++) {
-                if (event.getLine(i).length() > 100) {
-                    event.setCancelled(true);
-                    event.getPlayer().sendMessage(VLagger.PluginPrefix + VLagger.AntiCrashSignWarnMessage);
-                }
+        	Player player = event.getPlayer();
+            String[] lines =event.getLines();
+            int ll = lines.length;
+            for(int i = 0;i<ll;i++){
+            	String line = lines[i];
+            	if(line.length() >= 127){
+            		event.setCancelled(true);
+            		player.sendMessage(VLagger.PluginPrefix + VLagger.AntiCrashSignWarnMessage);
+            	}
             }
         }
     }
 }
-/**
-@author jiongjionger
-部分源码来自 https://github.com/jiongjionger/NeverLag
-*/
