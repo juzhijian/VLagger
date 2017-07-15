@@ -47,8 +47,6 @@ import com.mcml.space.optimize.NoDoubleOnline;
 import com.mcml.space.optimize.NoExplodeofBlock;
 import com.mcml.space.optimize.NoExplodeofEntity;
 import com.mcml.space.optimize.NoOneRestart;
-import com.mcml.space.optimize.QueueLinePlayerLogin;
-import com.mcml.space.optimize.TPSSleep;
 import com.mcml.space.optimize.TeleportPreLoader;
 import com.mcml.space.optimize.TilesClear;
 import com.mcml.space.optimize.WaterFlowLimitor;
@@ -61,8 +59,6 @@ public class VLagger extends JavaPlugin implements Listener {
 	public static int HeapShutPercent;
 	public static String HeapShutWarnMessage;
 	public static int HeapShutWaitingTime;
-	public static boolean TPSSleepenable;
-	public static long TPSSleepPerTickSleepMs;
 	private static boolean AutoSetenable;
 	public static boolean AutoSaveenable;
 	public static boolean ClearItemenable;
@@ -111,8 +107,6 @@ public class VLagger extends JavaPlugin implements Listener {
 	public static String AntiInfItemClickcWarnMessage;
 	public static String AntiInfItemBlockcWarnMessage;
 	public static String BlockCommanderNoColonTip;
-	public static boolean QueueLinePlayerLoginenable;
-	public static long QueueLinePlayerLoginPeriod;
 	public static boolean FireLimitorenable;
 	public static long FireLimitorPeriod;
 	public static boolean WaterFlowLimitorenable;
@@ -221,7 +215,6 @@ public class VLagger extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(new AutoRespawn(), this);
 		Bukkit.getPluginManager().registerEvents(new WaterFlowLimitor(), this);
 		Bukkit.getPluginManager().registerEvents(new FireLimitor(), this);
-		Bukkit.getPluginManager().registerEvents(new QueueLinePlayerLogin(), this);
 		Bukkit.getPluginManager().registerEvents(new AutoUpdateCheck(), this);
 		Bukkit.getPluginManager().registerEvents(new NoOneRestart(), this);
 		Bukkit.getPluginManager().registerEvents(new FarmProtecter(), this);
@@ -231,7 +224,6 @@ public class VLagger extends JavaPlugin implements Listener {
 		Bukkit.getScheduler().runTaskTimer(this, new TilesClear(), TilesClearInterval * 20, TilesClearInterval * 20);
 		getServer().getScheduler().runTaskTimer(this, new ChunkUnloader(), 0, ChunkUnloaderInterval * 20);
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HeapShut(), 1 * 60 * 20, 1 * 60 * 20);
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new TPSSleep(), 1, 1);
 		Bukkit.getScheduler().runTaskTimer(this, new HeapClear(), HeapClearPeriod * 20, HeapClearPeriod * 20);
 		Bukkit.getScheduler().runTaskAsynchronously(this, new NetWorker());
 		Bukkit.getScheduler().runTaskTimer(this, new AntiFakeDeath(), 7 * 20, 7 * 20);
@@ -427,8 +419,6 @@ public class VLagger extends JavaPlugin implements Listener {
 			ClearLagConfig.set("HeapShut.Percent", 90);
 			ClearLagConfig.set("HeapShut.WarnMessage", "服务器会在15秒后重启，请玩家不要游戏，耐心等待！ ╮(╯_╰)╭");
 			ClearLagConfig.set("HeapShut.WaitingTime", 15);
-			ClearLagConfig.set("TPSSleep.enable", false);
-			ClearLagConfig.set("TPSSleep.PerTickSleepMs", 10);
 			ClearLagConfig.set("AutoSet.enable", true);
 			ClearLagConfig.set("AutoSave.enable", true);
 			ClearLagConfig.set("AutoSave.Interval", 15);
@@ -471,8 +461,6 @@ public class VLagger extends JavaPlugin implements Listener {
 			ClearLagConfig.set("WaterFlowLimitor.Period", 200L);
 			ClearLagConfig.set("FireLimitor.enable", true);
 			ClearLagConfig.set("FireLimitor.Period", 3000L);
-			ClearLagConfig.set("QueueLinePlayerLogin.enable", false);
-			ClearLagConfig.set("QueueLinePlayerLogin.Period", 500L);
 			ClearLagConfig.set("WorldSpawnLimitor.worldname.enable", true);
 			ClearLagConfig.set("WorldSpawnLimitor.worldname.PerChunkMonsters", 3);
 			ClearLagConfig.set("WorldSpawnLimitor.worldname.PerChunkAnimals", 3);
@@ -485,14 +473,10 @@ public class VLagger extends JavaPlugin implements Listener {
 		ClearItemNoClearItemType = ClearLagConfig.getStringList("ClearItem.NoClearItemTypeClearItem.NoClearItemType");
 		ClearItemNoCleatDeath = ClearLagConfig.getBoolean("ClearItem.NoCleatDeath");
 		ClearItemNoClearTeleport = ClearLagConfig.getBoolean("ClearItem.NoClearTeleport");
-		QueueLinePlayerLoginenable = ClearLagConfig.getBoolean("QueueLinePlayerLogin.enable");
-		QueueLinePlayerLoginPeriod = ClearLagConfig.getLong("QueueLinePlayerLogin.Period");
 		HeapShutenable = ClearLagConfig.getBoolean("HeapShut.enable");
 		HeapShutPercent = ClearLagConfig.getInt("HeapShut.Percent");
 		HeapShutWarnMessage = ClearLagConfig.getString("HeapShut.WarnMessage");
 		HeapShutWaitingTime = ClearLagConfig.getInt("HeapShut.WaitingTime");
-		TPSSleepenable = ClearLagConfig.getBoolean("TPSSleep.enable");
-		TPSSleepPerTickSleepMs = ClearLagConfig.getLong("TPSSleep.PerTickSleepMs");
 		AutoSetenable = ClearLagConfig.getBoolean("AutoSet.enable");
 		AutoSaveenable = ClearLagConfig.getBoolean("AutoSave.enable");
 		AutoSaveInterval = ClearLagConfig.getInt("AutoSave.Interval");
