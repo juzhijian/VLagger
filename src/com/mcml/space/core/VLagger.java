@@ -400,8 +400,8 @@ public class VLagger extends JavaPlugin implements Listener {
 	private void LoadConfig() {
 		this.saveResource("说明文档.txt", true);
 		FileConfiguration MainConfig = load(MainConfigFile);
-		if (MainConfig.getInt("Version") != AllSet.Version) {
-			MainConfig.set("Version", AllSet.Version);
+		if (MainConfig.getInt("Version") != 272) {
+			MainConfig.set("Version", 272);
 			MainConfig.set("PluginPrefix", "§a§l[Vlagger]");
 			MainConfig.set("AutoUpdate", false);
 			try {
@@ -413,8 +413,8 @@ public class VLagger extends JavaPlugin implements Listener {
 		AutoUpdate = MainConfig.getBoolean("AutoUpdate");
 
 		FileConfiguration ClearLagConfig = load(ClearLagConfigFile);
-		if (ClearLagConfig.getInt("Version") != AllSet.Version) {
-			ClearLagConfig.set("Version", AllSet.Version);
+		if (ClearLagConfig.getInt("Version") != 272) {
+			ClearLagConfig.set("Version", 272);
 			ClearLagConfig.set("HeapShut.enable", true);
 			ClearLagConfig.set("HeapShut.Percent", 90);
 			ClearLagConfig.set("HeapShut.WarnMessage", "服务器会在15秒后重启，请玩家不要游戏，耐心等待！ ╮(╯_╰)╭");
@@ -512,8 +512,8 @@ public class VLagger extends JavaPlugin implements Listener {
 		FireLimitorPeriod = ClearLagConfig.getLong("FireLimitor.Period");
 
 		FileConfiguration NoBugConfig = load(NoBugConfigFile);
-		if (NoBugConfig.getInt("Version") != AllSet.Version) {
-			NoBugConfig.set("Version", AllSet.Version);
+		if (NoBugConfig.getInt("Version") != 272) {
+			NoBugConfig.set("Version", 272);
 			NoBugConfig.set("AntiInfItem.enable", true);
 			NoBugConfig.set("AntiInfItem.ClickcWarnMessage", "§c警告！不允许使用负数物品！");
 			NoBugConfig.set("AntiInfItem.BlockcWarnMessage", "§c在  §b%block% §c发现一个负数物品的发射器！内部负数物品已经移除！");
@@ -573,8 +573,8 @@ public class VLagger extends JavaPlugin implements Listener {
 		AntiInfRailenable = NoBugConfig.getBoolean("AntiInfRail.enable");
 
 		FileConfiguration EventConfig = load(EventConfigFile);
-		if (EventConfig.getInt("Version") != AllSet.Version) {
-			EventConfig.set("Version", AllSet.Version);
+		if (EventConfig.getInt("Version") != 272) {
+			EventConfig.set("Version", 272);
 			EventConfig.set("AntiSpam.enable", true);
 			EventConfig.set("AntiSpam.Period.Period", 2F);
 			EventConfig.set("AntiSpam.Period.WarnMessage", "§c请慢点说话，别激动嘛！ _(:з」∠)_");
