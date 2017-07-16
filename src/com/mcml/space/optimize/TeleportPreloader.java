@@ -16,30 +16,20 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.google.common.collect.Sets;
+import com.mcml.space.core.VLagger;
 import com.mcml.space.util.AzureAPI;
 import com.mcml.space.util.VersionLevel;
 import com.mcml.space.util.AzureAPI.Coord2D;
 
-public class TeleportPreloader extends JavaPlugin implements Listener {
+public class TeleportPreloader implements Listener {
 	protected static TeleportPreloader instance;
 	protected final static Logger logger = AzureAPI
 			.createLogger(AzureAPI.setPrefix(ChatColor.DARK_AQUA + "TeleportPreloader" + ChatColor.RESET + " > "));
 	protected volatile static boolean pending;
 
-	@Override
-	public void onEnable() {
-		instance = this;
-
-		logger.info("Version " + super.getDescription().getVersion() + " is ready for installation!");
-		logger.info("Level: " + VersionLevel.get() + "\n");
-
-		Bukkit.getPluginManager().registerEvents(this, this);
-		logger.info("Teleport chunk-loader has been purged :)");
-	}
-
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onTeleport(PlayerTeleportEvent evt) {
-		if (evt.isCancelled() || evt.isAsynchronous() || pending)
+		if (evt.isCancelled() || evt.isAsynchronous() || pending||VLagger.TeleportPreLoaderenable != true)
 			return;
 
 		Location from = evt.getFrom();
@@ -58,7 +48,7 @@ public class TeleportPreloader extends JavaPlugin implements Listener {
 		final int preChunks = chunks.size() / 3;
 		final Iterator<Coord2D> it = chunks.iterator();
 
-		Bukkit.getScheduler().runTaskLater(this, new Runnable(){
+		Bukkit.getScheduler().runTaskLater(VLagger.MainThis, new Runnable(){
 			public void run(){
 				Coord2D coord;
 				for (int i = 0; it.hasNext() && i <= preChunks; i++) {
@@ -68,7 +58,7 @@ public class TeleportPreloader extends JavaPlugin implements Listener {
 				}
 			}
 		}, 1L);
-		Bukkit.getScheduler().runTaskLater(this, new Runnable(){
+		Bukkit.getScheduler().runTaskLater(VLagger.MainThis, new Runnable(){
 			public void run(){
 				Coord2D coord;
 				for (int i = 0; it.hasNext() && i <= preChunks; i++) {
@@ -78,7 +68,7 @@ public class TeleportPreloader extends JavaPlugin implements Listener {
 				}
 			}
 		}, 3L);
-		Bukkit.getScheduler().runTaskLater(this, new Runnable() {
+		Bukkit.getScheduler().runTaskLater(VLagger.MainThis, new Runnable() {
 			public void run(){
 				Coord2D coord;
 				while (it.hasNext()) {
@@ -87,7 +77,7 @@ public class TeleportPreloader extends JavaPlugin implements Listener {
 				}
 			}
 		}, 5L);
-		Bukkit.getScheduler().runTaskLater(this, new Runnable() {
+		Bukkit.getScheduler().runTaskLater(VLagger.MainThis, new Runnable() {
 			public void run(){
 				pending = true;
 				player.teleport(to);
