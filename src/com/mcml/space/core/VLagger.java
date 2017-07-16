@@ -51,6 +51,7 @@ import com.mcml.space.optimize.TeleportPreloader;
 import com.mcml.space.optimize.TilesClear;
 import com.mcml.space.optimize.WaterFlowLimitor;
 import com.mcml.space.util.NetWorker;
+import com.mcml.space.util.Utils;
 
 public class VLagger extends JavaPlugin implements Listener {
 
@@ -217,6 +218,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(new AutoUpdateCheck(), this);
 		Bukkit.getPluginManager().registerEvents(new NoOneRestart(), this);
 		Bukkit.getPluginManager().registerEvents(new FarmProtecter(), this);
+		Bukkit.getPluginManager().registerEvents(new Utils(), this);
 		NoExplodeofBlock.RegisterEvents();
 
 		ChunkKeeper.ChunkKeeperofTask();

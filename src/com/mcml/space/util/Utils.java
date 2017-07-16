@@ -7,32 +7,39 @@ package com.mcml.space.util;
 import java.util.*;
 import org.bukkit.*;
 import org.bukkit.entity.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
  *
  * @author Administrator
  */
-public class Utils {
-    public static ArrayList<Player> getonlinePlayers() {
-        ArrayList<Player> onlinePlayers = new ArrayList<Player>();
+public class Utils implements Listener{
+	private static ArrayList<Player> onlinePlayers = new ArrayList<Player>();
+	
+	public Utils(){
+		ArrayList<Player> onlinePlayers = new ArrayList<Player>();
         List<World> worlds = Bukkit.getWorlds();
         for (int i = 0; i < worlds.size(); i++) {
             World world = worlds.get(i);
             List<Player> players = world.getPlayers();
             onlinePlayers.addAll(players);
         }
+	}
+	
+	@EventHandler
+	public void JoinAdder(PlayerJoinEvent event){
+		onlinePlayers.add(event.getPlayer());
+	}
+	
+	@EventHandler
+	public void QuitRemover(PlayerQuitEvent event){
+		onlinePlayers.remove(event.getPlayer());
+	}
+	
+    public static ArrayList<Player> getonlinePlayers() {
         return onlinePlayers;
     }
-	public static ArrayList<Chunk> getShouldUseChunk(final Chunk chunk){
-		ArrayList<Chunk> chunks = new ArrayList<Chunk>();
-		int svd = Bukkit.getViewDistance()/2;
-		World world = chunk.getWorld();
-		for(int x = chunk.getX()-svd;x<chunk.getX()+svd;x++){
-			for(int z = chunk.getZ()- svd;z<chunk.getZ()+svd;z++){
-				Chunk shouldchunk = world.getChunkAt(x,z);
-				chunks.add(shouldchunk);
-			}
-		}
-		return chunks;
-	}
 }
