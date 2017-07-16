@@ -16,7 +16,7 @@ public class FarmProtecter implements Listener{
 	@EventHandler
 	public void EntityFarmChecker(EntityInteractEvent event){
 		if(VLagger.ProtectFarmenable == true){
-			if(event.getEntityType() == EntityType.PLAYER){
+			if(event.getEntityType() == EntityType.PLAYER == false){
 				Block block = event.getBlock();
 				if(block.getType() == Material.SOIL||block.getType() == Material.CROPS){
 					event.setCancelled(true);

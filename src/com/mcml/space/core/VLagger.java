@@ -350,7 +350,7 @@ public class VLagger extends JavaPlugin implements Listener {
 					}
 					if (args[1].equalsIgnoreCase("heapshut")) {
 						getServer().getScheduler().runTask(this, new HeapShut());
-						sender.sendMessage("§6Tiles清理完毕！");
+						sender.sendMessage("§6成功检测一次内存濒临重启！");
 					}
 					if (args[1].equalsIgnoreCase("chunkunloadlog")) {
 						sender.sendMessage("§a截止到目前，插件已经卸载了" + ChunkUnloader.ChunkUnloaderTimes + "个无用区块");
