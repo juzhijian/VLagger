@@ -409,13 +409,13 @@ public class VLagger extends JavaPlugin implements Listener {
 			MainConfig.set("Version", 272);
 			MainConfig.set("PluginPrefix", "§a§l[Vlagger]");
 			MainConfig.set("AutoUpdate", false);
-			try {
-				MainConfig.save(MainConfigFile);
-			} catch (IOException ex) {
-			}
 		}
 		PluginPrefix = MainConfig.getString("PluginPrefix");
 		AutoUpdate = MainConfig.getBoolean("AutoUpdate");
+		try {
+			MainConfig.save(MainConfigFile);
+		} catch (IOException ex) {
+		}
 
 		FileConfiguration ClearLagConfig = load(ClearLagConfigFile);
 		if (ClearLagConfig.getInt("Version") != 272) {
@@ -470,10 +470,6 @@ public class VLagger extends JavaPlugin implements Listener {
 			ClearLagConfig.set("WorldSpawnLimitor.worldname.PerChunkMonsters", 3);
 			ClearLagConfig.set("WorldSpawnLimitor.worldname.PerChunkAnimals", 3);
 			ClearLagConfig.set("WorldSpawnLimitor.worldname.PerChunkAmbient", 10);
-			try {
-				ClearLagConfig.save(ClearLagConfigFile);
-			} catch (IOException ex) {
-			}
 		}
 		ClearItemNoClearItemType = ClearLagConfig.getStringList("ClearItem.NoClearItemTypeClearItem.NoClearItemType");
 		ClearItemNoCleatDeath = ClearLagConfig.getBoolean("ClearItem.NoCleatDeath");
@@ -515,6 +511,10 @@ public class VLagger extends JavaPlugin implements Listener {
 		WaterFlowLimitorPeriod = ClearLagConfig.getLong("WaterFlowLimitor.Period");
 		FireLimitorenable = ClearLagConfig.getBoolean("FireLimitor.enable");
 		FireLimitorPeriod = ClearLagConfig.getLong("FireLimitor.Period");
+		try {
+			ClearLagConfig.save(ClearLagConfigFile);
+		} catch (IOException ex) {
+		}
 
 		FileConfiguration NoBugConfig = load(NoBugConfigFile);
 		if (NoBugConfig.getInt("Version") != 272) {
@@ -545,12 +545,11 @@ public class VLagger extends JavaPlugin implements Listener {
 			NoBugConfig.set("AntiCrashChat.ColorChatWarnMessage", "§c抱歉！为了防止服务器被破坏，服务器禁止使用颜色代码.");
 			NoBugConfig.set("AntiFakeDeath.enable", true);
 			NoBugConfig.set("AntiFakeDeath.KickMessage", "§c严禁卡假死BUG！");
+		}
+		if(NoBugConfig.getInt("Version") != 277){
+			NoBugConfig.set("Version", 277);
 			NoBugConfig.set("AntiBoneBug.enable", true);
 			NoBugConfig.set("AntiBoneBug.WarnMessage", "§c严禁卡树苗催熟BUG！");
-			try {
-				NoBugConfig.save(NoBugConfigFile);
-			} catch (IOException ex) {
-			}
 		}
 		AntiBoneBugenable = NoBugConfig.getBoolean("AntiBoneBug.enable");
 		AntiBoneBugWarnMessage = NoBugConfig.getString("AntiBoneBug.WarnMessage");
@@ -580,6 +579,10 @@ public class VLagger extends JavaPlugin implements Listener {
 		AntiBedExplodeenable = NoBugConfig.getBoolean("AntiBedExplode.enable");
 		AntiBreakUseingChestenable = NoBugConfig.getBoolean("AntiBreakUseingChest.enable");
 		AntiInfRailenable = NoBugConfig.getBoolean("AntiInfRail.enable");
+		try {
+			NoBugConfig.save(NoBugConfigFile);
+		} catch (IOException ex) {
+		}
 
 		FileConfiguration EventConfig = load(EventConfigFile);
 		if (EventConfig.getInt("Version") != 272) {
@@ -612,10 +615,6 @@ public class VLagger extends JavaPlugin implements Listener {
 			EventConfig.set("AutoRespawn.RespawnTitle.MainMessage", "§e你死了！");
 			EventConfig.set("AutoRespawn.RespawnTitle.MiniMessage", "§c已为您自动复活！");
 			EventConfig.set("ProtectFarm.enable", true);
-			try {
-				EventConfig.save(EventConfigFile);
-			} catch (IOException ex) {
-			}
 		}
 		ProtectFarmenable = EventConfig.getBoolean("ProtectFarm.enable");
 		AntiSpamDirtyWarnMessage = EventConfig.getString("AntiSpam.Dirty.WarnMessage");
@@ -631,6 +630,10 @@ public class VLagger extends JavaPlugin implements Listener {
 		AutoRespawnRespawnTitleenable = EventConfig.getBoolean("AutoRespawn.RespawnTitle.enable");
 		AutoRespawnRespawnTitleMainMessage = EventConfig.getString("AutoRespawn.RespawnTitle.MainMessage");
 		AutoRespawnRespawnTitleMiniMessage = EventConfig.getString("AutoRespawn.RespawnTitle.MiniMessage");
+		try {
+			EventConfig.save(EventConfigFile);
+		} catch (IOException ex) {
+		}
 	}
 
 	private static void AutoSetServer() throws IOException, InterruptedException {

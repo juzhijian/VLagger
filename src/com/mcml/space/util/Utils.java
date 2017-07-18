@@ -8,6 +8,7 @@ import java.util.*;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -29,12 +30,12 @@ public class Utils implements Listener{
         }
 	}
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void JoinAdder(PlayerJoinEvent event){
 		onlinePlayers.add(event.getPlayer());
 	}
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void QuitRemover(PlayerQuitEvent event){
 		onlinePlayers.remove(event.getPlayer());
 	}
