@@ -23,6 +23,7 @@ import com.mcml.space.doevent.BlockCommander;
 import com.mcml.space.doevent.FarmProtecter;
 import com.mcml.space.doevent.NoEggChangeSpawner;
 import com.mcml.space.fix.AntiBedExplode;
+import com.mcml.space.fix.AntiBoneBug;
 import com.mcml.space.fix.AntiCrashSign;
 import com.mcml.space.fix.AntiDoorInfItem;
 import com.mcml.space.fix.AntiDropInfItem;
@@ -88,6 +89,8 @@ public class VLagger extends JavaPlugin implements Listener {
 	public static boolean AutoRespawnenable;
 	public static VLagger MainThis;
 	public FileConfiguration config;
+	public static boolean AntiBoneBugenable;
+	public static String AntiBoneBugWarnMessage;
 	public static String AntiFakeDeathKickMessage;
 	public static boolean AntiFakeDeathenable;
 	public static boolean ProtectFarmenable;
@@ -219,6 +222,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(new NoOneRestart(), this);
 		Bukkit.getPluginManager().registerEvents(new FarmProtecter(), this);
 		Bukkit.getPluginManager().registerEvents(new Utils(), this);
+		Bukkit.getPluginManager().registerEvents(new AntiBoneBug(), this);
 		NoExplodeofBlock.RegisterEvents();
 
 		ChunkKeeper.ChunkKeeperofTask();
@@ -541,11 +545,15 @@ public class VLagger extends JavaPlugin implements Listener {
 			NoBugConfig.set("AntiCrashChat.ColorChatWarnMessage", "§c抱歉！为了防止服务器被破坏，服务器禁止使用颜色代码.");
 			NoBugConfig.set("AntiFakeDeath.enable", true);
 			NoBugConfig.set("AntiFakeDeath.KickMessage", "§c严禁卡假死BUG！");
+			NoBugConfig.set("AntiBoneBug.enable", true);
+			NoBugConfig.set("AntiBoneBug.WarnMessage", "§c严禁卡树苗催熟BUG！");
 			try {
 				NoBugConfig.save(NoBugConfigFile);
 			} catch (IOException ex) {
 			}
 		}
+		AntiBoneBugenable = NoBugConfig.getBoolean("AntiBoneBug.enable");
+		AntiBoneBugWarnMessage = NoBugConfig.getString("AntiBoneBug.WarnMessage");
 		AntiFakeDeathenable = NoBugConfig.getBoolean("AntiFakeDeath.enable");
 		AntiFakeDeathKickMessage = NoBugConfig.getString("AntiFakeDeath.KickMessage");
 		AntiCrashChatenable = NoBugConfig.getBoolean("AntiCrashChat.enable");

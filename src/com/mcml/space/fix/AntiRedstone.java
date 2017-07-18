@@ -39,7 +39,7 @@ public class AntiRedstone
             Block block = event.getBlock();
             String bs = block.toString();
             if (CheckFast(bs)) {
-                if (block.getType() == Material.REDSTONE_WIRE|block.getType() == Material.DIODE_BLOCK_ON|block.getType() == Material.DIODE_BLOCK_OFF) {
+                if (block.getType() != Material.WALL_SIGN && block.getType() != Material.SIGN_POST && block.getType() != Material.SIGN) {
                     block.setType(Material.AIR);
                     if (TipCooldown == false) {
                         VLagger.AntiRedstoneMessage = VLagger.AntiRedstoneMessage.replaceAll("%location%", bs);
