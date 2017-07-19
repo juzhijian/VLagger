@@ -1,4 +1,4 @@
-package com.mcml.space.fix;
+package com.mcml.space.optimize;
 
 import java.util.HashMap;
 import org.bukkit.Bukkit;
@@ -39,7 +39,7 @@ public class AntiRedstone
             Block block = event.getBlock();
             String bs = block.toString();
             if (CheckFast(bs)) {
-                if (block.getType() != Material.WALL_SIGN && block.getType() != Material.SIGN_POST && block.getType() != Material.SIGN) {
+                if (VLagger.AntiRedstoneRemoveBlockList.contains(block.getType().name())) {
                     block.setType(Material.AIR);
                     if (TipCooldown == false) {
                         VLagger.AntiRedstoneMessage = VLagger.AntiRedstoneMessage.replaceAll("%location%", bs);

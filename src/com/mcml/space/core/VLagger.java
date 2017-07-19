@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -33,8 +34,8 @@ import com.mcml.space.fix.AntiInfRail;
 import com.mcml.space.fix.AntiNetherHopperInfItem;
 import com.mcml.space.fix.AntiPortalInfItem;
 import com.mcml.space.fix.AntiRPGITEM;
-import com.mcml.space.fix.AntiRedstone;
 import com.mcml.space.fix.AntiSkullCrash;
+import com.mcml.space.optimize.AntiRedstone;
 import com.mcml.space.optimize.AutoSave;
 import com.mcml.space.optimize.ChunkKeeper;
 import com.mcml.space.optimize.ChunkUnloader;
@@ -89,6 +90,7 @@ public class VLagger extends JavaPlugin implements Listener {
 	public static boolean AutoRespawnenable;
 	public static VLagger MainThis;
 	public FileConfiguration config;
+	public static List<String> AntiRedstoneRemoveBlockList;
 	public static boolean AntiBoneBugenable;
 	public static String AntiBoneBugWarnMessage;
 	public static String AntiFakeDeathKickMessage;
@@ -471,6 +473,18 @@ public class VLagger extends JavaPlugin implements Listener {
 			ClearLagConfig.set("WorldSpawnLimitor.worldname.PerChunkAnimals", 3);
 			ClearLagConfig.set("WorldSpawnLimitor.worldname.PerChunkAmbient", 10);
 		}
+		if(ClearLagConfig.getInt("Version") != 278){
+			ClearLagConfig.set("Version", 278);
+			List<String> mas = new ArrayList<String>();
+			mas.add("REDSTONE_WIRE");
+			mas.add("DIODE_BLOCK_ON");
+			mas.add("DIODE_BLOCK_OFF");
+			mas.add("REDSTONE_TORCH_ON");
+			mas.add("REDSTONE_TORCH_OFF");
+			mas.add("REDSTONE_BLOCK");
+			ClearLagConfig.set("AntiRedstone.RemoveBlockList", mas);
+		}
+		AntiRedstoneRemoveBlockList = ClearLagConfig.getStringList("AntiRedstone.RemoveBlockList");
 		ClearItemNoClearItemType = ClearLagConfig.getStringList("ClearItem.NoClearItemTypeClearItem.NoClearItemType");
 		ClearItemNoCleatDeath = ClearLagConfig.getBoolean("ClearItem.NoCleatDeath");
 		ClearItemNoClearTeleport = ClearLagConfig.getBoolean("ClearItem.NoClearTeleport");
