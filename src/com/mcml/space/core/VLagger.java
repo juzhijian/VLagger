@@ -407,7 +407,7 @@ public class VLagger extends JavaPlugin implements Listener {
 	private void LoadConfig() {
 		this.saveResource("说明文档.txt", true);
 		FileConfiguration MainConfig = load(MainConfigFile);
-		if (MainConfig.getInt("Version") != 272) {
+		if (MainConfig.getInt("Version") < 272) {
 			MainConfig.set("Version", 272);
 			MainConfig.set("PluginPrefix", "§a§l[Vlagger]");
 			MainConfig.set("AutoUpdate", false);
@@ -420,7 +420,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		}
 
 		FileConfiguration ClearLagConfig = load(ClearLagConfigFile);
-		if (ClearLagConfig.getInt("Version") != 272) {
+		if (ClearLagConfig.getInt("Version") < 272) {
 			ClearLagConfig.set("Version", 272);
 			ClearLagConfig.set("HeapShut.enable", true);
 			ClearLagConfig.set("HeapShut.Percent", 90);
@@ -473,7 +473,7 @@ public class VLagger extends JavaPlugin implements Listener {
 			ClearLagConfig.set("WorldSpawnLimitor.worldname.PerChunkAnimals", 3);
 			ClearLagConfig.set("WorldSpawnLimitor.worldname.PerChunkAmbient", 10);
 		}
-		if(ClearLagConfig.getInt("Version") != 278){
+		if(ClearLagConfig.getInt("Version") < 278){
 			ClearLagConfig.set("Version", 278);
 			List<String> mas = new ArrayList<String>();
 			mas.add("REDSTONE_WIRE");
@@ -531,7 +531,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		}
 
 		FileConfiguration NoBugConfig = load(NoBugConfigFile);
-		if (NoBugConfig.getInt("Version") != 272) {
+		if (NoBugConfig.getInt("Version") < 272) {
 			NoBugConfig.set("Version", 272);
 			NoBugConfig.set("AntiInfItem.enable", true);
 			NoBugConfig.set("AntiInfItem.ClickcWarnMessage", "§c警告！不允许使用负数物品！");
@@ -560,7 +560,7 @@ public class VLagger extends JavaPlugin implements Listener {
 			NoBugConfig.set("AntiFakeDeath.enable", true);
 			NoBugConfig.set("AntiFakeDeath.KickMessage", "§c严禁卡假死BUG！");
 		}
-		if(NoBugConfig.getInt("Version") != 277){
+		if(NoBugConfig.getInt("Version") < 277){
 			NoBugConfig.set("Version", 277);
 			NoBugConfig.set("AntiBoneBug.enable", true);
 			NoBugConfig.set("AntiBoneBug.WarnMessage", "§c严禁卡树苗催熟BUG！");
@@ -599,7 +599,7 @@ public class VLagger extends JavaPlugin implements Listener {
 		}
 
 		FileConfiguration EventConfig = load(EventConfigFile);
-		if (EventConfig.getInt("Version") != 272) {
+		if (EventConfig.getInt("Version") < 272) {
 			EventConfig.set("Version", 272);
 			EventConfig.set("AntiSpam.enable", true);
 			EventConfig.set("AntiSpam.Period.Period", 2F);
