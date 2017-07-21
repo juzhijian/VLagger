@@ -99,7 +99,7 @@ public class VLagger extends JavaPlugin implements Listener {
     public static String AntiCrashChatSpecialStringWarnMessage;
     public static String AntiCrashChatColorChatWarnMessage;
     public static String AntiSpamDirtyWarnMessage;
-    public static List<String> AntiSpamDirtyList;
+    public static List<String[]> AntiSpamDirtyList;
     public static List<String> ClearItemNoClearItemType;
     public static boolean ClearItemNoCleatDeath;
     public static boolean ClearItemNoClearTeleport;
@@ -139,7 +139,7 @@ public class VLagger extends JavaPlugin implements Listener {
     public static ArrayList<EntityType> NoCrowdedEntityTypeList = new ArrayList<EntityType>();
     public static boolean TeleportPreLoaderenable;
     public static boolean AntiBedExplodeenable;
-    public static boolean AntiBreakUsingChestenable;
+    public static boolean AntiBreakUseingChestenable;
     public static boolean BlockCommanderenable;
     public static File PluginFile;
     public static boolean AutoUpdate;
@@ -589,7 +589,7 @@ public class VLagger extends JavaPlugin implements Listener {
         AntiCheatBookenable = NoBugConfig.getBoolean("AntiCheatBook.enable");
         AntiCheatBookWarnMessage = NoBugConfig.getString("AntiCheatBookWarnMessage");
         AntiBedExplodeenable = NoBugConfig.getBoolean("AntiBedExplode.enable");
-        AntiBreakUsingChestenable = NoBugConfig.getBoolean("AntiBreakUseingChest.enable");
+        AntiBreakUseingChestenable = NoBugConfig.getBoolean("AntiBreakUseingChest.enable");
         AntiInfRailenable = NoBugConfig.getBoolean("AntiInfRail.enable");
         try {
             NoBugConfig.save(NoBugConfigFile);
@@ -633,9 +633,11 @@ public class VLagger extends JavaPlugin implements Listener {
         int ss = strings.size();
         for(int i = 0;i < ss;i++){
             String string = strings.get(i);
+            String[] thisdirtystrings = new String[ss];
             int sl = string.length();
             for(int ii = 0;ii<sl;ii++) {
-                AntiSpamDirtyList.add(string.substring(ii, ii));
+            	thisdirtystrings[ii] = string.substring(ii, ii);
+                AntiSpamDirtyList.add(thisdirtystrings);
             }
         }
         NoEggChangeSpawnerTipMessage = EventConfig.getString("NoEggChangeSpawner.TipMessage");

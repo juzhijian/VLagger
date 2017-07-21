@@ -42,17 +42,25 @@ public class AntiSpam implements Listener {
     public void AntiDirty(AsyncPlayerChatEvent event) {
         if (VLagger.AntiSpamenable == true) {
             Player p = event.getPlayer();
+            String message = event.getMessage();
             if (p.hasPermission("VLagger.bypass.Spam")) {
                 return;
             }
             int ss = VLagger.AntiSpamDirtyList.size();
             for(int i = 0;i < ss;i++){
-                String string = VLagger.AntiSpamDirtyList.get(i);
-                if(event.getMessage().contains(string)){
-                    event.setCancelled(true);
-                    if(VLagger.AntiSpamDirtyWarnMessage.equalsIgnoreCase("none") == false){
-                        p.sendMessage(VLagger.PluginPrefix + VLagger.AntiSpamDirtyWarnMessage);
-                    }
+                String[] strings = VLagger.AntiSpamDirtyList.get(i);
+                int sl = strings.length;
+                int DirtyTimes = 0;
+                for(int ii = 0;ii<sl;ii++){
+                	if(message.contains(strings[ii])){
+                		DirtyTimes++;
+                		if(DirtyTimes >= sl){
+                			event.setCancelled(true);
+                            if(VLagger.AntiSpamDirtyWarnMessage.equalsIgnoreCase("none") == false){
+                                p.sendMessage(VLagger.PluginPrefix + VLagger.AntiSpamDirtyWarnMessage);
+                            }
+                		}
+                	}
                 }
             }
         }

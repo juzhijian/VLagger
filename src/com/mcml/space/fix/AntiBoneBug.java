@@ -20,7 +20,9 @@ public class AntiBoneBug implements Listener {
             if (block.getRelative(BlockFace.UP).getType() != Material.AIR) {
                 event.setCancelled(true);
                 if (event.getPlayer() != null) {
-                    event.getPlayer().sendMessage(VLagger.AntiBoneBugWarnMessage);
+                	if(VLagger.AntiBoneBugWarnMessage.equalsIgnoreCase("none") == false){
+                		event.getPlayer().sendMessage(VLagger.AntiBoneBugWarnMessage);
+                	}
                 }
             }
         }
