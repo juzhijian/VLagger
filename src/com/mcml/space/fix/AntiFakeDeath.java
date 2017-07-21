@@ -1,6 +1,6 @@
 package com.mcml.space.fix;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.entity.Player;
 
@@ -12,7 +12,7 @@ public class AntiFakeDeath implements Runnable{
     @Override
     public void run() {
         if(VLagger.AntiFakeDeathenable == true){
-            ArrayList<Player> players = Utils.getonlinePlayers();
+            List<Player> players = Utils.getonlinePlayers();
             int ps = players.size();
             for(int i = 0;i<ps;i++){
                 Player player = players.get(i);

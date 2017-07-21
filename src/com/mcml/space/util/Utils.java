@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mcml.space.util;
 
 import java.util.*;
@@ -13,20 +9,17 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-/**
- *
- * @author Administrator
- */
-public class Utils implements Listener{
-    private static ArrayList<Player> onlinePlayers = new ArrayList<Player>();
+import com.google.common.collect.Lists;
 
-    public Utils(){
-        ArrayList<Player> onlinePlayers = new ArrayList<Player>();
-        List<World> worlds = Bukkit.getWorlds();
-        for (int i = 0; i < worlds.size(); i++) {
-            World world = worlds.get(i);
-            List<Player> players = world.getPlayers();
-            onlinePlayers.addAll(players);
+/**
+ * @author Vlvxingze
+ */
+public class Utils implements Listener {
+    private final static List<Player> onlinePlayers = Lists.newArrayListWithExpectedSize(Bukkit.getMaxPlayers());
+
+    public Utils() {
+        for (World world : Bukkit.getWorlds()) {
+            onlinePlayers.addAll(world.getPlayers());
         }
     }
 
@@ -40,7 +33,7 @@ public class Utils implements Listener{
         onlinePlayers.remove(event.getPlayer());
     }
 
-    public static ArrayList<Player> getonlinePlayers() {
+    public static List<Player> getonlinePlayers() {
         return onlinePlayers;
     }
 }

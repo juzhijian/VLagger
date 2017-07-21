@@ -53,3 +53,4 @@ target/
 bin/
 dist/
 manifest.mf
+*.bak

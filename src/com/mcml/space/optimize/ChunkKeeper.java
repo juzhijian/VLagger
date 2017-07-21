@@ -3,6 +3,8 @@ package com.mcml.space.optimize;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
@@ -39,7 +41,7 @@ implements Listener {
             @Override
             public void run() {
                 if (VLagger.ChunkKeeperenable == true) {
-                    ArrayList<Player> onlinePlayers = Utils.getonlinePlayers();
+                    List<Player> onlinePlayers = Utils.getonlinePlayers();
                     Iterator<? extends Player> players = onlinePlayers.iterator();
                     while (players.hasNext()) {
                         Player player = players.next();
