@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 
 public class VersionLevel {
     private final static Version level = check();
-    private static boolean viewDistanceApi;
+    private static boolean viewDistanceApi; 
 
     public static final Version get() {
         return level;
@@ -150,9 +150,3 @@ public class VersionLevel {
         return viewDistanceApi;
     }
 }
-
-/**
-@author SotrForgotten
-此部分代码为 SotrForgotten 重制，并已授权使用！
-QWQ，感谢支持！
- */

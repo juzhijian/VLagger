@@ -2,6 +2,8 @@ package com.mcml.space.util;
 
 import static com.mcml.space.util.VersionLevel.hasViewDistanceApi;
 
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
@@ -11,9 +13,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.google.common.collect.Sets;
+
 public class AzureAPI {
-    private static String prefix;
-    private static int bukkitVDBlock = Bukkit.getViewDistance() << 4; // *16
+    private static String loggerPrefix;
+    private static final int bukkitVDChunk = (Bukkit.getViewDistance() << 1) ^ 2 + 1; // (view * 2) ^ 2 + 1
+    private static final int bukkitVDBlock = Bukkit.getViewDistance() << 4; // *16
 
     private static final class LazyAPI {
         private static final AzureAPI api = new AzureAPI();
@@ -29,22 +34,31 @@ public class AzureAPI {
     }
 
     public static int viewDistance(final Player player) {
-        return Bukkit.getViewDistance();
+        return hasViewDistanceApi() ? player.getViewDistance() : Bukkit.getViewDistance();
     }
 
     public static int viewDistanceBlock(final Player player) {
-        if (hasViewDistanceApi())
-            return Bukkit.getViewDistance() << 4;
+        if (customViewDistance(player)) return player.getViewDistance() << 4;
         return bukkitVDBlock;
     }
 
+    public static int viewDistanceChunk(final Player player) {
+        if (customViewDistance(player)) return (player.getViewDistance() << 1) ^ 2 + 1;
+        return bukkitVDChunk;
+    }
+
+    public static boolean customViewDistance(final Player player) {
+        if (!hasViewDistanceApi()) return false;
+        return Bukkit.getViewDistance() == player.getViewDistance();
+    }
+
     public static String setPrefix(final String prefix) {
-        AzureAPI.prefix = prefix;
+        loggerPrefix = prefix;
         return prefix;
     }
 
     public static void resetPrefix() {
-        AzureAPI.prefix = null;
+        loggerPrefix = null;
     }
 
     public static void log(final String prefix, final String context) {
@@ -52,11 +66,11 @@ public class AzureAPI {
     }
 
     public static void log(final String context) {
-        Bukkit.getConsoleSender().sendMessage(AzureAPI.prefix == null ? context : AzureAPI.prefix + context);
+        Bukkit.getConsoleSender().sendMessage(loggerPrefix == null ? context : loggerPrefix + context);
     }
 
     public static void log(final CommandSender sender, final String context) {
-        sender.sendMessage(AzureAPI.prefix == null ? context : AzureAPI.prefix + context);
+        sender.sendMessage(loggerPrefix == null ? context : loggerPrefix + context);
     }
 
     public static void log(final CommandSender sender, final String prefix, final String msg) {
@@ -84,8 +98,7 @@ public class AzureAPI {
 
         @Override
         public void log(final LogRecord logRecord) {
-            if (this.isLoggable(logRecord.getLevel()))
-                Bukkit.getConsoleSender().sendMessage(prefix + logRecord.getMessage());
+            if (this.isLoggable(logRecord.getLevel())) Bukkit.getConsoleSender().sendMessage(prefix + logRecord.getMessage());
         }
     }
 
@@ -110,9 +123,12 @@ public class AzureAPI {
             return z;
         }
     }
+
+    public static <E> Map<String, E> newCaseInsensitiveMap() {
+        return new CaseInsensitiveMap<E>();
+    }
+
+    public static Set<String> newCaseInsensitiveSet() {
+        return Sets.newSetFromMap(new CaseInsensitiveMap<Boolean>());
+    }
 }
-/**
-@author SotrForgotten
-此部分代码为 SotrForgotten 重制，并已授权使用！
-QWQ，感谢支持！
- */

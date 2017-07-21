@@ -1,8 +1,6 @@
 package com.mcml.space.doevent;
 
 import java.util.HashMap;
-import java.util.List;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
