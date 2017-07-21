@@ -11,11 +11,11 @@ import com.mcml.space.core.VLagger;
 /**
  * @author jiongjionger
  */
-public class AntiBreakUseingChest implements Listener {
+public class AntiBreakUsingChest implements Listener {
 
     @EventHandler
     public void CheckNoBreakChest(BlockBreakEvent e) {
-        if (VLagger.AntiBreakUseingChestenable == true) {
+        if (VLagger.AntiBreakUsingChestenable == true) {
             Player p = e.getPlayer();
             if (e.getBlock().getState() instanceof InventoryHolder) {
                 InventoryHolder ih = (InventoryHolder) e.getBlock().getState();

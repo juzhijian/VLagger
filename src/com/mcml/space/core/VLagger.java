@@ -139,7 +139,7 @@ public class VLagger extends JavaPlugin implements Listener {
     public static ArrayList<EntityType> NoCrowdedEntityTypeList = new ArrayList<EntityType>();
     public static boolean TeleportPreLoaderenable;
     public static boolean AntiBedExplodeenable;
-    public static boolean AntiBreakUseingChestenable;
+    public static boolean AntiBreakUsingChestenable;
     public static boolean BlockCommanderenable;
     public static File PluginFile;
     public static boolean AutoUpdate;
@@ -589,7 +589,7 @@ public class VLagger extends JavaPlugin implements Listener {
         AntiCheatBookenable = NoBugConfig.getBoolean("AntiCheatBook.enable");
         AntiCheatBookWarnMessage = NoBugConfig.getString("AntiCheatBookWarnMessage");
         AntiBedExplodeenable = NoBugConfig.getBoolean("AntiBedExplode.enable");
-        AntiBreakUseingChestenable = NoBugConfig.getBoolean("AntiBreakUseingChest.enable");
+        AntiBreakUsingChestenable = NoBugConfig.getBoolean("AntiBreakUseingChest.enable");
         AntiInfRailenable = NoBugConfig.getBoolean("AntiInfRail.enable");
         try {
             NoBugConfig.save(NoBugConfigFile);
