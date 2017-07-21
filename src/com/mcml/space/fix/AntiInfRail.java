@@ -8,7 +8,7 @@ import org.bukkit.event.block.BlockPhysicsEvent;
 import com.mcml.space.core.VLagger;
 
 public class AntiInfRail
-        implements Listener {
+implements Listener {
 
     @EventHandler
     public void PhysicsCheck(BlockPhysicsEvent event) {

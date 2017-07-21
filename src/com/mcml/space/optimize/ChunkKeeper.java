@@ -14,7 +14,7 @@ import com.mcml.space.core.VLagger;
 import com.mcml.space.util.Utils;
 
 public class ChunkKeeper
-        implements Listener {
+implements Listener {
 
     public static HashMap<Chunk, Integer> ChunkTimes = new HashMap<Chunk, Integer>();
     public static ArrayList<Chunk> ShouldKeepList = new ArrayList<Chunk>();
@@ -27,13 +27,13 @@ public class ChunkKeeper
     }
 
     public static void ChunkKeeperofTask() {
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(VLagger.MainThis, new Runnable() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(VLagger.MainThis, new Runnable() {
 
-				@Override
-				public void run() {
-					ChunkKeeper.ChunkTimes.clear();
-				}
-			}, 60 * 60 * 20, 60 * 60 * 20);
+            @Override
+            public void run() {
+                ChunkKeeper.ChunkTimes.clear();
+            }
+        }, 60 * 60 * 20, 60 * 60 * 20);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(VLagger.MainThis, new Runnable() {
 
             @Override
@@ -51,9 +51,9 @@ public class ChunkKeeper
                         }
                         if (ChunkTimes.get(chunk) > Utils.getonlinePlayers().size() & ShouldKeepList.contains(chunk)==false) {
                             if(ShouldKeepList.size() > Utils.getonlinePlayers().size()){
-								ShouldKeepList.remove(0);
+                                ShouldKeepList.remove(0);
                             }
-							ShouldKeepList.add(chunk);
+                            ShouldKeepList.add(chunk);
                         }
                     }
                 }

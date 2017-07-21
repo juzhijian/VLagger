@@ -10,25 +10,26 @@ import com.mcml.space.core.VLagger;
 import com.mcml.space.util.Utils;
 
 public class NoOneRestart
-        implements Listener {
-	
-	private int TaskId;
+implements Listener {
+
+    private int TaskId;
 
     @EventHandler
     public void CheckQuit(PlayerQuitEvent event){
-    	if(Utils.getonlinePlayers().isEmpty() && VLagger.NooneRestartenable == true){
-    		TaskId = Bukkit.getScheduler().runTaskLater(VLagger.MainThis, new Runnable(){
-    			public void run(){
-    				Bukkit.shutdown();
-    			}
-    		}, VLagger.NooneRestartTimeLong * 20).getTaskId();
-    	}
+        if(Utils.getonlinePlayers().isEmpty() && VLagger.NooneRestartenable == true){
+            TaskId = Bukkit.getScheduler().runTaskLater(VLagger.MainThis, new Runnable(){
+                @Override
+                public void run(){
+                    Bukkit.shutdown();
+                }
+            }, VLagger.NooneRestartTimeLong * 20).getTaskId();
+        }
     }
-    
+
     @EventHandler
     public void CheckJoin(PlayerJoinEvent event){
-    	if(VLagger.NooneRestartenable == true){
-    		Bukkit.getScheduler().cancelTask(TaskId);
-    	}
+        if(VLagger.NooneRestartenable == true){
+            Bukkit.getScheduler().cancelTask(TaskId);
+        }
     }
 }

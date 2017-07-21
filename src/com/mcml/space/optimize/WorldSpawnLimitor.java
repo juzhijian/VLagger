@@ -14,25 +14,25 @@ import com.mcml.space.core.VLagger;
 
 public class WorldSpawnLimitor implements Listener {
 
-	@EventHandler
-	public void WorldSeterLimitor(WorldInitEvent event) {
-		World world = event.getWorld();
-		FileConfiguration config = load(VLagger.ClearLagConfigFile);
-		if (config.getBoolean("WorldSpawnLimitor." + world.getName() + ".enable")) {
-			world.setMonsterSpawnLimit(config.getInt("WorldSpawnLimitor." + world.getName() + ".PerChunkMonsters"));
-			world.setAnimalSpawnLimit(config.getInt("WorldSpawnLimitor." + world.getName() + ".PerChunkAnimals"));
-			world.setAmbientSpawnLimit(config.getInt("WorldSpawnLimitor." + world.getName() + ".PerChunkAmbient"));
-			VLagger.MainThis.getLogger().info("已为世界 " + world.getName() + " 设定了生物刷新速率~");
-		}
-	}
+    @EventHandler
+    public void WorldSeterLimitor(WorldInitEvent event) {
+        World world = event.getWorld();
+        FileConfiguration config = load(VLagger.ClearLagConfigFile);
+        if (config.getBoolean("WorldSpawnLimitor." + world.getName() + ".enable")) {
+            world.setMonsterSpawnLimit(config.getInt("WorldSpawnLimitor." + world.getName() + ".PerChunkMonsters"));
+            world.setAnimalSpawnLimit(config.getInt("WorldSpawnLimitor." + world.getName() + ".PerChunkAnimals"));
+            world.setAmbientSpawnLimit(config.getInt("WorldSpawnLimitor." + world.getName() + ".PerChunkAmbient"));
+            VLagger.MainThis.getLogger().info("已为世界 " + world.getName() + " 设定了生物刷新速率~");
+        }
+    }
 
-	private static FileConfiguration load(File file) {
-		if (file.exists() == false) {
-			try {
-				file.createNewFile();
-			} catch (IOException ex) {
-			}
-		}
-		return YamlConfiguration.loadConfiguration(file);
-	}
+    private static FileConfiguration load(File file) {
+        if (file.exists() == false) {
+            try {
+                file.createNewFile();
+            } catch (IOException ex) {
+            }
+        }
+        return YamlConfiguration.loadConfiguration(file);
+    }
 }

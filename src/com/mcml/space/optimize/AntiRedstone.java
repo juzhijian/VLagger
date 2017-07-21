@@ -11,7 +11,7 @@ import org.bukkit.event.block.BlockRedstoneEvent;
 import com.mcml.space.core.VLagger;
 
 public class AntiRedstone
-        implements Listener {
+implements Listener {
 
     private final static HashMap<String, Long> CheckList = new HashMap<String, Long>();
     private static boolean TipCooldown;
@@ -28,7 +28,7 @@ public class AntiRedstone
 
     private static boolean CheckFast(String bs) {
         if (CheckList.containsKey(bs)) {
-            return (((Long) CheckList.get(bs)).longValue() + VLagger.AntiRedstoneInterval > System.currentTimeMillis());
+            return (CheckList.get(bs).longValue() + VLagger.AntiRedstoneInterval > System.currentTimeMillis());
         }
         return false;
     }

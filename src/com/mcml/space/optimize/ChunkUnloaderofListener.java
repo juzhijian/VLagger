@@ -7,7 +7,7 @@ import org.bukkit.event.world.WorldInitEvent;
 import com.mcml.space.core.VLagger;
 
 public class ChunkUnloaderofListener
-        implements Listener {
+implements Listener {
 
     @EventHandler
     public void onWorldLoad(WorldInitEvent event) {

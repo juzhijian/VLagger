@@ -7,7 +7,7 @@ import org.bukkit.event.block.*;
 import com.mcml.space.core.VLagger;
 
 public class AntiSkullCrash
-        implements Listener {
+implements Listener {
 
     @EventHandler
     public void NoSkullCrash(BlockFromToEvent e) {
@@ -22,4 +22,4 @@ public class AntiSkullCrash
 /**
 @author jiongjionger
 部分源码来自 https://github.com/jiongjionger/NeverLag
-*/
+ */

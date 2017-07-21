@@ -18,28 +18,28 @@ import org.bukkit.event.player.PlayerQuitEvent;
  * @author Administrator
  */
 public class Utils implements Listener{
-	private static ArrayList<Player> onlinePlayers = new ArrayList<Player>();
-	
-	public Utils(){
-		ArrayList<Player> onlinePlayers = new ArrayList<Player>();
+    private static ArrayList<Player> onlinePlayers = new ArrayList<Player>();
+
+    public Utils(){
+        ArrayList<Player> onlinePlayers = new ArrayList<Player>();
         List<World> worlds = Bukkit.getWorlds();
         for (int i = 0; i < worlds.size(); i++) {
             World world = worlds.get(i);
             List<Player> players = world.getPlayers();
             onlinePlayers.addAll(players);
         }
-	}
-	
-	@EventHandler(priority = EventPriority.LOWEST)
-	public void JoinAdder(PlayerJoinEvent event){
-		onlinePlayers.add(event.getPlayer());
-	}
-	
-	@EventHandler(priority = EventPriority.LOWEST)
-	public void QuitRemover(PlayerQuitEvent event){
-		onlinePlayers.remove(event.getPlayer());
-	}
-	
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void JoinAdder(PlayerJoinEvent event){
+        onlinePlayers.add(event.getPlayer());
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void QuitRemover(PlayerQuitEvent event){
+        onlinePlayers.remove(event.getPlayer());
+    }
+
     public static ArrayList<Player> getonlinePlayers() {
         return onlinePlayers;
     }
