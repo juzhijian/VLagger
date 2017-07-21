@@ -20,7 +20,9 @@ public class BlockCommander implements Listener {
             }
             if (config.getBoolean("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage()) == true) {
                 event.setCancelled(true);
-                p.sendMessage(VLagger.PluginPrefix + config.getString("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage() + ".Message"));
+                if(config.getString("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage() + ".Message").equalsIgnoreCase("none") == false){
+                    p.sendMessage(VLagger.PluginPrefix + config.getString("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage() + ".Message"));
+                }
             }
         }
     }

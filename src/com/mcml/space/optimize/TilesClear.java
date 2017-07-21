@@ -35,7 +35,9 @@ implements Runnable {
                     }
                 }
             }
-            Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.TilesClearMessage);
+            if(VLagger.TilesClearMessage.equalsIgnoreCase("none") == false){
+                Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.TilesClearMessage);
+            }
         }
     }
 }

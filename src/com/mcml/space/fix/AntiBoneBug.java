@@ -32,7 +32,9 @@ public class AntiBoneBug implements Listener {
             if (event.isFromBonemeal()) {
                 event.setCancelled(true);
                 if (event.getPlayer() != null) {
-                    event.getPlayer().sendMessage(VLagger.AntiBoneBugWarnMessage);
+                    if(VLagger.AntiBoneBugWarnMessage.equalsIgnoreCase("none") == false){
+                        event.getPlayer().sendMessage(VLagger.AntiBoneBugWarnMessage);
+                    }
                 }
             }
         }

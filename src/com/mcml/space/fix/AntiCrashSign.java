@@ -20,7 +20,9 @@ implements Listener {
                 String line = lines[i];
                 if(line.length() >= 127){
                     event.setCancelled(true);
-                    player.sendMessage(VLagger.PluginPrefix + VLagger.AntiCrashSignWarnMessage);
+                    if(VLagger.AntiCrashSignWarnMessage.equalsIgnoreCase("none") == false){
+                        player.sendMessage(VLagger.PluginPrefix + VLagger.AntiCrashSignWarnMessage);
+                    }
                 }
             }
         }

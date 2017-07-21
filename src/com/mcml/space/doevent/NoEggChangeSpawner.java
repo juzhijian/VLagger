@@ -26,7 +26,9 @@ implements Listener {
             if (e.getItem().getType() == Material.MONSTER_EGG || e.getItem().getType() == Material.MONSTER_EGGS) {
                 if (e.getClickedBlock().getType() == Material.MOB_SPAWNER) {
                     e.setCancelled(true);
-                    e.getPlayer().sendMessage(VLagger.PluginPrefix + VLagger.NoEggChangeSpawnerTipMessage);
+                    if(VLagger.NoEggChangeSpawnerTipMessage.equalsIgnoreCase("none") == false){
+                        e.getPlayer().sendMessage(VLagger.PluginPrefix + VLagger.NoEggChangeSpawnerTipMessage);
+                    }
                 }
             }
         }

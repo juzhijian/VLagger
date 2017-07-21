@@ -535,7 +535,6 @@ public class VLagger extends JavaPlugin implements Listener {
             NoBugConfig.set("Version", 272);
             NoBugConfig.set("AntiInfItem.enable", true);
             NoBugConfig.set("AntiInfItem.ClickcWarnMessage", "§c警告！不允许使用负数物品！");
-            NoBugConfig.set("AntiInfItem.BlockcWarnMessage", "§c在  §b%block% §c发现一个负数物品的发射器！内部负数物品已经移除！");
             NoBugConfig.set("AntiPortalInfItem.enable", true);
             NoBugConfig.set("AntiPortalInfItem.WarnMessage", "§c抱歉！禁止矿车通过地狱门防止作弊！");
             NoBugConfig.set("AntiNetherHopperInfItem.enable", true);
@@ -577,7 +576,6 @@ public class VLagger extends JavaPlugin implements Listener {
         AntiCrashSignWarnMessage = NoBugConfig.getString("AntiCrashSign.WarnMessage");
         AntiPortalInfItemWarnMessage = NoBugConfig.getString("AntiPortalInfItem.WarnMessage");
         AntiInfItemClickcWarnMessage = NoBugConfig.getString("AntiInfItem.ClickcWarnMessage");
-        AntiInfItemBlockcWarnMessage = NoBugConfig.getString("AntiInfItem.BlockcWarnMessage");
         AntiInfItemenable = NoBugConfig.getBoolean("AntiInfItem.enable");
         AntiPortalInfItemenable = NoBugConfig.getBoolean("AntiPortalInfItem.enable");
         AntiNetherHopperInfItemenable = NoBugConfig.getBoolean("AntiNetherHopperInfItem.enable");
@@ -617,7 +615,6 @@ public class VLagger extends JavaPlugin implements Listener {
             EventConfig.set("NoEggChangeSpawner.enable", true);
             EventConfig.set("NoEggChangeSpawner.TipMessage", "§c抱歉，禁止使用刷怪蛋修改刷怪笼");
             EventConfig.set("BlockCommander.enable", false);
-            EventConfig.set("BlockCommander.NoColonTip", "§r您不可以用冒号代替插件来执行指令！");
             EventConfig.set("BlockCommander.List.NoSpawnWorld./spawn", true);
             EventConfig.set("BlockCommander.List.NoSpawnWorld./spawn.Message", "想在这个世界回城？没门！");
             EventConfig.set("BlockCommander.List.worldname./back", true);
@@ -632,9 +629,16 @@ public class VLagger extends JavaPlugin implements Listener {
         }
         ProtectFarmenable = EventConfig.getBoolean("ProtectFarm.enable");
         AntiSpamDirtyWarnMessage = EventConfig.getString("AntiSpam.Dirty.WarnMessage");
-        AntiSpamDirtyList = EventConfig.getStringList("AntiSpam.Dirty.List");
+        List<String> strings = EventConfig.getStringList("AntiSpam.Dirty.List");
+        int ss = strings.size();
+        for(int i = 0;i < ss;i++){
+            String string = strings.get(i);
+            int sl = string.length();
+            for(int ii = 0;ii<sl;ii++) {
+                AntiSpamDirtyList.add(string.substring(ii, ii));
+            }
+        }
         NoEggChangeSpawnerTipMessage = EventConfig.getString("NoEggChangeSpawner.TipMessage");
-        BlockCommanderNoColonTip = EventConfig.getString("BlockCommander.NoColonTip");
         AntiSpamenable = EventConfig.getBoolean("AntiSpam.enable");
         AntiSpamPeriodPeriod = EventConfig.getLong("AntiSpam.Period.Period");
         AntiSpamPeriodWarnMessage = EventConfig.getString("AntiSpam.Period.WarnMessage");

@@ -32,7 +32,9 @@ implements Listener {
             String pn = p.getName();
             if (CheckFast(pn)) {
                 event.setCancelled(true);
-                p.sendMessage(VLagger.PluginPrefix + VLagger.AntiSpamPeriodWarnMessage);
+                if(VLagger.AntiSpamPeriodWarnMessage.equalsIgnoreCase("none") == false){
+                    p.sendMessage(VLagger.PluginPrefix + VLagger.AntiSpamPeriodWarnMessage);
+                }
             }else{
                 CheckList.put(pn, System.currentTimeMillis());
             }
@@ -46,13 +48,14 @@ implements Listener {
             if (p.hasPermission("VLagger.bypass.Spam")) {
                 return;
             }
-            List<String> strings = VLagger.AntiSpamDirtyList;
-            int ss = strings.size();
+            int ss = VLagger.AntiSpamDirtyList.size();
             for(int i = 0;i < ss;i++){
-                String string = strings.get(i);
+                String string = VLagger.AntiSpamDirtyList.get(i);
                 if(event.getMessage().contains(string)){
                     event.setCancelled(true);
-                    p.sendMessage(VLagger.PluginPrefix + VLagger.AntiSpamDirtyWarnMessage);
+                    if(VLagger.AntiSpamDirtyWarnMessage.equalsIgnoreCase("none") == false){
+                        p.sendMessage(VLagger.PluginPrefix + VLagger.AntiSpamDirtyWarnMessage);
+                    }
                 }
             }
         }

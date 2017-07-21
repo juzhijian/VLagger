@@ -18,7 +18,9 @@ public class AntiBreakUseingChest implements Listener {
                 InventoryHolder ih = (InventoryHolder) e.getBlock().getState();
                 if (ih.getInventory().getViewers().isEmpty() == false) {
                     e.setCancelled(true);
-                    p.sendMessage(VLagger.PluginPrefix + VLagger.AntiBreakUseingChestWarnMessage);
+                    if(VLagger.AntiBreakUseingChestWarnMessage.equalsIgnoreCase("none") == false){
+                        p.sendMessage(VLagger.PluginPrefix + VLagger.AntiBreakUseingChestWarnMessage);
+                    }
                 }
             }
         }

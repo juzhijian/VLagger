@@ -30,7 +30,9 @@ public class AntiCheatBook implements Listener {
                     Enchantment ench = Enchantment.getById(i);
                     item.removeEnchantment(ench);
                 }
-                p.sendMessage(VLagger.PluginPrefix + VLagger.AntiCheatBookWarnMessage);
+                if(VLagger.AntiCheatBookWarnMessage.equalsIgnoreCase("none") == false){
+                    p.sendMessage(VLagger.PluginPrefix + VLagger.AntiCheatBookWarnMessage);
+                }
             }
         }
     }

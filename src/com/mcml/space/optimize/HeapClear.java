@@ -9,7 +9,9 @@ implements Runnable {
     @Override
     public void run() {
         if(VLagger.HeapClearenable==true){
-            Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.HeapClearMessage);
+            if(VLagger.HeapClearMessage.equalsIgnoreCase("none") == false){
+                Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.HeapClearMessage);
+            }
             System.gc();
             System.runFinalization();
         }

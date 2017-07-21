@@ -22,7 +22,9 @@ public class AntiBedExplode implements Listener {
                 if (block.getType() == Material.BED_BLOCK) {
                     if (p.getWorld().getEnvironment() == World.Environment.NETHER || p.getWorld().getEnvironment() == World.Environment.THE_END) {
                         e.setCancelled(true);
-                        p.sendMessage(VLagger.PluginPrefix + VLagger.AntiBedExplodeTipMessage);
+                        if(VLagger.AntiBedExplodeTipMessage.equalsIgnoreCase("none") == false){
+                            p.sendMessage(VLagger.PluginPrefix + VLagger.AntiBedExplodeTipMessage);
+                        }
                     }
                 }
             }

@@ -11,7 +11,9 @@ implements Runnable {
     public void run() {
         if (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() > Runtime.getRuntime().maxMemory() / 100 * VLagger.HeapShutPercent) {
             if (VLagger.HeapShutenable == true) {
-                Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.HeapShutWarnMessage);
+                if(VLagger.HeapShutWarnMessage.equalsIgnoreCase("none") == false){
+                    Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.HeapShutWarnMessage);
+                }
                 Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(VLagger.MainThis, new Runnable() {
 
                     @Override

@@ -26,7 +26,9 @@ public class AntiCrashChat implements Listener{
         String message = event.getMessage();
         if(message.contains("İ")){
             event.setCancelled(true);
-            player.sendMessage(VLagger.PluginPrefix + VLagger.AntiCrashChatSpecialStringWarnMessage);
+            if(VLagger.AntiCrashChatSpecialStringWarnMessage.equalsIgnoreCase("none") == false){
+                player.sendMessage(VLagger.PluginPrefix + VLagger.AntiCrashChatSpecialStringWarnMessage);
+            }
         }
         if(HasEss == true){
             if(message.contains("&")){

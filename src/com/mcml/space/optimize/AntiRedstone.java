@@ -42,9 +42,11 @@ implements Listener {
                 if (VLagger.AntiRedstoneRemoveBlockList.contains(block.getType().name())) {
                     block.setType(Material.AIR);
                     if (TipCooldown == false) {
-                        VLagger.AntiRedstoneMessage = VLagger.AntiRedstoneMessage.replaceAll("%location%", bs);
-                        Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.AntiRedstoneMessage);
-                        TipCooldown = true;
+                        if(VLagger.AntiRedstoneMessage.equalsIgnoreCase("none") == false){
+                            VLagger.AntiRedstoneMessage = VLagger.AntiRedstoneMessage.replaceAll("%location%", bs);
+                            Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.AntiRedstoneMessage);
+                            TipCooldown = true;
+                        }
                     }
                 }
             }

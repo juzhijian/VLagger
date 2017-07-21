@@ -17,7 +17,9 @@ implements Listener {
             if (event.getEntityType() == EntityType.MINECART_CHEST || event.getEntityType() == EntityType.MINECART_FURNACE || event.getEntityType() == EntityType.MINECART_HOPPER) {
                 event.setCancelled(true);
                 event.getEntity().remove();
-                Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.AntiPortalInfItemWarnMessage);
+                if(VLagger.AntiPortalInfItemWarnMessage.equalsIgnoreCase("none") == false){
+                    Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.AntiPortalInfItemWarnMessage);
+                }
             }
         }
     }

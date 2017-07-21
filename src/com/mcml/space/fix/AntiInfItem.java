@@ -25,7 +25,9 @@ implements Listener {
                 if (event.getItem().getAmount() <= 0) {
                     event.setCancelled(true);
                     player.setItemInHand(null);
-                    player.sendMessage(VLagger.PluginPrefix + VLagger.AntiInfItemClickcWarnMessage);
+                    if(VLagger.AntiInfItemClickcWarnMessage.equalsIgnoreCase("none") == false){
+                        player.sendMessage(VLagger.PluginPrefix + VLagger.AntiInfItemClickcWarnMessage);
+                    }
                 }
             }
         }
@@ -43,11 +45,8 @@ implements Listener {
                 for (i = 0; i < invs; i++) {
                     if (Inventory.getItem(i) != null) {
                         if (Inventory.getItem(i).getAmount() <= 0) {
-                            block.setType(Material.AIR);
+                            Inventory.getItem(i).setType(Material.AIR);
                             event.setCancelled(true);
-                            String WarnMessage = VLagger.PluginPrefix + VLagger.AntiInfItemBlockcWarnMessage;
-                            WarnMessage = WarnMessage.replaceAll("%block%", block.toString());
-                            Bukkit.broadcastMessage(WarnMessage);
                         }
                     }
                 }
@@ -60,9 +59,6 @@ implements Listener {
                         if (Inventory.getItem(i).getAmount() <= 0) {
                             Inventory.getItem(i).setType(Material.AIR);
                             event.setCancelled(true);
-                            String WarnMessage = VLagger.PluginPrefix + VLagger.AntiInfItemBlockcWarnMessage;
-                            WarnMessage = WarnMessage.replaceAll("%block%", block.toString());
-                            Bukkit.broadcastMessage(WarnMessage);
                         }
                     }
                 }
