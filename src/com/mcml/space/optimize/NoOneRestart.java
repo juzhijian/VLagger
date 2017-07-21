@@ -7,6 +7,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.mcml.space.core.VLagger;
+import com.mcml.space.util.ConfigClearLag;
 import com.mcml.space.util.Utils;
 
 public class NoOneRestart
@@ -16,7 +17,7 @@ implements Listener {
 
     @EventHandler
     public void CheckQuit(PlayerQuitEvent event){
-        if(Utils.getonlinePlayers().isEmpty() && VLagger.NooneRestartenable == true){
+        if(Utils.getonlinePlayers().isEmpty() && ConfigClearLag.NooneRestartenable == true){
             TaskId = Bukkit.getScheduler().runTaskLater(VLagger.MainThis, new Runnable(){
                 @Override
                 public void run(){
@@ -28,7 +29,7 @@ implements Listener {
 
     @EventHandler
     public void CheckJoin(PlayerJoinEvent event){
-        if(VLagger.NooneRestartenable == true){
+        if(ConfigClearLag.NooneRestartenable == true){
             Bukkit.getScheduler().cancelTask(TaskId);
         }
     }

@@ -22,6 +22,24 @@ public abstract class ConfigClearLag {
     @Node(path = "HeapShut.WaitingTime")
     public static int HeapShutWaitingTime = 15;
     
+    @Node(path = "AutoSet.enable")
+    public static boolean AutoSetenable;
+    
+    @Node(path = "AutoSave.enable")
+    public static boolean AutoSaveenable;
+    
+    @Node(path = "ClearItem.enable")
+    public static boolean ClearItemenable;
+    
+    @Node(path = "NooneRestart.enable")
+    public static boolean NooneRestartenable;
+    
+    @Node(path = "ChunkKeeper.enable")
+    public static boolean ChunkKeeperenable;
+    
+    @Node(path = "ChunkUnloader.enable")
+    public static boolean ChunkUnloaderenable;
+    
     @Documented
     @Retention(RetentionPolicy.RUNTIME)
     protected static @interface Node {

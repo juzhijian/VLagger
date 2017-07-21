@@ -15,6 +15,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.mcml.space.core.VLagger;
+import com.mcml.space.util.ConfigClearLag;
 
 public class AutoSave implements Listener {
 
@@ -47,7 +48,7 @@ public class AutoSave implements Listener {
 
     @EventHandler
     public void JoinTaskGiver(PlayerJoinEvent e) {
-        if (VLagger.AutoSaveenable == false) {
+        if (ConfigClearLag.AutoSaveenable == false) {
             return;
         }
         final Player p = e.getPlayer();
@@ -84,7 +85,7 @@ public class AutoSave implements Listener {
         if (e.getClickedBlock() == null) {
             return;
         }
-        if (VLagger.AutoSaveenable == false) {
+        if (ConfigClearLag.AutoSaveenable == false) {
             return;
         }
         Player p = e.getPlayer();
@@ -93,7 +94,7 @@ public class AutoSave implements Listener {
 
     @EventHandler
     public void QuitCancelled(PlayerQuitEvent e) {
-        if (VLagger.AutoSaveenable == false) {
+        if (ConfigClearLag.AutoSaveenable == false) {
             return;
         }
         Player p = e.getPlayer();

@@ -59,12 +59,6 @@ import com.mcml.space.util.Utils;
 public class VLagger extends JavaPlugin implements Listener {
 
 
-    private static boolean AutoSetenable;
-    public static boolean AutoSaveenable;
-    public static boolean ClearItemenable;
-    public static boolean NooneRestartenable;
-    public static boolean ChunkKeeperenable;
-    public static boolean ChunkUnloaderenable;
     public static int NooneRestartTimeLong;
     public static int AutoSaveInterval;
     public static boolean AntiInfItemenable;
@@ -89,7 +83,6 @@ public class VLagger extends JavaPlugin implements Listener {
     public static VLagger MainThis;
     public FileConfiguration config;
     public static List<String> AntiRedstoneRemoveBlockList;
-    
     
     public static List<String[]> AntiSpamDirtyList;
     public static List<String> ClearItemNoClearItemType;
@@ -145,6 +138,19 @@ public class VLagger extends JavaPlugin implements Listener {
         PluginFile = this.getFile();
         MainThis = this;
         LoadConfig();
+        
+        try {
+            ConfigClearLag.restoreNodes();
+        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
+            e.printStackTrace();
+        }
+        
+        try {
+            ConfigNoBug.restoreNodes();
+        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
+            e.printStackTrace();
+        }
+        
         getLogger().info("VLagger —— 新一代的优化/稳定插件");
         getLogger().info("~(@^_^@)~ 玩的开心！~");
         getLogger().info("清理内存模块...");
@@ -179,7 +185,7 @@ public class VLagger extends JavaPlugin implements Listener {
         getLogger().info("您可以在插件根目录找到本插件的说明文档 说明文档.txt");
         getLogger().info("|||Vlvxingze/VLagger PluginCD小组作品.|||");
         Bukkit.getConsoleSender().sendMessage("§a您正在使用VLagger构建号  %BUILD_NUMBER%");
-        if (AutoSetenable == true) {
+        if (ConfigClearLag.AutoSetenable == true) {
             try {
                 VLagger.AutoSetServer();
             } catch (IOException | InterruptedException e) {
@@ -414,10 +420,6 @@ public class VLagger extends JavaPlugin implements Listener {
         FileConfiguration ClearLagConfig = load(ClearLagConfigFile);
         if (ClearLagConfig.getInt("Version") < 272) {
             ClearLagConfig.set("Version", 272);
-            /* ClearLagConfig.set("HeapShut.enable", true);
-            ClearLagConfig.set("HeapShut.Percent", 90);
-            ClearLagConfig.set("HeapShut.WarnMessage", "服务器会在15秒后重启，请玩家不要游戏，耐心等待！ ╮(╯_╰)╭");
-            ClearLagConfig.set("HeapShut.WaitingTime", 15); */
             ClearLagConfig.set("AutoSet.enable", true);
             ClearLagConfig.set("AutoSave.enable", true);
             ClearLagConfig.set("AutoSave.Interval", 15);
@@ -480,19 +482,9 @@ public class VLagger extends JavaPlugin implements Listener {
         ClearItemNoClearItemType = ClearLagConfig.getStringList("ClearItem.NoClearItemTypeClearItem.NoClearItemType");
         ClearItemNoCleatDeath = ClearLagConfig.getBoolean("ClearItem.NoCleatDeath");
         ClearItemNoClearTeleport = ClearLagConfig.getBoolean("ClearItem.NoClearTeleport");
-        /* HeapShutenable = ClearLagConfig.getBoolean("HeapShut.enable");
-        HeapShutPercent = ClearLagConfig.getInt("HeapShut.Percent");
-        HeapShutWarnMessage = ClearLagConfig.getString("HeapShut.WarnMessage");
-        HeapShutWaitingTime = ClearLagConfig.getInt("HeapShut.WaitingTime"); */ //TODO
         
-        AutoSetenable = ClearLagConfig.getBoolean("AutoSet.enable");
-        AutoSaveenable = ClearLagConfig.getBoolean("AutoSave.enable");
         AutoSaveInterval = ClearLagConfig.getInt("AutoSave.Interval");
-        ClearItemenable = ClearLagConfig.getBoolean("ClearItem.enable");
-        NooneRestartenable = ClearLagConfig.getBoolean("NooneRestart.enable");
         NooneRestartTimeLong = ClearLagConfig.getInt("NooneRestart.TimeLong");
-        ChunkKeeperenable = ClearLagConfig.getBoolean("ChunkKeeper.enable");
-        ChunkUnloaderenable = ClearLagConfig.getBoolean("ChunkUnloader.enable");
         NoCrowdedEntityenable = ClearLagConfig.getBoolean("NoCrowdedEntity.enable");
         NoCrowdedEntityPerChunkLimit = ClearLagConfig.getInt("NoCrowdedEntity.PerChunkLimit");
         List<String> NoCrowdedEntityTypeStringList = ClearLagConfig.getStringList("NoCrowdedEntity.TypeList");
@@ -523,11 +515,6 @@ public class VLagger extends JavaPlugin implements Listener {
         } catch (IOException ex) {
         }
         
-        try {
-            ConfigClearLag.restoreNodes();
-        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
-            e.printStackTrace();
-        }
 
         FileConfiguration NoBugConfig = load(NoBugConfigFile);
         if (NoBugConfig.getInt("Version") < 272) {
@@ -579,11 +566,6 @@ public class VLagger extends JavaPlugin implements Listener {
         } catch (IOException ex) {
         }
         
-        try {
-            ConfigNoBug.restoreNodes();
-        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
-            e.printStackTrace();
-        }
 
         FileConfiguration EventConfig = load(EventConfigFile);
         if (EventConfig.getInt("Version") < 272) {

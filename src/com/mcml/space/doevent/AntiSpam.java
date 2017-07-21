@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import com.mcml.space.core.VLagger;
+import com.mcml.space.util.ConfigNoBug;
 
 public class AntiSpam implements Listener {
 
@@ -52,15 +53,15 @@ public class AntiSpam implements Listener {
                 int sl = strings.length;
                 int DirtyTimes = 0;
                 for(int ii = 0;ii<sl;ii++){
-                	if(message.contains(strings[ii])){
-                		DirtyTimes++;
-                		if(DirtyTimes >= sl){
-                			event.setCancelled(true);
-                            if(VLagger.AntiSpamDirtyWarnMessage.equalsIgnoreCase("none") == false){
-                                p.sendMessage(VLagger.PluginPrefix + VLagger.AntiSpamDirtyWarnMessage);
+                    if(message.contains(strings[ii])){
+                        DirtyTimes++;
+                        if(DirtyTimes >= sl){
+                            event.setCancelled(true);
+                            if(ConfigNoBug.AntiSpamDirtyWarnMessage.equalsIgnoreCase("none") == false){
+                                p.sendMessage(VLagger.PluginPrefix + ConfigNoBug.AntiSpamDirtyWarnMessage);
                             }
-                		}
-                	}
+                        }
+                    }
                 }
             }
         }

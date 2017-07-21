@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import com.mcml.space.core.VLagger;
+import com.mcml.space.util.ConfigClearLag;
 
 public class ChunkUnloader implements Runnable {
 
@@ -12,7 +13,7 @@ public class ChunkUnloader implements Runnable {
 
     @Override
     public void run() {
-        if (VLagger.ChunkUnloaderenable == true) {
+        if (ConfigClearLag.ChunkUnloaderenable == true) {
             List<World> worlds = Bukkit.getWorlds();
             int ws = worlds.size();
             for (int i = 0; i < ws; i++) {

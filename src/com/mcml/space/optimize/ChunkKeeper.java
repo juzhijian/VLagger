@@ -13,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkUnloadEvent;
 
 import com.mcml.space.core.VLagger;
+import com.mcml.space.util.ConfigClearLag;
 import com.mcml.space.util.Utils;
 
 public class ChunkKeeper implements Listener {
@@ -22,7 +23,7 @@ public class ChunkKeeper implements Listener {
 
     @EventHandler
     public void onChunkUnload(ChunkUnloadEvent event) {
-        if (ShouldKeepList.contains(event.getChunk()) & VLagger.ChunkKeeperenable == true) {
+        if (ShouldKeepList.contains(event.getChunk()) & ConfigClearLag.ChunkKeeperenable == true) {
             event.setCancelled(true);
         }
     }
@@ -39,7 +40,7 @@ public class ChunkKeeper implements Listener {
 
             @Override
             public void run() {
-                if (VLagger.ChunkKeeperenable == true) {
+                if (ConfigClearLag.ChunkKeeperenable == true) {
                     List<Player> onlinePlayers = Utils.getonlinePlayers();
                     Iterator<? extends Player> players = onlinePlayers.iterator();
                     while (players.hasNext()) {
