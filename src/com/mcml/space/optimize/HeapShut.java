@@ -4,8 +4,7 @@ import org.bukkit.Bukkit;
 
 import com.mcml.space.core.VLagger;
 
-public class HeapShut
-implements Runnable {
+public class HeapShut implements Runnable {
 
     @Override
     public void run() {

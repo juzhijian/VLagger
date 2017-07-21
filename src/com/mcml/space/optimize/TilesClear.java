@@ -8,8 +8,7 @@ import org.bukkit.block.BlockState;
 
 import com.mcml.space.core.VLagger;
 
-public class TilesClear
-implements Runnable {
+public class TilesClear implements Runnable {
 
     @Override
     public void run() {

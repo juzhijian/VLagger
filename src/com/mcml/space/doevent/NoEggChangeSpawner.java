@@ -8,8 +8,7 @@ import com.mcml.space.core.VLagger;
 
 import org.bukkit.Material;
 
-public class NoEggChangeSpawner
-implements Listener {
+public class NoEggChangeSpawner implements Listener {
 
     @EventHandler
     public void NoChangeLimit(PlayerInteractEvent e) {

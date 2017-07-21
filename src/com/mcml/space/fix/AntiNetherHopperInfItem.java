@@ -7,8 +7,7 @@ import org.bukkit.event.inventory.*;
 
 import com.mcml.space.core.VLagger;
 
-public class AntiNetherHopperInfItem
-implements Listener {
+public class AntiNetherHopperInfItem implements Listener {
 
     @EventHandler
     public void onHopper(InventoryMoveItemEvent event) {

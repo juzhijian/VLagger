@@ -8,8 +8,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import com.mcml.space.core.VLagger;
 
-public class AntiSpam
-implements Listener {
+public class AntiSpam implements Listener {
 
     private final static HashMap<String, Long> CheckList = new HashMap<String, Long>();
 

@@ -6,8 +6,10 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 
 import com.mcml.space.core.VLagger;
 
-public class AntiDropInfItem
-implements Listener {
+/**
+ * @author jiongjionger
+ */
+public class AntiDropInfItem implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void CheckDropNoBugInfItem(PlayerDropItemEvent e) {
@@ -18,7 +20,3 @@ implements Listener {
         }
     }
 }
-/**
-@author jiongjionger
-部分源码来自 https://github.com/jiongjionger/NeverLag
- */

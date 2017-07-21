@@ -6,8 +6,7 @@ import org.bukkit.Chunk;
 import org.bukkit.World;
 import com.mcml.space.core.VLagger;
 
-public class ChunkUnloader
-implements Runnable {
+public class ChunkUnloader implements Runnable {
 
     public static int ChunkUnloaderTimes;
 

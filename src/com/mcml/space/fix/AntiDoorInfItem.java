@@ -7,8 +7,10 @@ import org.bukkit.event.block.*;
 
 import com.mcml.space.core.VLagger;
 
-public class AntiDoorInfItem
-implements Listener {
+/**
+ * @author jiongjionger
+ */
+public class AntiDoorInfItem implements Listener {
 
     @EventHandler
     public void PlaceCheckDoor(BlockPlaceEvent e) {
@@ -30,7 +32,3 @@ implements Listener {
         }
     }
 }
-/**
-@author jiongjionger
-部分源码来自 https://github.com/jiongjionger/NeverLag
- */

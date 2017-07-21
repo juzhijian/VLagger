@@ -11,8 +11,7 @@ import com.mcml.space.core.VLagger;
 import com.mcml.space.util.Utils;
 
 @SuppressWarnings("deprecation")
-public class NoDoubleOnline
-implements Listener {
+public class NoDoubleOnline implements Listener {
 
     @EventHandler
     public void CheckDoubleOnline(PlayerPreLoginEvent event) {

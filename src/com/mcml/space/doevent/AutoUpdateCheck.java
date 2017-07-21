@@ -9,7 +9,6 @@ import com.mcml.space.core.VLagger;
 
 public class AutoUpdateCheck implements Listener{
 
-
     @EventHandler
     public void JoinChecker(PlayerJoinEvent event){
         Player player = event.getPlayer();

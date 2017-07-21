@@ -1,6 +1,5 @@
 package com.mcml.space.fix;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -14,8 +13,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import com.mcml.space.core.VLagger;
 
-public class AntiInfItem
-implements Listener {
+public class AntiInfItem implements Listener {
 
     @EventHandler
     public void InteractCheck(PlayerInteractEvent event) {

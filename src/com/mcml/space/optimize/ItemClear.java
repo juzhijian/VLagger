@@ -14,8 +14,7 @@ import org.bukkit.event.world.ChunkUnloadEvent;
 
 import com.mcml.space.core.VLagger;
 
-public class ItemClear
-implements Listener {
+public class ItemClear implements Listener {
 
     public static ArrayList<Chunk> DeathChunk = new ArrayList<Chunk>();
 

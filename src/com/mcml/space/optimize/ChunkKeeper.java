@@ -15,8 +15,7 @@ import org.bukkit.event.world.ChunkUnloadEvent;
 import com.mcml.space.core.VLagger;
 import com.mcml.space.util.Utils;
 
-public class ChunkKeeper
-implements Listener {
+public class ChunkKeeper implements Listener {
 
     public static HashMap<Chunk, Integer> ChunkTimes = new HashMap<Chunk, Integer>();
     public static ArrayList<Chunk> ShouldKeepList = new ArrayList<Chunk>();

@@ -11,8 +11,7 @@ import org.bukkit.event.block.BlockFromToEvent;
 
 import com.mcml.space.core.VLagger;
 
-public class WaterFlowLimitor
-implements Listener {
+public class WaterFlowLimitor implements Listener {
 
     private final static HashMap<Chunk, Long> ChunkChecked = new HashMap<Chunk, Long>();
 

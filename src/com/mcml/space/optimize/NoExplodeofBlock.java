@@ -8,8 +8,7 @@ import org.bukkit.event.block.BlockExplodeEvent;
 
 import com.mcml.space.core.VLagger;
 
-public class NoExplodeofBlock
-implements Listener {
+public class NoExplodeofBlock implements Listener {
 
     public static void RegisterEvents(){
         try {

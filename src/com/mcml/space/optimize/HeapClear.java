@@ -3,8 +3,7 @@ package com.mcml.space.optimize;
 import org.bukkit.Bukkit;
 
 import com.mcml.space.core.VLagger;
-public class HeapClear
-implements Runnable {
+public class HeapClear implements Runnable {
 
     @Override
     public void run() {

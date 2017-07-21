@@ -8,10 +8,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 import com.mcml.space.core.VLagger;
 
-/**
- *
- * @author Administrator
- */
 public class AutoRespawn implements Listener {
     @EventHandler
     public void AutoRespawner(PlayerDeathEvent event) {

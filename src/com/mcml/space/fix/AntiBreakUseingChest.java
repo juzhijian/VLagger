@@ -8,6 +8,9 @@ import org.bukkit.inventory.InventoryHolder;
 
 import com.mcml.space.core.VLagger;
 
+/**
+ * @author jiongjionger
+ */
 public class AntiBreakUseingChest implements Listener {
 
     @EventHandler
@@ -26,7 +29,3 @@ public class AntiBreakUseingChest implements Listener {
         }
     }
 }
-/**
-@author jiongjionger
-部分源码来自 https://github.com/jiongjionger/NeverLag
- */

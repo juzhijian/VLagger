@@ -7,8 +7,7 @@ import org.bukkit.event.block.SignChangeEvent;
 
 import com.mcml.space.core.VLagger;
 
-public class AntiCrashSign
-implements Listener {
+public class AntiCrashSign implements Listener {
 
     @EventHandler
     public void SignCheckChange(SignChangeEvent event) {

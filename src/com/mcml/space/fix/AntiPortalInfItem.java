@@ -8,8 +8,7 @@ import org.bukkit.event.entity.EntityPortalEvent;
 
 import com.mcml.space.core.VLagger;
 
-public class AntiPortalInfItem
-implements Listener {
+public class AntiPortalInfItem implements Listener {
 
     @EventHandler
     public void onEntityPortal(EntityPortalEvent event) {
