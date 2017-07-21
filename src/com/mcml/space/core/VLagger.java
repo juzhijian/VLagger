@@ -51,15 +51,13 @@ import com.mcml.space.optimize.NoOneRestart;
 import com.mcml.space.optimize.TeleportPreloader;
 import com.mcml.space.optimize.TilesClear;
 import com.mcml.space.optimize.WaterFlowLimitor;
+import com.mcml.space.util.Configurable;
 import com.mcml.space.util.NetWorker;
 import com.mcml.space.util.Utils;
 
 public class VLagger extends JavaPlugin implements Listener {
 
-    public static boolean HeapShutenable;
-    public static int HeapShutPercent;
-    public static String HeapShutWarnMessage;
-    public static int HeapShutWaitingTime;
+
     private static boolean AutoSetenable;
     public static boolean AutoSaveenable;
     public static boolean ClearItemenable;
@@ -422,10 +420,10 @@ public class VLagger extends JavaPlugin implements Listener {
         FileConfiguration ClearLagConfig = load(ClearLagConfigFile);
         if (ClearLagConfig.getInt("Version") < 272) {
             ClearLagConfig.set("Version", 272);
-            ClearLagConfig.set("HeapShut.enable", true);
+            /* ClearLagConfig.set("HeapShut.enable", true);
             ClearLagConfig.set("HeapShut.Percent", 90);
             ClearLagConfig.set("HeapShut.WarnMessage", "服务器会在15秒后重启，请玩家不要游戏，耐心等待！ ╮(╯_╰)╭");
-            ClearLagConfig.set("HeapShut.WaitingTime", 15);
+            ClearLagConfig.set("HeapShut.WaitingTime", 15); */
             ClearLagConfig.set("AutoSet.enable", true);
             ClearLagConfig.set("AutoSave.enable", true);
             ClearLagConfig.set("AutoSave.Interval", 15);
@@ -488,10 +486,11 @@ public class VLagger extends JavaPlugin implements Listener {
         ClearItemNoClearItemType = ClearLagConfig.getStringList("ClearItem.NoClearItemTypeClearItem.NoClearItemType");
         ClearItemNoCleatDeath = ClearLagConfig.getBoolean("ClearItem.NoCleatDeath");
         ClearItemNoClearTeleport = ClearLagConfig.getBoolean("ClearItem.NoClearTeleport");
-        HeapShutenable = ClearLagConfig.getBoolean("HeapShut.enable");
+        /* HeapShutenable = ClearLagConfig.getBoolean("HeapShut.enable");
         HeapShutPercent = ClearLagConfig.getInt("HeapShut.Percent");
         HeapShutWarnMessage = ClearLagConfig.getString("HeapShut.WarnMessage");
-        HeapShutWaitingTime = ClearLagConfig.getInt("HeapShut.WaitingTime");
+        HeapShutWaitingTime = ClearLagConfig.getInt("HeapShut.WaitingTime"); */ //TODO
+        
         AutoSetenable = ClearLagConfig.getBoolean("AutoSet.enable");
         AutoSaveenable = ClearLagConfig.getBoolean("AutoSave.enable");
         AutoSaveInterval = ClearLagConfig.getInt("AutoSave.Interval");
@@ -528,6 +527,12 @@ public class VLagger extends JavaPlugin implements Listener {
         try {
             ClearLagConfig.save(ClearLagConfigFile);
         } catch (IOException ex) {
+        }
+        
+        try {
+            Configurable.restoreNodes();
+        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
+            e.printStackTrace();
         }
 
         FileConfiguration NoBugConfig = load(NoBugConfigFile);
@@ -629,17 +634,17 @@ public class VLagger extends JavaPlugin implements Listener {
         }
         ProtectFarmenable = EventConfig.getBoolean("ProtectFarm.enable");
         AntiSpamDirtyWarnMessage = EventConfig.getString("AntiSpam.Dirty.WarnMessage");
-        List<String> strings = EventConfig.getStringList("AntiSpam.Dirty.List");
+        /* List<String> strings = EventConfig.getStringList("AntiSpam.Dirty.List");
         int ss = strings.size();
         for(int i = 0;i < ss;i++){
             String string = strings.get(i);
             String[] thisdirtystrings = new String[ss];
             int sl = string.length();
             for(int ii = 0;ii<sl;ii++) {
-            	thisdirtystrings[ii] = string.substring(ii, ii);
+                thisdirtystrings[ii] = string.substring(ii, ii);
                 AntiSpamDirtyList.add(thisdirtystrings);
             }
-        }
+        } */
         NoEggChangeSpawnerTipMessage = EventConfig.getString("NoEggChangeSpawner.TipMessage");
         AntiSpamenable = EventConfig.getBoolean("AntiSpam.enable");
         AntiSpamPeriodPeriod = EventConfig.getLong("AntiSpam.Period.Period");
@@ -762,7 +767,7 @@ public class VLagger extends JavaPlugin implements Listener {
         }
     }
 
-    private static FileConfiguration load(File file) {
+    public static FileConfiguration load(File file) {
         if (file.exists() == false) {
             try {
                 file.createNewFile();

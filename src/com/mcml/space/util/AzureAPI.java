@@ -134,4 +134,5 @@ public class AzureAPI {
     public static Set<String> newCaseInsensitiveSet() {
         return Sets.newSetFromMap(new CaseInsensitiveMap<Boolean>());
     }
+
 }
