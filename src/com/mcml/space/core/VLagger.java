@@ -59,8 +59,6 @@ import com.mcml.space.util.Utils;
 
 public class VLagger extends JavaPlugin implements Listener {
 
-
-    public static int NooneRestartTimeLong;
     public static int AutoSaveInterval;
     public static boolean AntiInfItemenable;
     public static boolean AntiPortalInfItemenable;
@@ -426,7 +424,6 @@ public class VLagger extends JavaPlugin implements Listener {
             MeterialList.add("DIAMOND_SWORD");
             ClearLagConfig.set("ClearItem.NoClearItemType", MeterialList);
             ClearLagConfig.set("NooneRestart.enable", true);
-            ClearLagConfig.set("NooneRestart.TimeLong", 1200);
             ClearLagConfig.set("ChunkKeeper.enable", true);
             ClearLagConfig.set("ChunkUnloader.enable", true);
             ClearLagConfig.set("NoCrowdedEntity.enable", true);
@@ -479,7 +476,6 @@ public class VLagger extends JavaPlugin implements Listener {
         ClearItemNoClearTeleport = ClearLagConfig.getBoolean("ClearItem.NoClearTeleport");
         
         AutoSaveInterval = ClearLagConfig.getInt("AutoSave.Interval");
-        NooneRestartTimeLong = ClearLagConfig.getInt("NooneRestart.TimeLong");
         NoCrowdedEntityenable = ClearLagConfig.getBoolean("NoCrowdedEntity.enable");
         NoCrowdedEntityPerChunkLimit = ClearLagConfig.getInt("NoCrowdedEntity.PerChunkLimit");
         List<String> NoCrowdedEntityTypeStringList = ClearLagConfig.getStringList("NoCrowdedEntity.TypeList");

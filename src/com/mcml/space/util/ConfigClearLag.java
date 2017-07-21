@@ -30,4 +30,7 @@ public abstract class ConfigClearLag extends Configurable {
     
     @Node(path = "ChunkUnloader.enable")
     public static boolean ChunkUnloaderenable;
+    
+    @Node(path = "NooneRestart.TimeLong")
+    public static int NooneRestartTimeLong = 1200;
 }

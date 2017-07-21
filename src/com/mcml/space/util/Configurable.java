@@ -31,7 +31,8 @@ public abstract class Configurable {
                 
                 Object value = config.get(path);
                 if (value == null) {
-                    config.set(path, field.get(null));
+                    Object def = field.get(null);
+                    config.set(path, def instanceof Boolean ? true : def);
                 } else {
                     field.set(null, value);
                 }
