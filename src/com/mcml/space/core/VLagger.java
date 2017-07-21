@@ -53,6 +53,7 @@ import com.mcml.space.optimize.TilesClear;
 import com.mcml.space.optimize.WaterFlowLimitor;
 import com.mcml.space.util.ConfigClearLag;
 import com.mcml.space.util.ConfigNoBug;
+import com.mcml.space.util.Configurable;
 import com.mcml.space.util.NetWorker;
 import com.mcml.space.util.Utils;
 
@@ -89,12 +90,6 @@ public class VLagger extends JavaPlugin implements Listener {
     public static boolean ClearItemNoCleatDeath;
     public static boolean ClearItemNoClearTeleport;
     public static String NoEggChangeSpawnerTipMessage;
-    public static String AntiBreakUseingChestWarnMessage;
-    public static String AntiBedExplodeTipMessage;
-    public static String AntiCrashSignWarnMessage;
-    public static String AntiPortalInfItemWarnMessage;
-    public static String AntiInfItemClickcWarnMessage;
-    public static String AntiInfItemBlockcWarnMessage;
     public static String BlockCommanderNoColonTip;
     public static boolean FireLimitorenable;
     public static long FireLimitorPeriod;
@@ -140,13 +135,13 @@ public class VLagger extends JavaPlugin implements Listener {
         LoadConfig();
         
         try {
-            ConfigClearLag.restoreNodes(ClearLagConfigFile, ConfigClearLag.class);
+            Configurable.restoreNodes(ClearLagConfigFile, ConfigClearLag.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }
         
         try {
-            ConfigNoBug.restoreNodes(NoBugConfigFile, ConfigNoBug.class);
+            Configurable.restoreNodes(NoBugConfigFile, ConfigNoBug.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }
@@ -520,13 +515,10 @@ public class VLagger extends JavaPlugin implements Listener {
         if (NoBugConfig.getInt("Version") < 272) {
             NoBugConfig.set("Version", 272);
             NoBugConfig.set("AntiInfItem.enable", true);
-            NoBugConfig.set("AntiInfItem.ClickcWarnMessage", "§c警告！不允许使用负数物品！");
             NoBugConfig.set("AntiPortalInfItem.enable", true);
-            NoBugConfig.set("AntiPortalInfItem.WarnMessage", "§c抱歉！禁止矿车通过地狱门防止作弊！");
             NoBugConfig.set("AntiNetherHopperInfItem.enable", true);
             NoBugConfig.set("AntiRPGITEM.enable", true);
             NoBugConfig.set("AntiCrashSign.enable", true);
-            NoBugConfig.set("AntiCrashSign.WarnMessage", "§c您输入的内容太长了！");
             NoBugConfig.set("AntiSkullCrash.enable", true);
             NoBugConfig.set("NoDoubleOnline.enable", true);
             NoBugConfig.set("NoDoubleOnline.KickMessage", "抱歉，服务器中您已经在线了。ԅ(¯ㅂ¯ԅ)");
@@ -535,17 +527,10 @@ public class VLagger extends JavaPlugin implements Listener {
             NoBugConfig.set("AntiCheatBook.enable", true);
             NoBugConfig.set("AntiCheatBook.WarnMessage", "§c严禁利用超级书Bug！");
             NoBugConfig.set("AntiBedExplode.enable", true);
-            NoBugConfig.set("AntiBedExplode.TipMessage", "§r你不能在这里睡觉");
             NoBugConfig.set("AntiBreakUseingChest.enable", true);
-            NoBugConfig.set("AntiBreakUseingChest.WarnMessage", "§c抱歉！您不可以破坏一个正在被使用的容器");
             NoBugConfig.set("AntiInfRail.enable", true);
         }
         
-        AntiBreakUseingChestWarnMessage = NoBugConfig.getString("AntiBreakUseingChest.WarnMessage");
-        AntiBedExplodeTipMessage = NoBugConfig.getString("AntiBedExplode.TipMessage");
-        AntiCrashSignWarnMessage = NoBugConfig.getString("AntiCrashSign.WarnMessage");
-        AntiPortalInfItemWarnMessage = NoBugConfig.getString("AntiPortalInfItem.WarnMessage");
-        AntiInfItemClickcWarnMessage = NoBugConfig.getString("AntiInfItem.ClickcWarnMessage");
         AntiInfItemenable = NoBugConfig.getBoolean("AntiInfItem.enable");
         AntiPortalInfItemenable = NoBugConfig.getBoolean("AntiPortalInfItem.enable");
         AntiNetherHopperInfItemenable = NoBugConfig.getBoolean("AntiNetherHopperInfItem.enable");

@@ -37,6 +37,21 @@ public abstract class ConfigNoBug extends Configurable {
     @Node(path = "AntiSpam.Dirty.WarnMessage")
     public static String AntiSpamDirtyWarnMessage = "§c啥事那么大搞得你想骂人啊~ _(:з」∠)_";
     
+    @Node(path = "AntiBreakUseingChest.WarnMessage")
+    public static String AntiBreakUsingChestWarnMessage = "§c抱歉！您不可以破坏一个正在被使用的容器";
+    
+    @Node(path = "AntiBedExplode.TipMessage")
+    public static String AntiBedExplodeTipMessage = "§r你不能在这里睡觉";
+    
+    @Node(path = "AntiCrashSign.WarnMessage")
+    public static String AntiCrashSignWarnMessage = "§c您输入的内容太长了！";
+    
+    @Node(path = "AntiPortalInfItem.WarnMessage")
+    public static String AntiPortalInfItemWarnMessage = "§c抱歉！禁止矿车通过地狱门防止作弊！";
+    
+    @Node(path = "AntiInfItem.ClickcWarnMessage")
+    public static String AntiInfItemClickcWarnMessage = "§c警告！不允许使用负数物品！";
+    
     @Documented
     @Retention(RetentionPolicy.RUNTIME)
     protected static @interface Node {
