@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-/bin/
-=======
 # Eclipse stuff
 .classpath
 .project
@@ -58,4 +55,3 @@ dist/
 META-INF/
 manifest.mf
 *.bak
->>>>>>> branch 'master' of https://github.com/Vlvxingze/VLagger
