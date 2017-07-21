@@ -2,6 +2,9 @@ package com.mcml.space.util;
 
 import org.bukkit.Bukkit;
 
+/**
+ * @author SotrForgotten
+ */
 public class VersionLevel {
     private final static Version level = check();
     private static boolean viewDistanceApi; 

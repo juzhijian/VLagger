@@ -10,8 +10,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import com.mcml.space.core.VLagger;
 
 /**
- *
- * @author Administrator
+ * @author Vlvxingze
  */
 public class NetWorker implements Runnable {
 

@@ -15,10 +15,13 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.Sets;
 
+/**
+ * @author SotrForgotten
+ */
 public class AzureAPI {
     private static String loggerPrefix;
-    private static final int bukkitVDChunk = (Bukkit.getViewDistance() << 1) ^ 2 + 1; // (view * 2) ^ 2 + 1
-    private static final int bukkitVDBlock = Bukkit.getViewDistance() << 4; // *16
+    private static final int bukkitVDChunk = (Bukkit.getViewDistance() * 2) ^ 2 + 1;
+    private static final int bukkitVDBlock = Bukkit.getViewDistance() * 16;
 
     private static final class LazyAPI {
         private static final AzureAPI api = new AzureAPI();
@@ -38,12 +41,12 @@ public class AzureAPI {
     }
 
     public static int viewDistanceBlock(final Player player) {
-        if (customViewDistance(player)) return player.getViewDistance() << 4;
+        if (customViewDistance(player)) return player.getViewDistance() * 16;
         return bukkitVDBlock;
     }
 
     public static int viewDistanceChunk(final Player player) {
-        if (customViewDistance(player)) return (player.getViewDistance() << 1) ^ 2 + 1;
+        if (customViewDistance(player)) return (player.getViewDistance() * 2) ^ 2 + 1;
         return bukkitVDChunk;
     }
 
