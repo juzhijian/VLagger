@@ -1,6 +1,6 @@
 package com.mcml.space.util;
 
-import static com.mcml.space.util.VersionLevel.hasViewDistanceApi;
+import static com.mcml.space.util.VersionLevel.isPaper;
 
 import java.util.Map;
 import java.util.Set;
@@ -37,7 +37,7 @@ public class AzureAPI {
     }
 
     public static int viewDistance(final Player player) {
-        return hasViewDistanceApi() ? player.getViewDistance() : Bukkit.getViewDistance();
+        return isPaper() ? player.getViewDistance() : Bukkit.getViewDistance();
     }
 
     public static int viewDistanceBlock(final Player player) {
@@ -51,7 +51,7 @@ public class AzureAPI {
     }
 
     public static boolean customViewDistance(final Player player) {
-        if (!hasViewDistanceApi()) return false;
+        if (!isPaper()) return false;
         return Bukkit.getViewDistance() == player.getViewDistance();
     }
 

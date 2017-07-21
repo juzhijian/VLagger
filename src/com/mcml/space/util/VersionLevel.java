@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
  */
 public class VersionLevel {
     private final static Version level = check();
-    private static boolean viewDistanceApi; 
+    private static boolean paper; 
 
     public static final Version get() {
         return level;
@@ -16,32 +16,32 @@ public class VersionLevel {
     private static Version check() {
         final String version = Bukkit.getServer().getVersion();
         if (version.contains("1.12")) {
-            if (isPaper(version)) return Version.MINECRAFT_1_12_R1_PAPER;
+            if (checkPaper(version)) return Version.MINECRAFT_1_12_R1_PAPER;
             return Version.MINECRAFT_1_12_R1_SPIGOT;
         }
 
         if (version.contains("1.11")) {
-            if (isPaper(version)) return Version.MINECRAFT_1_11_R1_PAPER;
+            if (checkPaper(version)) return Version.MINECRAFT_1_11_R1_PAPER;
             return Version.MINECRAFT_1_11_R1_SPIGOT;
         }
 
         if (version.contains("1.10")) {
-            if (isPaper(version)) return Version.MINECRAFT_1_10_R1_PAPER;
+            if (checkPaper(version)) return Version.MINECRAFT_1_10_R1_PAPER;
             return Version.MINECRAFT_1_10_R1_SPIGOT;
         }
 
         if (version.contains("1.9.4")) {
-            if (isPaper(version)) return Version.MINECRAFT_1_9_R2_PAPER;
+            if (checkPaper(version)) return Version.MINECRAFT_1_9_R2_PAPER;
             return Version.MINECRAFT_1_9_R2_SPIGOT;
         }
 
         if (version.contains("1.9")) {
-            if (isPaper(version)) return Version.MINECRAFT_1_9_R1_PAPER;
+            if (checkPaper(version)) return Version.MINECRAFT_1_9_R1_PAPER;
             return Version.MINECRAFT_1_9_R1_SPIGOT;
         }
 
         if (version.contains("1.8.8")) {
-            if (isPaper(version)) return Version.MINECRAFT_1_8_R3_PAPER;
+            if (checkPaper(version)) return Version.MINECRAFT_1_8_R3_PAPER;
             return Version.MINECRAFT_1_8_R3_SPIGOT;
         }
 
@@ -105,9 +105,9 @@ public class VersionLevel {
         return Version.UNKNOWN;
     }
 
-    public static boolean isPaper(String bukkitVersion) {
+    private static boolean checkPaper(String bukkitVersion) {
         boolean paper = bukkitVersion.contains("Paper") || bukkitVersion.contains("Taco") || bukkitVersion.contains("Torch");
-        if (paper) viewDistanceApi = true;
+        if (paper) paper = true;
         return paper;
     }
 
@@ -149,7 +149,7 @@ public class VersionLevel {
         UNKNOWN
     }
 
-    public static boolean hasViewDistanceApi() {
-        return viewDistanceApi;
+    public static boolean isPaper() {
+        return paper;
     }
 }
