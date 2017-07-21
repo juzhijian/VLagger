@@ -10,6 +10,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import com.mcml.space.core.VLagger;
+import com.mcml.space.util.ConfigNoBug;
 
 public class AntiBedExplode implements Listener {
 
@@ -22,8 +23,8 @@ public class AntiBedExplode implements Listener {
                 if (block.getType() == Material.BED_BLOCK) {
                     if (p.getWorld().getEnvironment() == World.Environment.NETHER || p.getWorld().getEnvironment() == World.Environment.THE_END) {
                         e.setCancelled(true);
-                        if(VLagger.AntiBedExplodeTipMessage.equalsIgnoreCase("none") == false){
-                            p.sendMessage(VLagger.PluginPrefix + VLagger.AntiBedExplodeTipMessage);
+                        if(ConfigNoBug.AntiBedExplodeTipMessage.equalsIgnoreCase("none") == false){
+                            p.sendMessage(VLagger.PluginPrefix + ConfigNoBug.AntiBedExplodeTipMessage);
                         }
                     }
                 }

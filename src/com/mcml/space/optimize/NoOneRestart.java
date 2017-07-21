@@ -23,7 +23,7 @@ implements Listener {
                 public void run(){
                     Bukkit.shutdown();
                 }
-            }, VLagger.NooneRestartTimeLong * 20).getTaskId();
+            }, ConfigClearLag.NooneRestartTimeLong * 20).getTaskId();
         }
     }
 

@@ -7,6 +7,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.InventoryHolder;
 
 import com.mcml.space.core.VLagger;
+import com.mcml.space.util.ConfigNoBug;
 
 /**
  * @author jiongjionger
@@ -21,8 +22,8 @@ public class AntiBreakUsingChest implements Listener {
                 InventoryHolder ih = (InventoryHolder) e.getBlock().getState();
                 if (ih.getInventory().getViewers().isEmpty() == false) {
                     e.setCancelled(true);
-                    if(VLagger.AntiBreakUseingChestWarnMessage.equalsIgnoreCase("none") == false){
-                        p.sendMessage(VLagger.PluginPrefix + VLagger.AntiBreakUseingChestWarnMessage);
+                    if(ConfigNoBug.AntiBreakUsingChestWarnMessage.equalsIgnoreCase("none") == false){
+                        p.sendMessage(VLagger.PluginPrefix + ConfigNoBug.AntiBreakUsingChestWarnMessage);
                     }
                 }
             }

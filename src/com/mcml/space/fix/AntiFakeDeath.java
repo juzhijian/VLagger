@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 
-import com.mcml.space.core.VLagger;
-import com.mcml.space.util.ConfigClearLag;
 import com.mcml.space.util.ConfigNoBug;
 import com.mcml.space.util.Utils;
 
