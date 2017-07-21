@@ -9,7 +9,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import com.mcml.space.core.VLagger;
 import com.mcml.space.util.ConfigNoBug;
 
 public class FarmProtecter implements Listener{

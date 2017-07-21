@@ -11,12 +11,11 @@ import com.mcml.space.core.VLagger;
  */
 public class AntiSkullCrash implements Listener {
 
-    @EventHandler
-    public void NoSkullCrash(BlockFromToEvent e) {
-        if (VLagger.AntiSkullCrashenable == true) {
-            if (e.getToBlock().getType() == Material.SKULL) {
-                e.setCancelled(true);
-                e.getToBlock().setType(Material.AIR);
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void NoSkullCrash(BlockFromToEvent evt) {
+        if (VLagger.AntiSkullCrashenable) {
+            if (evt.getToBlock().getType() == Material.SKULL) {
+                evt.setCancelled(true);
             }
         }
     }

@@ -26,7 +26,7 @@ import com.mcml.space.fix.AntiBedExplode;
 import com.mcml.space.fix.AntiBoneBug;
 import com.mcml.space.fix.AntiCrashSign;
 import com.mcml.space.fix.AntiDoorInfItem;
-import com.mcml.space.fix.AntiDropInfItem;
+import com.mcml.space.fix.AntiDupeDropItem;
 import com.mcml.space.fix.AntiFakeDeath;
 import com.mcml.space.fix.AntiInfItem;
 import com.mcml.space.fix.AntiInfRail;
@@ -202,7 +202,7 @@ public class VLagger extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new AntiSkullCrash(), this);
         Bukkit.getPluginManager().registerEvents(new NoDoubleOnline(), this);
         Bukkit.getPluginManager().registerEvents(new NoEggChangeSpawner(), this);
-        Bukkit.getPluginManager().registerEvents(new AntiDropInfItem(), this);
+        Bukkit.getPluginManager().registerEvents(new AntiDupeDropItem(), this);
         Bukkit.getPluginManager().registerEvents(new AntiDoorInfItem(), this);
         Bukkit.getPluginManager().registerEvents(new TeleportPreloader(), this);
         Bukkit.getPluginManager().registerEvents(new AntiBedExplode(), this);
