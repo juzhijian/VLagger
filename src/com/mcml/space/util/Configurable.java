@@ -6,27 +6,29 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.Arrays;
+import java.util.List;
+
 import org.bukkit.configuration.file.FileConfiguration;
 import com.mcml.space.core.VLagger;
 
 public abstract class Configurable {
-    @Node(path = "HeapShut.enable", def = "true")
-    public static boolean HeapShutenable;
+    @Node(path = "HeapShut.enable")
+    public static boolean HeapShutenable = true;
     
-    @Node(path = "HeapShut.Percent", def = "90")
-    public static int HeapShutPercent;
+    @Node(path = "HeapShut.Percent")
+    public static int HeapShutPercent = 90;
     
-    @Node(path = "HeapShut.WarnMessage", def = "服务器会在15秒后重启，请玩家不要游戏，耐心等待！ ╮(╯_╰)╭")
-    public static String HeapShutWarnMessage;
+    @Node(path = "HeapShut.WarnMessage")
+    public static String HeapShutWarnMessage = "服务器会在15秒后重启，请玩家不要游戏，耐心等待！ ╮(╯_╰)╭";
     
-    @Node(path = "HeapShut.WaitingTime", def = "15")
-    public static int HeapShutWaitingTime;
+    @Node(path = "HeapShut.WaitingTime")
+    public static int HeapShutWaitingTime = 15;
     
     @Documented
     @Retention(RetentionPolicy.RUNTIME)
     protected static @interface Node {
         String path();
-        String def();
     }
     
     public static void restoreNodes() throws IllegalArgumentException, IllegalAccessException, IOException {
@@ -43,41 +45,13 @@ public abstract class Configurable {
                 
                 Object value = config.get(path);
                 if (value == null) {
-                    config.set(path, value = parseType(field, node.def()));
+                    config.set(path, field.get(null));
+                } else {
+                    field.set(null, value);
                 }
-                field.set(null, value);
             }
         }
         
         config.save(VLagger.ClearLagConfigFile);
-    }
-    
-    public static Object parseType(Field t, String value) {
-        Class<?> type = t.getType();
-        if (type.isAssignableFrom(Integer.class) || type.isAssignableFrom(int.class)) {
-            return Integer.valueOf(value);
-        }
-        
-        if (type.isAssignableFrom(Boolean.class) || type.isAssignableFrom(boolean.class)) {
-            return Boolean.valueOf(value);
-        }
-        
-        if (type.isAssignableFrom(Float.class) || type.isAssignableFrom(float.class)) {
-            return Float.valueOf(value);
-        }
-        
-        if (type.isAssignableFrom(Double.class) || type.isAssignableFrom(double.class)) {
-            return Double.valueOf(value);
-        }
-        
-        if (type.isAssignableFrom(Long.class) || type.isAssignableFrom(long.class)) {
-            return Long.valueOf(value);
-        }
-        
-        if (type.isAssignableFrom(String.class)) {
-            return String.valueOf(value);
-        }
-        
-        throw new UnsupportedOperationException();
     }
 }
