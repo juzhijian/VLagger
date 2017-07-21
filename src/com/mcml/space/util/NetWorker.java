@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mcml.space.util;
 
 import java.io.*;
@@ -29,7 +25,7 @@ public class NetWorker implements Runnable {
                 // 检查插件并下载新版本
                 VLagger.MainThis.getLogger().info("正在检查新版本插件，请稍等...");
                 int NewVersion = URLLog.getInt("UpdateVersion");
-                int NowVersion = AllSet.Version;
+                int NowVersion = Integer.valueOf("%BUILD_NUMBER%");
                 if (NewVersion > NowVersion) {
                     VLagger.MainThis.getLogger().info("插件检测到新版本 " + NewVersion + "，正在自动下载新版本插件...");
                     DowloadFile("http://bgm.mcml.space/VLagger/VLagger.jar", VLagger.PluginFile);
