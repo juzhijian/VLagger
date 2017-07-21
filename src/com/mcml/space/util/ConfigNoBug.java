@@ -9,7 +9,7 @@ import java.lang.reflect.Modifier;
 import org.bukkit.configuration.file.FileConfiguration;
 import com.mcml.space.core.VLagger;
 
-public abstract class ConfigNoBug {
+public abstract class ConfigNoBug extends Configurable {
     @Node(path = "AntiBoneBug.enable")
     public static boolean AntiBoneBugenable = true;
     

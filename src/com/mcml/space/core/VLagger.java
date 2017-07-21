@@ -140,13 +140,13 @@ public class VLagger extends JavaPlugin implements Listener {
         LoadConfig();
         
         try {
-            ConfigClearLag.restoreNodes();
+            ConfigClearLag.restoreNodes(ClearLagConfigFile, ConfigClearLag.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }
         
         try {
-            ConfigNoBug.restoreNodes();
+            ConfigNoBug.restoreNodes(NoBugConfigFile, ConfigNoBug.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }
