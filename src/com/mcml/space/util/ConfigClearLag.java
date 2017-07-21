@@ -9,7 +9,7 @@ import java.lang.reflect.Modifier;
 import org.bukkit.configuration.file.FileConfiguration;
 import com.mcml.space.core.VLagger;
 
-public abstract class Configurable {
+public abstract class ConfigClearLag {
     @Node(path = "HeapShut.enable")
     public static boolean HeapShutenable = true;
     
@@ -32,7 +32,7 @@ public abstract class Configurable {
         assert VLagger.MainThis != null;
         FileConfiguration config = VLagger.load(VLagger.ClearLagConfigFile);
         
-        for (Field field : Configurable.class.getDeclaredFields()) {
+        for (Field field : ConfigClearLag.class.getDeclaredFields()) {
             Node node = field.getAnnotation(Node.class);
             if (node == null) continue;
             

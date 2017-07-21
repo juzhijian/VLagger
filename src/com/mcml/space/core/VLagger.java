@@ -51,7 +51,8 @@ import com.mcml.space.optimize.NoOneRestart;
 import com.mcml.space.optimize.TeleportPreloader;
 import com.mcml.space.optimize.TilesClear;
 import com.mcml.space.optimize.WaterFlowLimitor;
-import com.mcml.space.util.Configurable;
+import com.mcml.space.util.ConfigClearLag;
+import com.mcml.space.util.ConfigNoBug;
 import com.mcml.space.util.NetWorker;
 import com.mcml.space.util.Utils;
 
@@ -88,15 +89,8 @@ public class VLagger extends JavaPlugin implements Listener {
     public static VLagger MainThis;
     public FileConfiguration config;
     public static List<String> AntiRedstoneRemoveBlockList;
-    public static boolean AntiBoneBugenable;
-    public static String AntiBoneBugWarnMessage;
-    public static String AntiFakeDeathKickMessage;
-    public static boolean AntiFakeDeathenable;
-    public static boolean ProtectFarmenable;
-    public static boolean AntiCrashChatenable;
-    public static String AntiCrashChatSpecialStringWarnMessage;
-    public static String AntiCrashChatColorChatWarnMessage;
-    public static String AntiSpamDirtyWarnMessage;
+    
+    
     public static List<String[]> AntiSpamDirtyList;
     public static List<String> ClearItemNoClearItemType;
     public static boolean ClearItemNoCleatDeath;
@@ -117,7 +111,7 @@ public class VLagger extends JavaPlugin implements Listener {
     public static boolean AutoRespawnRespawnTitleenable;
     public static String AutoRespawnRespawnTitleMiniMessage;
     public static File ClearLagConfigFile;
-    private static File NoBugConfigFile;
+    public static File NoBugConfigFile;
     private static File MainConfigFile;
     public static File EventConfigFile;
     public static boolean AntiSpamenable;
@@ -530,7 +524,7 @@ public class VLagger extends JavaPlugin implements Listener {
         }
         
         try {
-            Configurable.restoreNodes();
+            ConfigClearLag.restoreNodes();
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }
@@ -558,24 +552,8 @@ public class VLagger extends JavaPlugin implements Listener {
             NoBugConfig.set("AntiBreakUseingChest.enable", true);
             NoBugConfig.set("AntiBreakUseingChest.WarnMessage", "§c抱歉！您不可以破坏一个正在被使用的容器");
             NoBugConfig.set("AntiInfRail.enable", true);
-            NoBugConfig.set("AntiCrashChat.enable", true);
-            NoBugConfig.set("AntiCrashChat.SpecialStringWarnMessage", "§c严禁使用崩服代码炸服！");
-            NoBugConfig.set("AntiCrashChat.ColorChatWarnMessage", "§c抱歉！为了防止服务器被破坏，服务器禁止使用颜色代码.");
-            NoBugConfig.set("AntiFakeDeath.enable", true);
-            NoBugConfig.set("AntiFakeDeath.KickMessage", "§c严禁卡假死BUG！");
         }
-        if(NoBugConfig.getInt("Version") < 277){
-            NoBugConfig.set("Version", 277);
-            NoBugConfig.set("AntiBoneBug.enable", true);
-            NoBugConfig.set("AntiBoneBug.WarnMessage", "§c严禁卡树苗催熟BUG！");
-        }
-        AntiBoneBugenable = NoBugConfig.getBoolean("AntiBoneBug.enable");
-        AntiBoneBugWarnMessage = NoBugConfig.getString("AntiBoneBug.WarnMessage");
-        AntiFakeDeathenable = NoBugConfig.getBoolean("AntiFakeDeath.enable");
-        AntiFakeDeathKickMessage = NoBugConfig.getString("AntiFakeDeath.KickMessage");
-        AntiCrashChatenable = NoBugConfig.getBoolean("AntiCrashChat.enable");
-        AntiCrashChatSpecialStringWarnMessage = NoBugConfig.getString("AntiCrashChat.SpecialStringWarnMessage");
-        AntiCrashChatColorChatWarnMessage = NoBugConfig.getString("AntiCrashChat.ColorChatWarnMessage");
+        
         AntiBreakUseingChestWarnMessage = NoBugConfig.getString("AntiBreakUseingChest.WarnMessage");
         AntiBedExplodeTipMessage = NoBugConfig.getString("AntiBedExplode.TipMessage");
         AntiCrashSignWarnMessage = NoBugConfig.getString("AntiCrashSign.WarnMessage");
@@ -600,6 +578,12 @@ public class VLagger extends JavaPlugin implements Listener {
             NoBugConfig.save(NoBugConfigFile);
         } catch (IOException ex) {
         }
+        
+        try {
+            ConfigNoBug.restoreNodes();
+        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
+            e.printStackTrace();
+        }
 
         FileConfiguration EventConfig = load(EventConfigFile);
         if (EventConfig.getInt("Version") < 272) {
@@ -616,7 +600,6 @@ public class VLagger extends JavaPlugin implements Listener {
             dirty.add("杂种");
             dirty.add("狗娘");
             EventConfig.set("AntiSpam.Dirty.List", dirty);
-            EventConfig.set("AntiSpam.Dirty.WarnMessage", "§c啥事那么大搞得你想骂人啊~ _(:з」∠)_");
             EventConfig.set("NoEggChangeSpawner.enable", true);
             EventConfig.set("NoEggChangeSpawner.TipMessage", "§c抱歉，禁止使用刷怪蛋修改刷怪笼");
             EventConfig.set("BlockCommander.enable", false);
@@ -630,10 +613,7 @@ public class VLagger extends JavaPlugin implements Listener {
             EventConfig.set("AutoRespawn.RespawnTitle.enable", true);
             EventConfig.set("AutoRespawn.RespawnTitle.MainMessage", "§e你死了！");
             EventConfig.set("AutoRespawn.RespawnTitle.MiniMessage", "§c已为您自动复活！");
-            EventConfig.set("ProtectFarm.enable", true);
         }
-        ProtectFarmenable = EventConfig.getBoolean("ProtectFarm.enable");
-        AntiSpamDirtyWarnMessage = EventConfig.getString("AntiSpam.Dirty.WarnMessage");
         /* List<String> strings = EventConfig.getStringList("AntiSpam.Dirty.List");
         int ss = strings.size();
         for(int i = 0;i < ss;i++){
@@ -644,7 +624,7 @@ public class VLagger extends JavaPlugin implements Listener {
                 thisdirtystrings[ii] = string.substring(ii, ii);
                 AntiSpamDirtyList.add(thisdirtystrings);
             }
-        } */
+        }*/ // TODO: buggy?
         NoEggChangeSpawnerTipMessage = EventConfig.getString("NoEggChangeSpawner.TipMessage");
         AntiSpamenable = EventConfig.getBoolean("AntiSpam.enable");
         AntiSpamPeriodPeriod = EventConfig.getLong("AntiSpam.Period.Period");
