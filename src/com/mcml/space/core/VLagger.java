@@ -177,6 +177,7 @@ public class VLagger extends JavaPlugin implements Listener {
         AzureAPI.log("乐乐感谢您的使用——有建议务必反馈，QQ1207223090");
         AzureAPI.log("您可以在插件根目录找到本插件的说明文档 说明文档.txt");
         AzureAPI.log("|||Vlvxingze/VLagger PluginCD小组作品.|||");
+        AzureAPI.log("|||IzzelAliz - SotrForgotten 合作开发.|||");
         AzureAPI.log("§a您正在使用VLagger构建号 %BUILD_NUMBER%");
         
         AzureAPI.setPrefix(PluginPrefix);
