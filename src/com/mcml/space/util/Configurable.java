@@ -10,6 +10,9 @@ import java.lang.reflect.Modifier;
 import org.bukkit.configuration.file.FileConfiguration;
 import com.mcml.space.core.VLagger;
 
+/**
+ * @author SotrForgotten
+ */
 public abstract class Configurable {
     @Documented
     @Retention(RetentionPolicy.RUNTIME)

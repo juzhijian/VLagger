@@ -16,6 +16,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.mcml.space.config.ConfigClearLag;
+import com.mcml.space.config.ConfigAntiBug;
 import com.mcml.space.doevent.AntiSpam;
 import com.mcml.space.doevent.AutoRespawn;
 import com.mcml.space.doevent.AutoUpdateCheck;
@@ -51,8 +53,6 @@ import com.mcml.space.optimize.NoOneRestart;
 import com.mcml.space.optimize.TeleportPreloader;
 import com.mcml.space.optimize.TilesClear;
 import com.mcml.space.optimize.WaterFlowLimitor;
-import com.mcml.space.util.ConfigClearLag;
-import com.mcml.space.util.ConfigNoBug;
 import com.mcml.space.util.Configurable;
 import com.mcml.space.util.NetWorker;
 import com.mcml.space.util.Utils;
@@ -107,7 +107,6 @@ public class VLagger extends JavaPlugin implements Listener {
     public static boolean NoDoubleOnlineenanle;
     public static String NoDoubleOnlineKickMessage;
     public static boolean AntiDropInfItemenable;
-    public static boolean NoEggChangeSpawnerenable;
     public static boolean AntiDoorInfItemenable;
     public static boolean HeapClearenable;
     private static int HeapClearPeriod;
@@ -139,7 +138,7 @@ public class VLagger extends JavaPlugin implements Listener {
         }
         
         try {
-            Configurable.restoreNodes(NoBugConfigFile, ConfigNoBug.class);
+            Configurable.restoreNodes(NoBugConfigFile, ConfigAntiBug.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }
@@ -563,7 +562,6 @@ public class VLagger extends JavaPlugin implements Listener {
             dirty.add("杂种");
             dirty.add("狗娘");
             EventConfig.set("AntiSpam.Dirty.List", dirty);
-            EventConfig.set("NoEggChangeSpawner.enable", true);
             EventConfig.set("NoEggChangeSpawner.TipMessage", "§c抱歉，禁止使用刷怪蛋修改刷怪笼");
             EventConfig.set("BlockCommander.enable", false);
             EventConfig.set("BlockCommander.List.NoSpawnWorld./spawn", true);
@@ -592,7 +590,6 @@ public class VLagger extends JavaPlugin implements Listener {
         AntiSpamenable = EventConfig.getBoolean("AntiSpam.enable");
         AntiSpamPeriodPeriod = EventConfig.getLong("AntiSpam.Period.Period");
         AntiSpamPeriodWarnMessage = EventConfig.getString("AntiSpam.Period.WarnMessage");
-        NoEggChangeSpawnerenable = EventConfig.getBoolean("NoEggChangeSpawner");
         BlockCommanderenable = EventConfig.getBoolean("BlockCommander.enable");
         AutoRespawnenable = EventConfig.getBoolean("AutoRespawn.enable");
         AutoRespawnRespawnTitleenable = EventConfig.getBoolean("AutoRespawn.RespawnTitle.enable");

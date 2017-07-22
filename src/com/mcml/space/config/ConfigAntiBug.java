@@ -1,6 +1,8 @@
-package com.mcml.space.util;
+package com.mcml.space.config;
 
-public abstract class ConfigNoBug extends Configurable {
+import com.mcml.space.util.Configurable;
+
+public abstract class ConfigAntiBug extends Configurable {
     @Node(path = "AntiBoneBug.enable")
     public static boolean AntiBoneBugenable;
     
@@ -42,4 +44,7 @@ public abstract class ConfigNoBug extends Configurable {
     
     @Node(path = "AntiInfItem.ClickcWarnMessage")
     public static String AntiInfItemClickcWarnMessage = "§c警告！不允许使用负数物品！";
+    
+    @Node(path = "NoEggChangeSpawner")
+    public static boolean NoEggChangeSpawnerenable;
 }

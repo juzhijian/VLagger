@@ -11,8 +11,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
+
+import com.mcml.space.config.ConfigAntiBug;
 import com.mcml.space.core.VLagger;
-import com.mcml.space.util.ConfigNoBug;
 
 public class AntiInfItem implements Listener {
 
@@ -24,8 +25,8 @@ public class AntiInfItem implements Listener {
                 if (event.getItem().getAmount() <= 0) {
                     event.setCancelled(true);
                     player.setItemInHand(null);
-                    if(ConfigNoBug.AntiInfItemClickcWarnMessage.equalsIgnoreCase("none") == false){
-                        player.sendMessage(VLagger.PluginPrefix + ConfigNoBug.AntiInfItemClickcWarnMessage);
+                    if(ConfigAntiBug.AntiInfItemClickcWarnMessage.equalsIgnoreCase("none") == false){
+                        player.sendMessage(VLagger.PluginPrefix + ConfigAntiBug.AntiInfItemClickcWarnMessage);
                     }
                 }
             }
