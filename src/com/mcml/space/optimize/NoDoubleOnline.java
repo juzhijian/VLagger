@@ -1,6 +1,7 @@
 package com.mcml.space.optimize;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,13 +11,12 @@ import com.mcml.space.core.VLagger;
 import com.mcml.space.util.Utils;
 
 @SuppressWarnings("deprecation")
-public class NoDoubleOnline
-        implements Listener {
+public class NoDoubleOnline implements Listener {
 
     @EventHandler
     public void CheckDoubleOnline(PlayerPreLoginEvent event) {
         if (VLagger.NoDoubleOnlineenanle == true) {
-            ArrayList<Player> onlinePlayers = Utils.getonlinePlayers();
+            List<Player> onlinePlayers = Utils.getonlinePlayers();
             String pn = event.getName();
             for (int i = 0; i < onlinePlayers.size(); i++) {
                 String Ingamepn = onlinePlayers.get(i).getName();

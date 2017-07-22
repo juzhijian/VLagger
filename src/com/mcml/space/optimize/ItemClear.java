@@ -14,8 +14,7 @@ import org.bukkit.event.world.ChunkUnloadEvent;
 
 import com.mcml.space.core.VLagger;
 
-public class ItemClear
-        implements Listener {
+public class ItemClear implements Listener {
 
     public static ArrayList<Chunk> DeathChunk = new ArrayList<Chunk>();
 
@@ -37,9 +36,9 @@ public class ItemClear
             for (int i = 0; i < entities.length; i++) {
                 Entity ent = entities[i];
                 if (ent.getType() == EntityType.DROPPED_ITEM) {
-                	if(VLagger.ClearItemNoClearItemType.contains(ent.getType().name()) == false){
-                		ent.remove();
-                	}
+                    if(VLagger.ClearItemNoClearItemType.contains(ent.getType().name()) == false){
+                        ent.remove();
+                    }
                 }
             }
         }
@@ -47,20 +46,20 @@ public class ItemClear
 
     @EventHandler
     public void DeathNoClear(PlayerDeathEvent event) {
-    	if(VLagger.ClearItemNoCleatDeath != true){
-    		return;
-    	}
+        if(VLagger.ClearItemNoCleatDeath != true){
+            return;
+        }
         Player player = event.getEntity();
         Chunk chunk = player.getLocation().getChunk();
         DeathChunk.add(chunk);
     }
-    
+
     @EventHandler
     public void TeleportNoClear(PlayerTeleportEvent event){
-    	if(VLagger.ClearItemNoClearTeleport != true){
-    		return;
-    	}
-    	Player player = event.getPlayer();
+        if(VLagger.ClearItemNoClearTeleport != true){
+            return;
+        }
+        Player player = event.getPlayer();
         Chunk chunk = player.getLocation().getChunk();
         DeathChunk.add(chunk);
     }

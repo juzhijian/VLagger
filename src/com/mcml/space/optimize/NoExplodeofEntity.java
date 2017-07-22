@@ -8,9 +8,8 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 
 import com.mcml.space.core.VLagger;
 
-public class NoExplodeofEntity
-        implements Listener {
-    
+public class NoExplodeofEntity implements Listener {
+
     @EventHandler
     public void AntiEntityExplode(EntityExplodeEvent event) {
         if (VLagger.NoExplodeenable == true) {

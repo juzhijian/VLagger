@@ -7,9 +7,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPortalEvent;
 
 import com.mcml.space.core.VLagger;
+import com.mcml.space.util.ConfigNoBug;
 
-public class AntiPortalInfItem
-        implements Listener {
+public class AntiPortalInfItem implements Listener {
 
     @EventHandler
     public void onEntityPortal(EntityPortalEvent event) {
@@ -17,7 +17,9 @@ public class AntiPortalInfItem
             if (event.getEntityType() == EntityType.MINECART_CHEST || event.getEntityType() == EntityType.MINECART_FURNACE || event.getEntityType() == EntityType.MINECART_HOPPER) {
                 event.setCancelled(true);
                 event.getEntity().remove();
-                Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.AntiPortalInfItemWarnMessage);
+                if(ConfigNoBug.AntiPortalInfItemWarnMessage.equalsIgnoreCase("none") == false){
+                    Bukkit.broadcastMessage(VLagger.PluginPrefix + ConfigNoBug.AntiPortalInfItemWarnMessage);
+                }
             }
         }
     }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mcml.space.util;
 
 import java.util.*;
@@ -13,34 +9,31 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import com.google.common.collect.Lists;
+
 /**
- *
- * @author Administrator
+ * @author Vlvxingze
  */
-public class Utils implements Listener{
-	private static ArrayList<Player> onlinePlayers = new ArrayList<Player>();
-	
-	public Utils(){
-		ArrayList<Player> onlinePlayers = new ArrayList<Player>();
-        List<World> worlds = Bukkit.getWorlds();
-        for (int i = 0; i < worlds.size(); i++) {
-            World world = worlds.get(i);
-            List<Player> players = world.getPlayers();
-            onlinePlayers.addAll(players);
+public class Utils implements Listener {
+    private final static List<Player> onlinePlayers = Lists.newArrayListWithExpectedSize(Bukkit.getMaxPlayers());
+
+    public Utils() {
+        for (World world : Bukkit.getWorlds()) {
+            onlinePlayers.addAll(world.getPlayers());
         }
-	}
-	
-	@EventHandler(priority = EventPriority.LOWEST)
-	public void JoinAdder(PlayerJoinEvent event){
-		onlinePlayers.add(event.getPlayer());
-	}
-	
-	@EventHandler(priority = EventPriority.LOWEST)
-	public void QuitRemover(PlayerQuitEvent event){
-		onlinePlayers.remove(event.getPlayer());
-	}
-	
-    public static ArrayList<Player> getonlinePlayers() {
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void JoinAdder(PlayerJoinEvent event){
+        onlinePlayers.add(event.getPlayer());
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void QuitRemover(PlayerQuitEvent event){
+        onlinePlayers.remove(event.getPlayer());
+    }
+
+    public static List<Player> getonlinePlayers() {
         return onlinePlayers;
     }
 }

@@ -10,8 +10,7 @@ import org.bukkit.event.block.BlockRedstoneEvent;
 
 import com.mcml.space.core.VLagger;
 
-public class AntiRedstone
-        implements Listener {
+public class AntiRedstone implements Listener {
 
     private final static HashMap<String, Long> CheckList = new HashMap<String, Long>();
     private static boolean TipCooldown;
@@ -28,7 +27,7 @@ public class AntiRedstone
 
     private static boolean CheckFast(String bs) {
         if (CheckList.containsKey(bs)) {
-            return (((Long) CheckList.get(bs)).longValue() + VLagger.AntiRedstoneInterval > System.currentTimeMillis());
+            return (CheckList.get(bs).longValue() + VLagger.AntiRedstoneInterval > System.currentTimeMillis());
         }
         return false;
     }
@@ -42,9 +41,11 @@ public class AntiRedstone
                 if (VLagger.AntiRedstoneRemoveBlockList.contains(block.getType().name())) {
                     block.setType(Material.AIR);
                     if (TipCooldown == false) {
-                        VLagger.AntiRedstoneMessage = VLagger.AntiRedstoneMessage.replaceAll("%location%", bs);
-                        Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.AntiRedstoneMessage);
-                        TipCooldown = true;
+                        if(VLagger.AntiRedstoneMessage.equalsIgnoreCase("none") == false){
+                            VLagger.AntiRedstoneMessage = VLagger.AntiRedstoneMessage.replaceAll("%location%", bs);
+                            Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.AntiRedstoneMessage);
+                            TipCooldown = true;
+                        }
                     }
                 }
             }

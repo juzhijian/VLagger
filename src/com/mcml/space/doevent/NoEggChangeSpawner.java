@@ -8,8 +8,7 @@ import com.mcml.space.core.VLagger;
 
 import org.bukkit.Material;
 
-public class NoEggChangeSpawner
-        implements Listener {
+public class NoEggChangeSpawner implements Listener {
 
     @EventHandler
     public void NoChangeLimit(PlayerInteractEvent e) {
@@ -26,7 +25,9 @@ public class NoEggChangeSpawner
             if (e.getItem().getType() == Material.MONSTER_EGG || e.getItem().getType() == Material.MONSTER_EGGS) {
                 if (e.getClickedBlock().getType() == Material.MOB_SPAWNER) {
                     e.setCancelled(true);
-                    e.getPlayer().sendMessage(VLagger.PluginPrefix + VLagger.NoEggChangeSpawnerTipMessage);
+                    if(VLagger.NoEggChangeSpawnerTipMessage.equalsIgnoreCase("none") == false){
+                        e.getPlayer().sendMessage(VLagger.PluginPrefix + VLagger.NoEggChangeSpawnerTipMessage);
+                    }
                 }
             }
         }

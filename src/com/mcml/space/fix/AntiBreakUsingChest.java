@@ -7,8 +7,12 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.InventoryHolder;
 
 import com.mcml.space.core.VLagger;
+import com.mcml.space.util.ConfigNoBug;
 
-public class AntiBreakUseingChest implements Listener {
+/**
+ * @author jiongjionger
+ */
+public class AntiBreakUsingChest implements Listener {
 
     @EventHandler
     public void CheckNoBreakChest(BlockBreakEvent e) {
@@ -18,13 +22,11 @@ public class AntiBreakUseingChest implements Listener {
                 InventoryHolder ih = (InventoryHolder) e.getBlock().getState();
                 if (ih.getInventory().getViewers().isEmpty() == false) {
                     e.setCancelled(true);
-                    p.sendMessage(VLagger.PluginPrefix + VLagger.AntiBreakUseingChestWarnMessage);
+                    if(ConfigNoBug.AntiBreakUsingChestWarnMessage.equalsIgnoreCase("none") == false){
+                        p.sendMessage(VLagger.PluginPrefix + ConfigNoBug.AntiBreakUsingChestWarnMessage);
+                    }
                 }
             }
         }
     }
 }
-/**
-@author jiongjionger
-部分源码来自 https://github.com/jiongjionger/NeverLag
-*/

@@ -14,7 +14,7 @@ import org.bukkit.event.player.*;
 public class AntiCheatBook implements Listener {
 
     @SuppressWarnings("deprecation")
-	@EventHandler
+    @EventHandler
     public void ClickItemCheck(InventoryClickEvent e) {
         if (VLagger.AntiCheatBookenable == true) {
             ItemStack item = e.getCurrentItem();
@@ -30,13 +30,15 @@ public class AntiCheatBook implements Listener {
                     Enchantment ench = Enchantment.getById(i);
                     item.removeEnchantment(ench);
                 }
-                p.sendMessage(VLagger.PluginPrefix + VLagger.AntiCheatBookWarnMessage);
+                if(VLagger.AntiCheatBookWarnMessage.equalsIgnoreCase("none") == false){
+                    p.sendMessage(VLagger.PluginPrefix + VLagger.AntiCheatBookWarnMessage);
+                }
             }
         }
     }
 
     @SuppressWarnings("deprecation")
-	@EventHandler
+    @EventHandler
     public void InteractCheck(PlayerInteractEvent e) {
         if (VLagger.AntiCheatBookenable == true) {
             ItemStack item = e.getItem();

@@ -7,8 +7,7 @@ import org.bukkit.event.inventory.*;
 
 import com.mcml.space.core.VLagger;
 
-public class AntiNetherHopperInfItem
-        implements Listener {
+public class AntiNetherHopperInfItem implements Listener {
 
     @EventHandler
     public void onHopper(InventoryMoveItemEvent event) {
@@ -17,9 +16,9 @@ public class AntiNetherHopperInfItem
                 Hopper to = (Hopper) event.getInitiator().getHolder();
                 Hopper from = (Hopper)event.getSource().getHolder();
                 if (to.getWorld().getEnvironment() == World.Environment.NETHER) {
-                	if(to.getChunk() != from.getChunk()){
-                		event.setCancelled(true);
-                	}
+                    if(to.getChunk() != from.getChunk()){
+                        event.setCancelled(true);
+                    }
                 }
             }
         }

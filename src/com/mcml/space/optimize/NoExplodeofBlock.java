@@ -8,20 +8,19 @@ import org.bukkit.event.block.BlockExplodeEvent;
 
 import com.mcml.space.core.VLagger;
 
-public class NoExplodeofBlock
-        implements Listener {
-    
+public class NoExplodeofBlock implements Listener {
+
     public static void RegisterEvents(){
         try {
             Class<?> myclass = Class.forName("org.bukkit.event.block.BlockExplodeEvent");
             if(myclass == null){
-            	return;
+                return;
             }
             VLagger.MainThis.getServer().getPluginManager().registerEvents(new NoExplodeofBlock(), VLagger.MainThis);
         } catch (ClassNotFoundException ex) {
         }
     }
-    
+
     @EventHandler
     public void AntiBlockExplode(BlockExplodeEvent event) {
         if (VLagger.NoExplodeenable == true) {

@@ -9,8 +9,7 @@ import org.bukkit.event.world.ChunkLoadEvent;
 
 import com.mcml.space.core.VLagger;
 
-public class NoCrowdEntity
-        implements Listener {
+public class NoCrowdEntity implements Listener {
 
     @EventHandler
     public void CheckCrowd(ChunkLoadEvent event) {

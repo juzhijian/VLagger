@@ -3,6 +3,8 @@ package com.mcml.space.optimize;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
@@ -11,35 +13,35 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkUnloadEvent;
 
 import com.mcml.space.core.VLagger;
+import com.mcml.space.util.ConfigClearLag;
 import com.mcml.space.util.Utils;
 
-public class ChunkKeeper
-        implements Listener {
+public class ChunkKeeper implements Listener {
 
     public static HashMap<Chunk, Integer> ChunkTimes = new HashMap<Chunk, Integer>();
     public static ArrayList<Chunk> ShouldKeepList = new ArrayList<Chunk>();
 
     @EventHandler
     public void onChunkUnload(ChunkUnloadEvent event) {
-        if (ShouldKeepList.contains(event.getChunk()) & VLagger.ChunkKeeperenable == true) {
+        if (ShouldKeepList.contains(event.getChunk()) & ConfigClearLag.ChunkKeeperenable == true) {
             event.setCancelled(true);
         }
     }
 
     public static void ChunkKeeperofTask() {
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(VLagger.MainThis, new Runnable() {
-
-				@Override
-				public void run() {
-					ChunkKeeper.ChunkTimes.clear();
-				}
-			}, 60 * 60 * 20, 60 * 60 * 20);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(VLagger.MainThis, new Runnable() {
 
             @Override
             public void run() {
-                if (VLagger.ChunkKeeperenable == true) {
-                    ArrayList<Player> onlinePlayers = Utils.getonlinePlayers();
+                ChunkKeeper.ChunkTimes.clear();
+            }
+        }, 60 * 60 * 20, 60 * 60 * 20);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(VLagger.MainThis, new Runnable() {
+
+            @Override
+            public void run() {
+                if (ConfigClearLag.ChunkKeeperenable == true) {
+                    List<Player> onlinePlayers = Utils.getonlinePlayers();
                     Iterator<? extends Player> players = onlinePlayers.iterator();
                     while (players.hasNext()) {
                         Player player = players.next();
@@ -51,9 +53,9 @@ public class ChunkKeeper
                         }
                         if (ChunkTimes.get(chunk) > Utils.getonlinePlayers().size() & ShouldKeepList.contains(chunk)==false) {
                             if(ShouldKeepList.size() > Utils.getonlinePlayers().size()){
-								ShouldKeepList.remove(0);
+                                ShouldKeepList.remove(0);
                             }
-							ShouldKeepList.add(chunk);
+                            ShouldKeepList.add(chunk);
                         }
                     }
                 }
