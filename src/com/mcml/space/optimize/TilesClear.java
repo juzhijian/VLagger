@@ -1,13 +1,5 @@
 package com.mcml.space.optimize;
 
-import java.util.List;
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.World;
-import org.bukkit.block.BlockState;
-
-import com.mcml.space.core.VLagger;
-
 public class TilesClear implements Runnable {
 
     @Override
