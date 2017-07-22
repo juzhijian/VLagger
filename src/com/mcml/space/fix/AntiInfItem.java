@@ -18,6 +18,7 @@ import com.mcml.space.core.VLagger;
 public class AntiInfItem implements Listener {
 
     @EventHandler
+    @SuppressWarnings("deprecation")
     public void InteractCheck(PlayerInteractEvent event) {
         if (VLagger.AntiInfItemenable == true) {
             Player player = event.getPlayer();
