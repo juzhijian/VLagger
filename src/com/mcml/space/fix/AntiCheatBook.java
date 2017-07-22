@@ -11,6 +11,7 @@ import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.BookMeta.Generation;
 
 public class AntiCheatBook implements Listener {
+    
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBookEdit(PlayerEditBookEvent evt) {
         BookMeta prev = evt.getPreviousBookMeta();
@@ -38,20 +39,19 @@ public class AntiCheatBook implements Listener {
             clearEnchant(meta);
         }
         
-        // Illegally modify generation
-        Generation gene = prev.getGeneration();
-        if (!gene.equals(meta.getGeneration())) {
-            meta.setGeneration(gene);
-        }
-        
         // They cannot change title by edit it!
         String title = prev.getTitle();
         if (!title.equals(meta.getTitle())) {
             meta.setTitle(title);
         }
         
+        // Book and quill doesn't has a generation!
+        if (meta.getGeneration() != null) meta.setGeneration(null);
+        
         // Book and quill doesn't has an author!
         if (meta.getAuthor() != null) meta.setAuthor(null);
+        
+        evt.setNewBookMeta(meta);
     }
     
     public static BookMeta clearEnchant(BookMeta meta) {
