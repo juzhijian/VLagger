@@ -13,4 +13,4 @@ dependencies:
     - ./scripts/build.sh
 test:
   post:
-    - yes|mv -f ./target/VLagger-b.jar $CIRCLE_ARTIFACTS/VLagger-b$CIRCLE_BUILD_NUM.jar
+    - yes|mv -f ./target/VLagger-*.jar ./*-$CIRCLE_BUILD_NUM.jar
