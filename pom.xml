@@ -3,7 +3,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>VLagger</groupId>
 	<artifactId>VLagger</artifactId>
-	<version>2.8.0</version>
+	<!-- 这个 b 只是个占位的，版本控制直接改 plugin.yml 就好，复制也需要看这个 b-->
+	<version>b</version>
 	<name>VLagger</name>
 	<description>VLagger 是一款 MineCraft Bukkit 服务端插件，主要作用为优化运行、修复漏洞、限制动作的一款插件。</description>
 	<build>
@@ -33,6 +34,28 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			<!-- 打包插件，需要添加第三方库在下方添加 include 包名即可 -->
+			<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.0.0</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                        <artifactSet>
+                            <includes>
+                                <include>net.sf.trove4j</include>
+			</includes>
+                        </artifactSet>
+                        <createDependencyReducedPom>false</createDependencyReducedPom>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
 		</plugins>
 	</build>
 	<repositories>
