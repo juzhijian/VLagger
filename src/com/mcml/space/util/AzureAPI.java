@@ -79,6 +79,14 @@ public class AzureAPI {
     public static void log(final CommandSender sender, final String prefix, final String msg) {
         sender.sendMessage(prefix + msg);
     }
+    
+    public static void bc(final String prefix, final String context) {
+        Bukkit.broadcastMessage(prefix + context);
+    }
+
+    public static void bc(final String context) {
+        Bukkit.broadcastMessage(loggerPrefix == null ? context : loggerPrefix + context);
+    }
 
     public static long toTicks(TimeUnit unit, long duration) {
         return unit.toSeconds(duration) * 20;
