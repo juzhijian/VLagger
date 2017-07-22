@@ -12,7 +12,7 @@ public class TilesClear implements Runnable {
 
     @Override
     public void run() {
-        if (VLagger.TilesClearenable == true) {
+        /* if (VLagger.TilesClearenable == true) {
             List<World> worlds = Bukkit.getWorlds();
             int ws = worlds.size();
             for (int i = 0; i < ws; i++) {
@@ -37,6 +37,6 @@ public class TilesClear implements Runnable {
             if(VLagger.TilesClearMessage.equalsIgnoreCase("none") == false){
                 Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.TilesClearMessage);
             }
-        }
+        } */
     }
 }
