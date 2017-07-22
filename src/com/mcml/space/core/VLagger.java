@@ -52,7 +52,7 @@ import com.mcml.space.optimize.NoExplodeofEntity;
 import com.mcml.space.optimize.NoOneRestart;
 import com.mcml.space.optimize.TeleportPreloader;
 import com.mcml.space.optimize.TilesClear;
-import com.mcml.space.optimize.WaterFlowLimitor;
+import com.mcml.space.optimize.WaterFlowLimiter;
 import com.mcml.space.util.Configurable;
 import com.mcml.space.util.NetWorker;
 import com.mcml.space.util.Utils;
@@ -207,7 +207,7 @@ public class VLagger extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new AntiBedExplode(), this);
         Bukkit.getPluginManager().registerEvents(new BlockCommander(), this);
         Bukkit.getPluginManager().registerEvents(new AutoRespawn(), this);
-        Bukkit.getPluginManager().registerEvents(new WaterFlowLimitor(), this);
+        Bukkit.getPluginManager().registerEvents(new WaterFlowLimiter(), this);
         Bukkit.getPluginManager().registerEvents(new FireLimitor(), this);
         Bukkit.getPluginManager().registerEvents(new AutoUpdateCheck(), this);
         Bukkit.getPluginManager().registerEvents(new NoOneRestart(), this);
