@@ -7,6 +7,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.mcml.space.core.VLagger;
 
 import lombok.val;
@@ -38,7 +41,7 @@ public abstract class Configurable {
                     Object def = field.get(null);
                     config.set(path, def instanceof Boolean ? true : def);
                 } else {
-                    field.set(null, value);
+                    field.set(null, value instanceof String ? StringUtils.replaceChars((String) value, '&', '§') : value);
                 }
             }
         }
