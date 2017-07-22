@@ -96,7 +96,7 @@ public class TeleportPreloader implements Listener {
             }
         }, 7L);
     }
-
+    
     public static boolean canPreload(Location from, Location to, Player player) {
         if (from.getWorld() != to.getWorld()) return true;
         if (equals2D(from, to) || from.distance(to) < AzureAPI.viewDistanceBlock(player)) {
@@ -105,13 +105,13 @@ public class TeleportPreloader implements Listener {
 
         return true;
     }
-
+    
     public static boolean equals2D(Location from, Location to) {
         return from.getBlockX() == to.getBlockX() && from.getBlockZ() == to.getBlockZ();
     }
-
+    
     public static List<Coord2D> collectPreloadChunks(Location loc, Player player) {
-        int view = AzureAPI.viewDistanceBlock(player);
+        val view = AzureAPI.viewDistanceBlock(player);
         int bX, bZ;
         bX = loc.getBlockX();
         bZ = loc.getBlockZ();
@@ -120,7 +120,7 @@ public class TeleportPreloader implements Listener {
         minZ = bZ - view;
         maxX = bX + view;
         maxZ = bZ + view;
-
+        
         List<Coord2D> chunks = Lists.newArrayListWithExpectedSize(AzureAPI.viewDistanceChunk(player));
         int cx, cz;
         for (cx = minX; cx <= maxX; cx+=16) {
@@ -128,7 +128,7 @@ public class TeleportPreloader implements Listener {
                 chunks.add(AzureAPI.wrapCoord2D(cx, cz));
             }
         }
-
+        
         return chunks;
     }
 
