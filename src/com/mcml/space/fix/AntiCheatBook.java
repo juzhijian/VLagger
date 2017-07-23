@@ -1,61 +1,77 @@
 package com.mcml.space.fix;
 
-import org.bukkit.*;
-import org.bukkit.enchantments.*;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
-import org.bukkit.event.inventory.*;
-import org.bukkit.inventory.*;
+import java.util.Map.Entry;
+
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerEditBookEvent;
+import org.bukkit.inventory.meta.BookMeta;
+import org.bukkit.inventory.meta.BookMeta.Generation;
 
 import com.mcml.space.config.ConfigAntiBug;
-import com.mcml.space.core.VLagger;
-
-import org.bukkit.event.player.*;
+import com.mcml.space.util.AzureAPI;
 
 public class AntiCheatBook implements Listener {
-
-    @SuppressWarnings("deprecation")
-    @EventHandler
-    public void ClickItemCheck(InventoryClickEvent e) {
-        if (ConfigAntiBug.AntiCheatBookenable == true) {
-            ItemStack item = e.getCurrentItem();
-            if (e.getWhoClicked().getType() != EntityType.PLAYER) {
-                return;
+    
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onBookEdit(PlayerEditBookEvent evt) {
+        BookMeta prev = evt.getPreviousBookMeta();
+        BookMeta meta = evt.getNewBookMeta();
+        if (prev.equals(meta)) return;
+        
+        // Illegally modify lore
+        if (prev.hasLore()) {
+            if (!meta.hasLore() || !prev.getLore().equals(meta.getLore())) {
+                meta.setLore(prev.getLore());
             }
-            Player p = (Player) e.getWhoClicked();
-            if (item == null) {
-                return;
+        } else if (meta.hasLore()) {
+            meta.setLore(null);
+        }
+        
+        // Illegally modify enchants
+        if (prev.hasEnchants()) {
+            if (!meta.hasEnchants()) {
+                addEnchantFrom(prev, meta);
+            } else if (!prev.getLore().equals(meta.getLore())) {
+                clearEnchant(meta);
+                addEnchantFrom(prev, meta);
             }
-            if (item.getType() == Material.WRITTEN_BOOK & item.getItemMeta().hasEnchants() == true) {
-                for (int i = 0; Enchantment.getById(i) != null; i++) {
-                    Enchantment ench = Enchantment.getById(i);
-                    item.removeEnchantment(ench);
-                }
-                if(ConfigAntiBug.AntiCheatBookWarnMessage.equalsIgnoreCase("none") == false){
-                    p.sendMessage(VLagger.PluginPrefix + ConfigAntiBug.AntiCheatBookWarnMessage);
-                }
-            }
+        } else if (meta.hasEnchants()) {
+            clearEnchant(meta);
+        }
+        
+        // They cannot change title by edit it!
+        String title = prev.getTitle();
+        if (!title.equals(meta.getTitle())) {
+            meta.setTitle(title);
+        }
+        
+        // Book and quill doesn't has a generation!
+        if (meta.getGeneration() != null) meta.setGeneration(null);
+        
+        // Book and quill doesn't has an author!
+        if (meta.getAuthor() != null) meta.setAuthor(null);
+        
+        evt.setNewBookMeta(meta);
+        
+        if(!ConfigAntiBug.AntiCheatBookWarnMessage.equalsIgnoreCase("none")){
+            AzureAPI.log(evt.getPlayer(), ConfigAntiBug.AntiCheatBookWarnMessage);
         }
     }
-
-    @SuppressWarnings("deprecation")
-    @EventHandler
-    public void InteractCheck(PlayerInteractEvent e) {
-        if (ConfigAntiBug.AntiCheatBookenable == true) {
-            ItemStack item = e.getItem();
-            Player p = e.getPlayer();
-            if (item == null) {
-                return;
-            }
-            if (item.getType() == Material.WRITTEN_BOOK & item.getItemMeta().hasEnchants() == true) {
-                for (int i = 0; Enchantment.getById(i) != null; i++) {
-                    Enchantment ench = Enchantment.getById(i);
-                    item.removeEnchantment(ench);
-                }
-                if(ConfigAntiBug.AntiCheatBookWarnMessage.equalsIgnoreCase("none") == false){
-                    p.sendMessage(VLagger.PluginPrefix + ConfigAntiBug.AntiCheatBookWarnMessage);
-                }
-            }
+    
+    public static BookMeta clearEnchant(BookMeta meta) {
+        for (Enchantment e : meta.getEnchants().keySet()) {
+            meta.removeEnchant(e);
         }
+        return meta;
+    }
+    
+    public static BookMeta addEnchantFrom(BookMeta source, BookMeta meta) {
+        for (Entry<Enchantment, Integer> e : source.getEnchants().entrySet()) {
+            meta.addEnchant(e.getKey(), e.getValue(), true);
+        }
+        return meta;
     }
 }
