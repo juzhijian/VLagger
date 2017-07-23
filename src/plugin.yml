@@ -1,6 +1,8 @@
 name: VLagger
 version: 2.8.0-%BUILD_NUMBER%
 main: com.mcml.space.core.VLagger
+author: Vlvxingze
+authors: [IzzelAliz, Sotr]
 commands:
   vlg:
     description: VLagger

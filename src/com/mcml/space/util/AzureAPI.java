@@ -2,6 +2,7 @@ package com.mcml.space.util;
 
 import static com.mcml.space.util.VersionLevel.isPaper;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -13,6 +14,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 /**
@@ -141,6 +143,44 @@ public class AzureAPI {
 
     public static Set<String> newCaseInsensitiveSet() {
         return Sets.newSetFromMap(new CaseInsensitiveMap<Boolean>());
+    }
+    
+    public static <E> List<E> matchElements(List<E> list, int start) {
+        return matchElements(list, start, list.size() - 1);
+    }
+    
+    /**
+     * Returns elements between the start and end index, included the edge as well, collect to a list with capacity 'end - start + 1'
+     */
+    public static <E> List<E> matchElements(List<E> list, int start, int end) {
+        List<E> t = Lists.newArrayListWithCapacity(end - start + 1);
+        for (; start <= end; start++) {
+            t.add(list.get(start));
+        }
+        return t;
+    }
+    
+    public static String contactBetween(List<String> list, int start, char spilt) {
+        return contactBetween(list, start, spilt);
+    }
+    
+    public static String contactBetween(List<String> list, int start, String spilt) {
+        return contactBetween(list, start, list.size() - 1, spilt);
+    }
+    
+    public static String contactBetween(List<String> list, int start, int end, char spilt) {
+        return contactBetween(list, start, end, spilt);
+    }
+    
+    /**
+     * Contacts strings between the start and end index, included the edge as well, then spilt with the given string
+     */
+    public static String contactBetween(List<String> list, int start, int end, String spilt) {
+        String r = "";
+        for (; start <= end; start++) {
+            r = r.concat(list.get(start) + (start == end ? "" : spilt));
+        }
+        return r;
     }
 
 }

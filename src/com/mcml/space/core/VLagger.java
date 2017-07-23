@@ -15,7 +15,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.config.ConfigAntiBug;
 import com.mcml.space.doevent.AntiSpam;
@@ -176,8 +175,9 @@ public class VLagger extends JavaPlugin implements Listener {
         AzureAPI.log("------加载完毕------");
         AzureAPI.log("乐乐感谢您的使用——有建议务必反馈，QQ1207223090");
         AzureAPI.log("您可以在插件根目录找到本插件的说明文档 说明文档.txt");
-        AzureAPI.log("|||Vlvxingze/VLagger PluginCD小组作品.|||");
-        AzureAPI.log("|||IzzelAliz - SotrForgotten 合作开发.|||");
+        List<String> devs = getDescription().getAuthors();
+        AzureAPI.log("|||"+ devs.get(0) +"/VLagger PluginCD小组作品.|||");
+        AzureAPI.log("|||" + AzureAPI.contactBetween(devs, 1, ", ") + " 合作开发.|||");
         AzureAPI.log("§a您正在使用VLagger构建号 %BUILD_NUMBER%");
         
         AzureAPI.setPrefix(PluginPrefix);
@@ -188,7 +188,7 @@ public class VLagger extends JavaPlugin implements Listener {
             } catch (IOException | InterruptedException e) {
             }
         }
-
+        
         Bukkit.getPluginManager().registerEvents(new AntiInfItem(), this);
         Bukkit.getPluginManager().registerEvents(new AntiPortalInfItem(), this);
         Bukkit.getPluginManager().registerEvents(new AntiNetherHopperInfItem(), this);
