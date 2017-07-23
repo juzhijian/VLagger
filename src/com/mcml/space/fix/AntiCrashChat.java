@@ -34,7 +34,9 @@ public class AntiCrashChat implements Listener{
         if(HasEss == true){
             if(message.contains("&")){
                 event.setCancelled(true);
-                player.sendMessage(VLagger.PluginPrefix + ConfigAntiBug.AntiCrashChatColorChatWarnMessage);
+                if(ConfigAntiBug.AntiCrashChatSpecialStringWarnMessage.equalsIgnoreCase("none") == false){
+                    player.sendMessage(VLagger.PluginPrefix + ConfigAntiBug.AntiCrashChatSpecialStringWarnMessage);
+                }
             }
         }
     }

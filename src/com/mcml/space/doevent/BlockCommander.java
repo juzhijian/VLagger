@@ -6,15 +6,16 @@ import org.bukkit.entity.*;
 import org.bukkit.event.*;
 import org.bukkit.event.player.*;
 
+import com.mcml.space.config.ConfigDoEvent;
 import com.mcml.space.core.VLagger;
 
 public class BlockCommander implements Listener {
 
     @EventHandler
     public void CommanderBlocker(PlayerCommandPreprocessEvent event) {
-        if (VLagger.BlockCommanderenable == true) {
+        if (ConfigDoEvent.BlockCommanderenable == true) {
             Player p = event.getPlayer();
-            FileConfiguration config = load(VLagger.EventConfigFile);
+            FileConfiguration config = load(VLagger.DoEventConfigFile);
             if (p.hasPermission("VLagger.admin") == true) {
                 return;
             }

@@ -9,13 +9,13 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import com.mcml.space.config.ConfigAntiBug;
+import com.mcml.space.config.ConfigDoEvent;
 
 public class FarmProtecter implements Listener{
 
     @EventHandler
     public void EntityFarmChecker(EntityInteractEvent event){
-        if(ConfigAntiBug.ProtectFarmenable == true){
+        if(ConfigDoEvent.ProtectFarmenable == true){
             if(event.getEntityType() == EntityType.PLAYER == false){
                 Block block = event.getBlock();
                 if(block.getType() == Material.SOIL||block.getType() == Material.CROPS){
@@ -27,7 +27,7 @@ public class FarmProtecter implements Listener{
 
     @EventHandler
     public void PlayerFarmChecker(PlayerInteractEvent event){
-        if(ConfigAntiBug.ProtectFarmenable == true){
+        if(ConfigDoEvent.ProtectFarmenable == true){
             if(event.getAction() == Action.PHYSICAL){
                 Block block = event.getClickedBlock();
                 if(block.getType() == Material.SOIL||block.getType() == Material.CROPS){

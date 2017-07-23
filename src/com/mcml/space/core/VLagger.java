@@ -59,89 +59,25 @@ import com.mcml.space.util.Utils;
 
 public class VLagger extends JavaPlugin implements Listener {
 
-    public static int AutoSaveInterval;
-    public static boolean AntiInfItemenable;
-    public static boolean AntiPortalInfItemenable;
-    public static boolean AntiNetherHopperInfItemenable;
-    public static boolean AntiRPGITEMenable;
-    public static boolean NoCrowdedEntityenable;
-    public static int NoCrowdedEntityPerChunkLimit;
-    public static boolean TilesClearenable;
-    private static int TilesClearInterval;
-    public static boolean AntiCrashSignenable;
-    public static boolean NoExplodeenable;
-    public static String NoExplodeType;
-    public static boolean AntiRedstoneenable;
-    public static long AntiRedstoneInterval;
-    public static String AntiRedstoneMessage;
-    public static String TilesClearMessage;
-    private static int ChunkUnloaderInterval;
+
     public static String PluginPrefix;
-    public static boolean AntiInfRailenable;
-    public static boolean AutoRespawnenable;
     public static VLagger MainThis;
-    public FileConfiguration config;
-    public static List<String> AntiRedstoneRemoveBlockList;
-    
-    public static List<String[]> AntiSpamDirtyList;
-    public static List<String> ClearItemNoClearItemType;
-    public static boolean ClearItemNoCleatDeath;
-    public static boolean ClearItemNoClearTeleport;
-    public static String NoEggChangeSpawnerTipMessage;
-    public static String BlockCommanderNoColonTip;
-    public static boolean FireLimitorenable;
-    public static long FireLimitorPeriod;
-    public static boolean WaterFlowLimitorenable;
-    public static long WaterFlowLimitorPeriod;
-    public static String AutoRespawnRespawnTitleMainMessage;
-    public static boolean AutoRespawnRespawnTitleenable;
-    public static String AutoRespawnRespawnTitleMiniMessage;
     public static File ClearLagConfigFile;
-    public static File NoBugConfigFile;
-    private static File MainConfigFile;
-    public static File EventConfigFile;
-    public static boolean AntiSpamenable;
-    public static long AntiSpamPeriodPeriod;
-    public static String AntiSpamPeriodWarnMessage;
-    public static boolean AntiSkullCrashenable;
-    public static boolean NoDoubleOnlineenanle;
-    public static String NoDoubleOnlineKickMessage;
-    public static boolean AntiDropInfItemenable;
-    public static boolean AntiDoorInfItemenable;
-    public static boolean HeapClearenable;
-    private static int HeapClearPeriod;
-    public static String HeapClearMessage;
-    public static boolean AntiCheatBookenable;
-    public static String AntiCheatBookWarnMessage;
-    public static ArrayList<EntityType> NoCrowdedEntityTypeList = new ArrayList<EntityType>();
-    public static boolean TeleportPreLoaderenable;
-    public static boolean AntiBedExplodeenable;
-    public static boolean AntiBreakUseingChestenable;
-    public static boolean BlockCommanderenable;
+    public static File AntiBugConfigFile;
+    private static File PluginMainConfigFile;
+    public static File DoEventConfigFile;
     public static File PluginFile;
     public static boolean AutoUpdate;
 
     @Override
     public void onEnable() {
         ClearLagConfigFile = new File(this.getDataFolder(), "ClearLagConfig.yml");
-        NoBugConfigFile = new File(this.getDataFolder(), "NoBugConfig.yml");
-        MainConfigFile = new File(this.getDataFolder(), "MainConfig.yml");
-        EventConfigFile = new File(this.getDataFolder(), "EventConfig.yml");
+        AntiBugConfigFile = new File(this.getDataFolder(), "AntiBugBugConfig.yml");
+        PluginMainConfigFile = new File(this.getDataFolder(), "PluginMainConfig.yml");
+        DoEventConfigFile = new File(this.getDataFolder(), "DoEventConfig.yml");
         PluginFile = this.getFile();
         MainThis = this;
         LoadConfig();
-        
-        try {
-            Configurable.restoreNodes(ClearLagConfigFile, ConfigClearLag.class);
-        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
-            e.printStackTrace();
-        }
-        
-        try {
-            Configurable.restoreNodes(NoBugConfigFile, ConfigAntiBug.class);
-        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
-            e.printStackTrace();
-        }
         
         AzureAPI.log("VLagger —— 新一代的优化/稳定插件");
         AzureAPI.log("~(@^_^@)~ 玩的开心！~");
@@ -240,10 +176,10 @@ public class VLagger extends JavaPlugin implements Listener {
                     return true;
                 }
                 if (args[0].equalsIgnoreCase("updateon")) {
-                    FileConfiguration MainConfig = load(MainConfigFile);
+                    FileConfiguration MainConfig = load(PluginMainConfigFile);
                     MainConfig.set("AutoUpdate", true);
                     try {
-                        MainConfig.save(MainConfigFile);
+                        MainConfig.save(PluginMainConfigFile);
                     } catch (IOException ex) {
                     }
                     AutoUpdate = true;
@@ -401,16 +337,14 @@ public class VLagger extends JavaPlugin implements Listener {
 
     private void LoadConfig() {
         this.saveResource("说明文档.txt", true);
-        FileConfiguration MainConfig = load(MainConfigFile);
+        FileConfiguration MainConfig = load(PluginMainConfigFile);
         if (MainConfig.getInt("Version") < 272) {
             MainConfig.set("Version", 272);
             MainConfig.set("PluginPrefix", "§a§l[Vlagger]");
             MainConfig.set("AutoUpdate", false);
         }
-        PluginPrefix = MainConfig.getString("PluginPrefix");
-        AutoUpdate = MainConfig.getBoolean("AutoUpdate");
         try {
-            MainConfig.save(MainConfigFile);
+            MainConfig.save(PluginMainConfigFile);
         } catch (IOException ex) {
         }
 
@@ -474,44 +408,13 @@ public class VLagger extends JavaPlugin implements Listener {
             mas.add("REDSTONE_BLOCK");
             ClearLagConfig.set("AntiRedstone.RemoveBlockList", mas);
         }
-        AntiRedstoneRemoveBlockList = ClearLagConfig.getStringList("AntiRedstone.RemoveBlockList");
-        ClearItemNoClearItemType = ClearLagConfig.getStringList("ClearItem.NoClearItemTypeClearItem.NoClearItemType");
-        ClearItemNoCleatDeath = ClearLagConfig.getBoolean("ClearItem.NoCleatDeath");
-        ClearItemNoClearTeleport = ClearLagConfig.getBoolean("ClearItem.NoClearTeleport");
-        
-        AutoSaveInterval = ClearLagConfig.getInt("AutoSave.Interval");
-        NoCrowdedEntityenable = ClearLagConfig.getBoolean("NoCrowdedEntity.enable");
-        NoCrowdedEntityPerChunkLimit = ClearLagConfig.getInt("NoCrowdedEntity.PerChunkLimit");
-        List<String> NoCrowdedEntityTypeStringList = ClearLagConfig.getStringList("NoCrowdedEntity.TypeList");
-        for (int i = 0; i < NoCrowdedEntityTypeStringList.size(); i++) {
-            @SuppressWarnings("deprecation")
-            EntityType et = EntityType.fromName(NoCrowdedEntityTypeStringList.get(i));
-            NoCrowdedEntityTypeList.add(et);
-        }
-        TilesClearenable = ClearLagConfig.getBoolean("TilesClear.enable");
-        TilesClearInterval = ClearLagConfig.getInt("TilesClear.Interval");
-        NoExplodeenable = ClearLagConfig.getBoolean("NoExplode.enable");
-        NoExplodeType = ClearLagConfig.getString("NoExplode.Type");
-        AntiRedstoneenable = ClearLagConfig.getBoolean("AntiRedstone.enable");
-        AntiRedstoneInterval = ClearLagConfig.getLong("AntiRedstone.Interval");
-        AntiRedstoneMessage = ClearLagConfig.getString("AntiRedstone.Message");
-        TilesClearMessage = ClearLagConfig.getString("TilesClear.Message");
-        ChunkUnloaderInterval = ClearLagConfig.getInt("ChunkUnloader.Interval");
-        HeapClearenable = ClearLagConfig.getBoolean("HeapClear.enable");
-        HeapClearPeriod = ClearLagConfig.getInt("HeapClear.Period");
-        HeapClearMessage = ClearLagConfig.getString("HeapClear.Message");
-        TeleportPreLoaderenable = ClearLagConfig.getBoolean("TeleportPreLoader");
-        WaterFlowLimitorenable = ClearLagConfig.getBoolean("WaterFlowLimitor.enable");
-        WaterFlowLimitorPeriod = ClearLagConfig.getLong("WaterFlowLimitor.Period");
-        FireLimitorenable = ClearLagConfig.getBoolean("FireLimitor.enable");
-        FireLimitorPeriod = ClearLagConfig.getLong("FireLimitor.Period");
         try {
             ClearLagConfig.save(ClearLagConfigFile);
         } catch (IOException ex) {
         }
         
 
-        FileConfiguration NoBugConfig = load(NoBugConfigFile);
+        FileConfiguration NoBugConfig = load(AntiBugConfigFile);
         if (NoBugConfig.getInt("Version") < 272) {
             NoBugConfig.set("Version", 272);
             NoBugConfig.set("AntiInfItem.enable", true);
@@ -522,7 +425,6 @@ public class VLagger extends JavaPlugin implements Listener {
             NoBugConfig.set("AntiSkullCrash.enable", true);
             NoBugConfig.set("NoDoubleOnline.enable", true);
             NoBugConfig.set("NoDoubleOnline.KickMessage", "抱歉，服务器中您已经在线了。ԅ(¯ㅂ¯ԅ)");
-            NoBugConfig.set("AntiDropInfItem.enable", true);
             NoBugConfig.set("AntiDoorInfItem.enable", true);
             NoBugConfig.set("AntiCheatBook.enable", true);
             NoBugConfig.set("AntiCheatBook.WarnMessage", "§c严禁利用超级书Bug！");
@@ -530,29 +432,15 @@ public class VLagger extends JavaPlugin implements Listener {
             NoBugConfig.set("AntiBreakUseingChest.enable", true);
             NoBugConfig.set("AntiInfRail.enable", true);
         }
-        
-        AntiInfItemenable = NoBugConfig.getBoolean("AntiInfItem.enable");
-        AntiPortalInfItemenable = NoBugConfig.getBoolean("AntiPortalInfItem.enable");
-        AntiNetherHopperInfItemenable = NoBugConfig.getBoolean("AntiNetherHopperInfItem.enable");
-        AntiRPGITEMenable = NoBugConfig.getBoolean("AntiRPGITEM.enable");
-        AntiCrashSignenable = NoBugConfig.getBoolean("AntiCrashSign.enable");
-        AntiSkullCrashenable = NoBugConfig.getBoolean("AntiSkullCrash.enable");
-        NoDoubleOnlineenanle = NoBugConfig.getBoolean("NoDoubleOnline.enable");
-        NoDoubleOnlineKickMessage = NoBugConfig.getString("NoDoubleOnline.KickMessage");
-        AntiDropInfItemenable = NoBugConfig.getBoolean("AntiDropInfItem.enable");
-        AntiDoorInfItemenable = NoBugConfig.getBoolean("AntiDoorInfItem.enable");
-        AntiCheatBookenable = NoBugConfig.getBoolean("AntiCheatBook.enable");
-        AntiCheatBookWarnMessage = NoBugConfig.getString("AntiCheatBookWarnMessage");
-        AntiBedExplodeenable = NoBugConfig.getBoolean("AntiBedExplode.enable");
-        AntiBreakUseingChestenable = NoBugConfig.getBoolean("AntiBreakUseingChest.enable");
-        AntiInfRailenable = NoBugConfig.getBoolean("AntiInfRail.enable");
+        if(NoBugConfig.getInt("Version") < 290){
+        	NoBugConfig.set("Version", 290);
+        	NoBugConfig.set("AntiDupeDropItem.enable", true);
+        }
         try {
-            NoBugConfig.save(NoBugConfigFile);
+            NoBugConfig.save(AntiBugConfigFile);
         } catch (IOException ex) {
         }
-        
-
-        FileConfiguration EventConfig = load(EventConfigFile);
+        FileConfiguration EventConfig = load(DoEventConfigFile);
         if (EventConfig.getInt("Version") < 272) {
             EventConfig.set("Version", 272);
             EventConfig.set("AntiSpam.enable", true);
@@ -567,7 +455,9 @@ public class VLagger extends JavaPlugin implements Listener {
             dirty.add("杂种");
             dirty.add("狗娘");
             EventConfig.set("AntiSpam.Dirty.List", dirty);
+            EventConfig.set("AntiSpam.Dirty.WarnMessage", "§c什么事情激动得你都想骂人啦？");
             EventConfig.set("NoEggChangeSpawner.TipMessage", "§c抱歉，禁止使用刷怪蛋修改刷怪笼");
+            EventConfig.set("NoEggChangeSpawner.enable", "§c抱歉，禁止使用刷怪蛋修改刷怪笼");
             EventConfig.set("BlockCommander.enable", false);
             EventConfig.set("BlockCommander.List.NoSpawnWorld./spawn", true);
             EventConfig.set("BlockCommander.List.NoSpawnWorld./spawn.Message", "想在这个世界回城？没门！");
@@ -580,29 +470,21 @@ public class VLagger extends JavaPlugin implements Listener {
             EventConfig.set("AutoRespawn.RespawnTitle.MainMessage", "§e你死了！");
             EventConfig.set("AutoRespawn.RespawnTitle.MiniMessage", "§c已为您自动复活！");
         }
-        /* List<String> strings = EventConfig.getStringList("AntiSpam.Dirty.List");
-        int ss = strings.size();
-        for(int i = 0;i < ss;i++){
-            String string = strings.get(i);
-            String[] thisdirtystrings = new String[ss];
-            int sl = string.length();
-            for(int ii = 0;ii<sl;ii++) {
-                thisdirtystrings[ii] = string.substring(ii, ii);
-                AntiSpamDirtyList.add(thisdirtystrings);
-            }
-        }*/ // TODO: buggy?
-        NoEggChangeSpawnerTipMessage = EventConfig.getString("NoEggChangeSpawner.TipMessage");
-        AntiSpamenable = EventConfig.getBoolean("AntiSpam.enable");
-        AntiSpamPeriodPeriod = EventConfig.getLong("AntiSpam.Period.Period");
-        AntiSpamPeriodWarnMessage = EventConfig.getString("AntiSpam.Period.WarnMessage");
-        BlockCommanderenable = EventConfig.getBoolean("BlockCommander.enable");
-        AutoRespawnenable = EventConfig.getBoolean("AutoRespawn.enable");
-        AutoRespawnRespawnTitleenable = EventConfig.getBoolean("AutoRespawn.RespawnTitle.enable");
-        AutoRespawnRespawnTitleMainMessage = EventConfig.getString("AutoRespawn.RespawnTitle.MainMessage");
-        AutoRespawnRespawnTitleMiniMessage = EventConfig.getString("AutoRespawn.RespawnTitle.MiniMessage");
         try {
-            EventConfig.save(EventConfigFile);
+            EventConfig.save(DoEventConfigFile);
         } catch (IOException ex) {
+        }
+        
+        try {
+            Configurable.restoreNodes(ClearLagConfigFile, ConfigClearLag.class);
+        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
+            e.printStackTrace();
+        }
+        
+        try {
+            Configurable.restoreNodes(AntiBugConfigFile, ConfigAntiBug.class);
+        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
+            e.printStackTrace();
         }
     }
 
