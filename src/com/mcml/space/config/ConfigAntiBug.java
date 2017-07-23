@@ -15,7 +15,7 @@ public abstract class ConfigAntiBug extends Configurable {
     public static String messageFakedeath = "§c严禁卡假死BUG！";
     
     @Node(path = "AntiFakeDeath.enable")
-    public static boolean antiFakedeath;
+    public static boolean noFakedeath;
     
     @Node(path = "NoDoubleOnline.enable")
     public static boolean NoDoubleOnlineenable;

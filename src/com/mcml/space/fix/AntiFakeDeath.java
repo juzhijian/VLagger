@@ -11,7 +11,7 @@ public class AntiFakeDeath implements Runnable{
 
     @Override
     public void run() {
-        if(ConfigAntiBug.antiFakedeath == true){
+        if(ConfigAntiBug.noFakedeath){
             List<Player> players = Utils.getonlinePlayers();
             int ps = players.size();
             for(int i = 0;i<ps;i++){
