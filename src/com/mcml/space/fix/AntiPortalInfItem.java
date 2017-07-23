@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPortalEvent;
 
 import com.mcml.space.config.ConfigAntiBug;
-import com.mcml.space.core.VLagger;
+import com.mcml.space.config.ConfigPluginMain;
 
 public class AntiPortalInfItem implements Listener {
 
@@ -18,7 +18,7 @@ public class AntiPortalInfItem implements Listener {
                 event.setCancelled(true);
                 event.getEntity().remove();
                 if(ConfigAntiBug.AntiPortalInfItemWarnMessage.equalsIgnoreCase("none") == false){
-                    Bukkit.broadcastMessage(VLagger.PluginPrefix + ConfigAntiBug.AntiPortalInfItemWarnMessage);
+                    Bukkit.broadcastMessage(ConfigPluginMain.PluginPrefix + ConfigAntiBug.AntiPortalInfItemWarnMessage);
                 }
             }
         }

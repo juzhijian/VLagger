@@ -10,7 +10,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import com.mcml.space.config.ConfigAntiBug;
-import com.mcml.space.core.VLagger;
+import com.mcml.space.config.ConfigPluginMain;
 
 public class AntiBedExplode implements Listener {
 
@@ -24,7 +24,7 @@ public class AntiBedExplode implements Listener {
                     if (p.getWorld().getEnvironment() == World.Environment.NETHER || p.getWorld().getEnvironment() == World.Environment.THE_END) {
                         e.setCancelled(true);
                         if(ConfigAntiBug.AntiBedExplodeTipMessage.equalsIgnoreCase("none") == false){
-                            p.sendMessage(VLagger.PluginPrefix + ConfigAntiBug.AntiBedExplodeTipMessage);
+                            p.sendMessage(ConfigPluginMain.PluginPrefix + ConfigAntiBug.AntiBedExplodeTipMessage);
                         }
                     }
                 }

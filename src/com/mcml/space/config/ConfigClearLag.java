@@ -7,10 +7,10 @@ import com.mcml.space.util.Configurable;
 
 public abstract class ConfigClearLag extends Configurable {
     @Node(path = "HeapShut.enable")
-    public static boolean HeapShutenable;
+    public static boolean HeapShutenable = true;
     
     @Node(path = "TilesClear.enable")
-    public static boolean TilesClearenable;
+    public static boolean TilesClearenable = true;
     
     @Node(path = "TilesClear.Interval")
     public static long TilesClearInterval = 360;
@@ -22,16 +22,16 @@ public abstract class ConfigClearLag extends Configurable {
     public static long ChunkUnloaderInterval = 30;
     
     @Node(path = "WaterFlowLimitor.enable")
-    public static boolean WaterFlowLimitorenable;
+    public static boolean WaterFlowLimitorenable = true;
     
     @Node(path = "WaterFlowLimitor.Period")
     public static long WaterFlowLimitorPeriod = 200L;
     
     @Node(path = "AntiRedstone.enable")
-    public static boolean AntiRedstoneenable;
+    public static boolean AntiRedstoneenable = true;
     
     @Node(path = "NoExplode.enable")
-    public static boolean NoExplodeenable;
+    public static boolean NoExplodeenable = true;
     
     @Node(path = "NoExplode.Type")
     public static String NoExplodeType = "NoBlockBreak";
@@ -40,16 +40,16 @@ public abstract class ConfigClearLag extends Configurable {
     public static long AntiRedstoneInterval = 500L;
     
     @Node(path = "FireLimitor.enable")
-    public static boolean FireLimitorenable;
+    public static boolean FireLimitorenable = true;
     
     @Node(path = "FireLimitor.Period")
     public static long FireLimitorPeriod = 3000L;
     
     @Node(path = "HeapClear.enable")
-    public static boolean HeapClearenable;
+    public static boolean HeapClearenable = true;
     
     @Node(path = "TeleportPreLoader.enable")
-    public static boolean TeleportPreLoaderenable;
+    public static boolean TeleportPreLoaderenable = true;
     
     @Node(path = "HeapClear.Message")
     public static String HeapClearMessage = "§e服务器清理内存中... ԅ(¯ㅂ¯ԅ)";
@@ -61,13 +61,13 @@ public abstract class ConfigClearLag extends Configurable {
     public static List<String> ClearItemNoClearItemType = Lists.newArrayList();
 
     @Node(path = "ClearItem.NoCleatDeath")
-    public static boolean ClearItemNoCleatDeath;
+    public static boolean ClearItemNoCleatDeath = true;
     
     @Node(path = "ClearItem.NoClearTeleport")
-    public static boolean ClearItemNoClearTeleport;
+    public static boolean ClearItemNoClearTeleport = true;
     
     @Node(path = "NoCrowdedEntity.enable")
-    public static boolean NoCrowdedEntityenable;
+    public static boolean NoCrowdedEntityenable = true;
     
     @Node(path = "NoCrowdedEntity.TypeList")
     public static List<String> NoCrowdedEntityTypeList = Lists.newArrayList();
@@ -94,22 +94,22 @@ public abstract class ConfigClearLag extends Configurable {
     public static int HeapShutWaitingTime = 15;
     
     @Node(path = "AutoSet.enable")
-    public static boolean AutoSetenable;
+    public static boolean AutoSetenable = true;
     
     @Node(path = "AutoSave.enable")
-    public static boolean AutoSaveenable;
+    public static boolean AutoSaveenable = true;
     
     @Node(path = "ClearItem.enable")
-    public static boolean ClearItemenable;
+    public static boolean ClearItemenable = true;
     
     @Node(path = "NooneRestart.enable")
-    public static boolean NooneRestartenable;
+    public static boolean NooneRestartenable = true;
     
     @Node(path = "ChunkKeeper.enable")
-    public static boolean ChunkKeeperenable;
+    public static boolean ChunkKeeperenable = true;
     
     @Node(path = "ChunkUnloader.enable")
-    public static boolean ChunkUnloaderenable;
+    public static boolean ChunkUnloaderenable = true;
     
     @Node(path = "NooneRestart.TimeLong")
     public static int NooneRestartTimeLong = 1200;

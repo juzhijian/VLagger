@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockRedstoneEvent;
 
 import com.mcml.space.config.ConfigClearLag;
+import com.mcml.space.config.ConfigPluginMain;
 import com.mcml.space.core.VLagger;
 
 public class AntiRedstone implements Listener {
@@ -44,7 +45,7 @@ public class AntiRedstone implements Listener {
                     if (TipCooldown == false) {
                         if(ConfigClearLag.AntiRedstoneMessage.equalsIgnoreCase("none") == false){
                         	ConfigClearLag.AntiRedstoneMessage = ConfigClearLag.AntiRedstoneMessage.replaceAll("%location%", bs);
-                            Bukkit.broadcastMessage(VLagger.PluginPrefix + ConfigClearLag.AntiRedstoneMessage);
+                            Bukkit.broadcastMessage(ConfigPluginMain.PluginPrefix + ConfigClearLag.AntiRedstoneMessage);
                             TipCooldown = true;
                         }
                     }

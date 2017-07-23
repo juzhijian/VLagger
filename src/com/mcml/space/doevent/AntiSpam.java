@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import com.mcml.space.config.ConfigDoEvent;
-import com.mcml.space.core.VLagger;
+import com.mcml.space.config.ConfigPluginMain;
 
 public class AntiSpam implements Listener {
 
@@ -33,7 +33,7 @@ public class AntiSpam implements Listener {
             if (CheckFast(pn)) {
                 event.setCancelled(true);
                 if(ConfigDoEvent.AntiSpamPeriodWarnMessage.equalsIgnoreCase("none") == false){
-                    p.sendMessage(VLagger.PluginPrefix + ConfigDoEvent.AntiSpamPeriodWarnMessage);
+                    p.sendMessage(ConfigPluginMain.PluginPrefix + ConfigDoEvent.AntiSpamPeriodWarnMessage);
                 }
             }else{
                 CheckList.put(pn, System.currentTimeMillis());
@@ -63,7 +63,7 @@ public class AntiSpam implements Listener {
             	if(DirtyTimes >= tdl){
             		event.setCancelled(true);
                     if(ConfigDoEvent.AntiSpamDirtyWarnMessage.equalsIgnoreCase("none") == false){
-                        p.sendMessage(VLagger.PluginPrefix + ConfigDoEvent.AntiSpamDirtyWarnMessage);
+                        p.sendMessage(ConfigPluginMain.PluginPrefix + ConfigDoEvent.AntiSpamDirtyWarnMessage);
                     }
             	}
             }

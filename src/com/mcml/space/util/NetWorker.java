@@ -7,6 +7,7 @@ import java.net.URL;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import com.mcml.space.config.ConfigPluginMain;
 import com.mcml.space.core.VLagger;
 
 /**
@@ -15,7 +16,7 @@ import com.mcml.space.core.VLagger;
 public class NetWorker implements Runnable {
 
     public static void CheckAndDownloadPlugin() {
-        if (VLagger.AutoUpdate == true) {
+        if (ConfigPluginMain.AutoUpdate == true) {
             try {
                 // 整体获取
                 File URLLogFile = new File(VLagger.MainThis.getDataFolder(), "URLLog");
