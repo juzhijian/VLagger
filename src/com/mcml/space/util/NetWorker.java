@@ -19,9 +19,9 @@ public class NetWorker implements Runnable {
         if (ConfigPluginMain.AutoUpdate == true) {
             try {
                 // 整体获取
-                File URLLogFile = new File(VLagger.MainThis.getDataFolder(), "URLLog");
-                DowloadFile("http://bgm.mcml.space/VLagger/URLLog.yml", URLLogFile);
-                YamlConfiguration URLLog = YamlConfiguration.loadConfiguration(URLLogFile);
+                File NetworkerFile = new File(VLagger.MainThis.getDataFolder(), "URLLog");
+                DowloadFile("http://bgm.mcml.space/VLagger/networker.yml", NetworkerFile);
+                YamlConfiguration URLLog = YamlConfiguration.loadConfiguration(NetworkerFile);
                 // 检查插件并下载新版本
                 VLagger.MainThis.getLogger().info("正在检查新版本插件，请稍等...");
                 int NewVersion = URLLog.getInt("UpdateVersion");
@@ -36,7 +36,7 @@ public class NetWorker implements Runnable {
                 }
                 // 完成提示
                 VLagger.MainThis.getLogger().info("全部网络工作都读取完毕了...");
-                URLLogFile.delete();
+                NetworkerFile.delete();
             } catch (IOException ex) {
             }
         }
