@@ -17,7 +17,7 @@ import com.mcml.space.core.VLagger;
 import com.mcml.space.util.Utils;
 
 public class ChunkKeeper implements Listener {
-
+    // TODO clear
     public static HashMap<Chunk, Integer> ChunkTimes = new HashMap<Chunk, Integer>();
     public static ArrayList<Chunk> ShouldKeepList = new ArrayList<Chunk>();
 

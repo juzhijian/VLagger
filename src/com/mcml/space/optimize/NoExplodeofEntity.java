@@ -12,7 +12,7 @@ public class NoExplodeofEntity implements Listener {
 
     @EventHandler
     public void AntiEntityExplode(EntityExplodeEvent event) {
-        if (ConfigClearLag.NoExplodeenable == true) {
+        if (ConfigClearLag.NoExplodeenable) {
             if (event.isCancelled() == false) {
                 if (ConfigClearLag.NoExplodeType.equals("NoBlockBreak")) {
                     List<Block> blockList = event.blockList();

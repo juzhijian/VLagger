@@ -12,7 +12,7 @@ import org.bukkit.event.block.BlockIgniteEvent.IgniteCause;
 import com.mcml.space.config.ConfigClearLag;
 
 public class FireLimitor implements Listener {
-
+    // TODO tied to tick
     private final static HashMap<Chunk, Long> ChunkChecked = new HashMap<Chunk, Long>();
 
     @EventHandler

@@ -21,7 +21,7 @@ public class NoExplodeofBlock implements Listener {
         } catch (ClassNotFoundException ex) {
         }
     }
-
+    // TODO duplicate with NoExplodeofEntity, why not merge them
     @EventHandler
     public void AntiBlockExplode(BlockExplodeEvent event) {
         if (ConfigClearLag.NoExplodeenable == true) {

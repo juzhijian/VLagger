@@ -14,7 +14,7 @@ import com.mcml.space.config.ConfigClearLag;
 public class WaterFlowLimiter implements Listener {
 
     private final static HashMap<Chunk, Long> ChunkChecked = new HashMap<Chunk, Long>();
-
+    // TODO nice but tied to tick
     @EventHandler
     public void WaterFowLimitor(BlockFromToEvent event) {
         if(ConfigClearLag.WaterFlowLimitorenable == true){

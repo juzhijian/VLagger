@@ -7,7 +7,7 @@ import com.mcml.space.config.ConfigPluginMain;
 import com.mcml.space.core.VLagger;
 
 public class HeapShut implements Runnable {
-
+    // TODO why not restart?
     @Override
     public void run() {
         if (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() > Runtime.getRuntime().maxMemory() / 100 * ConfigClearLag.HeapShutPercent) {

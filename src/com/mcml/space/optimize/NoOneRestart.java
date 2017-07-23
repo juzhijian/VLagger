@@ -12,7 +12,8 @@ import com.mcml.space.util.Utils;
 
 public class NoOneRestart
 implements Listener {
-
+    // TODO shutdown = restart?
+    // TODO main thread sleep is better than this
     private int TaskId;
 
     @EventHandler

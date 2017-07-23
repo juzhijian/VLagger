@@ -8,7 +8,7 @@ import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.core.VLagger;
 
 public class ChunkUnloaderofListener implements Listener {
-
+    // TODO bad design
     @EventHandler
     public void onWorldLoad(WorldInitEvent event) {
         if (ConfigClearLag.ChunkUnloaderenable == true) {

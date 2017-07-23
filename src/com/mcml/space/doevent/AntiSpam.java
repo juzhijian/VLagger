@@ -9,11 +9,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import com.mcml.space.config.ConfigDoEvent;
-import com.mcml.space.config.ConfigPluginMain;
+import com.mcml.space.util.AzureAPI;
 
 public class AntiSpam implements Listener {
 
-    private final static HashMap<String, Long> CheckList = new HashMap<String, Long>();
+    private final static HashMap<String, Long> CheckList = new HashMap<String, Long>(); // TODO thread-safe, notice memory usage
 
     private static boolean CheckFast(String bs) {
         if (CheckList.containsKey(bs)) {
@@ -24,17 +24,15 @@ public class AntiSpam implements Listener {
 
     @EventHandler
     public void SpamChecker(AsyncPlayerChatEvent event) {
-        if (ConfigDoEvent.AntiSpamenable == true) {
+        if (ConfigDoEvent.AntiSpamenable) {
             Player p = event.getPlayer();
-            if (p.hasPermission("VLagger.bypass.Spam")) {
+            if (p.hasPermission("VLagger.bypass.Spam")) { // TODO add permission utils
                 return;
             }
             String pn = p.getName();
             if (CheckFast(pn)) {
                 event.setCancelled(true);
-                if(ConfigDoEvent.AntiSpamPeriodWarnMessage.equalsIgnoreCase("none") == false){
-                    p.sendMessage(ConfigPluginMain.PluginPrefix + ConfigDoEvent.AntiSpamPeriodWarnMessage);
-                }
+                AzureAPI.log(p, ConfigDoEvent.AntiSpamPeriodWarnMessage);
             }else{
                 CheckList.put(pn, System.currentTimeMillis());
             }
@@ -43,7 +41,7 @@ public class AntiSpam implements Listener {
 
     @EventHandler
     public void AntiDirty(AsyncPlayerChatEvent event) {
-        if (ConfigDoEvent.AntiSpamenable == true) {
+        if (ConfigDoEvent.AntiSpamenable) {
             Player p = event.getPlayer();
             String message = event.getMessage();
             if (p.hasPermission("VLagger.bypass.Spam")) {
@@ -62,9 +60,7 @@ public class AntiSpam implements Listener {
             	}
             	if(DirtyTimes >= tdl){
             		event.setCancelled(true);
-                    if(ConfigDoEvent.AntiSpamDirtyWarnMessage.equalsIgnoreCase("none") == false){
-                        p.sendMessage(ConfigPluginMain.PluginPrefix + ConfigDoEvent.AntiSpamDirtyWarnMessage);
-                    }
+                    AzureAPI.log(p, ConfigDoEvent.AntiSpamDirtyWarnMessage);
             	}
             }
         }

@@ -10,7 +10,7 @@ import org.bukkit.event.world.ChunkLoadEvent;
 import com.mcml.space.config.ConfigClearLag;
 
 public class NoCrowdEntity implements Listener {
-
+    // TODO bad design
     @EventHandler
     public void CheckCrowd(ChunkLoadEvent event) {
         if (ConfigClearLag.NoCrowdedEntityenable == true) {

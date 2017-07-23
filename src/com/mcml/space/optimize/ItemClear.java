@@ -21,18 +21,18 @@ public class ItemClear implements Listener {
 
     public ItemClear() {
         Bukkit.getScheduler().runTaskTimerAsynchronously(VLagger.MainThis, new Runnable() {
-
+            // TODO crash comes
             @Override
             public void run() {
                 DeathChunk.clear();
             }
         }, 60 * 20, 60 * 20);
     }
-
+    // TODO configurable type, clear mobs - tons
     @EventHandler
     public void ChunkUnloadClear(ChunkUnloadEvent event) {
         Chunk chunk = event.getChunk();
-        if (DeathChunk.contains(chunk) == false) {
+        if (DeathChunk.contains(chunk) == false) { // TODO slow
             Entity[] entities = chunk.getEntities();
             for (int i = 0; i < entities.length; i++) {
                 Entity ent = entities[i];

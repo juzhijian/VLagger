@@ -42,3 +42,4 @@ public class AntiBoneBug implements Listener {
         }
     }
 }
+// TODO mod support, using type id

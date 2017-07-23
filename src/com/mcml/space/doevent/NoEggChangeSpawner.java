@@ -33,3 +33,4 @@ public class NoEggChangeSpawner implements Listener {
         }
     }
 }
+// TODO check op(permission utils), right-click only

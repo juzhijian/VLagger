@@ -20,7 +20,7 @@ public class AntiInfItem implements Listener {
     @EventHandler
     @SuppressWarnings("deprecation")
     public void InteractCheck(PlayerInteractEvent event) {
-        if (ConfigAntiBug.noInfItem == true) {
+        if (ConfigAntiBug.noInfItem) {
             Player player = event.getPlayer();
             if (event.getItem() != null) {
                 if (event.getItem().getAmount() <= 0) {

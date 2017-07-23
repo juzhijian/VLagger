@@ -16,7 +16,7 @@ public class AntiFakeDeath implements Runnable{
             int ps = players.size();
             for(int i = 0;i<ps;i++){
                 Player player = players.get(i);
-                if(player.getHealth() < 0 & player.isDead() == false){
+                if(player.getHealth() < 0 && !player.isDead()){
                     player.setHealth(0.0);
                     player.kickPlayer(ConfigAntiBug.messageFakedeath);
                 }

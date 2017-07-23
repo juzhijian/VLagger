@@ -16,7 +16,7 @@ public class NoDoubleOnline implements Listener {
 
     @EventHandler
     public void CheckDoubleOnline(PlayerPreLoginEvent event) {
-        if (ConfigAntiBug.NoDoubleOnlineenable == true) {
+        if (ConfigAntiBug.NoDoubleOnlineenable) {
             List<Player> onlinePlayers = Utils.getonlinePlayers();
             String pn = event.getName();
             for (int i = 0; i < onlinePlayers.size(); i++) {
@@ -29,3 +29,4 @@ public class NoDoubleOnline implements Listener {
         }
     }
 }
+// TODO use CaseInsensitiveSet, check hasPlayedBefore?

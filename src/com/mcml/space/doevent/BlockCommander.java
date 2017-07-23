@@ -7,8 +7,8 @@ import org.bukkit.event.*;
 import org.bukkit.event.player.*;
 
 import com.mcml.space.config.ConfigDoEvent;
-import com.mcml.space.config.ConfigPluginMain;
 import com.mcml.space.core.VLagger;
+import com.mcml.space.util.AzureAPI;
 
 public class BlockCommander implements Listener {
 
@@ -16,20 +16,18 @@ public class BlockCommander implements Listener {
     public void CommanderBlocker(PlayerCommandPreprocessEvent event) {
         if (ConfigDoEvent.BlockCommanderenable == true) {
             Player p = event.getPlayer();
-            FileConfiguration config = load(VLagger.DoEventConfigFile);
+            FileConfiguration config = load(VLagger.DoEventConfigFile); // TODO bad
             if (p.hasPermission("VLagger.admin") == true) {
                 return;
             }
-            if (config.getBoolean("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage()) == true) {
+            if (config.getBoolean("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage())) {
                 event.setCancelled(true);
-                if(config.getString("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage() + ".Message").equalsIgnoreCase("none") == false){
-                    p.sendMessage(ConfigPluginMain.PluginPrefix + config.getString("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage() + ".Message"));
-                }
+                AzureAPI.log(p, config.getString("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage() + ".Message"));
             }
         }
     }
 
-    private static FileConfiguration load(File file) {
+    private static FileConfiguration load(File file) { // TODO move to api
         if (file.exists() == false) {
             try {
                 file.createNewFile();

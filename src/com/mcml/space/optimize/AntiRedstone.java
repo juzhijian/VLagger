@@ -38,7 +38,7 @@ public class AntiRedstone implements Listener {
     public void LimitRedstonePeriod(BlockRedstoneEvent event) {
         if (ConfigClearLag.AntiRedstoneenable == true) {
             Block block = event.getBlock();
-            String bs = block.toString();
+            String bs = block.getLocation().toString();
             if (CheckFast(bs)) {
                 if (ConfigClearLag.AntiRedstoneRemoveBlockList.contains(block.getType().name())) {
                     block.setType(Material.AIR);

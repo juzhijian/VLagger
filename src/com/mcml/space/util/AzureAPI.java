@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -22,7 +23,7 @@ import com.google.common.collect.Sets;
  * @author SotrForgotten
  */
 public class AzureAPI {
-    private static String loggerPrefix;
+    private static String loggerPrefix = "";
     private static final int bukkitVDChunk = (Bukkit.getViewDistance() * 2) ^ 2 + 1;
     private static final int bukkitVDBlock = Bukkit.getViewDistance() * 16;
 
@@ -64,39 +65,43 @@ public class AzureAPI {
     }
 
     public static void resetPrefix() {
-        loggerPrefix = null;
+        loggerPrefix = "";
     }
-
-    public static void log(final String prefix, final String context) {
-        Bukkit.getConsoleSender().sendMessage(prefix + context);
-    }
-
-    public static void log(final String context) {
-        Bukkit.getConsoleSender().sendMessage(loggerPrefix == null ? context : loggerPrefix + context);
+    
+    public static void warn(final String context) {
+        warn(loggerPrefix, context);
     }
     
     public static void warn(final String prefix, final String context) {
+        if (StringUtils.isBlank(context)) return;
         Bukkit.getLogger().warning(prefix + context);
     }
+    
+    public static void log(final String context) {
+        log(loggerPrefix, context);
+    }
 
-    public static void warn(final String context) {
-        Bukkit.getLogger().warning(loggerPrefix == null ? context : loggerPrefix + context);
+    public static void log(final String prefix, final String context) {
+        if (StringUtils.isBlank(context)) return;
+        Bukkit.getConsoleSender().sendMessage(prefix + context);
     }
 
     public static void log(final CommandSender sender, final String context) {
-        sender.sendMessage(loggerPrefix == null ? context : loggerPrefix + context);
+        log(sender, loggerPrefix, context);
     }
 
     public static void log(final CommandSender sender, final String prefix, final String msg) {
+        if (StringUtils.isBlank(msg)) return;
         sender.sendMessage(prefix + msg);
     }
     
-    public static void bc(final String prefix, final String context) {
-        Bukkit.broadcastMessage(prefix + context);
-    }
-
     public static void bc(final String context) {
-        Bukkit.broadcastMessage(loggerPrefix == null ? context : loggerPrefix + context);
+        bc(loggerPrefix, context);
+    }
+    
+    public static void bc(final String prefix, final String context) {
+        if (StringUtils.isBlank(context)) return;
+        Bukkit.broadcastMessage(prefix + context);
     }
 
     public static long toTicks(TimeUnit unit, long duration) {
