@@ -14,10 +14,12 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import com.mcml.space.config.ConfigAntiBug;
 import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.config.ConfigDoEvent;
 import com.mcml.space.config.ConfigPluginMain;
-import com.mcml.space.config.ConfigAntiBug;
+import com.mcml.space.config.Default;
 import com.mcml.space.doevent.AntiSpam;
 import com.mcml.space.doevent.AutoRespawn;
 import com.mcml.space.doevent.AutoUpdateCheck;
@@ -43,7 +45,6 @@ import com.mcml.space.optimize.ChunkKeeper;
 import com.mcml.space.optimize.ChunkUnloader;
 import com.mcml.space.optimize.ChunkUnloaderofListener;
 import com.mcml.space.optimize.FireLimitor;
-import com.mcml.space.optimize.TimerGarbageCollect;
 import com.mcml.space.optimize.HeapShut;
 import com.mcml.space.optimize.ItemClear;
 import com.mcml.space.optimize.NoCrowdEntity;
@@ -51,7 +52,7 @@ import com.mcml.space.optimize.NoExplodeofBlock;
 import com.mcml.space.optimize.NoExplodeofEntity;
 import com.mcml.space.optimize.NoOneRestart;
 import com.mcml.space.optimize.TeleportPreloader;
-import com.mcml.space.optimize.TilesClear;
+import com.mcml.space.optimize.TimerGarbageCollect;
 import com.mcml.space.optimize.WaterFlowLimiter;
 import com.mcml.space.util.AzureAPI;
 import com.mcml.space.util.Configurable;
@@ -156,7 +157,6 @@ public class VLagger extends JavaPlugin implements Listener {
         NoExplodeofBlock.RegisterEvents();
 
         ChunkKeeper.ChunkKeeperofTask();
-        Bukkit.getScheduler().runTaskTimer(this, new TilesClear(), ConfigClearLag.TilesClearInterval * 20, ConfigClearLag.TilesClearInterval * 20);
         getServer().getScheduler().runTaskTimer(this, new ChunkUnloader(), 0, ConfigClearLag.ChunkUnloaderInterval * 20);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HeapShut(), 1 * 60 * 20, 1 * 60 * 20);
         Bukkit.getScheduler().runTaskTimer(this, new TimerGarbageCollect(), ConfigClearLag.HeapClearPeriod * 20, ConfigClearLag.HeapClearPeriod * 20);
@@ -277,10 +277,6 @@ public class VLagger extends JavaPlugin implements Listener {
                         System.runFinalization();
                         sender.sendMessage("§6内存清理完毕！");
                     }
-                    if (args[1].equalsIgnoreCase("cleartiles")) {
-                        getServer().getScheduler().runTask(this, new TilesClear());
-                        sender.sendMessage("§6Tiles清理完毕！");
-                    }
                     if (args[1].equalsIgnoreCase("clearchunk")) {
                         getServer().getScheduler().runTask(this, new ChunkUnloader());
                         sender.sendMessage("§6区块清理完毕！");
@@ -336,6 +332,7 @@ public class VLagger extends JavaPlugin implements Listener {
     
     private void LoadConfig(){
     	this.saveResource("说明文档.txt", true);
+    	Default.Default();
     	try {
             Configurable.restoreNodes(PluginMainConfigFile, ConfigPluginMain.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {

@@ -69,9 +69,6 @@ public abstract class ConfigAntiBug extends Configurable {
     @Node(path = "AntiCrashChat.ColorChatWarnMessage")
     public static String AntiCrashChatColorChatWarnMessage = "§c抱歉！为了防止服务器被破坏，服务器禁止使用颜色代码.";
     
-    @Node(path = "AntiSpam.Dirty.WarnMessage")
-    public static String AntiSpamDirtyWarnMessage = "§c啥事那么大搞得你想骂人啊~ _(:з」∠)_";
-    
     @Node(path = "AntiBreakUseingChest.WarnMessage")
     public static String AntiBreakUsingChestWarnMessage = "§c抱歉！您不可以破坏一个正在被使用的容器";
     

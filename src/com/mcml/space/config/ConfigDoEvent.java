@@ -17,7 +17,7 @@ public abstract class ConfigDoEvent extends Configurable {
     public static String AntiSpamPeriodWarnMessage = "§c请慢点说话，别激动嘛！ _(:з」∠)_";
     
     @Node(path = "AntiSpam.Dirty.List")
-    public static List<String> AntiSpamDirtyList = Lists.newArrayList();
+    public static List<String> AntiSpamDirtyList = Default.AntiSpamDirtyList;
     
     @Node(path = "NoEggChangeSpawner.enable")
     public static boolean NoEggChangeSpawnerenable;
