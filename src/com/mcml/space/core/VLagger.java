@@ -16,6 +16,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.config.ConfigDoEvent;
+import com.mcml.space.config.ConfigPluginMain;
 import com.mcml.space.config.ConfigAntiBug;
 import com.mcml.space.doevent.AntiSpam;
 import com.mcml.space.doevent.AutoRespawn;
@@ -60,14 +61,12 @@ import com.mcml.space.util.Utils;
 public class VLagger extends JavaPlugin implements Listener {
 
 
-    public static String PluginPrefix;
     public static VLagger MainThis;
     public static File ClearLagConfigFile;
     public static File AntiBugConfigFile;
     private static File PluginMainConfigFile;
     public static File DoEventConfigFile;
     public static File PluginFile;
-    public static boolean AutoUpdate;
 
     @Override
     public void onEnable() {
@@ -115,7 +114,7 @@ public class VLagger extends JavaPlugin implements Listener {
         AzureAPI.log("|||" + AzureAPI.contactBetween(devs, 1, ", ") + " 合作开发.|||");
         AzureAPI.log("§a您正在使用VLagger构建号 %BUILD_NUMBER%");
         
-        AzureAPI.setPrefix(PluginPrefix);
+        AzureAPI.setPrefix(ConfigPluginMain.PluginPrefix);
         
         if (ConfigClearLag.AutoSetenable == true) {
             try {
@@ -168,7 +167,8 @@ public class VLagger extends JavaPlugin implements Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (label.equalsIgnoreCase("vlg")) {
-            sender.sendMessage("§b------§a§lVLagger§b------");
+        	int Version = Integer.valueOf("%BUILD_NUMBER%");
+            sender.sendMessage("§b------§a§lVLagger - b" + Version + "§b------");
             if (sender.hasPermission("VLagger.admin")) {
                 if (args.length == 0) {
                     sender.sendMessage("§c请输入/vlg help 来获取帮助");
@@ -181,7 +181,7 @@ public class VLagger extends JavaPlugin implements Listener {
                         MainConfig.save(PluginMainConfigFile);
                     } catch (IOException ex) {
                     }
-                    AutoUpdate = true;
+                    ConfigPluginMain.AutoUpdate = true;
                     sender.sendMessage("§a§l[VLagger]§b已经成功开启自动更新！");
                 }
                 if (args[0].equalsIgnoreCase("help")) {
@@ -335,6 +335,13 @@ public class VLagger extends JavaPlugin implements Listener {
     }
     
     private void LoadConfig(){
+    	this.saveResource("说明文档.txt", true);
+    	try {
+            Configurable.restoreNodes(PluginMainConfigFile, ConfigPluginMain.class);
+        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
+            e.printStackTrace();
+        }
+    	
     	try {
             Configurable.restoreNodes(ClearLagConfigFile, ConfigClearLag.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
@@ -356,7 +363,7 @@ public class VLagger extends JavaPlugin implements Listener {
 
     @SuppressWarnings("unused")
 	private void OldLoadConfig() {
-        this.saveResource("说明文档.txt", true);
+    	this.saveResource("说明文档.txt", true);
         FileConfiguration MainConfig = load(PluginMainConfigFile);
         if (MainConfig.getInt("Version") < 272) {
             MainConfig.set("Version", 272);

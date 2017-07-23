@@ -8,7 +8,7 @@ import org.bukkit.World;
 import org.bukkit.block.BlockState;
 
 import com.mcml.space.config.ConfigClearLag;
-import com.mcml.space.core.VLagger;
+import com.mcml.space.config.ConfigPluginMain;
 
 public class TilesClear implements Runnable {
 
@@ -34,7 +34,7 @@ public class TilesClear implements Runnable {
 				}
 			}
 			if (ConfigClearLag.TilesClearMessage.equalsIgnoreCase("none") == false) {
-				Bukkit.broadcastMessage(VLagger.PluginPrefix + ConfigClearLag.TilesClearMessage);
+				Bukkit.broadcastMessage(ConfigPluginMain.PluginPrefix + ConfigClearLag.TilesClearMessage);
 			}
 		}
 	}

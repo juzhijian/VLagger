@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 
 import com.mcml.space.config.ConfigAntiBug;
-import com.mcml.space.core.VLagger;
+import com.mcml.space.config.ConfigPluginMain;
 
 public class AntiInfItem implements Listener {
 
@@ -27,7 +27,7 @@ public class AntiInfItem implements Listener {
                     event.setCancelled(true);
                     player.setItemInHand(null);
                     if(ConfigAntiBug.AntiInfItemClickcWarnMessage.equalsIgnoreCase("none") == false){
-                        player.sendMessage(VLagger.PluginPrefix + ConfigAntiBug.AntiInfItemClickcWarnMessage);
+                        player.sendMessage(ConfigPluginMain.PluginPrefix + ConfigAntiBug.AntiInfItemClickcWarnMessage);
                     }
                 }
             }

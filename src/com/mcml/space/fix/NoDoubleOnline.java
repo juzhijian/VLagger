@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerPreLoginEvent;
 
 import com.mcml.space.config.ConfigAntiBug;
-import com.mcml.space.core.VLagger;
+import com.mcml.space.config.ConfigPluginMain;
 import com.mcml.space.util.Utils;
 
 @SuppressWarnings("deprecation")
@@ -23,7 +23,7 @@ public class NoDoubleOnline implements Listener {
                 String Ingamepn = onlinePlayers.get(i).getName();
                 if (Ingamepn.equalsIgnoreCase(pn) & Ingamepn.equals(pn) == false) {
                     event.setResult(PlayerPreLoginEvent.Result.KICK_BANNED);
-                    event.setKickMessage(VLagger.PluginPrefix + ConfigAntiBug.NoDoubleOnlineKickMessage);
+                    event.setKickMessage(ConfigPluginMain.PluginPrefix + ConfigAntiBug.NoDoubleOnlineKickMessage);
                 }
             }
         }

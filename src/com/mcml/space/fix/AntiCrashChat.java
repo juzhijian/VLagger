@@ -9,7 +9,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.Plugin;
 
 import com.mcml.space.config.ConfigAntiBug;
-import com.mcml.space.core.VLagger;
+import com.mcml.space.config.ConfigPluginMain;
 
 public class AntiCrashChat implements Listener{
     private boolean HasEss;
@@ -28,14 +28,14 @@ public class AntiCrashChat implements Listener{
         if(message.contains("İ")){
             event.setCancelled(true);
             if(ConfigAntiBug.AntiCrashChatSpecialStringWarnMessage.equalsIgnoreCase("none") == false){
-                player.sendMessage(VLagger.PluginPrefix + ConfigAntiBug.AntiCrashChatSpecialStringWarnMessage);
+                player.sendMessage(ConfigPluginMain.PluginPrefix + ConfigAntiBug.AntiCrashChatSpecialStringWarnMessage);
             }
         }
         if(HasEss == true){
             if(message.contains("&")){
                 event.setCancelled(true);
                 if(ConfigAntiBug.AntiCrashChatSpecialStringWarnMessage.equalsIgnoreCase("none") == false){
-                    player.sendMessage(VLagger.PluginPrefix + ConfigAntiBug.AntiCrashChatSpecialStringWarnMessage);
+                    player.sendMessage(ConfigPluginMain.PluginPrefix + ConfigAntiBug.AntiCrashChatSpecialStringWarnMessage);
                 }
             }
         }

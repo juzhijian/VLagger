@@ -7,6 +7,7 @@ import org.bukkit.event.*;
 import org.bukkit.event.player.*;
 
 import com.mcml.space.config.ConfigDoEvent;
+import com.mcml.space.config.ConfigPluginMain;
 import com.mcml.space.core.VLagger;
 
 public class BlockCommander implements Listener {
@@ -22,7 +23,7 @@ public class BlockCommander implements Listener {
             if (config.getBoolean("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage()) == true) {
                 event.setCancelled(true);
                 if(config.getString("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage() + ".Message").equalsIgnoreCase("none") == false){
-                    p.sendMessage(VLagger.PluginPrefix + config.getString("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage() + ".Message"));
+                    p.sendMessage(ConfigPluginMain.PluginPrefix + config.getString("BlockCommander.List." + p.getWorld().getName() + "." + event.getMessage() + ".Message"));
                 }
             }
         }
