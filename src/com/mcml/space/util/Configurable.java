@@ -7,9 +7,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-
+import java.util.List;
 import org.apache.commons.lang.StringUtils;
-
 import com.mcml.space.core.VLagger;
 
 import lombok.val;
@@ -24,6 +23,10 @@ public abstract class Configurable {
         String path();
     }
     
+    @Documented
+    @Retention(RetentionPolicy.RUNTIME)
+    protected static @interface Locale {}
+    
     public static void restoreNodes(File file, Class<? extends Configurable> clazz) throws IllegalArgumentException, IllegalAccessException, IOException {
         assert VLagger.MainThis != null;
         val config = VLagger.load(file);
@@ -32,20 +35,36 @@ public abstract class Configurable {
             Node node = field.getAnnotation(Node.class);
             if (node == null) continue;
             
-            int mod = field.getModifiers();
+            val def = field.get(null);
+            val mod = field.getModifiers();
             if (Modifier.isStatic(mod) && !Modifier.isFinal(mod)) {
-                String path = node.path();
-                
-                Object value = config.get(path);
+                val path = node.path();
+                val value = config.get(path);
                 if (value == null) {
-                    Object def = field.get(null);
                     config.set(path, def instanceof Boolean ? true : def);
                 } else {
-                    field.set(null, value instanceof String ? StringUtils.replaceChars((String) value, '&', '§') : value);
+                    field.set(null, colorzine(value));
                 }
             }
         }
         
         config.save(file);
+    }
+    
+    @SuppressWarnings("all")
+    public static Object colorzine(Object o) {
+        if (o instanceof String) {
+            return StringUtils.replaceChars((String) o, '&', '§');
+        }
+        if (o instanceof List) {
+            List list = (List) o;
+            for (Object obj : list) {
+                if (obj instanceof String) {
+                    list.set(list.indexOf(obj), StringUtils.replaceChars((String) obj, '&', '§'));
+                }
+            }
+            return list;
+        }
+        return o;
     }
 }

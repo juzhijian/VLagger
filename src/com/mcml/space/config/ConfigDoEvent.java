@@ -13,6 +13,7 @@ public abstract class ConfigDoEvent extends Configurable {
     @Node(path = "AntiSpam.Period.Period")
     public static long AntiSpamPeriodPeriod = 2;
     
+    @Locale
     @Node(path = "AntiSpam.Period.WarnMessage")
     public static String AntiSpamPeriodWarnMessage = "§c请慢点说话，别激动嘛！ _(:з」∠)_";
     
@@ -22,6 +23,7 @@ public abstract class ConfigDoEvent extends Configurable {
     @Node(path = "NoEggChangeSpawner.enable")
     public static boolean NoEggChangeSpawnerenable;
     
+    @Locale
     @Node(path = "NoEggChangeSpawner.TipMessage")
     public static String NoEggChangeSpawnerTipMessage = "&c抱歉，禁止使用刷怪蛋修改刷怪笼";
     
@@ -47,6 +49,7 @@ public abstract class ConfigDoEvent extends Configurable {
     @Node(path = "ProtectFarm.enable")
     public static boolean ProtectFarmenable;
     
+    @Locale
     @Node(path = "AntiSpam.Dirty.WarnMessage")
     public static String AntiSpamDirtyWarnMessage = "§c什么事情激动得你都想骂人啦？";
     
@@ -56,9 +59,11 @@ public abstract class ConfigDoEvent extends Configurable {
     @Node(path = "AutoRespawn.RespawnTitle.enable")
     public static boolean AutoRespawnRespawnTitleenable;
     
+    @Locale
     @Node(path = "AutoRespawn.RespawnTitle.MainMessage")
     public static String AutoRespawnRespawnTitleMainMessage = "§e你死了！";
     
+    @Locale
     @Node(path = "AutoRespawn.RespawnTitle.MiniMessage")
     public static String AutoRespawnRespawnTitleMiniMessage = "§c已为您自动复活！";
 }

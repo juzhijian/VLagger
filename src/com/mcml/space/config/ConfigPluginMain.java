@@ -10,6 +10,9 @@ public abstract class ConfigPluginMain extends Configurable {
     public static boolean AutoUpdate;
     
     @Node(path = "internal-version")
-    public static int internalVersion = Integer.valueOf("%BUILD_NUMBER%");
+    public static int internalVersion = Integer.valueOf("233");
+    
+    @Node(path = "language")
+    public static String lang = "zh_cn";
     
 }
