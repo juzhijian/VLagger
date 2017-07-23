@@ -7,7 +7,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityExplodeEvent;
 
 import com.mcml.space.config.ConfigClearLag;
-import com.mcml.space.core.VLagger;
 
 public class NoExplodeofEntity implements Listener {
 

@@ -8,7 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkLoadEvent;
 
 import com.mcml.space.config.ConfigClearLag;
-import com.mcml.space.core.VLagger;
 
 public class NoCrowdEntity implements Listener {
 

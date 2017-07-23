@@ -5,7 +5,6 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.lang.StringUtils;
 
 import com.mcml.space.config.ConfigClearLag;
-import com.mcml.space.core.VLagger;
 import com.mcml.space.util.AzureAPI;
 
 public class HeapClear implements Runnable {

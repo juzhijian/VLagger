@@ -6,7 +6,6 @@ import org.bukkit.event.*;
 import org.bukkit.event.inventory.*;
 
 import com.mcml.space.config.ConfigAntiBug;
-import com.mcml.space.core.VLagger;
 
 public class AntiNetherHopperInfItem implements Listener {
 

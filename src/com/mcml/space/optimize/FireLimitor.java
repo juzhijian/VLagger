@@ -10,7 +10,6 @@ import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockIgniteEvent.IgniteCause;
 
 import com.mcml.space.config.ConfigClearLag;
-import com.mcml.space.core.VLagger;
 
 public class FireLimitor implements Listener {
 

@@ -11,7 +11,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -79,7 +78,6 @@ public class VLagger extends JavaPlugin implements Listener {
         PluginFile = this.getFile();
         MainThis = this;
         LoadConfig();
-        
         AzureAPI.log("VLagger —— 新一代的优化/稳定插件");
         AzureAPI.log("~(@^_^@)~ 玩的开心！~");
         AzureAPI.log("清理内存模块...");
@@ -335,8 +333,29 @@ public class VLagger extends JavaPlugin implements Listener {
         }
         return false;
     }
+    
+    private void LoadConfig(){
+    	try {
+            Configurable.restoreNodes(ClearLagConfigFile, ConfigClearLag.class);
+        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
+            e.printStackTrace();
+        }
+        
+        try {
+            Configurable.restoreNodes(AntiBugConfigFile, ConfigAntiBug.class);
+        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
+            e.printStackTrace();
+        }
+        
+        try {
+            Configurable.restoreNodes(DoEventConfigFile, ConfigDoEvent.class);
+        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-    private void LoadConfig() {
+    @SuppressWarnings("unused")
+	private void OldLoadConfig() {
         this.saveResource("说明文档.txt", true);
         FileConfiguration MainConfig = load(PluginMainConfigFile);
         if (MainConfig.getInt("Version") < 272) {
