@@ -50,6 +50,7 @@
 							<artifactSet>
 								<includes>
 									<include>org.projectlombok</include>
+									<include>com.comphenix.protocol.utility</include>
 								</includes>
 							</artifactSet>
 							<createDependencyReducedPom>false</createDependencyReducedPom>

@@ -73,6 +73,14 @@ public class AzureAPI {
     public static void log(final String context) {
         Bukkit.getConsoleSender().sendMessage(loggerPrefix == null ? context : loggerPrefix + context);
     }
+    
+    public static void warn(final String prefix, final String context) {
+        Bukkit.getLogger().warning(prefix + context);
+    }
+
+    public static void warn(final String context) {
+        Bukkit.getLogger().warning(loggerPrefix == null ? context : loggerPrefix + context);
+    }
 
     public static void log(final CommandSender sender, final String context) {
         sender.sendMessage(loggerPrefix == null ? context : loggerPrefix + context);
