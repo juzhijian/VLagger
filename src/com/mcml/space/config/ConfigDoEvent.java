@@ -34,7 +34,7 @@ public abstract class ConfigDoEvent extends Configurable {
         for(int i=0;i<ds;i++){
         	String thisdirty = DirtyList.get(i);
         	int tdl = thisdirty.length();
-        	String[] thisdirtystrings = new String[tdl + 1];
+        	String[] thisdirtystrings = new String[tdl];
         	for(int ii = 0;ii<tdl;ii++){
         		thisdirtystrings[ii] = thisdirty.substring(ii,ii+1);
         	}
