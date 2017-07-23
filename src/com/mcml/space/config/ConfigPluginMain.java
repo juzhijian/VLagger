@@ -7,7 +7,7 @@ public abstract class ConfigPluginMain extends Configurable {
     public static String PluginPrefix = "§a§l[Vlagger]";
     
     @Node(path = "AutoUpdate")
-    public static boolean AutoUpdate;
+    public static boolean AutoUpdate = false;
     
     @Node(path = "internal-version")
     public static int internalVersion = Integer.valueOf("233");

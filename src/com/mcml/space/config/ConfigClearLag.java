@@ -9,16 +9,6 @@ public abstract class ConfigClearLag extends Configurable {
     @Node(path = "HeapShut.enable")
     public static boolean HeapShutenable;
     
-    @Node(path = "TilesClear.enable")
-    public static boolean TilesClearenable;
-    
-    @Node(path = "TilesClear.Interval")
-    public static long TilesClearInterval = 360;
-    
-    @Locale
-    @Node(path = "TilesClear.Message")
-    public static String TilesClearMessage = "§e服务器清理Tiles完毕 ~(@^_^@)~";
-    
     @Node(path = "ChunkUnloader.Interval")
     public static long ChunkUnloaderInterval = 30;
     
@@ -47,7 +37,7 @@ public abstract class ConfigClearLag extends Configurable {
     public static long FireLimitorPeriod = 3000L;
     
     @Node(path = "HeapClear.enable")
-    public static boolean HeapClearenable;
+    public static boolean HeapClearenable = false;
     
     @Node(path = "TeleportPreLoader.enable")
     public static boolean TeleportPreLoaderenable;
@@ -72,7 +62,7 @@ public abstract class ConfigClearLag extends Configurable {
     public static boolean NoCrowdedEntityenable;
     
     @Node(path = "NoCrowdedEntity.TypeList")
-    public static List<String> NoCrowdedEntityTypeList = Lists.newArrayList();
+    public static List<String> NoCrowdedEntityTypeList = Default.NoCrowdedEntityTypeList;
     
     @Node(path = "NoCrowdedEntity.PerChunkLimit")
     public static int NoCrowdedEntityPerChunkLimit = 30;
@@ -85,7 +75,7 @@ public abstract class ConfigClearLag extends Configurable {
     public static int HeapShutPercent = 90;
     
     @Node(path = "AntiRedstone.RemoveBlockList")
-    public static List<String> AntiRedstoneRemoveBlockList = Lists.newArrayList();
+    public static List<String> AntiRedstoneRemoveBlockList = Default.AntiRedstoneRemoveBlockList;
     
     @Node(path = "AutoSave.Interval")
     public static long AutoSaveInterval = 15;

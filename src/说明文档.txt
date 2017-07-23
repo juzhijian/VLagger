@@ -1,4 +1,3 @@
-测试文字修改了！
 欢迎来到配置指南！
 首先感谢您使用了 VLagger 插件。
 该插件是一款 集成优化、修复漏洞、限制动作、高算法效率 的技术性为主的优化插件。
@@ -18,14 +17,13 @@
 如果您的服务器是网页面板操控服务器，则无需担心这一点。
 如果您的服务器是VPS，则在启动服务端脚本中加入自重启脚本。
 如果您不会加入自重启脚本，请参考帖子：XXXXXXXXXX
+提示：如果你的提示信息选项输入了“none”，那么意味着你关闭了这个提示信息。
 
-2.MainConfig —— 为插件的主要工作
-Version: 256 #版本号，请勿修改！
+2.PluginMainConfig —— 为插件的主要工作
 PluginPrefix: "§a[Vlagger]" #插件的提示信息的前缀文字。
 AutoUpdate: false #是否进行自动更新，每当服务器开启，插件都将检测自动更新，推荐开启。
 
 3.ClearLagConfig —— 为插件的优化模块配置
-Version: 256 #版本号，请勿修改
 HeapShut: #濒临重启功能
   enable: true #是否在服务器内存过载的时候进行重启
   Percent: 90 #当服务器内存达到多少百分比的时候进行重启
@@ -83,9 +81,6 @@ WaterFlowLimitor: #流水限制
 FireLimitor: #火焰限制
   enable: true #是否限制火焰蔓延
   Period: 3000 #每多少毫秒允许一次火焰蔓延
-QueueLinePlayerLogin: #队列化登入
-  enable: false #是否开启队列化登入玩家
-  Period: 1500 #每多少毫秒允许一个登陆请求，其他请求会被停顿。
 WorldSpawnLimitor: #世界生物生成限制
   worldname: #世界名字
     enable: true #是否开启限制
@@ -93,8 +88,17 @@ WorldSpawnLimitor: #世界生物生成限制
     PerChunkAnimals: 3 #每个区块允许多少个动物生成
     PerChunkAmbient: 10 #每个区块周围允许多少个攻击性生物生成
 
-4.NoBugConfig —— 为修复漏洞（包括MC漏洞和部分插件漏洞）配置文件
-Version: 256 #版本号，请勿修改
+4.AntiBugConfig —— 为修复漏洞（包括MC漏洞和部分插件漏洞）配置文件\
+AntiCrashChat:
+  enable: true #是否防御崩服代码
+  SpecialStringWarnMessage: §c严禁使用崩服代码炸服！ #当玩家被拦截的时候的提示信息
+  ColorChatWarnMessage: §c抱歉！为了防止服务器被破坏，服务器禁止使用颜色代码. #当玩家被禁止使用ESS颜色字符时的提示信息
+AntiBoneBug:
+  enable: true #是否防御骨粉树苗BUG（顶掉牌子/骨粉刷物品）
+  WarnMessage: §c严禁卡树苗催熟BUG！ #当玩家被阻止时的提示信息
+AntiFakeDeath:
+  KickMessage: §c严禁卡假死BUG！ #当玩家被反假死踢出游戏的信息
+  enable: true #是否开启反假死
 AntiInfItem: #反负数物品
   enable: true #是否禁止负数物品的产生和使用
 AntiPortalInfItem: #地狱门传送刷物品
@@ -110,7 +114,7 @@ AntiSkullCrash: #崩服头颅
 NoDoubleOnline: #大小号登入修复
   enable: true #是否禁止同一个ID的不同大小写登入游戏
   KickMessage: "抱歉，服务器中您已经在线了。ԅ(¯ㅂ¯ԅ)"
-AntiDropInfItem: #假死刷物品（又名影分身BUG）
+AntiDupeDropItem: #假死刷物品
   enable: true #是否防御假死刷物品
 AntiDoorInfItem: #甘蔗门BUG
   enable: true #是否防御甘蔗门刷甘蔗、仙人掌BUG
@@ -124,12 +128,25 @@ AntiBreakUseingChest: #实体卡成虚体BUG
 AntiInfRail: #无限铁轨BUG
   enable: true #是否防御无限铁轨BUG
 
-5.EventConfig.yml —— 为限制动作模块配置
+5.DoEventConfig.yml —— 为限制动作模块配置
 Version: 256 #版本号，请勿修改
-AntiSpam: #反刷屏
-  enable: true #是否禁止刷屏
-  Period: 2.0 #每次讲话间隔多少秒
-  WarnMessage: "§c请慢点说话，别激动嘛！ _(:з」∠)_" #当玩家被禁止说话的时候的提示信息
+AntiSpam:
+  enable: true #是否开启反刷屏/反脏话
+  Period: #间隔设定
+    Period: 2 #每隔多少秒允许一次发言
+    WarnMessage: §c请慢点说话，别激动嘛！ _(:з」∠)_ #当玩家被禁止说话的提示信息
+  Dirty: #是否反脏话
+    List: #脏话列表
+    - 操你妈
+    - 妈逼
+    - SB
+    - 弱智
+    - 智障
+    - 杂种
+    - 狗娘
+    WarnMessage: §c什么事情激动得你都想骂人啦？ #当玩家骂人被阻止的时候提示信息
+ProtectFarm:
+  enable: true #是否阻止怪物或玩家破坏他人农田
 NoEggChangeSpawner: #禁止刷怪蛋修改刷怪笼类型
   enable: true #是否禁止刷怪蛋点击刷怪笼
 BlockCommander: #命令禁止者（多世界）该配置对OP无效
