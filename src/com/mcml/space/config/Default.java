@@ -9,7 +9,7 @@ public class Default {
 	public static List<String> AntiRedstoneRemoveBlockList = new ArrayList<String>();
 	public static List<String> AntiSpamDirtyList = new ArrayList<String>();
 	
-	public static void Default(){
+	public static void Do(){
 		NoCrowdedEntityTypeList.add("ZOMBIE");
 		NoCrowdedEntityTypeList.add("SKELETON");
 		NoCrowdedEntityTypeList.add("SPIDER");

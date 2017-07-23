@@ -332,7 +332,7 @@ public class VLagger extends JavaPlugin implements Listener {
     
     private void LoadConfig(){
     	this.saveResource("说明文档.txt", true);
-    	Default.Default();
+    	Default.Do();
     	try {
             Configurable.restoreNodes(PluginMainConfigFile, ConfigPluginMain.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {

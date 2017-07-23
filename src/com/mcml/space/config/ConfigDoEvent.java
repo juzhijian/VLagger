@@ -3,7 +3,6 @@ package com.mcml.space.config;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.collect.Lists;
 import com.mcml.space.util.Configurable;
 
 public abstract class ConfigDoEvent extends Configurable {
