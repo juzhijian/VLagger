@@ -56,7 +56,6 @@ public class AntiSpam implements Listener {
             	int DirtyTimes = 0;
             	int tdl = thisdirty.length;
             	for(int ii = 0;ii + 1<tdl;ii++){
-            		System.out.println("字节检查" + thisdirty[ii]);
             		if(message.contains(thisdirty[ii])){
             			DirtyTimes++;
             		}
