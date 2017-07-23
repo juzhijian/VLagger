@@ -7,9 +7,16 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import org.bukkit.configuration.file.FileConfiguration;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.mcml.space.core.VLagger;
 
+import lombok.val;
+
+/**
+ * @author SotrForgotten
+ */
 public abstract class Configurable {
     @Documented
     @Retention(RetentionPolicy.RUNTIME)
@@ -19,7 +26,7 @@ public abstract class Configurable {
     
     public static void restoreNodes(File file, Class<? extends Configurable> clazz) throws IllegalArgumentException, IllegalAccessException, IOException {
         assert VLagger.MainThis != null;
-        FileConfiguration config = VLagger.load(file);
+        val config = VLagger.load(file);
         
         for (Field field : clazz.getDeclaredFields()) {
             Node node = field.getAnnotation(Node.class);
@@ -34,7 +41,7 @@ public abstract class Configurable {
                     Object def = field.get(null);
                     config.set(path, def instanceof Boolean ? true : def);
                 } else {
-                    field.set(null, value);
+                    field.set(null, value instanceof String ? StringUtils.replaceChars((String) value, '&', '§') : value);
                 }
             }
         }

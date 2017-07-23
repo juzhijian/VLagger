@@ -10,6 +10,9 @@ import org.bukkit.event.player.PlayerEditBookEvent;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.BookMeta.Generation;
 
+import com.mcml.space.config.ConfigAntiBug;
+import com.mcml.space.util.AzureAPI;
+
 public class AntiCheatBook implements Listener {
     
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -52,6 +55,10 @@ public class AntiCheatBook implements Listener {
         if (meta.getAuthor() != null) meta.setAuthor(null);
         
         evt.setNewBookMeta(meta);
+        
+        if(!ConfigAntiBug.AntiCheatBookWarnMessage.equalsIgnoreCase("none")){
+            AzureAPI.log(evt.getPlayer(), ConfigAntiBug.AntiCheatBookWarnMessage);
+        }
     }
     
     public static BookMeta clearEnchant(BookMeta meta) {

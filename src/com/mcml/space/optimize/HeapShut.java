@@ -2,8 +2,8 @@ package com.mcml.space.optimize;
 
 import org.bukkit.Bukkit;
 
+import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.core.VLagger;
-import com.mcml.space.util.ConfigClearLag;
 
 public class HeapShut implements Runnable {
 

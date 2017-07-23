@@ -1,11 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>VLagger</groupId>
 	<artifactId>VLagger</artifactId>
-	<version>b</version>
+	<version>x</version>
 	<name>VLagger</name>
 	<description>VLagger 是一款 MineCraft Bukkit 服务端插件，主要作用为优化运行、修复漏洞、限制动作的一款插件。</description>
+	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
@@ -33,29 +35,61 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			<!-- 打包插件，需要添加第三方库在下方添加 include 包名即可 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<artifactSet>
+								<includes>
+									<include>org.projectlombok</include>
+								</includes>
+							</artifactSet>
+							<createDependencyReducedPom>false</createDependencyReducedPom>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
+	
 	<repositories>
 		<repository>
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
 		</repository>
 		<repository>
-            <id>aikar</id>
-            <url>http://ci.emc.gs/nexus/content/groups/aikar/</url>
-        </repository>
+			<id>aikar</id>
+			<url>http://ci.emc.gs/nexus/content/groups/aikar/</url>
+		</repository>
 	</repositories>
+	
 	<dependencies>
 		<!-- Ppaer API -->
 		<dependency>
-            <groupId>com.destroystokyo.paper</groupId>
-            <artifactId>paper-api</artifactId>
+			<groupId>com.destroystokyo.paper</groupId>
+			<artifactId>paper-api</artifactId>
 			<version>1.9.4-R0.1-SNAPSHOT</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
-            <groupId>net.sf.trove4j</groupId>
-            <artifactId>trove4j</artifactId>
-            <version>3.0.3</version>
-        </dependency>
+			<groupId>net.sf.trove4j</groupId>
+			<artifactId>trove4j</artifactId>
+			<version>3.0.3</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.18</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 </project>

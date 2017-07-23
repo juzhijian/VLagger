@@ -1,4 +1,6 @@
-package com.mcml.space.util;
+package com.mcml.space.config;
+
+import com.mcml.space.util.Configurable;
 
 public abstract class ConfigClearLag extends Configurable {
     @Node(path = "HeapShut.enable")

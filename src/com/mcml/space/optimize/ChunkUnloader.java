@@ -4,7 +4,8 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
-import com.mcml.space.util.ConfigClearLag;
+
+import com.mcml.space.config.ConfigClearLag;
 
 public class ChunkUnloader implements Runnable {
 

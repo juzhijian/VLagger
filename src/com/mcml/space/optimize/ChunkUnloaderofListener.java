@@ -4,8 +4,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldInitEvent;
 
+import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.core.VLagger;
-import com.mcml.space.util.ConfigClearLag;
 
 public class ChunkUnloaderofListener implements Listener {
 

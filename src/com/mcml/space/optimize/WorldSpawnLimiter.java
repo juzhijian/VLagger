@@ -12,7 +12,7 @@ import org.bukkit.event.world.WorldInitEvent;
 
 import com.mcml.space.core.VLagger;
 
-public class WorldSpawnLimitor implements Listener {
+public class WorldSpawnLimiter implements Listener {
 
     @EventHandler
     public void WorldSeterLimitor(WorldInitEvent event) {

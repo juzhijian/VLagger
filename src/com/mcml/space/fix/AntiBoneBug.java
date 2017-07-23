@@ -8,21 +8,20 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.StructureGrowEvent;
 
-import com.mcml.space.core.VLagger;
-import com.mcml.space.util.ConfigNoBug;
+import com.mcml.space.config.ConfigAntiBug;
 
 public class AntiBoneBug implements Listener {
 
     @EventHandler
     public void TreeGrowChecker(StructureGrowEvent event) {
-        if (ConfigNoBug.AntiBoneBugenable == true) {
+        if (ConfigAntiBug.AntiBoneBugenable == true) {
             Location loc = event.getLocation();
             Block block = loc.getBlock();
             if (block.getRelative(BlockFace.UP).getType() != Material.AIR) {
                 event.setCancelled(true);
                 if (event.getPlayer() != null) {
-                	if(ConfigNoBug.AntiBoneBugWarnMessage.equalsIgnoreCase("none") == false){
-                		event.getPlayer().sendMessage(ConfigNoBug.AntiBoneBugWarnMessage);
+                	if(ConfigAntiBug.AntiBoneBugWarnMessage.equalsIgnoreCase("none") == false){
+                		event.getPlayer().sendMessage(ConfigAntiBug.AntiBoneBugWarnMessage);
                 	}
                 }
             }
@@ -31,12 +30,12 @@ public class AntiBoneBug implements Listener {
 
     @EventHandler
     public void BoneGrowBlocker(StructureGrowEvent event) {
-        if(ConfigNoBug.AntiBoneBugenable == true){
+        if(ConfigAntiBug.AntiBoneBugenable == true){
             if (event.isFromBonemeal()) {
                 event.setCancelled(true);
                 if (event.getPlayer() != null) {
-                    if(ConfigNoBug.AntiBoneBugWarnMessage.equalsIgnoreCase("none") == false){
-                        event.getPlayer().sendMessage(ConfigNoBug.AntiBoneBugWarnMessage);
+                    if(ConfigAntiBug.AntiBoneBugWarnMessage.equalsIgnoreCase("none") == false){
+                        event.getPlayer().sendMessage(ConfigAntiBug.AntiBoneBugWarnMessage);
                     }
                 }
             }

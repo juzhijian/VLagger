@@ -1,6 +1,8 @@
-package com.mcml.space.util;
+package com.mcml.space.config;
 
-public abstract class ConfigNoBug extends Configurable {
+import com.mcml.space.util.Configurable;
+
+public abstract class ConfigAntiBug extends Configurable {
     @Node(path = "AntiBoneBug.enable")
     public static boolean AntiBoneBugenable;
     
@@ -13,8 +15,44 @@ public abstract class ConfigNoBug extends Configurable {
     @Node(path = "AntiFakeDeath.enable")
     public static boolean AntiFakeDeathenable;
     
-    @Node(path = "ProtectFarm.enable")
-    public static boolean ProtectFarmenable;
+    @Node(path = "AntiCheatBook.WarnMessage")
+    public static String AntiCheatBookWarnMessage = "§c严禁利用超级书Bug！";
+    
+    @Node(path = "AntiBedExplode.enable")
+    public static boolean AntiBedExplodeenable;
+    
+    @Node(path = "AntiBreakUseingChest.enable")
+    public static boolean AntiBreakUseingChestenable;
+    
+    @Node(path = "AntiCheatBook.enable")
+    public static boolean AntiCheatBookenable;
+    
+    @Node(path = "AntiCrashSign.enable")
+    public static boolean AntiCrashSignenable;
+    
+    @Node(path = "AntiDoorInfItem.enable")
+    public static boolean AntiDoorInfItemenable;
+    
+    @Node(path = "AntiDupeDropItem.enable")
+    public static boolean AntiDupeDropItemenable;
+    
+    @Node(path = "AntiInfItem.enable")
+    public static boolean AntiInfItemenable;
+    
+    @Node(path = "AntiInfRail.enable")
+    public static boolean AntiInfRailenable;
+    
+    @Node(path = "AntiNetherHopperInfItem.enable")
+    public static boolean AntiNetherHopperInfItemenable;
+    
+    @Node(path = "AntiPortalInfItem.enable")
+    public static boolean AntiPortalInfItemenable;
+    
+    @Node(path = "AntiRPGITEM.enable")
+    public static boolean AntiRPGITEMenable;
+    
+    @Node(path = "AntiSkullCrash.enable")
+    public static boolean AntiSkullCrashenable;
     
     @Node(path = "AntiCrashChat.enable")
     public static boolean AntiCrashChatenable;
@@ -42,4 +80,5 @@ public abstract class ConfigNoBug extends Configurable {
     
     @Node(path = "AntiInfItem.ClickcWarnMessage")
     public static String AntiInfItemClickcWarnMessage = "§c警告！不允许使用负数物品！";
+    
 }

@@ -6,12 +6,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
+import com.mcml.space.config.ConfigDoEvent;
 import com.mcml.space.core.VLagger;
 
 public class AutoRespawn implements Listener {
     @EventHandler
     public void AutoRespawner(PlayerDeathEvent event) {
-        if (VLagger.AutoRespawnenable == true) {
+        if (ConfigDoEvent.AutoRespawnenable == true) {
             final Player player = event.getEntity();
             Bukkit.getScheduler().runTaskLater(VLagger.MainThis, new Runnable() {
                 @Override
@@ -19,8 +20,8 @@ public class AutoRespawn implements Listener {
                 public void run() {
                     try {
                         player.spigot().respawn();
-                        if(VLagger.AutoRespawnRespawnTitleenable == true){
-                            player.sendTitle(VLagger.AutoRespawnRespawnTitleMainMessage, VLagger.AutoRespawnRespawnTitleMiniMessage);
+                        if(ConfigDoEvent.AutoRespawnRespawnTitleenable == true){
+                            player.sendTitle(ConfigDoEvent.AutoRespawnRespawnTitleMainMessage, ConfigDoEvent.AutoRespawnRespawnTitleMiniMessage);
                         }
                     } catch (Throwable ex) {
                     }

@@ -14,8 +14,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.core.VLagger;
-import com.mcml.space.util.ConfigClearLag;
 
 public class AutoSave implements Listener {
 
