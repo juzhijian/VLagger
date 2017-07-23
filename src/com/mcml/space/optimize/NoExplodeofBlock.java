@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockExplodeEvent;
 
+import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.core.VLagger;
 
 public class NoExplodeofBlock implements Listener {
@@ -23,13 +24,13 @@ public class NoExplodeofBlock implements Listener {
 
     @EventHandler
     public void AntiBlockExplode(BlockExplodeEvent event) {
-        if (VLagger.NoExplodeenable == true) {
+        if (ConfigClearLag.NoExplodeenable == true) {
             if (event.isCancelled() == false) {
-                if (VLagger.NoExplodeType.equals("NoBlockBreak")) {
+                if (ConfigClearLag.NoExplodeType.equals("NoBlockBreak")) {
                     List<Block> blockList = event.blockList();
                     blockList.clear();
                 }
-                if (VLagger.NoExplodeType.equals("NoExplode")) {
+                if (ConfigClearLag.NoExplodeType.equals("NoExplode")) {
                     event.setCancelled(true);
                 }
             }

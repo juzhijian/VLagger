@@ -12,6 +12,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 
+import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.core.VLagger;
 
 public class ItemClear implements Listener {
@@ -36,7 +37,7 @@ public class ItemClear implements Listener {
             for (int i = 0; i < entities.length; i++) {
                 Entity ent = entities[i];
                 if (ent.getType() == EntityType.DROPPED_ITEM) {
-                    if(VLagger.ClearItemNoClearItemType.contains(ent.getType().name()) == false){
+                    if(ConfigClearLag.ClearItemNoClearItemType.contains(ent.getType().name()) == false){
                         ent.remove();
                     }
                 }
@@ -46,7 +47,7 @@ public class ItemClear implements Listener {
 
     @EventHandler
     public void DeathNoClear(PlayerDeathEvent event) {
-        if(VLagger.ClearItemNoCleatDeath != true){
+        if(ConfigClearLag.ClearItemNoCleatDeath != true){
             return;
         }
         Player player = event.getEntity();
@@ -56,7 +57,7 @@ public class ItemClear implements Listener {
 
     @EventHandler
     public void TeleportNoClear(PlayerTeleportEvent event){
-        if(VLagger.ClearItemNoClearTeleport != true){
+        if(ConfigClearLag.ClearItemNoClearTeleport != true){
             return;
         }
         Player player = event.getPlayer();

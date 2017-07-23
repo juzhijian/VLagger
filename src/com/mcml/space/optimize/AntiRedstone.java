@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockRedstoneEvent;
 
+import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.core.VLagger;
 
 public class AntiRedstone implements Listener {
@@ -27,23 +28,23 @@ public class AntiRedstone implements Listener {
 
     private static boolean CheckFast(String bs) {
         if (CheckList.containsKey(bs)) {
-            return (CheckList.get(bs).longValue() + VLagger.AntiRedstoneInterval > System.currentTimeMillis());
+            return (CheckList.get(bs).longValue() + ConfigClearLag.AntiRedstoneInterval > System.currentTimeMillis());
         }
         return false;
     }
 
     @EventHandler
     public void LimitRedstonePeriod(BlockRedstoneEvent event) {
-        if (VLagger.AntiRedstoneenable == true) {
+        if (ConfigClearLag.AntiRedstoneenable == true) {
             Block block = event.getBlock();
             String bs = block.toString();
             if (CheckFast(bs)) {
-                if (VLagger.AntiRedstoneRemoveBlockList.contains(block.getType().name())) {
+                if (ConfigClearLag.AntiRedstoneRemoveBlockList.contains(block.getType().name())) {
                     block.setType(Material.AIR);
                     if (TipCooldown == false) {
-                        if(VLagger.AntiRedstoneMessage.equalsIgnoreCase("none") == false){
-                            VLagger.AntiRedstoneMessage = VLagger.AntiRedstoneMessage.replaceAll("%location%", bs);
-                            Bukkit.broadcastMessage(VLagger.PluginPrefix + VLagger.AntiRedstoneMessage);
+                        if(ConfigClearLag.AntiRedstoneMessage.equalsIgnoreCase("none") == false){
+                        	ConfigClearLag.AntiRedstoneMessage = ConfigClearLag.AntiRedstoneMessage.replaceAll("%location%", bs);
+                            Bukkit.broadcastMessage(VLagger.PluginPrefix + ConfigClearLag.AntiRedstoneMessage);
                             TipCooldown = true;
                         }
                     }

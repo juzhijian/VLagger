@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,7 +31,7 @@ public class AutoSave implements Listener {
         File BukkitFile = new File("bukkit.yml");
         YamlConfiguration bukkit = YamlConfiguration.loadConfiguration(BukkitFile);
         if (ver.contains("1.7.10")) {
-            isCannotSave = true;
+            isCannotSave = false;//测试：在1.7.10开启自动保存
         }
         if (isCannotSave != true) {
             if (BukkitFile.exists()) {
@@ -66,18 +67,19 @@ public class AutoSave implements Listener {
                     if (PlayerClickedMap.containsValue(LastChunk)) {
                         return;
                     }
+                    World world = LastChunk.getWorld();
                     if (LastChunk.isLoaded() == true) {
-                        LastChunk.unload(true);
+                    	world.unloadChunk(LastChunk.getX(), LastChunk.getZ(), true);
                         LastChunk.load();
                     } else {
                         LastChunk.load();
-                        LastChunk.unload(true);
+                        world.unloadChunk(LastChunk.getX(), LastChunk.getZ(), true);
                     }
                 }
                 PlayerInChunkMap.put(p, chunk);
                 p.saveData();
             }
-        }, VLagger.AutoSaveInterval * 20, VLagger.AutoSaveInterval * 20));
+        }, ConfigClearLag.AutoSaveInterval * 20, ConfigClearLag.AutoSaveInterval * 20));
     }
 
     @EventHandler

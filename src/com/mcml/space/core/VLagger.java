@@ -35,6 +35,7 @@ import com.mcml.space.fix.AntiNetherHopperInfItem;
 import com.mcml.space.fix.AntiPortalInfItem;
 import com.mcml.space.fix.AntiRPGITEM;
 import com.mcml.space.fix.AntiSkullCrash;
+import com.mcml.space.fix.NoDoubleOnline;
 import com.mcml.space.optimize.AntiRedstone;
 import com.mcml.space.optimize.AutoSave;
 import com.mcml.space.optimize.ChunkKeeper;
@@ -45,7 +46,6 @@ import com.mcml.space.optimize.HeapClear;
 import com.mcml.space.optimize.HeapShut;
 import com.mcml.space.optimize.ItemClear;
 import com.mcml.space.optimize.NoCrowdEntity;
-import com.mcml.space.optimize.NoDoubleOnline;
 import com.mcml.space.optimize.NoExplodeofBlock;
 import com.mcml.space.optimize.NoExplodeofEntity;
 import com.mcml.space.optimize.NoOneRestart;
@@ -158,10 +158,10 @@ public class VLagger extends JavaPlugin implements Listener {
         NoExplodeofBlock.RegisterEvents();
 
         ChunkKeeper.ChunkKeeperofTask();
-        Bukkit.getScheduler().runTaskTimer(this, new TilesClear(), TilesClearInterval * 20, TilesClearInterval * 20);
-        getServer().getScheduler().runTaskTimer(this, new ChunkUnloader(), 0, ChunkUnloaderInterval * 20);
+        Bukkit.getScheduler().runTaskTimer(this, new TilesClear(), ConfigClearLag.TilesClearInterval * 20, ConfigClearLag.TilesClearInterval * 20);
+        getServer().getScheduler().runTaskTimer(this, new ChunkUnloader(), 0, ConfigClearLag.ChunkUnloaderInterval * 20);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HeapShut(), 1 * 60 * 20, 1 * 60 * 20);
-        Bukkit.getScheduler().runTaskTimer(this, new HeapClear(), HeapClearPeriod * 20, HeapClearPeriod * 20);
+        Bukkit.getScheduler().runTaskTimer(this, new HeapClear(), ConfigClearLag.HeapClearPeriod * 20, ConfigClearLag.HeapClearPeriod * 20);
         Bukkit.getScheduler().runTaskAsynchronously(this, new NetWorker());
         Bukkit.getScheduler().runTaskTimer(this, new AntiFakeDeath(), 7 * 20, 7 * 20);
     }

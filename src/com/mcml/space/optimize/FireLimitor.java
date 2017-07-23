@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockIgniteEvent.IgniteCause;
 
+import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.core.VLagger;
 
 public class FireLimitor implements Listener {
@@ -17,7 +18,7 @@ public class FireLimitor implements Listener {
 
     @EventHandler
     public void WhenFireLimitor(BlockIgniteEvent event) {
-        if (VLagger.FireLimitorenable == true) {
+        if (ConfigClearLag.FireLimitorenable == true) {
             if (event.getCause() == IgniteCause.FLINT_AND_STEEL) {
                 return;
             }
@@ -32,7 +33,7 @@ public class FireLimitor implements Listener {
 
     private static boolean CheckFast(Chunk chunk) {
         if (ChunkChecked.containsKey(chunk)) {
-            return (ChunkChecked.get(chunk).longValue() + VLagger.FireLimitorPeriod > System
+            return (ChunkChecked.get(chunk).longValue() + ConfigClearLag.FireLimitorPeriod > System
                     .currentTimeMillis());
         }
         return false;

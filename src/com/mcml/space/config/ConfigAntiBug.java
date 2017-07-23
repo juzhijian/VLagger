@@ -15,6 +15,12 @@ public abstract class ConfigAntiBug extends Configurable {
     @Node(path = "AntiFakeDeath.enable")
     public static boolean AntiFakeDeathenable;
     
+    @Node(path = "NoDoubleOnline.enable")
+    public static boolean NoDoubleOnlineenable = true;
+    
+    @Node(path = "NoDoubleOnline.KickMessage")
+    public static String NoDoubleOnlineKickMessage = "抱歉，服务器中您已经在线了。ԅ(¯ㅂ¯ԅ)";
+    
     @Node(path = "AntiCheatBook.WarnMessage")
     public static String AntiCheatBookWarnMessage = "§c严禁利用超级书Bug！";
     
