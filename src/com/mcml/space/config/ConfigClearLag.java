@@ -3,6 +3,8 @@ package com.mcml.space.config;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import com.mcml.space.util.AzureAPI;
+import com.mcml.space.util.AzureAPI.ChainArrayList;
 import com.mcml.space.util.Configurable;
 
 public abstract class ConfigClearLag extends Configurable {
@@ -62,7 +64,13 @@ public abstract class ConfigClearLag extends Configurable {
     public static boolean NoCrowdedEntityenable;
     
     @Node(path = "NoCrowdedEntity.TypeList")
-    public static List<String> NoCrowdedEntityTypeList = Default.NoCrowdedEntityTypeList;
+    public static List<String> NoCrowdedEntityTypeList = AzureAPI.newChainStringList().to("ZOMBIE")
+                                                                                       .to("SKELETON")
+                                                                                       .to("SPIDER")
+                                                                                       .to("CREEPER")
+                                                                                       .to("SHEEP")
+                                                                                       .to("PIG")
+                                                                                       .to("CHICKEN");
     
     @Node(path = "NoCrowdedEntity.PerChunkLimit")
     public static int NoCrowdedEntityPerChunkLimit = 30;
@@ -75,7 +83,12 @@ public abstract class ConfigClearLag extends Configurable {
     public static int HeapShutPercent = 90;
     
     @Node(path = "AntiRedstone.RemoveBlockList")
-    public static List<String> AntiRedstoneRemoveBlockList = Default.AntiRedstoneRemoveBlockList;
+    public static List<String> AntiRedstoneRemoveBlockList = AzureAPI.newChainStringList().to("REDSTONE_WIRE")
+                                                                                           .to("DIODE_BLOCK_ON")
+                                                                                           .to("DIODE_BLOCK_OFF")
+                                                                                           .to("REDSTONE_TORCH_ON")
+                                                                                           .to("REDSTONE_TORCH_OFF")
+                                                                                           .to("REDSTONE_BLOCK");
     
     @Node(path = "AutoSave.Interval")
     public static long AutoSaveInterval = 15;

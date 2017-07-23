@@ -2,6 +2,7 @@ package com.mcml.space.util;
 
 import static com.mcml.space.util.VersionLevel.isPaper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -189,6 +190,18 @@ public class AzureAPI {
             r = r.concat(list.get(start) + (start == end ? "" : spilt));
         }
         return r;
+    }
+    
+    public static ChainArrayList<String> newChainStringList() {
+        return new ChainArrayList<>();
+    }
+    
+    @SuppressWarnings("serial")
+    public static class ChainArrayList<E> extends ArrayList<E> {
+        public ChainArrayList<E> to(E e) {
+            super.add(e);
+            return this;
+        }
     }
 
 }

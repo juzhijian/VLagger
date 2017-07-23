@@ -3,7 +3,10 @@ package com.mcml.space.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mcml.space.util.AzureAPI;
 import com.mcml.space.util.Configurable;
+
+import com.mcml.space.util.AzureAPI.ChainArrayList;
 
 public abstract class ConfigDoEvent extends Configurable {
     @Node(path = "AntiSpam.enable")
@@ -17,7 +20,7 @@ public abstract class ConfigDoEvent extends Configurable {
     public static String AntiSpamPeriodWarnMessage = "§c请慢点说话，别激动嘛！ _(:з」∠)_";
     
     @Node(path = "AntiSpam.Dirty.List")
-    public static List<String> AntiSpamDirtyList = Default.AntiSpamDirtyList;
+    public static List<String> AntiSpamDirtyList = AzureAPI.newChainStringList().to("网易");
     
     @Node(path = "NoEggChangeSpawner.enable")
     public static boolean NoEggChangeSpawnerenable;

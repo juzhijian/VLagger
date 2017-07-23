@@ -19,7 +19,6 @@ import com.mcml.space.config.ConfigAntiBug;
 import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.config.ConfigDoEvent;
 import com.mcml.space.config.ConfigPluginMain;
-import com.mcml.space.config.Default;
 import com.mcml.space.doevent.AntiSpam;
 import com.mcml.space.doevent.AutoRespawn;
 import com.mcml.space.doevent.AutoUpdateCheck;
@@ -331,8 +330,8 @@ public class VLagger extends JavaPlugin implements Listener {
     }
     
     private void LoadConfig(){
-    	this.saveResource("说明文档.txt", true);
-    	Default.Do();
+    	this.saveResource("说明文档.txt", false);
+    	
     	try {
             Configurable.restoreNodes(PluginMainConfigFile, ConfigPluginMain.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
