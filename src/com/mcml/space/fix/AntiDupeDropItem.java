@@ -6,6 +6,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
+import com.mcml.space.config.ConfigAntiBug;
 import com.mcml.space.core.VLagger;
 
 /**
@@ -15,7 +16,7 @@ public class AntiDupeDropItem implements Listener {
     
     @EventHandler(priority = EventPriority.LOWEST)
     public void CheckDropNoBugInfItem(PlayerDropItemEvent evt) {
-        if(VLagger.AntiDropInfItemenable){
+        if(ConfigAntiBug.AntiDupeDropItemenable){
             Player player = evt.getPlayer();
             if (player == null || !player.isOnline() || !player.isValid()) evt.setCancelled(true);
         }

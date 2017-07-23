@@ -53,8 +53,6 @@ public class TeleportPreloader implements Listener {
         val total = chunks.size();
         val preChunks = total / 3;
         val secondStage = preChunks * 2;
-
-        player.setInvulnerable(true);
         Bukkit.getScheduler().runTaskLater(VLagger.MainThis, new Runnable() {
             @Override
             public void run() {
@@ -88,8 +86,6 @@ public class TeleportPreloader implements Listener {
         Bukkit.getScheduler().runTaskLater(VLagger.MainThis, new Runnable() {
             @Override
             public void run() {
-                player.setInvulnerable(false);
-                
                 pending = true;
                 player.teleport(to);
                 pending = false;

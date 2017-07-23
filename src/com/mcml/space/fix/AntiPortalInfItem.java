@@ -12,8 +12,8 @@ import com.mcml.space.core.VLagger;
 public class AntiPortalInfItem implements Listener {
 
     @EventHandler
-    public void onEntityPortal(EntityPortalEvent event) {
-        if (VLagger.AntiPortalInfItemenable == true) {
+    public void PortalCheck(EntityPortalEvent event) {
+        if (ConfigAntiBug.AntiPortalInfItemenable == true) {
             if (event.getEntityType() == EntityType.MINECART_CHEST || event.getEntityType() == EntityType.MINECART_FURNACE || event.getEntityType() == EntityType.MINECART_HOPPER) {
                 event.setCancelled(true);
                 event.getEntity().remove();

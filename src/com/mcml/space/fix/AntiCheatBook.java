@@ -7,6 +7,7 @@ import org.bukkit.event.*;
 import org.bukkit.event.inventory.*;
 import org.bukkit.inventory.*;
 
+import com.mcml.space.config.ConfigAntiBug;
 import com.mcml.space.core.VLagger;
 
 import org.bukkit.event.player.*;
@@ -16,7 +17,7 @@ public class AntiCheatBook implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler
     public void ClickItemCheck(InventoryClickEvent e) {
-        if (VLagger.AntiCheatBookenable == true) {
+        if (ConfigAntiBug.AntiCheatBookenable == true) {
             ItemStack item = e.getCurrentItem();
             if (e.getWhoClicked().getType() != EntityType.PLAYER) {
                 return;
@@ -30,8 +31,8 @@ public class AntiCheatBook implements Listener {
                     Enchantment ench = Enchantment.getById(i);
                     item.removeEnchantment(ench);
                 }
-                if(VLagger.AntiCheatBookWarnMessage.equalsIgnoreCase("none") == false){
-                    p.sendMessage(VLagger.PluginPrefix + VLagger.AntiCheatBookWarnMessage);
+                if(ConfigAntiBug.AntiCheatBookWarnMessage.equalsIgnoreCase("none") == false){
+                    p.sendMessage(VLagger.PluginPrefix + ConfigAntiBug.AntiCheatBookWarnMessage);
                 }
             }
         }
@@ -40,7 +41,7 @@ public class AntiCheatBook implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler
     public void InteractCheck(PlayerInteractEvent e) {
-        if (VLagger.AntiCheatBookenable == true) {
+        if (ConfigAntiBug.AntiCheatBookenable == true) {
             ItemStack item = e.getItem();
             Player p = e.getPlayer();
             if (item == null) {
@@ -51,7 +52,9 @@ public class AntiCheatBook implements Listener {
                     Enchantment ench = Enchantment.getById(i);
                     item.removeEnchantment(ench);
                 }
-                p.sendMessage(VLagger.PluginPrefix + VLagger.AntiCheatBookWarnMessage);
+                if(ConfigAntiBug.AntiCheatBookWarnMessage.equalsIgnoreCase("none") == false){
+                    p.sendMessage(VLagger.PluginPrefix + ConfigAntiBug.AntiCheatBookWarnMessage);
+                }
             }
         }
     }

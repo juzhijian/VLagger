@@ -12,7 +12,7 @@ public class AntiCrashSign implements Listener {
 
     @EventHandler
     public void SignCheckChange(SignChangeEvent event) {
-        if (VLagger.AntiCrashSignenable == true) {
+        if (ConfigAntiBug.AntiCrashSignenable == true) {
             Player player = event.getPlayer();
             String[] lines =event.getLines();
             int ll = lines.length;

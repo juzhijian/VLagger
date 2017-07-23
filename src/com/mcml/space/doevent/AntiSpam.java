@@ -1,12 +1,14 @@
 package com.mcml.space.doevent;
 
 import java.util.HashMap;
+import java.util.List;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import com.mcml.space.config.ConfigAntiBug;
+import com.mcml.space.config.ConfigDoEvent;
 import com.mcml.space.core.VLagger;
 
 public class AntiSpam implements Listener {
@@ -15,14 +17,14 @@ public class AntiSpam implements Listener {
 
     private static boolean CheckFast(String bs) {
         if (CheckList.containsKey(bs)) {
-            return (CheckList.get(bs).longValue() + VLagger.AntiSpamPeriodPeriod * 1000 > System.currentTimeMillis());
+            return (CheckList.get(bs).longValue() + ConfigDoEvent.AntiSpamPeriodPeriod * 1000 > System.currentTimeMillis());
         }
         return false;
     }
 
     @EventHandler
     public void SpamChecker(AsyncPlayerChatEvent event) {
-        if (VLagger.AntiSpamenable == true) {
+        if (ConfigDoEvent.AntiSpamenable == true) {
             Player p = event.getPlayer();
             if (p.hasPermission("VLagger.bypass.Spam")) {
                 return;
@@ -30,8 +32,8 @@ public class AntiSpam implements Listener {
             String pn = p.getName();
             if (CheckFast(pn)) {
                 event.setCancelled(true);
-                if(VLagger.AntiSpamPeriodWarnMessage.equalsIgnoreCase("none") == false){
-                    p.sendMessage(VLagger.PluginPrefix + VLagger.AntiSpamPeriodWarnMessage);
+                if(ConfigDoEvent.AntiSpamPeriodWarnMessage.equalsIgnoreCase("none") == false){
+                    p.sendMessage(VLagger.PluginPrefix + ConfigDoEvent.AntiSpamPeriodWarnMessage);
                 }
             }else{
                 CheckList.put(pn, System.currentTimeMillis());
@@ -41,28 +43,29 @@ public class AntiSpam implements Listener {
 
     @EventHandler
     public void AntiDirty(AsyncPlayerChatEvent event) {
-        if (VLagger.AntiSpamenable == true) {
+        if (ConfigDoEvent.AntiSpamenable == true) {
             Player p = event.getPlayer();
             String message = event.getMessage();
             if (p.hasPermission("VLagger.bypass.Spam")) {
                 return;
             }
-            int ss = VLagger.AntiSpamDirtyList.size();
-            for(int i = 0;i < ss;i++){
-                String[] strings = VLagger.AntiSpamDirtyList.get(i);
-                int sl = strings.length;
-                int DirtyTimes = 0;
-                for(int ii = 0;ii<sl;ii++){
-                    if(message.contains(strings[ii])){
-                        DirtyTimes++;
-                        if(DirtyTimes >= sl){
-                            event.setCancelled(true);
-                            if(ConfigAntiBug.AntiSpamDirtyWarnMessage.equalsIgnoreCase("none") == false){
-                                p.sendMessage(VLagger.PluginPrefix + ConfigAntiBug.AntiSpamDirtyWarnMessage);
-                            }
-                        }
+            List<String[]> DirtyListStrings = ConfigDoEvent.AntiSpamDirtyListStrings();
+            int dlsl = DirtyListStrings.size();
+            for(int i = 0;i<dlsl;i++){
+            	String[] thisdirty = DirtyListStrings.get(i);
+            	int DirtyTimes = 0;
+            	int tdl = thisdirty.length;
+            	for(int ii = 0;ii<tdl;ii++){
+            		if(message.contains(thisdirty[ii])){
+            			DirtyTimes++;
+            		}
+            	}
+            	if(DirtyTimes >= tdl){
+            		event.setCancelled(true);
+                    if(ConfigDoEvent.AntiSpamDirtyWarnMessage.equalsIgnoreCase("none") == false){
+                        p.sendMessage(VLagger.PluginPrefix + ConfigDoEvent.AntiSpamDirtyWarnMessage);
                     }
-                }
+            	}
             }
         }
     }

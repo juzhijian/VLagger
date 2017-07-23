@@ -16,7 +16,7 @@ public class AntiBedExplode implements Listener {
 
     @EventHandler
     public void CheckInterackBed(PlayerInteractEvent e) {
-        if (VLagger.AntiBedExplodeenable == true) {
+        if (ConfigAntiBug.AntiBedExplodeenable == true) {
             Player p = e.getPlayer();
             Block block = e.getClickedBlock();
             if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
