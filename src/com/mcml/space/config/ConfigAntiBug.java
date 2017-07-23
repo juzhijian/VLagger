@@ -3,10 +3,10 @@ package com.mcml.space.config;
 import com.mcml.space.util.Configurable;
 
 public abstract class ConfigAntiBug extends Configurable {
-    @Node(path = "AntiBoneBug.enable")
-    public static boolean AntiBoneBugenable;
+    @Node(path = "AntiBoneBug.enable") // issue-fixer.bonemeal-inf-item
+    public static boolean safetyBonemeal;
     
-    @Node(path = "AntiBoneBug.WarnMessage")
+    @Node(path = "AntiBoneBug.WarnMessage") 
     public static String AntiBoneBugWarnMessage = "§c严禁卡树苗催熟BUG！";
     
     @Node(path = "AntiFakeDeath.KickMessage")

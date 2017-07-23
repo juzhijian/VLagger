@@ -42,7 +42,7 @@ import com.mcml.space.optimize.ChunkKeeper;
 import com.mcml.space.optimize.ChunkUnloader;
 import com.mcml.space.optimize.ChunkUnloaderofListener;
 import com.mcml.space.optimize.FireLimitor;
-import com.mcml.space.optimize.HeapClear;
+import com.mcml.space.optimize.TimerGarbageCollect;
 import com.mcml.space.optimize.HeapShut;
 import com.mcml.space.optimize.ItemClear;
 import com.mcml.space.optimize.NoCrowdEntity;
@@ -160,7 +160,7 @@ public class VLagger extends JavaPlugin implements Listener {
         Bukkit.getScheduler().runTaskTimer(this, new TilesClear(), ConfigClearLag.TilesClearInterval * 20, ConfigClearLag.TilesClearInterval * 20);
         getServer().getScheduler().runTaskTimer(this, new ChunkUnloader(), 0, ConfigClearLag.ChunkUnloaderInterval * 20);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HeapShut(), 1 * 60 * 20, 1 * 60 * 20);
-        Bukkit.getScheduler().runTaskTimer(this, new HeapClear(), ConfigClearLag.HeapClearPeriod * 20, ConfigClearLag.HeapClearPeriod * 20);
+        Bukkit.getScheduler().runTaskTimer(this, new TimerGarbageCollect(), ConfigClearLag.HeapClearPeriod * 20, ConfigClearLag.HeapClearPeriod * 20);
         Bukkit.getScheduler().runTaskAsynchronously(this, new NetWorker());
         Bukkit.getScheduler().runTaskTimer(this, new AntiFakeDeath(), 7 * 20, 7 * 20);
     }

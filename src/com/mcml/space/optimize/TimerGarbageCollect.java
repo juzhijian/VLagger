@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.util.AzureAPI;
 
-public class HeapClear implements Runnable {
+public class TimerGarbageCollect implements Runnable {
 
     @Override
     public void run() {

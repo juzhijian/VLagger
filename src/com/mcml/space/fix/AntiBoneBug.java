@@ -14,7 +14,7 @@ public class AntiBoneBug implements Listener {
 
     @EventHandler
     public void TreeGrowChecker(StructureGrowEvent event) {
-        if (ConfigAntiBug.AntiBoneBugenable == true) {
+        if (ConfigAntiBug.safetyBonemeal) {
             Location loc = event.getLocation();
             Block block = loc.getBlock();
             if (block.getRelative(BlockFace.UP).getType() != Material.AIR) {
@@ -30,7 +30,7 @@ public class AntiBoneBug implements Listener {
 
     @EventHandler
     public void BoneGrowBlocker(StructureGrowEvent event) {
-        if(ConfigAntiBug.AntiBoneBugenable == true){
+        if(ConfigAntiBug.safetyBonemeal){
             if (event.isFromBonemeal()) {
                 event.setCancelled(true);
                 if (event.getPlayer() != null) {
