@@ -8,7 +8,7 @@ import com.mcml.space.util.Configurable;
 
 public abstract class ConfigDoEvent extends Configurable {
     @Node(path = "AntiSpam.enable")
-    public static boolean AntiSpamenable = true;
+    public static boolean AntiSpamenable;
     
     @Node(path = "AntiSpam.Period.Period")
     public static long AntiSpamPeriodPeriod = 2;
@@ -20,7 +20,7 @@ public abstract class ConfigDoEvent extends Configurable {
     public static List<String> AntiSpamDirtyList = Lists.newArrayList();
     
     @Node(path = "NoEggChangeSpawner.enable")
-    public static boolean NoEggChangeSpawnerenable = true;
+    public static boolean NoEggChangeSpawnerenable;
     
     @Node(path = "NoEggChangeSpawner.TipMessage")
     public static String NoEggChangeSpawnerTipMessage = "&c抱歉，禁止使用刷怪蛋修改刷怪笼";
@@ -42,19 +42,19 @@ public abstract class ConfigDoEvent extends Configurable {
     }
     
     @Node(path ="BlockCommander.enable")
-    public static boolean BlockCommanderenable = true;
+    public static boolean BlockCommanderenable;
     
     @Node(path = "ProtectFarm.enable")
-    public static boolean ProtectFarmenable = true;
+    public static boolean ProtectFarmenable;
     
     @Node(path = "AntiSpam.Dirty.WarnMessage")
     public static String AntiSpamDirtyWarnMessage = "§c什么事情激动得你都想骂人啦？";
     
     @Node(path = "AutoRespawn.enable")
-    public static boolean AutoRespawnenable = true;
+    public static boolean AutoRespawnenable;
     
     @Node(path = "AutoRespawn.RespawnTitle.enable")
-    public static boolean AutoRespawnRespawnTitleenable = true;
+    public static boolean AutoRespawnRespawnTitleenable;
     
     @Node(path = "AutoRespawn.RespawnTitle.MainMessage")
     public static String AutoRespawnRespawnTitleMainMessage = "§e你死了！";

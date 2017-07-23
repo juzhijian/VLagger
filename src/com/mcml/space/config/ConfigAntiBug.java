@@ -13,10 +13,10 @@ public abstract class ConfigAntiBug extends Configurable {
     public static String AntiFakeDeathKickMessage = "§c严禁卡假死BUG！";
     
     @Node(path = "AntiFakeDeath.enable")
-    public static boolean AntiFakeDeathenable = true;
+    public static boolean AntiFakeDeathenable;
     
     @Node(path = "NoDoubleOnline.enable")
-    public static boolean NoDoubleOnlineenable = true;
+    public static boolean NoDoubleOnlineenable;
     
     @Node(path = "NoDoubleOnline.KickMessage")
     public static String NoDoubleOnlineKickMessage = "抱歉，服务器中您已经在线了。ԅ(¯ㅂ¯ԅ)";
@@ -25,43 +25,43 @@ public abstract class ConfigAntiBug extends Configurable {
     public static String AntiCheatBookWarnMessage = "§c严禁利用超级书Bug！";
     
     @Node(path = "AntiBedExplode.enable")
-    public static boolean AntiBedExplodeenable = true;
+    public static boolean AntiBedExplodeenable;
     
     @Node(path = "AntiBreakUseingChest.enable")
-    public static boolean AntiBreakUseingChestenable = true;
+    public static boolean AntiBreakUseingChestenable;
     
     @Node(path = "AntiCheatBook.enable")
-    public static boolean AntiCheatBookenable = true;
+    public static boolean AntiCheatBookenable;
     
     @Node(path = "AntiCrashSign.enable")
-    public static boolean AntiCrashSignenable = true;
+    public static boolean AntiCrashSignenable;
     
     @Node(path = "AntiDoorInfItem.enable")
-    public static boolean AntiDoorInfItemenable = true;
+    public static boolean AntiDoorInfItemenable;
     
     @Node(path = "AntiDupeDropItem.enable")
-    public static boolean AntiDupeDropItemenable = true;
+    public static boolean AntiDupeDropItemenable;
     
     @Node(path = "AntiInfItem.enable")
-    public static boolean AntiInfItemenable = true;
+    public static boolean AntiInfItemenable;
     
     @Node(path = "AntiInfRail.enable")
-    public static boolean AntiInfRailenable = true;
+    public static boolean AntiInfRailenable;
     
     @Node(path = "AntiNetherHopperInfItem.enable")
-    public static boolean AntiNetherHopperInfItemenable = true;
+    public static boolean AntiNetherHopperInfItemenable;
     
     @Node(path = "AntiPortalInfItem.enable")
-    public static boolean AntiPortalInfItemenable = true;
+    public static boolean AntiPortalInfItemenable;
     
     @Node(path = "AntiRPGITEM.enable")
-    public static boolean AntiRPGITEMenable = true;
+    public static boolean AntiRPGITEMenable;
     
     @Node(path = "AntiSkullCrash.enable")
-    public static boolean AntiSkullCrashenable = true;
+    public static boolean AntiSkullCrashenable;
     
     @Node(path = "AntiCrashChat.enable")
-    public static boolean AntiCrashChatenable = true;
+    public static boolean AntiCrashChatenable;
     
     @Node(path = "AntiCrashChat.SpecialStringWarnMessage")
     public static String AntiCrashChatSpecialStringWarnMessage = "§c严禁使用崩服代码炸服！";
