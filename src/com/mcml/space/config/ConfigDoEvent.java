@@ -3,6 +3,7 @@ package com.mcml.space.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.collect.Lists;
 import com.mcml.space.util.Configurable;
 
 public abstract class ConfigDoEvent extends Configurable {
@@ -16,13 +17,13 @@ public abstract class ConfigDoEvent extends Configurable {
     public static String AntiSpamPeriodWarnMessage;
     
     @Node(path = "AntiSpam.Dirty.List")
-    public static List<String> AntiSpamDirtyList;
+    public static List<String> AntiSpamDirtyList = Lists.newArrayList();
     
     @Node(path = "NoEggChangeSpawner.enable")
     public static boolean NoEggChangeSpawnerenable;
     
     @Node(path = "NoEggChangeSpawner.TipMessage")
-    public static String NoEggChangeSpawnerTipMessage;
+    public static String NoEggChangeSpawnerTipMessage = "&c抱歉，禁止使用刷怪蛋修改刷怪笼";
     
     public static List<String[]> AntiSpamDirtyListStrings(){
     	List<String[]> DirtyListStrings = new ArrayList<String[]>();
@@ -56,8 +57,8 @@ public abstract class ConfigDoEvent extends Configurable {
     public static boolean AutoRespawnRespawnTitleenable;
     
     @Node(path = "AutoRespawn.RespawnTitle.MainMessage")
-    public static String AutoRespawnRespawnTitleMainMessage;
+    public static String AutoRespawnRespawnTitleMainMessage = "§e你死了！";
     
     @Node(path = "AutoRespawn.RespawnTitle.MiniMessage")
-    public static String AutoRespawnRespawnTitleMiniMessage;
+    public static String AutoRespawnRespawnTitleMiniMessage = "§c已为您自动复活！";
 }

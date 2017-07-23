@@ -16,6 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.mcml.space.config.ConfigClearLag;
+import com.mcml.space.config.ConfigDoEvent;
 import com.mcml.space.config.ConfigAntiBug;
 import com.mcml.space.doevent.AntiSpam;
 import com.mcml.space.doevent.AutoRespawn;
@@ -483,6 +484,12 @@ public class VLagger extends JavaPlugin implements Listener {
         
         try {
             Configurable.restoreNodes(AntiBugConfigFile, ConfigAntiBug.class);
+        } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
+            e.printStackTrace();
+        }
+        
+        try {
+            Configurable.restoreNodes(DoEventConfigFile, ConfigDoEvent.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }

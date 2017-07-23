@@ -16,7 +16,7 @@ public abstract class ConfigAntiBug extends Configurable {
     public static boolean AntiFakeDeathenable;
     
     @Node(path = "NoDoubleOnline.enable")
-    public static boolean NoDoubleOnlineenable = true;
+    public static boolean NoDoubleOnlineenable;
     
     @Node(path = "NoDoubleOnline.KickMessage")
     public static String NoDoubleOnlineKickMessage = "抱歉，服务器中您已经在线了。ԅ(¯ㅂ¯ԅ)";
