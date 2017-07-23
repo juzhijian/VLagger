@@ -11,7 +11,7 @@ public class AntiNetherHopperInfItem implements Listener {
 
     @EventHandler
     public void onHopper(InventoryMoveItemEvent event) {
-        if (ConfigAntiBug.AntiNetherHopperInfItemenable == true) {
+        if (ConfigAntiBug.fixNetherHopperInfItem) {
             if (event.getInitiator().getHolder() instanceof Hopper && event.getSource().getHolder() instanceof Hopper) {
                 Hopper to = (Hopper) event.getInitiator().getHolder();
                 Hopper from = (Hopper)event.getSource().getHolder();

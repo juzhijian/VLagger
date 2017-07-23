@@ -192,7 +192,7 @@ public class AzureAPI {
         return r;
     }
     
-    public static ChainArrayList<String> newChainStringList() {
+    public static ChainArrayList<String> newChainStringList() { // TODO: any
         return new ChainArrayList<>();
     }
     

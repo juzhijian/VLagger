@@ -15,6 +15,8 @@ public class AntiCheatBook implements Listener {
     
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBookEdit(PlayerEditBookEvent evt) {
+        if (!ConfigAntiBug.noCheatBook) return;
+        
         BookMeta prev = evt.getPreviousBookMeta();
         BookMeta meta = evt.getNewBookMeta();
         if (prev.equals(meta)) return;
@@ -54,8 +56,8 @@ public class AntiCheatBook implements Listener {
         
         evt.setNewBookMeta(meta);
         
-        if(!ConfigAntiBug.AntiCheatBookWarnMessage.equalsIgnoreCase("none")){
-            AzureAPI.log(evt.getPlayer(), ConfigAntiBug.AntiCheatBookWarnMessage);
+        if(!ConfigAntiBug.messageCheatBook.equalsIgnoreCase("none")){
+            AzureAPI.log(evt.getPlayer(), ConfigAntiBug.messageCheatBook);
         }
     }
     

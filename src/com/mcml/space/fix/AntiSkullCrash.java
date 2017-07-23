@@ -13,7 +13,7 @@ public class AntiSkullCrash implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void NoSkullCrash(BlockFromToEvent evt) {
-        if (ConfigAntiBug.AntiSkullCrashenable) {
+        if (ConfigAntiBug.noSkullCrash) {
             if (evt.getToBlock().getType() == Material.SKULL) {
                 evt.setCancelled(true);
             }

@@ -8,64 +8,64 @@ public abstract class ConfigAntiBug extends Configurable {
     
     @Locale
     @Node(path = "AntiBoneBug.WarnMessage") 
-    public static String AntiBoneBugWarnMessage = "§c严禁卡树苗催熟BUG！";
+    public static String messageBonemeal = "§c严禁卡树苗催熟BUG！";
     
     @Locale
     @Node(path = "AntiFakeDeath.KickMessage")
-    public static String AntiFakeDeathKickMessage = "§c严禁卡假死BUG！";
+    public static String messageFakedeath = "§c严禁卡假死BUG！";
     
     @Node(path = "AntiFakeDeath.enable")
-    public static boolean AntiFakeDeathenable;
+    public static boolean antiFakedeath;
     
     @Node(path = "NoDoubleOnline.enable")
     public static boolean NoDoubleOnlineenable;
     
     @Locale
     @Node(path = "NoDoubleOnline.KickMessage")
-    public static String NoDoubleOnlineKickMessage = "抱歉，服务器中您已经在线了。ԅ(¯ㅂ¯ԅ)";
+    public static String messageKickDupeOnline = "抱歉，服务器中您已经在线了。ԅ(¯ㅂ¯ԅ)";
     
     @Locale
     @Node(path = "AntiCheatBook.WarnMessage")
-    public static String AntiCheatBookWarnMessage = "§c严禁利用超级书Bug！";
+    public static String messageCheatBook = "§c严禁利用超级书Bug！";
     
     @Node(path = "AntiBedExplode.enable")
-    public static boolean AntiBedExplodeenable;
+    public static boolean noBedExplore;
     
     @Node(path = "AntiBreakUseingChest.enable")
-    public static boolean AntiBreakUseingChestenable;
+    public static boolean protectUsingChest;
     
     @Node(path = "AntiCheatBook.enable")
-    public static boolean AntiCheatBookenable;
+    public static boolean noCheatBook;
     
     @Node(path = "AntiCrashSign.enable")
-    public static boolean AntiCrashSignenable;
+    public static boolean fixCrashSign;
     
     @Node(path = "AntiDoorInfItem.enable")
-    public static boolean AntiDoorInfItemenable;
+    public static boolean fixDoorInfItem;
     
     @Node(path = "AntiDupeDropItem.enable")
-    public static boolean AntiDupeDropItemenable;
+    public static boolean fixDupeDropItem;
     
     @Node(path = "AntiInfItem.enable")
-    public static boolean AntiInfItemenable;
+    public static boolean noInfItem;
     
     @Node(path = "AntiInfRail.enable")
-    public static boolean AntiInfRailenable;
+    public static boolean fixInfRail;
     
     @Node(path = "AntiNetherHopperInfItem.enable")
-    public static boolean AntiNetherHopperInfItemenable;
+    public static boolean fixNetherHopperInfItem;
     
     @Node(path = "AntiPortalInfItem.enable")
-    public static boolean AntiPortalInfItemenable;
+    public static boolean fixPortalInfItem;
     
     @Node(path = "AntiRPGITEM.enable")
-    public static boolean AntiRPGITEMenable;
+    public static boolean fixRpgItemInfItem;
     
     @Node(path = "AntiSkullCrash.enable")
-    public static boolean AntiSkullCrashenable;
+    public static boolean noSkullCrash;
     
     @Node(path = "AntiCrashChat.enable")
-    public static boolean AntiCrashChatenable;
+    public static boolean noCrashChat;
     
     @Locale
     @Node(path = "AntiCrashChat.SpecialStringWarnMessage")

@@ -6,8 +6,6 @@ import java.util.List;
 import com.mcml.space.util.AzureAPI;
 import com.mcml.space.util.Configurable;
 
-import com.mcml.space.util.AzureAPI.ChainArrayList;
-
 public abstract class ConfigDoEvent extends Configurable {
     @Node(path = "AntiSpam.enable")
     public static boolean AntiSpamenable;

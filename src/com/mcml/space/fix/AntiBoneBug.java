@@ -20,8 +20,8 @@ public class AntiBoneBug implements Listener {
             if (block.getRelative(BlockFace.UP).getType() != Material.AIR) {
                 event.setCancelled(true);
                 if (event.getPlayer() != null) {
-                	if(ConfigAntiBug.AntiBoneBugWarnMessage.equalsIgnoreCase("none") == false){
-                		event.getPlayer().sendMessage(ConfigAntiBug.AntiBoneBugWarnMessage);
+                	if(ConfigAntiBug.messageBonemeal.equalsIgnoreCase("none") == false){
+                		event.getPlayer().sendMessage(ConfigAntiBug.messageBonemeal);
                 	}
                 }
             }
@@ -34,8 +34,8 @@ public class AntiBoneBug implements Listener {
             if (event.isFromBonemeal()) {
                 event.setCancelled(true);
                 if (event.getPlayer() != null) {
-                    if(ConfigAntiBug.AntiBoneBugWarnMessage.equalsIgnoreCase("none") == false){
-                        event.getPlayer().sendMessage(ConfigAntiBug.AntiBoneBugWarnMessage);
+                    if(ConfigAntiBug.messageBonemeal.equalsIgnoreCase("none") == false){
+                        event.getPlayer().sendMessage(ConfigAntiBug.messageBonemeal);
                     }
                 }
             }

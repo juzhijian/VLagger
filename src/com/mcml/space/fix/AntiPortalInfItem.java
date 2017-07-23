@@ -13,7 +13,7 @@ public class AntiPortalInfItem implements Listener {
 
     @EventHandler
     public void PortalCheck(EntityPortalEvent event) {
-        if (ConfigAntiBug.AntiPortalInfItemenable == true) {
+        if (ConfigAntiBug.fixPortalInfItem) {
             if (event.getEntityType() == EntityType.MINECART_CHEST || event.getEntityType() == EntityType.MINECART_FURNACE || event.getEntityType() == EntityType.MINECART_HOPPER) {
                 event.setCancelled(true);
                 event.getEntity().remove();

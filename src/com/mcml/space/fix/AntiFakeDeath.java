@@ -11,14 +11,14 @@ public class AntiFakeDeath implements Runnable{
 
     @Override
     public void run() {
-        if(ConfigAntiBug.AntiFakeDeathenable == true){
+        if(ConfigAntiBug.antiFakedeath == true){
             List<Player> players = Utils.getonlinePlayers();
             int ps = players.size();
             for(int i = 0;i<ps;i++){
                 Player player = players.get(i);
                 if(player.getHealth() < 0 & player.isDead() == false){
                     player.setHealth(0.0);
-                    player.kickPlayer(ConfigAntiBug.AntiFakeDeathKickMessage);
+                    player.kickPlayer(ConfigAntiBug.messageFakedeath);
                 }
             }
         }

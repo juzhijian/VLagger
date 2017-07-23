@@ -23,7 +23,7 @@ public class NoDoubleOnline implements Listener {
                 String Ingamepn = onlinePlayers.get(i).getName();
                 if (Ingamepn.equalsIgnoreCase(pn) & Ingamepn.equals(pn) == false) {
                     event.setResult(PlayerPreLoginEvent.Result.KICK_BANNED);
-                    event.setKickMessage(ConfigPluginMain.PluginPrefix + ConfigAntiBug.NoDoubleOnlineKickMessage);
+                    event.setKickMessage(ConfigPluginMain.PluginPrefix + ConfigAntiBug.messageKickDupeOnline);
                 }
             }
         }

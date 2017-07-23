@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import com.mcml.space.util.AzureAPI;
-import com.mcml.space.util.AzureAPI.ChainArrayList;
 import com.mcml.space.util.Configurable;
 
 public abstract class ConfigClearLag extends Configurable {

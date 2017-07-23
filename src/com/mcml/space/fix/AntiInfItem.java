@@ -20,7 +20,7 @@ public class AntiInfItem implements Listener {
     @EventHandler
     @SuppressWarnings("deprecation")
     public void InteractCheck(PlayerInteractEvent event) {
-        if (ConfigAntiBug.AntiInfItemenable == true) {
+        if (ConfigAntiBug.noInfItem == true) {
             Player player = event.getPlayer();
             if (event.getItem() != null) {
                 if (event.getItem().getAmount() <= 0) {
@@ -36,7 +36,7 @@ public class AntiInfItem implements Listener {
 
     @EventHandler
     public void DispenseCheck(BlockDispenseEvent event) {
-        if (ConfigAntiBug.AntiInfItemenable == true) {
+        if (ConfigAntiBug.noInfItem == true) {
             Block block = event.getBlock();
             int i;
             if (block.getType() == Material.DISPENSER) {

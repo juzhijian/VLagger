@@ -16,7 +16,7 @@ public class AntiBreakUsingChest implements Listener {
 
     @EventHandler
     public void CheckNoBreakChest(BlockBreakEvent e) {
-        if (ConfigAntiBug.AntiBreakUseingChestenable == true) {
+        if (ConfigAntiBug.protectUsingChest) {
             Player p = e.getPlayer();
             if (e.getBlock().getState() instanceof InventoryHolder) {
                 InventoryHolder ih = (InventoryHolder) e.getBlock().getState();

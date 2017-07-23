@@ -15,7 +15,7 @@ public class AntiDupeDropItem implements Listener {
     
     @EventHandler(priority = EventPriority.LOWEST)
     public void CheckDropNoBugInfItem(PlayerDropItemEvent evt) {
-        if(ConfigAntiBug.AntiDupeDropItemenable){
+        if(ConfigAntiBug.fixDupeDropItem){
             Player player = evt.getPlayer();
             if (player == null || !player.isOnline() || !player.isValid()) evt.setCancelled(true);
         }

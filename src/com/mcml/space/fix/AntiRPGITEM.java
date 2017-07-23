@@ -10,7 +10,7 @@ public class AntiRPGITEM implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void pickup(PlayerPickupItemEvent event) {
-        if (ConfigAntiBug.AntiRPGITEMenable == true) {
+        if (ConfigAntiBug.fixRpgItemInfItem) {
             if (event.getRemaining() <= 0) {
                 event.getItem().remove();
             }

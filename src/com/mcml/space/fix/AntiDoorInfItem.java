@@ -19,7 +19,7 @@ public class AntiDoorInfItem implements Listener {
 
     @EventHandler
     public void PlaceCheckDoor(BlockPlaceEvent e) {
-        if(ConfigAntiBug.AntiDoorInfItemenable == true){
+        if(ConfigAntiBug.fixDoorInfItem){
             if(e.getBlock().getType().name().contains("DOOR")){
                 Player p = e.getPlayer();
                 Chunk chunk = p.getLocation().getChunk();
@@ -28,7 +28,7 @@ public class AntiDoorInfItem implements Listener {
                     Entity ent = entities[i];
                     if(ent.getType() == EntityType.DROPPED_ITEM){
                         Item item = (Item)ent;
-                        if(item.getItemStack().getType() == Material.SUGAR_CANE|item.getItemStack().getType() == Material.CACTUS){
+                        if(item.getItemStack().getType() == Material.SUGAR_CANE||item.getItemStack().getType() == Material.CACTUS){
                             ent.remove();
                         }
                     }

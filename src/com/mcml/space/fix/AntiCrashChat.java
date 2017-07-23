@@ -23,6 +23,8 @@ public class AntiCrashChat implements Listener{
 
     @EventHandler(priority = EventPriority.HIGH)
     public void ChatCheckCrash(AsyncPlayerChatEvent event){
+        if (!ConfigAntiBug.noCrashChat) return;
+        
         Player player = event.getPlayer();
         String message = event.getMessage();
         if(message.contains("İ")){
