@@ -3,6 +3,10 @@ package com.mcml.space.optimize;
 import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -11,6 +15,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Lists;
 import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.core.VLagger;
@@ -23,11 +29,11 @@ import lombok.val;
  * @author SotrForgotten
  */
 public class TeleportPreloader implements Listener {
-    public static final Map<Location, List<Coord2D>> caches = new WeakHashMap<Location, List<Coord2D>>();
+    public static final Cache<Location, List<Coord2D>> caches = CacheBuilder.newBuilder().maximumSize(Bukkit.getMaxPlayers() > 256 ? 256 : (Bukkit.getMaxPlayers() < 64 ? 64 : Bukkit.getMaxPlayers())).expireAfterWrite(5, TimeUnit.MINUTES).build();
     protected volatile static boolean pending;
 
     @EventHandler(priority = EventPriority.LOWEST)
-    public void onTeleport(PlayerTeleportEvent evt) {
+    public void onTeleport(PlayerTeleportEvent evt) throws ExecutionException {
         if (evt.isCancelled() || evt.isAsynchronous() || pending || !ConfigClearLag.TeleportPreLoaderenable) return;
 
         val from = evt.getFrom();
@@ -45,7 +51,12 @@ public class TeleportPreloader implements Listener {
         val world = player.getWorld();
 
         boolean custom = AzureAPI.customViewDistance(player);
-        List<Coord2D> chunks = custom ? collectPreloadChunks(to, player) : caches.get(to);
+        List<Coord2D> chunks = custom ? collectPreloadChunks(to, player) : caches.get(to, new Callable<List<Coord2D>>() {
+            @Override
+            public List<Coord2D> call() {
+                return collectPreloadChunks(to, player);
+            }
+        });
         if (chunks == null) {
             chunks = collectPreloadChunks(to, player);
             caches.put(to, chunks);
