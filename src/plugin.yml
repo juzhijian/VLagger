@@ -3,6 +3,8 @@ version: 2.8.2-%BUILD_NUMBER%
 main: com.mcml.space.core.VLagger
 author: Vlvxingze
 authors: [IzzelAliz, Sotr]
+database: false
+load: STARTUP
 commands:
   vlg:
     description: VLagger
