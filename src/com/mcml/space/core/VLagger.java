@@ -33,7 +33,7 @@ import com.mcml.space.fix.AntiRPGITEM;
 import com.mcml.space.fix.AntiSkullCrash;
 import com.mcml.space.fix.FixDupeLogin;
 import com.mcml.space.function.AntiSpam;
-import com.mcml.space.function.AutoRespawn;
+import com.mcml.space.function.RespawnAction;
 import com.mcml.space.function.AutoUpdateCheck;
 import com.mcml.space.function.BlockCommander;
 import com.mcml.space.function.FarmProtecter;
@@ -146,7 +146,7 @@ public class VLagger extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new TeleportPreloader(), this);
         Bukkit.getPluginManager().registerEvents(new AntiBedExplode(), this);
         Bukkit.getPluginManager().registerEvents(new BlockCommander(), this);
-        Bukkit.getPluginManager().registerEvents(new AutoRespawn(), this);
+        if (VersionLevel.isSpigot()) Bukkit.getPluginManager().registerEvents(new RespawnAction(), this);
         Bukkit.getPluginManager().registerEvents(new WaterFlowLimiter(), this);
         Bukkit.getPluginManager().registerEvents(new FireLimitor(), this);
         Bukkit.getPluginManager().registerEvents(new AutoUpdateCheck(), this);
