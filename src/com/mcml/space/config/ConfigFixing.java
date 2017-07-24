@@ -63,7 +63,7 @@ public abstract class ConfigFixing extends Configurable {
     public static boolean fixPortalInfItem = true;
     
     @Node(path = "AntiRPGITEM.enable")
-    public static boolean fixRpgItemInfItem = true;
+    public static boolean fixRPGItemInfItem = true;
     
     @Node(path = "AntiSkullCrash.enable")
     public static boolean noSkullCrash = true;

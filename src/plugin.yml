@@ -1,13 +1,13 @@
 name: VLagger
-version: 2.8.2-%BUILD_NUMBER%
 main: com.mcml.space.core.VLagger
+version: 2.8.2-%BUILD_NUMBER%
+softdepend: [AntiAttack, Essentials, RPG Items, RPGItems]
 author: Vlvxingze
 authors: [IzzelAliz, Sotr]
+website: "https://github.com/Vlvxingze/VLagger"
 database: false
-load: STARTUP
-softdepend: [AntiAttack, Essentials, RPG Items, RPGItems]
-dev-url: https://github.com/Vlvxingze/VLagger
+
 commands:
   vlg:
     description: VLagger
-    usage: /vlg help
+    usage: "/vlg help"

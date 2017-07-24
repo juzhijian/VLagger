@@ -29,7 +29,7 @@ import com.mcml.space.fix.AntiInfItem;
 import com.mcml.space.fix.AntiInfRail;
 import com.mcml.space.fix.AntiNetherHopperInfItem;
 import com.mcml.space.fix.AntiPortalInfItem;
-import com.mcml.space.fix.AntiRPGITEM;
+import com.mcml.space.fix.RPGItemPatch;
 import com.mcml.space.fix.AntiSkullCrash;
 import com.mcml.space.fix.FixDupeLogin;
 import com.mcml.space.function.AntiSpam;
@@ -127,7 +127,7 @@ public class VLagger extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new AntiInfItem(), this);
         Bukkit.getPluginManager().registerEvents(new AntiPortalInfItem(), this);
         Bukkit.getPluginManager().registerEvents(new AntiNetherHopperInfItem(), this);
-        Bukkit.getPluginManager().registerEvents(new AntiRPGITEM(), this);
+        Bukkit.getPluginManager().registerEvents(new RPGItemPatch(), this);
         Bukkit.getPluginManager().registerEvents(new ChunkKeeper(), this);
         Bukkit.getPluginManager().registerEvents(new NoCrowdEntity(), this);
         Bukkit.getPluginManager().registerEvents(new AntiCrashSign(), this);
