@@ -58,13 +58,6 @@ import com.mcml.space.util.AzurePlayerList;
 import com.mcml.space.util.VersionLevel;
 import com.mcml.space.util.VersionLevel.Version;
 
-import javassist.CannotCompileException;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.CtMethod;
-import javassist.NotFoundException;
-import net.openhft.affinity.AffinityLock;
-
 public class VLagger extends JavaPlugin implements Listener {
 
     public static VLagger MainThis;
@@ -128,18 +121,6 @@ public class VLagger extends JavaPlugin implements Listener {
             }
         }
         
-<<<<<<< HEAD
-        if (ConfigFunction.tickVS) {
-            Bukkit.getScheduler().runTaskTimer(this, new Runnable() {
-                @Override
-                public void run() {
-                    Thread.yield();
-                }
-            }, 1, 1);
-        }
-        
-=======
->>>>>>> 91abf6e1ebd2db700ddf282e579527cb1483310d
         Bukkit.getPluginManager().registerEvents(new AntiInfItem(), this);
         Bukkit.getPluginManager().registerEvents(new AntiPortalInfItem(), this);
         Bukkit.getPluginManager().registerEvents(new AntiNetherHopperInfItem(), this);
