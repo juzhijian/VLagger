@@ -5,6 +5,8 @@ author: Vlvxingze
 authors: [IzzelAliz, Sotr]
 database: false
 load: STARTUP
+softdepend: [AntiAttack, Essentials, RPG Items, RPGItems]
+dev-url: https://github.com/Vlvxingze/VLagger
 commands:
   vlg:
     description: VLagger
