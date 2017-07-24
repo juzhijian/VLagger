@@ -14,7 +14,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import com.mcml.space.config.ConfigFixing;
 import com.mcml.space.config.ConfigOptimize;
 import com.mcml.space.config.ConfigFunction;
@@ -59,8 +58,14 @@ import com.mcml.space.util.AzurePlayerList;
 import com.mcml.space.util.VersionLevel;
 import com.mcml.space.util.VersionLevel.Version;
 
-public class VLagger extends JavaPlugin implements Listener {
+import javassist.CannotCompileException;
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.CtMethod;
+import javassist.NotFoundException;
+import net.openhft.affinity.AffinityLock;
 
+public class VLagger extends JavaPlugin implements Listener {
 
     public static VLagger MainThis;
     public static File optimizeConfiguration;
@@ -82,7 +87,6 @@ public class VLagger extends JavaPlugin implements Listener {
         AzureAPI.log("~(@^_^@)~ 玩的开心！~");
         AzureAPI.log("清理内存模块...");
         AzureAPI.log("濒临重启模块...");
-        AzureAPI.log("TPS停顿模块...");
         AzureAPI.log("区块保持者模块...");
         AzureAPI.log("自动配端模块...");
         AzureAPI.log("自动储存模块...");
@@ -128,11 +132,7 @@ public class VLagger extends JavaPlugin implements Listener {
             Bukkit.getScheduler().runTaskTimer(this, new Runnable() {
                 @Override
                 public void run() {
-                    try {
-                        Thread.sleep(0);
-                    } catch (InterruptedException ignored) {
-                        ;
-                    }
+                    Thread.yield();
                 }
             }, 1, 1);
         }

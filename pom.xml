@@ -51,6 +51,9 @@
 								<includes>
 									<include>org.projectlombok</include>
 								</includes>
+								<excludes>
+									<exclude>Class50</exclude>
+								</excludes>
 							</artifactSet>
 							<createDependencyReducedPom>false</createDependencyReducedPom>
 						</configuration>

@@ -7,7 +7,7 @@ import com.mcml.space.util.AzureAPI;
 import com.mcml.space.util.Configurable;
 
 public abstract class ConfigFunction extends Configurable {
-    @Node(path = "TPS-Vertical-Sync")
+    @Node(path = "advanced.thread-affinity")
     public static boolean tickVS = false;
     
     @Node(path = "AntiSpam.enable")
