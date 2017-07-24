@@ -1,9 +1,6 @@
 package com.mcml.space.config;
 
-import org.bukkit.Bukkit;
-
 import com.mcml.space.util.Configurable;
-import com.mcml.space.util.VersionLevel;
 
 public abstract class ConfigFixing extends Configurable {
     @Node(path = "AntiBoneBug.enable") // issue-fixer.bonemeal-inf-item
