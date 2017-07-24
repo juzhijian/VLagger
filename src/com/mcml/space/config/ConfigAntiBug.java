@@ -1,6 +1,9 @@
 package com.mcml.space.config;
 
+import org.bukkit.Bukkit;
+
 import com.mcml.space.util.Configurable;
+import com.mcml.space.util.VersionLevel;
 
 public abstract class ConfigAntiBug extends Configurable {
     @Node(path = "AntiBoneBug.enable") // issue-fixer.bonemeal-inf-item
@@ -18,7 +21,8 @@ public abstract class ConfigAntiBug extends Configurable {
     public static boolean noFakedeath = true;
     
     @Node(path = "NoDoubleOnline.enable")
-    public static boolean NoDoubleOnlineenable = true;
+    public static boolean fixDupeOnline = !Bukkit.getOnlineMode() && !(VersionLevel.isSpigot() ?
+            Bukkit.spigot().getSpigotConfig().getBoolean("settings.bungeecord") : false);
     
     @Locale
     @Node(path = "NoDoubleOnline.KickMessage")

@@ -9,7 +9,8 @@ import lombok.val;
  */
 public class VersionLevel {
     private final static Version level = check();
-    private static boolean paper; 
+    private static boolean paper;
+    private static boolean spigot;
     
     public static final Version get() {
         return level;
@@ -17,7 +18,7 @@ public class VersionLevel {
     
     private static Version check() {
         val version = Bukkit.getServer().getVersion();
-        checkPaper(version);
+        checkType(version);
         
         if (version.contains("1.12")) {
             return Version.MINECRAFT_1_12_R1;
@@ -107,8 +108,13 @@ public class VersionLevel {
         return paper;
     }
     
-    private static void checkPaper(String bukkitVersion) {
+    public static boolean isSpigot() {
+        return spigot;
+    }
+    
+    private static void checkType(String bukkitVersion) {
         paper = bukkitVersion.contains("Paper") || bukkitVersion.contains("Taco") || bukkitVersion.contains("Torch");
+        spigot = paper ? true : bukkitVersion.contains("Spigot");
     }
     
     public static boolean isLowerThan(Version other) {

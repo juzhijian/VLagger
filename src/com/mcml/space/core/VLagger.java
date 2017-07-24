@@ -37,7 +37,7 @@ import com.mcml.space.fix.AntiNetherHopperInfItem;
 import com.mcml.space.fix.AntiPortalInfItem;
 import com.mcml.space.fix.AntiRPGITEM;
 import com.mcml.space.fix.AntiSkullCrash;
-import com.mcml.space.fix.NoDoubleOnline;
+import com.mcml.space.fix.FixDupeLogin;
 import com.mcml.space.optimize.AntiRedstone;
 import com.mcml.space.optimize.AutoSave;
 import com.mcml.space.optimize.ChunkKeeper;
@@ -55,7 +55,7 @@ import com.mcml.space.optimize.WaterFlowLimiter;
 import com.mcml.space.util.AzureAPI;
 import com.mcml.space.util.Configurable;
 import com.mcml.space.util.NetWorker;
-import com.mcml.space.util.Utils;
+import com.mcml.space.util.AzurePlayerList;
 import com.mcml.space.util.VersionLevel;
 import com.mcml.space.util.VersionLevel.Version;
 
@@ -139,7 +139,7 @@ public class VLagger extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new AntiInfRail(), this);
         Bukkit.getPluginManager().registerEvents(new AutoSave(), this);
         Bukkit.getPluginManager().registerEvents(new AntiSkullCrash(), this);
-        Bukkit.getPluginManager().registerEvents(new NoDoubleOnline(), this);
+        Bukkit.getPluginManager().registerEvents(new FixDupeLogin(), this);
         Bukkit.getPluginManager().registerEvents(new NoEggChangeSpawner(), this);
         Bukkit.getPluginManager().registerEvents(new AntiDupeDropItem(), this);
         Bukkit.getPluginManager().registerEvents(new AntiDoorInfItem(), this);
@@ -152,10 +152,10 @@ public class VLagger extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new AutoUpdateCheck(), this);
         Bukkit.getPluginManager().registerEvents(new NoOneRestart(), this);
         Bukkit.getPluginManager().registerEvents(new FarmProtecter(), this);
-        Bukkit.getPluginManager().registerEvents(new Utils(), this);
         Bukkit.getPluginManager().registerEvents(new AntiBoneBug(), this);
 
         ChunkKeeper.ChunkKeeperofTask();
+        AzurePlayerList.bind(this);
         getServer().getScheduler().runTaskTimer(this, new ChunkUnloader(), 0, ConfigClearLag.ChunkUnloaderInterval * 20);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HeapShut(), 1 * 60 * 20, 1 * 60 * 20);
         Bukkit.getScheduler().runTaskTimer(this, new TimerGarbageCollect(), ConfigClearLag.HeapClearPeriod * 20, ConfigClearLag.HeapClearPeriod * 20);

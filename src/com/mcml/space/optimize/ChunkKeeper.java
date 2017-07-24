@@ -14,7 +14,7 @@ import org.bukkit.event.world.ChunkUnloadEvent;
 
 import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.core.VLagger;
-import com.mcml.space.util.Utils;
+import com.mcml.space.util.AzurePlayerList;
 
 public class ChunkKeeper implements Listener {
     // TODO clear
@@ -41,7 +41,7 @@ public class ChunkKeeper implements Listener {
             @Override
             public void run() {
                 if (ConfigClearLag.ChunkKeeperenable == true) {
-                    List<Player> onlinePlayers = Utils.getonlinePlayers();
+                    List<Player> onlinePlayers = AzurePlayerList.players();
                     Iterator<? extends Player> players = onlinePlayers.iterator();
                     while (players.hasNext()) {
                         Player player = players.next();
@@ -51,8 +51,8 @@ public class ChunkKeeper implements Listener {
                         } else {
                             ChunkTimes.put(chunk, ChunkTimes.get(chunk) + 1);
                         }
-                        if (ChunkTimes.get(chunk) > Utils.getonlinePlayers().size() & ShouldKeepList.contains(chunk)==false) {
-                            if(ShouldKeepList.size() > Utils.getonlinePlayers().size()){
+                        if (ChunkTimes.get(chunk) > AzurePlayerList.size() & ShouldKeepList.contains(chunk)==false) {
+                            if(ShouldKeepList.size() > AzurePlayerList.size()){
                                 ShouldKeepList.remove(0);
                             }
                             ShouldKeepList.add(chunk);

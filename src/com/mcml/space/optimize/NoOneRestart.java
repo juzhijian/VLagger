@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.mcml.space.config.ConfigClearLag;
 import com.mcml.space.core.VLagger;
-import com.mcml.space.util.Utils;
+import com.mcml.space.util.AzurePlayerList;
 
 public class NoOneRestart
 implements Listener {
@@ -18,7 +18,7 @@ implements Listener {
 
     @EventHandler
     public void CheckQuit(PlayerQuitEvent event){
-        if(Utils.getonlinePlayers().isEmpty() && ConfigClearLag.NooneRestartenable == true){
+        if(AzurePlayerList.isEmpty() && ConfigClearLag.NooneRestartenable){
             TaskId = Bukkit.getScheduler().runTaskLater(VLagger.MainThis, new Runnable(){
                 @Override
                 public void run(){
