@@ -72,7 +72,7 @@ public class VLagger extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         optimizeConfiguration = new File(this.getDataFolder(), "ClearLagConfig.yml");
-        AntiBugConfigFile = new File(this.getDataFolder(), "AntiBugBugConfig.yml");
+        AntiBugConfigFile = new File(this.getDataFolder(), "AntiBugConfig.yml");
         PluginMainConfigFile = new File(this.getDataFolder(), "PluginMainConfig.yml");
         functionConfiguation = new File(this.getDataFolder(), "DoEventConfig.yml");
         PluginFile = this.getFile();
