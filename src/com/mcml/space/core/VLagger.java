@@ -47,8 +47,7 @@ import com.mcml.space.optimize.FireLimitor;
 import com.mcml.space.optimize.HeapShut;
 import com.mcml.space.optimize.ItemClear;
 import com.mcml.space.optimize.NoCrowdEntity;
-import com.mcml.space.optimize.NoExplodeofBlock;
-import com.mcml.space.optimize.NoExplodeofEntity;
+import com.mcml.space.optimize.NoExplosion;
 import com.mcml.space.optimize.NoOneRestart;
 import com.mcml.space.optimize.TeleportPreloader;
 import com.mcml.space.optimize.TimerGarbageCollect;
@@ -57,6 +56,8 @@ import com.mcml.space.util.AzureAPI;
 import com.mcml.space.util.Configurable;
 import com.mcml.space.util.NetWorker;
 import com.mcml.space.util.Utils;
+import com.mcml.space.util.VersionLevel;
+import com.mcml.space.util.VersionLevel.Version;
 
 public class VLagger extends JavaPlugin implements Listener {
 
@@ -131,7 +132,7 @@ public class VLagger extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new NoCrowdEntity(), this);
         Bukkit.getPluginManager().registerEvents(new AntiCrashSign(), this);
         Bukkit.getPluginManager().registerEvents(new AntiSpam(), this);
-        Bukkit.getPluginManager().registerEvents(new NoExplodeofEntity(), this);
+        if (VersionLevel.isHigherThan(Version.MINECRAFT_1_8_R2)) Bukkit.getPluginManager().registerEvents(new NoExplosion(), this);
         Bukkit.getPluginManager().registerEvents(new AntiRedstone(), this);
         Bukkit.getPluginManager().registerEvents(new ItemClear(), this);
         Bukkit.getPluginManager().registerEvents(new ChunkUnloaderofListener(), this);
@@ -153,7 +154,6 @@ public class VLagger extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new FarmProtecter(), this);
         Bukkit.getPluginManager().registerEvents(new Utils(), this);
         Bukkit.getPluginManager().registerEvents(new AntiBoneBug(), this);
-        NoExplodeofBlock.RegisterEvents();
 
         ChunkKeeper.ChunkKeeperofTask();
         getServer().getScheduler().runTaskTimer(this, new ChunkUnloader(), 0, ConfigClearLag.ChunkUnloaderInterval * 20);
