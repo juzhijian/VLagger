@@ -21,8 +21,7 @@ public abstract class ConfigFixing extends Configurable {
     public static boolean noFakedeath = true;
     
     @Node(path = "NoDoubleOnline.enable")
-    public static boolean fixDupeOnline = !Bukkit.getOnlineMode() && !(VersionLevel.isSpigot() ?
-            Bukkit.spigot().getSpigotConfig().getBoolean("settings.bungeecord") : false);
+    public static boolean fixDupeOnline = true;
     
     @Locale
     @Node(path = "NoDoubleOnline.KickMessage")
