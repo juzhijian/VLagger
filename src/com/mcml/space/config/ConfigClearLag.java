@@ -38,14 +38,14 @@ public abstract class ConfigClearLag extends Configurable {
     public static long FireLimitorPeriod = 3000L;
     
     @Node(path = "HeapClear.enable")
-    public static boolean HeapClearenable = false;
+    public static boolean timerGC = false;
     
     @Node(path = "TeleportPreLoader.enable")
     public static boolean TeleportPreLoaderenable = false;
     
     @Locale
     @Node(path = "HeapClear.Message")
-    public static String HeapClearMessage = "§e服务器清理内存中... ԅ(¯ㅂ¯ԅ)";
+    public static String messageGC = "§e服务器清理内存中... ԅ(¯ㅂ¯ԅ)";
     
     @Node(path = "HeapClear.Period")
     public static long HeapClearPeriod = 600;
