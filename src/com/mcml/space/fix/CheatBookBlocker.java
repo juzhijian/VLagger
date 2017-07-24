@@ -1,24 +1,29 @@
 package com.mcml.space.fix;
 
-import java.util.Map.Entry;
-
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerEditBookEvent;
 import org.bukkit.inventory.meta.BookMeta;
-import com.mcml.space.config.ConfigFixing;
+
 import com.mcml.space.util.AzureAPI;
 
-public class AntiCheatBook implements Listener {
+import lombok.val;
+
+import static com.mcml.space.config.ConfigFixing.messageCheatBook;
+import static com.mcml.space.config.ConfigFixing.noCheatBook;
+
+/**
+ * @author SotrForgotten
+ */
+public class CheatBookBlocker implements Listener {
     
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBookEdit(PlayerEditBookEvent evt) {
-        if (!ConfigFixing.noCheatBook) return;
+        if (!noCheatBook) return;
         
-        BookMeta prev = evt.getPreviousBookMeta();
-        BookMeta meta = evt.getNewBookMeta();
+        val prev = evt.getPreviousBookMeta();
+        val meta = evt.getNewBookMeta();
         if (prev.equals(meta)) return;
         
         // Illegally modify lore
@@ -43,7 +48,7 @@ public class AntiCheatBook implements Listener {
         }
         
         // They cannot change title by edit it!
-        String title = prev.getTitle();
+        val title = prev.getTitle();
         if (!title.equals(meta.getTitle())) {
             meta.setTitle(title);
         }
@@ -56,20 +61,18 @@ public class AntiCheatBook implements Listener {
         
         evt.setNewBookMeta(meta);
         
-        if(!ConfigFixing.messageCheatBook.equalsIgnoreCase("none")){
-            AzureAPI.log(evt.getPlayer(), ConfigFixing.messageCheatBook);
-        }
+        AzureAPI.log(evt.getPlayer(), messageCheatBook);
     }
     
     public static BookMeta clearEnchant(BookMeta meta) {
-        for (Enchantment e : meta.getEnchants().keySet()) {
+        for (val e : meta.getEnchants().keySet()) {
             meta.removeEnchant(e);
         }
         return meta;
     }
     
     public static BookMeta addEnchantFrom(BookMeta source, BookMeta meta) {
-        for (Entry<Enchantment, Integer> e : source.getEnchants().entrySet()) {
+        for (val e : source.getEnchants().entrySet()) {
             meta.addEnchant(e.getKey(), e.getValue(), true);
         }
         return meta;

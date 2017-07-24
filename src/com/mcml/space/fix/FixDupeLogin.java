@@ -1,8 +1,5 @@
 package com.mcml.space.fix;
 
-import java.util.List;
-
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -11,22 +8,17 @@ import com.mcml.space.config.ConfigFixing;
 import com.mcml.space.util.AzurePlayerList;
 
 /**
- * @author Vlvxingze
+ * @author Vlvxingze, SotrForgotten
  */
 public class FixDupeLogin implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
-    public void CheckDoubleOnline(AsyncPlayerPreLoginEvent event) {
+    public void CheckDoubleOnline(AsyncPlayerPreLoginEvent evt) {
         if (ConfigFixing.fixDupeOnline) {
-        	List<Player> onlinePlayers = AzurePlayerList.players();
-        	int os = onlinePlayers.size();
-        	for(int i = 0;i<os;i++){
-        		Player player = onlinePlayers.get(i);
-        		if(player.getName().equalsIgnoreCase(event.getName())){
-        			event.setLoginResult(AsyncPlayerPreLoginEvent.Result.KICK_OTHER);
-        			event.setKickMessage(ConfigFixing.messageKickDupeOnline);
-        		}
-        	}
+            if (AzurePlayerList.contains(evt.getName())) {
+                evt.setLoginResult(AsyncPlayerPreLoginEvent.Result.KICK_OTHER);
+                evt.setKickMessage(ConfigFixing.messageKickDupeOnline);
+            }
         }
     }
     
