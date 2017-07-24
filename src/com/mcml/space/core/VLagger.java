@@ -128,6 +128,7 @@ public class VLagger extends JavaPlugin implements Listener {
             }
         }
         
+<<<<<<< HEAD
         if (ConfigFunction.tickVS) {
             Bukkit.getScheduler().runTaskTimer(this, new Runnable() {
                 @Override
@@ -137,6 +138,8 @@ public class VLagger extends JavaPlugin implements Listener {
             }, 1, 1);
         }
         
+=======
+>>>>>>> 91abf6e1ebd2db700ddf282e579527cb1483310d
         Bukkit.getPluginManager().registerEvents(new AntiInfItem(), this);
         Bukkit.getPluginManager().registerEvents(new AntiPortalInfItem(), this);
         Bukkit.getPluginManager().registerEvents(new AntiNetherHopperInfItem(), this);
