@@ -13,7 +13,7 @@ import com.mcml.space.util.AzurePlayerList;
 public class FixDupeLogin implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
-    public void CheckDoubleOnline(AsyncPlayerPreLoginEvent evt) {
+    public void onLogin(AsyncPlayerPreLoginEvent evt) {
         if (ConfigFixing.fixDupeOnline) {
             if (AzurePlayerList.contains(evt.getName())) {
                 evt.setLoginResult(AsyncPlayerPreLoginEvent.Result.KICK_OTHER);
