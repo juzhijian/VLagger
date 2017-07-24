@@ -33,10 +33,5 @@ public class AntiBedExplode implements Listener {
             }
         }
     }
-    
-    @EventHandler
-    public void ss(PlayerBedEnterEvent evt) {
-        AzureAPI.log("test fire!!!!!!!!");
-    }
 }
 // TODO handle explore event?
