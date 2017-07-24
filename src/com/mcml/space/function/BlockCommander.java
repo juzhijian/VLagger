@@ -1,4 +1,4 @@
-package com.mcml.space.doevent;
+package com.mcml.space.function;
 
 import java.io.*;
 import org.bukkit.configuration.file.*;
@@ -6,7 +6,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.*;
 import org.bukkit.event.player.*;
 
-import com.mcml.space.config.ConfigDoEvent;
+import com.mcml.space.config.ConfigFunction;
 import com.mcml.space.core.VLagger;
 import com.mcml.space.util.AzureAPI;
 
@@ -14,9 +14,9 @@ public class BlockCommander implements Listener {
 
     @EventHandler
     public void CommanderBlocker(PlayerCommandPreprocessEvent event) {
-        if (ConfigDoEvent.BlockCommanderenable == true) {
+        if (ConfigFunction.BlockCommanderenable == true) {
             Player p = event.getPlayer();
-            FileConfiguration config = load(VLagger.DoEventConfigFile); // TODO bad
+            FileConfiguration config = load(VLagger.functionConfiguation); // TODO bad
             if (p.hasPermission("VLagger.admin") == true) {
                 return;
             }

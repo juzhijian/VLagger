@@ -6,7 +6,7 @@ import java.util.List;
 import com.mcml.space.util.AzureAPI;
 import com.mcml.space.util.Configurable;
 
-public abstract class ConfigDoEvent extends Configurable {
+public abstract class ConfigFunction extends Configurable {
     @Node(path = "AntiSpam.enable")
     public static boolean AntiSpamenable = true;
     
@@ -29,7 +29,7 @@ public abstract class ConfigDoEvent extends Configurable {
     
     public static List<String[]> AntiSpamDirtyListStrings(){
     	List<String[]> DirtyListStrings = new ArrayList<String[]>();
-    	List<String> DirtyList = ConfigDoEvent.AntiSpamDirtyList;
+    	List<String> DirtyList = ConfigFunction.AntiSpamDirtyList;
         int ds = DirtyList.size();
         for(int i=0;i<ds;i++){
         	String thisdirty = DirtyList.get(i);

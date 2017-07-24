@@ -17,14 +17,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.mcml.space.config.ConfigAntiBug;
 import com.mcml.space.config.ConfigClearLag;
-import com.mcml.space.config.ConfigDoEvent;
+import com.mcml.space.config.ConfigFunction;
 import com.mcml.space.config.ConfigPluginMain;
-import com.mcml.space.doevent.AntiSpam;
-import com.mcml.space.doevent.AutoRespawn;
-import com.mcml.space.doevent.AutoUpdateCheck;
-import com.mcml.space.doevent.BlockCommander;
-import com.mcml.space.doevent.FarmProtecter;
-import com.mcml.space.doevent.NoEggChangeSpawner;
 import com.mcml.space.fix.AntiBedExplode;
 import com.mcml.space.fix.AntiBoneBug;
 import com.mcml.space.fix.AntiCrashSign;
@@ -38,6 +32,12 @@ import com.mcml.space.fix.AntiPortalInfItem;
 import com.mcml.space.fix.AntiRPGITEM;
 import com.mcml.space.fix.AntiSkullCrash;
 import com.mcml.space.fix.FixDupeLogin;
+import com.mcml.space.function.AntiSpam;
+import com.mcml.space.function.AutoRespawn;
+import com.mcml.space.function.AutoUpdateCheck;
+import com.mcml.space.function.BlockCommander;
+import com.mcml.space.function.FarmProtecter;
+import com.mcml.space.function.NoEggChangeSpawner;
 import com.mcml.space.optimize.AntiRedstone;
 import com.mcml.space.optimize.AutoSave;
 import com.mcml.space.optimize.ChunkKeeper;
@@ -66,7 +66,7 @@ public class VLagger extends JavaPlugin implements Listener {
     public static File ClearLagConfigFile;
     public static File AntiBugConfigFile;
     private static File PluginMainConfigFile;
-    public static File DoEventConfigFile;
+    public static File functionConfiguation;
     public static File PluginFile;
 
     @Override
@@ -74,7 +74,7 @@ public class VLagger extends JavaPlugin implements Listener {
         ClearLagConfigFile = new File(this.getDataFolder(), "ClearLagConfig.yml");
         AntiBugConfigFile = new File(this.getDataFolder(), "AntiBugBugConfig.yml");
         PluginMainConfigFile = new File(this.getDataFolder(), "PluginMainConfig.yml");
-        DoEventConfigFile = new File(this.getDataFolder(), "DoEventConfig.yml");
+        functionConfiguation = new File(this.getDataFolder(), "DoEventConfig.yml");
         PluginFile = this.getFile();
         MainThis = this;
         LoadConfig();
@@ -350,7 +350,7 @@ public class VLagger extends JavaPlugin implements Listener {
         }
         
         try {
-            Configurable.restoreNodes(DoEventConfigFile, ConfigDoEvent.class);
+            Configurable.restoreNodes(functionConfiguation, ConfigFunction.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }
@@ -462,7 +462,7 @@ public class VLagger extends JavaPlugin implements Listener {
             NoBugConfig.save(AntiBugConfigFile);
         } catch (IOException ex) {
         }
-        FileConfiguration EventConfig = load(DoEventConfigFile);
+        FileConfiguration EventConfig = load(functionConfiguation);
         if (EventConfig.getInt("Version") < 272) {
             EventConfig.set("Version", 272);
             EventConfig.set("AntiSpam.enable", true);
@@ -493,7 +493,7 @@ public class VLagger extends JavaPlugin implements Listener {
             EventConfig.set("AutoRespawn.RespawnTitle.MiniMessage", "§c已为您自动复活！");
         }
         try {
-            EventConfig.save(DoEventConfigFile);
+            EventConfig.save(functionConfiguation);
         } catch (IOException ex) {
         }
         
@@ -510,7 +510,7 @@ public class VLagger extends JavaPlugin implements Listener {
         }
         
         try {
-            Configurable.restoreNodes(DoEventConfigFile, ConfigDoEvent.class);
+            Configurable.restoreNodes(functionConfiguation, ConfigFunction.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }

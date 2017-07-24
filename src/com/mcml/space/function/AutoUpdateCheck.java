@@ -1,4 +1,4 @@
-package com.mcml.space.doevent;
+package com.mcml.space.function;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

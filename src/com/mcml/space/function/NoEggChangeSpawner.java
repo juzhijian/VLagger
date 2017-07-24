@@ -1,10 +1,10 @@
-package com.mcml.space.doevent;
+package com.mcml.space.function;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 
-import com.mcml.space.config.ConfigDoEvent;
+import com.mcml.space.config.ConfigFunction;
 import com.mcml.space.config.ConfigPluginMain;
 import org.bukkit.Material;
 
@@ -21,12 +21,12 @@ public class NoEggChangeSpawner implements Listener {
         if (e.getPlayer().hasPermission("VLagger.admin")) {
             return;
         }
-        if (ConfigDoEvent.NoEggChangeSpawnerenable == true) {
+        if (ConfigFunction.NoEggChangeSpawnerenable == true) {
             if (e.getItem().getType() == Material.MONSTER_EGG || e.getItem().getType() == Material.MONSTER_EGGS) {
                 if (e.getClickedBlock().getType() == Material.MOB_SPAWNER) {
                     e.setCancelled(true);
-                    if(ConfigDoEvent.NoEggChangeSpawnerTipMessage.equalsIgnoreCase("none") == false){
-                        e.getPlayer().sendMessage(ConfigPluginMain.PluginPrefix + ConfigDoEvent.NoEggChangeSpawnerTipMessage);
+                    if(ConfigFunction.NoEggChangeSpawnerTipMessage.equalsIgnoreCase("none") == false){
+                        e.getPlayer().sendMessage(ConfigPluginMain.PluginPrefix + ConfigFunction.NoEggChangeSpawnerTipMessage);
                     }
                 }
             }
