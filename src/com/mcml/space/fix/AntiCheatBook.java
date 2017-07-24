@@ -8,14 +8,14 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerEditBookEvent;
 import org.bukkit.inventory.meta.BookMeta;
-import com.mcml.space.config.ConfigAntiBug;
+import com.mcml.space.config.ConfigFixing;
 import com.mcml.space.util.AzureAPI;
 
 public class AntiCheatBook implements Listener {
     
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBookEdit(PlayerEditBookEvent evt) {
-        if (!ConfigAntiBug.noCheatBook) return;
+        if (!ConfigFixing.noCheatBook) return;
         
         BookMeta prev = evt.getPreviousBookMeta();
         BookMeta meta = evt.getNewBookMeta();
@@ -56,8 +56,8 @@ public class AntiCheatBook implements Listener {
         
         evt.setNewBookMeta(meta);
         
-        if(!ConfigAntiBug.messageCheatBook.equalsIgnoreCase("none")){
-            AzureAPI.log(evt.getPlayer(), ConfigAntiBug.messageCheatBook);
+        if(!ConfigFixing.messageCheatBook.equalsIgnoreCase("none")){
+            AzureAPI.log(evt.getPlayer(), ConfigFixing.messageCheatBook);
         }
     }
     

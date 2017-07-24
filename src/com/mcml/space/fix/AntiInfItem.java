@@ -12,22 +12,22 @@ import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 
-import com.mcml.space.config.ConfigAntiBug;
-import com.mcml.space.config.ConfigPluginMain;
+import com.mcml.space.config.ConfigFixing;
+import com.mcml.space.config.ConfigMain;
 
 public class AntiInfItem implements Listener {
 
     @EventHandler
     @SuppressWarnings("deprecation")
     public void InteractCheck(PlayerInteractEvent event) {
-        if (ConfigAntiBug.noInfItem) {
+        if (ConfigFixing.noInfItem) {
             Player player = event.getPlayer();
             if (event.getItem() != null) {
                 if (event.getItem().getAmount() <= 0) {
                     event.setCancelled(true);
                     player.setItemInHand(null);
-                    if(ConfigAntiBug.AntiInfItemClickcWarnMessage.equalsIgnoreCase("none") == false){
-                        player.sendMessage(ConfigPluginMain.PluginPrefix + ConfigAntiBug.AntiInfItemClickcWarnMessage);
+                    if(ConfigFixing.AntiInfItemClickcWarnMessage.equalsIgnoreCase("none") == false){
+                        player.sendMessage(ConfigMain.PluginPrefix + ConfigFixing.AntiInfItemClickcWarnMessage);
                     }
                 }
             }
@@ -36,7 +36,7 @@ public class AntiInfItem implements Listener {
 
     @EventHandler
     public void DispenseCheck(BlockDispenseEvent event) {
-        if (ConfigAntiBug.noInfItem == true) {
+        if (ConfigFixing.noInfItem == true) {
             Block block = event.getBlock();
             int i;
             if (block.getType() == Material.DISPENSER) {

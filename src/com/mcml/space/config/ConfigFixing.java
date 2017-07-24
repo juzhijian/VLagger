@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 import com.mcml.space.util.Configurable;
 import com.mcml.space.util.VersionLevel;
 
-public abstract class ConfigAntiBug extends Configurable {
+public abstract class ConfigFixing extends Configurable {
     @Node(path = "AntiBoneBug.enable") // issue-fixer.bonemeal-inf-item
     public static boolean safetyBonemeal = true;
     

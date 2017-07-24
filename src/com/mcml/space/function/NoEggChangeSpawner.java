@@ -5,7 +5,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 
 import com.mcml.space.config.ConfigFunction;
-import com.mcml.space.config.ConfigPluginMain;
+import com.mcml.space.config.ConfigMain;
 import org.bukkit.Material;
 
 public class NoEggChangeSpawner implements Listener {
@@ -26,7 +26,7 @@ public class NoEggChangeSpawner implements Listener {
                 if (e.getClickedBlock().getType() == Material.MOB_SPAWNER) {
                     e.setCancelled(true);
                     if(ConfigFunction.NoEggChangeSpawnerTipMessage.equalsIgnoreCase("none") == false){
-                        e.getPlayer().sendMessage(ConfigPluginMain.PluginPrefix + ConfigFunction.NoEggChangeSpawnerTipMessage);
+                        e.getPlayer().sendMessage(ConfigMain.PluginPrefix + ConfigFunction.NoEggChangeSpawnerTipMessage);
                     }
                 }
             }

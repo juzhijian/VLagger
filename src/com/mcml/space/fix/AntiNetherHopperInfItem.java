@@ -5,13 +5,13 @@ import org.bukkit.block.*;
 import org.bukkit.event.*;
 import org.bukkit.event.inventory.*;
 
-import com.mcml.space.config.ConfigAntiBug;
+import com.mcml.space.config.ConfigFixing;
 
 public class AntiNetherHopperInfItem implements Listener {
 
     @EventHandler
     public void onHopper(InventoryMoveItemEvent event) {
-        if (ConfigAntiBug.fixNetherHopperInfItem) {
+        if (ConfigFixing.fixNetherHopperInfItem) {
             if (event.getInitiator().getHolder() instanceof Hopper && event.getSource().getHolder() instanceof Hopper) {
                 Hopper to = (Hopper) event.getInitiator().getHolder();
                 Hopper from = (Hopper)event.getSource().getHolder();

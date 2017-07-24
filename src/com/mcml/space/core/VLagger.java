@@ -15,10 +15,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.mcml.space.config.ConfigAntiBug;
+import com.mcml.space.config.ConfigFixing;
 import com.mcml.space.config.ConfigOptimize;
 import com.mcml.space.config.ConfigFunction;
-import com.mcml.space.config.ConfigPluginMain;
+import com.mcml.space.config.ConfigMain;
 import com.mcml.space.fix.AntiBedExplode;
 import com.mcml.space.fix.AntiBoneBug;
 import com.mcml.space.fix.AntiCrashSign;
@@ -115,7 +115,7 @@ public class VLagger extends JavaPlugin implements Listener {
         AzureAPI.log("|||" + AzureAPI.contactBetween(devs, 1, ", ") + " 合作开发.|||");
         AzureAPI.log("§a您正在使用VLagger构建号 %BUILD_NUMBER%");
         
-        AzureAPI.setPrefix(ConfigPluginMain.PluginPrefix);
+        AzureAPI.setPrefix(ConfigMain.PluginPrefix);
         
         if (ConfigOptimize.AutoSetenable == true) {
             try {
@@ -179,7 +179,7 @@ public class VLagger extends JavaPlugin implements Listener {
                         MainConfig.save(PluginMainConfigFile);
                     } catch (IOException ex) {
                     }
-                    ConfigPluginMain.AutoUpdate = true;
+                    ConfigMain.AutoUpdate = true;
                     sender.sendMessage("§a§l[VLagger]§b已经成功开启自动更新！");
                 }
                 if (args[0].equalsIgnoreCase("help")) {
@@ -332,7 +332,7 @@ public class VLagger extends JavaPlugin implements Listener {
     	this.saveResource("说明文档.txt", true);
     	
     	try {
-            Configurable.restoreNodes(PluginMainConfigFile, ConfigPluginMain.class);
+            Configurable.restoreNodes(PluginMainConfigFile, ConfigMain.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }
@@ -344,7 +344,7 @@ public class VLagger extends JavaPlugin implements Listener {
         }
         
         try {
-            Configurable.restoreNodes(AntiBugConfigFile, ConfigAntiBug.class);
+            Configurable.restoreNodes(AntiBugConfigFile, ConfigFixing.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }
@@ -504,7 +504,7 @@ public class VLagger extends JavaPlugin implements Listener {
         }
         
         try {
-            Configurable.restoreNodes(AntiBugConfigFile, ConfigAntiBug.class);
+            Configurable.restoreNodes(AntiBugConfigFile, ConfigFixing.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }

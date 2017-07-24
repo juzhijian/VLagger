@@ -5,14 +5,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
 
-import com.mcml.space.config.ConfigAntiBug;
-import com.mcml.space.config.ConfigPluginMain;
+import com.mcml.space.config.ConfigFixing;
+import com.mcml.space.config.ConfigMain;
 
 public class AntiCrashSign implements Listener {
 
     @EventHandler
     public void SignCheckChange(SignChangeEvent event) {
-        if (ConfigAntiBug.fixCrashSign) {
+        if (ConfigFixing.fixCrashSign) {
             Player player = event.getPlayer();
             String[] lines =event.getLines();
             int ll = lines.length;
@@ -20,8 +20,8 @@ public class AntiCrashSign implements Listener {
                 String line = lines[i];
                 if(line.length() >= 127){
                     event.setCancelled(true);
-                    if(ConfigAntiBug.AntiCrashSignWarnMessage.equalsIgnoreCase("none") == false){
-                        player.sendMessage(ConfigPluginMain.PluginPrefix + ConfigAntiBug.AntiCrashSignWarnMessage);
+                    if(ConfigFixing.AntiCrashSignWarnMessage.equalsIgnoreCase("none") == false){
+                        player.sendMessage(ConfigMain.PluginPrefix + ConfigFixing.AntiCrashSignWarnMessage);
                     }
                 }
             }

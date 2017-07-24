@@ -6,8 +6,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.InventoryHolder;
 
-import com.mcml.space.config.ConfigAntiBug;
-import com.mcml.space.config.ConfigPluginMain;
+import com.mcml.space.config.ConfigFixing;
+import com.mcml.space.config.ConfigMain;
 
 /**
  * @author jiongjionger
@@ -16,14 +16,14 @@ public class AntiBreakUsingChest implements Listener {
 
     @EventHandler
     public void CheckNoBreakChest(BlockBreakEvent e) {
-        if (ConfigAntiBug.protectUsingChest) {
+        if (ConfigFixing.protectUsingChest) {
             Player p = e.getPlayer();
             if (e.getBlock().getState() instanceof InventoryHolder) {
                 InventoryHolder ih = (InventoryHolder) e.getBlock().getState();
                 if (ih.getInventory().getViewers().isEmpty() == false) {
                     e.setCancelled(true);
-                    if(ConfigAntiBug.AntiBreakUsingChestWarnMessage.equalsIgnoreCase("none") == false){
-                        p.sendMessage(ConfigPluginMain.PluginPrefix + ConfigAntiBug.AntiBreakUsingChestWarnMessage);
+                    if(ConfigFixing.AntiBreakUsingChestWarnMessage.equalsIgnoreCase("none") == false){
+                        p.sendMessage(ConfigMain.PluginPrefix + ConfigFixing.AntiBreakUsingChestWarnMessage);
                     }
                 }
             }

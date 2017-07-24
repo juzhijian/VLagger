@@ -6,19 +6,19 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPortalEvent;
 
-import com.mcml.space.config.ConfigAntiBug;
-import com.mcml.space.config.ConfigPluginMain;
+import com.mcml.space.config.ConfigFixing;
+import com.mcml.space.config.ConfigMain;
 
 public class AntiPortalInfItem implements Listener {
 
     @EventHandler
     public void PortalCheck(EntityPortalEvent event) {
-        if (ConfigAntiBug.fixPortalInfItem) {
+        if (ConfigFixing.fixPortalInfItem) {
             if (event.getEntityType() == EntityType.MINECART_CHEST || event.getEntityType() == EntityType.MINECART_FURNACE || event.getEntityType() == EntityType.MINECART_HOPPER) {
                 event.setCancelled(true);
                 event.getEntity().remove();
-                if(ConfigAntiBug.AntiPortalInfItemWarnMessage.equalsIgnoreCase("none") == false){
-                    Bukkit.broadcastMessage(ConfigPluginMain.PluginPrefix + ConfigAntiBug.AntiPortalInfItemWarnMessage);
+                if(ConfigFixing.AntiPortalInfItemWarnMessage.equalsIgnoreCase("none") == false){
+                    Bukkit.broadcastMessage(ConfigMain.PluginPrefix + ConfigFixing.AntiPortalInfItemWarnMessage);
                 }
             }
         }
