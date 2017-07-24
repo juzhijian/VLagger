@@ -329,7 +329,7 @@ public class VLagger extends JavaPlugin implements Listener {
     }
     
     private void LoadConfig(){
-    	this.saveResource("说明文档.txt", false);
+    	this.saveResource("说明文档.txt", true);
     	
     	try {
             Configurable.restoreNodes(PluginMainConfigFile, ConfigPluginMain.class);
