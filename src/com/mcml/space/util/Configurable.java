@@ -41,7 +41,7 @@ public abstract class Configurable {
                 val path = node.path();
                 val value = config.get(path);
                 if (value == null) {
-                    config.set(path, def instanceof Boolean ? true : def);
+                    config.set(path, def);
                 } else {
                     field.set(null, colorzine(value));
                 }

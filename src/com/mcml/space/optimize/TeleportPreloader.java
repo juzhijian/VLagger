@@ -31,7 +31,7 @@ import lombok.val;
 public class TeleportPreloader implements Listener {
     public static final Cache<Location, List<Coord2D>> caches = CacheBuilder.newBuilder().maximumSize(Bukkit.getMaxPlayers() > 256 ? 256 : (Bukkit.getMaxPlayers() < 64 ? 64 : Bukkit.getMaxPlayers())).expireAfterWrite(5, TimeUnit.MINUTES).build();
     protected volatile static boolean pending;
-
+    
     @EventHandler(priority = EventPriority.LOWEST)
     public void onTeleport(PlayerTeleportEvent evt) throws ExecutionException {
         if (evt.isCancelled() || evt.isAsynchronous() || pending || !ConfigClearLag.TeleportPreLoaderenable) return;

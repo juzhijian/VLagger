@@ -4,7 +4,7 @@ import com.mcml.space.util.Configurable;
 
 public abstract class ConfigAntiBug extends Configurable {
     @Node(path = "AntiBoneBug.enable") // issue-fixer.bonemeal-inf-item
-    public static boolean safetyBonemeal;
+    public static boolean safetyBonemeal = true;
     
     @Locale
     @Node(path = "AntiBoneBug.WarnMessage") 
@@ -15,10 +15,10 @@ public abstract class ConfigAntiBug extends Configurable {
     public static String messageFakedeath = "§c严禁卡假死BUG！";
     
     @Node(path = "AntiFakeDeath.enable")
-    public static boolean noFakedeath;
+    public static boolean noFakedeath = true;
     
     @Node(path = "NoDoubleOnline.enable")
-    public static boolean NoDoubleOnlineenable;
+    public static boolean NoDoubleOnlineenable = true;
     
     @Locale
     @Node(path = "NoDoubleOnline.KickMessage")
@@ -29,43 +29,43 @@ public abstract class ConfigAntiBug extends Configurable {
     public static String messageCheatBook = "§c严禁利用超级书Bug！";
     
     @Node(path = "AntiBedExplode.enable")
-    public static boolean noBedExplore;
+    public static boolean noBedExplore = true;
     
     @Node(path = "AntiBreakUseingChest.enable")
-    public static boolean protectUsingChest;
+    public static boolean protectUsingChest = true;
     
     @Node(path = "AntiCheatBook.enable")
-    public static boolean noCheatBook;
+    public static boolean noCheatBook = true;
     
     @Node(path = "AntiCrashSign.enable")
-    public static boolean fixCrashSign;
+    public static boolean fixCrashSign = true;
     
     @Node(path = "AntiDoorInfItem.enable")
-    public static boolean fixDoorInfItem;
+    public static boolean fixDoorInfItem = true;
     
     @Node(path = "AntiDupeDropItem.enable")
-    public static boolean fixDupeDropItem;
+    public static boolean fixDupeDropItem = true;
     
     @Node(path = "AntiInfItem.enable")
-    public static boolean noInfItem;
+    public static boolean noInfItem = true;
     
     @Node(path = "AntiInfRail.enable")
-    public static boolean fixInfRail;
+    public static boolean fixInfRail = true;
     
     @Node(path = "AntiNetherHopperInfItem.enable")
-    public static boolean fixNetherHopperInfItem;
+    public static boolean fixNetherHopperInfItem = true;
     
     @Node(path = "AntiPortalInfItem.enable")
-    public static boolean fixPortalInfItem;
+    public static boolean fixPortalInfItem = true;
     
     @Node(path = "AntiRPGITEM.enable")
-    public static boolean fixRpgItemInfItem;
+    public static boolean fixRpgItemInfItem = true;
     
     @Node(path = "AntiSkullCrash.enable")
-    public static boolean noSkullCrash;
+    public static boolean noSkullCrash = true;
     
     @Node(path = "AntiCrashChat.enable")
-    public static boolean noCrashChat;
+    public static boolean noCrashChat = true;
     
     @Locale
     @Node(path = "AntiCrashChat.SpecialStringWarnMessage")

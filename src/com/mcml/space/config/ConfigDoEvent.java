@@ -8,7 +8,7 @@ import com.mcml.space.util.Configurable;
 
 public abstract class ConfigDoEvent extends Configurable {
     @Node(path = "AntiSpam.enable")
-    public static boolean AntiSpamenable;
+    public static boolean AntiSpamenable = true;
     
     @Node(path = "AntiSpam.Period.Period")
     public static long AntiSpamPeriodPeriod = 2;
@@ -21,7 +21,7 @@ public abstract class ConfigDoEvent extends Configurable {
     public static List<String> AntiSpamDirtyList = AzureAPI.newChainStringList().to("傻逼").to("智障").to("SB");
     
     @Node(path = "NoEggChangeSpawner.enable")
-    public static boolean NoEggChangeSpawnerenable;
+    public static boolean NoEggChangeSpawnerenable = true;
     
     @Locale
     @Node(path = "NoEggChangeSpawner.TipMessage")
@@ -44,20 +44,20 @@ public abstract class ConfigDoEvent extends Configurable {
     }
     
     @Node(path ="BlockCommander.enable")
-    public static boolean BlockCommanderenable;
+    public static boolean BlockCommanderenable = true;
     
     @Node(path = "ProtectFarm.enable")
-    public static boolean ProtectFarmenable;
+    public static boolean ProtectFarmenable = true;
     
     @Locale
     @Node(path = "AntiSpam.Dirty.WarnMessage")
     public static String AntiSpamDirtyWarnMessage = "§c什么事情激动得你都想骂人啦？";
     
     @Node(path = "AutoRespawn.enable")
-    public static boolean AutoRespawnenable;
+    public static boolean AutoRespawnenable = true;
     
     @Node(path = "AutoRespawn.RespawnTitle.enable")
-    public static boolean AutoRespawnRespawnTitleenable;
+    public static boolean AutoRespawnRespawnTitleenable = true;
     
     @Locale
     @Node(path = "AutoRespawn.RespawnTitle.MainMessage")
