@@ -38,10 +38,10 @@ public abstract class ConfigClearLag extends Configurable {
     public static long FireLimitorPeriod = 3000L;
     
     @Node(path = "HeapClear.enable")
-    public static boolean HeapClearenable;
+    public static boolean HeapClearenable = false;
     
     @Node(path = "TeleportPreLoader.enable")
-    public static boolean TeleportPreLoaderenable;
+    public static boolean TeleportPreLoaderenable = false;
     
     @Locale
     @Node(path = "HeapClear.Message")

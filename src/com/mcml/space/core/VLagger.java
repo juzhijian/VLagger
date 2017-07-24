@@ -166,8 +166,8 @@ public class VLagger extends JavaPlugin implements Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (label.equalsIgnoreCase("vlg")) {
-        	int Version = ConfigPluginMain.internalVersion;
-            sender.sendMessage("§b------§a§lVLagger - b" + Version + "§b------");
+        	int Version = Integer.valueOf("%BUILD_NUMBER%");
+            sender.sendMessage("§b------§a§lVLagger - §ebuild " + Version + "§b------");
             if (sender.hasPermission("VLagger.admin")) {
                 if (args.length == 0) {
                     sender.sendMessage("§c请输入/vlg help 来获取帮助");
