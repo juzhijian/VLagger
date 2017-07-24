@@ -17,7 +17,7 @@ public class WorldSpawnLimiter implements Listener {
     @EventHandler
     public void WorldSeterLimitor(WorldInitEvent event) {
         World world = event.getWorld();
-        FileConfiguration config = load(VLagger.ClearLagConfigFile);
+        FileConfiguration config = load(VLagger.optimizeConfiguration);
         if (config.getBoolean("WorldSpawnLimitor." + world.getName() + ".enable")) {
             world.setMonsterSpawnLimit(config.getInt("WorldSpawnLimitor." + world.getName() + ".PerChunkMonsters"));
             world.setAnimalSpawnLimit(config.getInt("WorldSpawnLimitor." + world.getName() + ".PerChunkAnimals"));

@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 
-import com.mcml.space.config.ConfigClearLag;
+import com.mcml.space.config.ConfigOptimize;
 
 public class ChunkUnloader implements Runnable {
     // TODO inconsistent with chunk-unload-delay
@@ -13,7 +13,7 @@ public class ChunkUnloader implements Runnable {
 
     @Override
     public void run() {
-        if (ConfigClearLag.ChunkUnloaderenable == true) {
+        if (ConfigOptimize.ChunkUnloaderenable == true) {
             List<World> worlds = Bukkit.getWorlds();
             int ws = worlds.size();
             for (int i = 0; i < ws; i++) {

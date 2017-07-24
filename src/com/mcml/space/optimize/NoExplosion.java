@@ -7,18 +7,18 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockExplodeEvent;
 
-import com.mcml.space.config.ConfigClearLag;
+import com.mcml.space.config.ConfigOptimize;
 
 public class NoExplosion implements Listener {
     
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void AntiBlockExplode(BlockExplodeEvent evt) {
-        if (ConfigClearLag.NoExplodeenable) {
-            if (ConfigClearLag.NoExplodeType.equals("NoBlockBreak")) {
+        if (ConfigOptimize.NoExplodeenable) {
+            if (ConfigOptimize.NoExplodeType.equals("NoBlockBreak")) {
                 List<Block> blockList = evt.blockList();
                 blockList.clear();
             }
-            if (ConfigClearLag.NoExplodeType.equals("NoExplode")) {
+            if (ConfigOptimize.NoExplodeType.equals("NoExplode")) {
                 evt.setCancelled(true);
             }
         }

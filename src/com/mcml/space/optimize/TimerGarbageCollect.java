@@ -6,8 +6,8 @@ import org.apache.commons.lang.StringUtils;
 
 import com.mcml.space.util.AzureAPI;
 
-import static com.mcml.space.config.ConfigClearLag.messageGC;
-import static com.mcml.space.config.ConfigClearLag.timerGC;
+import static com.mcml.space.config.ConfigOptimize.messageGC;
+import static com.mcml.space.config.ConfigOptimize.timerGC;
 
 /**
  * @author Vlvxingze, SotrForgotten

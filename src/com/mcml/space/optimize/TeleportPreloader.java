@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Lists;
-import com.mcml.space.config.ConfigClearLag;
+import com.mcml.space.config.ConfigOptimize;
 import com.mcml.space.core.VLagger;
 import com.mcml.space.util.AzureAPI;
 import com.mcml.space.util.AzureAPI.Coord2D;
@@ -32,7 +32,7 @@ public class TeleportPreloader implements Listener {
     
     @EventHandler(priority = EventPriority.LOWEST)
     public void onTeleport(PlayerTeleportEvent evt) throws ExecutionException {
-        if (evt.isCancelled() || evt.isAsynchronous() || pending || !ConfigClearLag.TeleportPreLoaderenable) return;
+        if (evt.isCancelled() || evt.isAsynchronous() || pending || !ConfigOptimize.TeleportPreLoaderenable) return;
 
         val from = evt.getFrom();
         val to = evt.getTo();

@@ -9,7 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockFromToEvent;
 
-import com.mcml.space.config.ConfigClearLag;
+import com.mcml.space.config.ConfigOptimize;
 
 public class WaterFlowLimiter implements Listener {
 
@@ -17,7 +17,7 @@ public class WaterFlowLimiter implements Listener {
     // TODO nice but tied to tick
     @EventHandler
     public void WaterFowLimitor(BlockFromToEvent event) {
-        if(ConfigClearLag.WaterFlowLimitorenable == true){
+        if(ConfigOptimize.WaterFlowLimitorenable == true){
             Block block = event.getBlock();
             if (block.getType() == Material.STATIONARY_WATER || block.getType() == Material.STATIONARY_LAVA) {
                 if(CheckFast(block.getChunk())){
@@ -31,7 +31,7 @@ public class WaterFlowLimiter implements Listener {
 
     private static boolean CheckFast(Chunk chunk) {
         if (ChunkChecked.containsKey(chunk)) {
-            return (ChunkChecked.get(chunk).longValue() + ConfigClearLag.WaterFlowLimitorPeriod > System.currentTimeMillis());
+            return (ChunkChecked.get(chunk).longValue() + ConfigOptimize.WaterFlowLimitorPeriod > System.currentTimeMillis());
         }
         return false;
     }

@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import com.mcml.space.config.ConfigClearLag;
+import com.mcml.space.config.ConfigOptimize;
 import com.mcml.space.core.VLagger;
 
 public class AutoSave implements Listener {
@@ -49,7 +49,7 @@ public class AutoSave implements Listener {
 
     @EventHandler
     public void JoinTaskGiver(PlayerJoinEvent e) {
-        if (ConfigClearLag.AutoSaveenable == false) {
+        if (ConfigOptimize.AutoSaveenable == false) {
             return;
         }
         final Player p = e.getPlayer();
@@ -79,7 +79,7 @@ public class AutoSave implements Listener {
                 PlayerInChunkMap.put(p, chunk);
                 p.saveData();
             }
-        }, ConfigClearLag.AutoSaveInterval * 20, ConfigClearLag.AutoSaveInterval * 20));
+        }, ConfigOptimize.AutoSaveInterval * 20, ConfigOptimize.AutoSaveInterval * 20));
     }
 
     @EventHandler
@@ -87,7 +87,7 @@ public class AutoSave implements Listener {
         if (e.getClickedBlock() == null) {
             return;
         }
-        if (ConfigClearLag.AutoSaveenable == false) {
+        if (ConfigOptimize.AutoSaveenable == false) {
             return;
         }
         Player p = e.getPlayer();
@@ -96,7 +96,7 @@ public class AutoSave implements Listener {
 
     @EventHandler
     public void QuitCancelled(PlayerQuitEvent e) {
-        if (ConfigClearLag.AutoSaveenable == false) {
+        if (ConfigOptimize.AutoSaveenable == false) {
             return;
         }
         Player p = e.getPlayer();

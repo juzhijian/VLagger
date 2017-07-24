@@ -16,7 +16,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.mcml.space.config.ConfigAntiBug;
-import com.mcml.space.config.ConfigClearLag;
+import com.mcml.space.config.ConfigOptimize;
 import com.mcml.space.config.ConfigFunction;
 import com.mcml.space.config.ConfigPluginMain;
 import com.mcml.space.fix.AntiBedExplode;
@@ -63,7 +63,7 @@ public class VLagger extends JavaPlugin implements Listener {
 
 
     public static VLagger MainThis;
-    public static File ClearLagConfigFile;
+    public static File optimizeConfiguration;
     public static File AntiBugConfigFile;
     private static File PluginMainConfigFile;
     public static File functionConfiguation;
@@ -71,7 +71,7 @@ public class VLagger extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        ClearLagConfigFile = new File(this.getDataFolder(), "ClearLagConfig.yml");
+        optimizeConfiguration = new File(this.getDataFolder(), "ClearLagConfig.yml");
         AntiBugConfigFile = new File(this.getDataFolder(), "AntiBugBugConfig.yml");
         PluginMainConfigFile = new File(this.getDataFolder(), "PluginMainConfig.yml");
         functionConfiguation = new File(this.getDataFolder(), "DoEventConfig.yml");
@@ -117,7 +117,7 @@ public class VLagger extends JavaPlugin implements Listener {
         
         AzureAPI.setPrefix(ConfigPluginMain.PluginPrefix);
         
-        if (ConfigClearLag.AutoSetenable == true) {
+        if (ConfigOptimize.AutoSetenable == true) {
             try {
                 VLagger.AutoSetServer();
             } catch (IOException | InterruptedException e) {
@@ -156,9 +156,9 @@ public class VLagger extends JavaPlugin implements Listener {
 
         ChunkKeeper.ChunkKeeperofTask();
         AzurePlayerList.bind(this);
-        getServer().getScheduler().runTaskTimer(this, new ChunkUnloader(), 0, ConfigClearLag.ChunkUnloaderInterval * 20);
+        getServer().getScheduler().runTaskTimer(this, new ChunkUnloader(), 0, ConfigOptimize.ChunkUnloaderInterval * 20);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HeapShut(), 1 * 60 * 20, 1 * 60 * 20);
-        Bukkit.getScheduler().runTaskTimer(this, new TimerGarbageCollect(), ConfigClearLag.HeapClearPeriod * 20, ConfigClearLag.HeapClearPeriod * 20);
+        Bukkit.getScheduler().runTaskTimer(this, new TimerGarbageCollect(), ConfigOptimize.HeapClearPeriod * 20, ConfigOptimize.HeapClearPeriod * 20);
         Bukkit.getScheduler().runTaskAsynchronously(this, new NetWorker());
         Bukkit.getScheduler().runTaskTimer(this, new AntiFakeDeath(), 7 * 20, 7 * 20);
     }
@@ -338,7 +338,7 @@ public class VLagger extends JavaPlugin implements Listener {
         }
     	
     	try {
-            Configurable.restoreNodes(ClearLagConfigFile, ConfigClearLag.class);
+            Configurable.restoreNodes(optimizeConfiguration, ConfigOptimize.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }
@@ -370,7 +370,7 @@ public class VLagger extends JavaPlugin implements Listener {
         } catch (IOException ex) {
         }
 
-        FileConfiguration ClearLagConfig = load(ClearLagConfigFile);
+        FileConfiguration ClearLagConfig = load(optimizeConfiguration);
         if (ClearLagConfig.getInt("Version") < 272) {
             ClearLagConfig.set("Version", 272);
             ClearLagConfig.set("AutoSet.enable", true);
@@ -431,7 +431,7 @@ public class VLagger extends JavaPlugin implements Listener {
             ClearLagConfig.set("AntiRedstone.RemoveBlockList", mas);
         }
         try {
-            ClearLagConfig.save(ClearLagConfigFile);
+            ClearLagConfig.save(optimizeConfiguration);
         } catch (IOException ex) {
         }
         
@@ -498,7 +498,7 @@ public class VLagger extends JavaPlugin implements Listener {
         }
         
         try {
-            Configurable.restoreNodes(ClearLagConfigFile, ConfigClearLag.class);
+            Configurable.restoreNodes(optimizeConfiguration, ConfigOptimize.class);
         } catch (IllegalArgumentException | IllegalAccessException | IOException e) {
             e.printStackTrace();
         }

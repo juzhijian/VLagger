@@ -6,7 +6,7 @@ import com.google.common.collect.Lists;
 import com.mcml.space.util.AzureAPI;
 import com.mcml.space.util.Configurable;
 
-public abstract class ConfigClearLag extends Configurable {
+public abstract class ConfigOptimize extends Configurable {
     @Node(path = "HeapShut.enable")
     public static boolean HeapShutenable = true;
     

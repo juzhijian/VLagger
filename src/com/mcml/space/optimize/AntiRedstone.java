@@ -8,7 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockRedstoneEvent;
 
-import com.mcml.space.config.ConfigClearLag;
+import com.mcml.space.config.ConfigOptimize;
 import com.mcml.space.config.ConfigPluginMain;
 import com.mcml.space.core.VLagger;
 
@@ -29,23 +29,23 @@ public class AntiRedstone implements Listener {
 
     private static boolean CheckFast(String bs) {
         if (CheckList.containsKey(bs)) {
-            return (CheckList.get(bs).longValue() + ConfigClearLag.AntiRedstoneInterval > System.currentTimeMillis());
+            return (CheckList.get(bs).longValue() + ConfigOptimize.AntiRedstoneInterval > System.currentTimeMillis());
         }
         return false;
     }
 
     @EventHandler
     public void LimitRedstonePeriod(BlockRedstoneEvent event) {
-        if (ConfigClearLag.AntiRedstoneenable == true) {
+        if (ConfigOptimize.AntiRedstoneenable == true) {
             Block block = event.getBlock();
             String bs = block.getLocation().toString();
             if (CheckFast(bs)) {
-                if (ConfigClearLag.AntiRedstoneRemoveBlockList.contains(block.getType().name())) {
+                if (ConfigOptimize.AntiRedstoneRemoveBlockList.contains(block.getType().name())) {
                     block.setType(Material.AIR);
                     if (TipCooldown == false) {
-                        if(ConfigClearLag.AntiRedstoneMessage.equalsIgnoreCase("none") == false){
-                        	ConfigClearLag.AntiRedstoneMessage = ConfigClearLag.AntiRedstoneMessage.replaceAll("%location%", bs);
-                            Bukkit.broadcastMessage(ConfigPluginMain.PluginPrefix + ConfigClearLag.AntiRedstoneMessage);
+                        if(ConfigOptimize.AntiRedstoneMessage.equalsIgnoreCase("none") == false){
+                        	ConfigOptimize.AntiRedstoneMessage = ConfigOptimize.AntiRedstoneMessage.replaceAll("%location%", bs);
+                            Bukkit.broadcastMessage(ConfigPluginMain.PluginPrefix + ConfigOptimize.AntiRedstoneMessage);
                             TipCooldown = true;
                         }
                     }
