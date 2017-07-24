@@ -114,7 +114,7 @@ public class VersionLevel {
     
     private static void checkType(String bukkitVersion) {
         paper = bukkitVersion.contains("Paper") || bukkitVersion.contains("Taco") || bukkitVersion.contains("Torch");
-        spigot = paper ? true : bukkitVersion.contains("Spigot");
+        spigot = (paper ? true : bukkitVersion.contains("Spigot"));
     }
     
     public static boolean isLowerThan(Version other) {
