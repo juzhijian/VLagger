@@ -19,7 +19,7 @@ public class AutoRespawn implements Listener {
                 @SuppressWarnings("deprecation")
                 public void run() {
                     try {
-                        player.spigot().respawn(); // TODO: do this immediately?
+                        player.spigot().respawn(); // TODO do this immediately?
                         if(ConfigDoEvent.AutoRespawnRespawnTitleenable){
                             player.sendTitle(ConfigDoEvent.AutoRespawnRespawnTitleMainMessage, ConfigDoEvent.AutoRespawnRespawnTitleMiniMessage);
                         }

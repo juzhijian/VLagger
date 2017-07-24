@@ -56,7 +56,7 @@ public class AzureAPI {
 
     public static boolean customViewDistance(final Player player) {
         if (!isPaper()) return false;
-        return Bukkit.getViewDistance() == player.getViewDistance();
+        return Bukkit.getViewDistance() != player.getViewDistance();
     }
 
     public static String setPrefix(final String prefix) {
