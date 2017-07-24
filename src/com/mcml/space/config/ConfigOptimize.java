@@ -22,12 +22,6 @@ public abstract class ConfigOptimize extends Configurable {
     @Node(path = "AntiRedstone.enable")
     public static boolean AntiRedstoneenable = true;
     
-    @Node(path = "NoExplode.enable")
-    public static boolean NoExplodeenable = true;
-    
-    @Node(path = "NoExplode.Type")
-    public static String NoExplodeType = "NoBlockBreak";
-    
     @Node(path = "AntiRedstone.Interval")
     public static long AntiRedstoneInterval = 500L;
     

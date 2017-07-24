@@ -66,4 +66,10 @@ public abstract class ConfigFunction extends Configurable {
     @Locale
     @Node(path = "AutoRespawn.RespawnTitle.MiniMessage")
     public static String AutoRespawnRespawnTitleMiniMessage = "§c已为您自动复活！";
+    
+    @Node(path = "NoExplode.enable")
+    public static boolean controlExplode = true;
+    
+    @Node(path = "NoExplode.Type")
+    public static String explodeControlType = "NoBlockBreak";
 }
