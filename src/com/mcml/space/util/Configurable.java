@@ -34,6 +34,7 @@ public abstract class Configurable {
         for (Field field : clazz.getDeclaredFields()) {
             Node node = field.getAnnotation(Node.class);
             if (node == null) continue;
+            field.setAccessible(true);
             
             val def = field.get(null);
             val mod = field.getModifiers();
