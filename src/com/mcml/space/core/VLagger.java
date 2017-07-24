@@ -124,19 +124,6 @@ public class VLagger extends JavaPlugin implements Listener {
             }
         }
         
-        if (ConfigFunction.tickVS) {
-            Bukkit.getScheduler().runTaskTimer(this, new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(0);
-                    } catch (InterruptedException ignored) {
-                        ;
-                    }
-                }
-            }, 1, 1);
-        }
-        
         Bukkit.getPluginManager().registerEvents(new AntiInfItem(), this);
         Bukkit.getPluginManager().registerEvents(new AntiPortalInfItem(), this);
         Bukkit.getPluginManager().registerEvents(new AntiNetherHopperInfItem(), this);
