@@ -41,7 +41,7 @@ public abstract class ConfigClearLag extends Configurable {
     public static boolean HeapClearenable = false;
     
     @Node(path = "TeleportPreLoader.enable")
-    public static boolean TeleportPreLoaderenable;
+    public static boolean TeleportPreLoaderenable = false;
     
     @Locale
     @Node(path = "HeapClear.Message")
