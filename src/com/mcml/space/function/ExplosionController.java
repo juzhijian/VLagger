@@ -15,16 +15,21 @@ import static com.mcml.space.config.ConfigFunction.explodeControlType;
 /**
  * @author Vlvxingze, SotrForgotten
  */
-public class ExplosionController implements Listener {
-    
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onExplode(BlockExplodeEvent evt) {
-        handleExplode(evt, evt.blockList());
+public class ExplosionController {
+    // since 1.8.3
+    public static class BlockDetector implements Listener {
+        @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+        public void onExplode(BlockExplodeEvent evt) {
+            handleExplode(evt, evt.blockList());
+        }
     }
     
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onExplode(EntityExplodeEvent evt) {
-        handleExplode(evt, evt.blockList());
+    // since 1.4.6
+    public static class EntityDetector implements Listener {
+        @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+        public void onExplode(EntityExplodeEvent evt) {
+            handleExplode(evt, evt.blockList());
+        }
     }
     
     private static void handleExplode(Cancellable evt, List<Block> blocks) {

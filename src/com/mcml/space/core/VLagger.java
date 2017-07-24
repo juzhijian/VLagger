@@ -132,7 +132,8 @@ public class VLagger extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new NoCrowdEntity(), this);
         Bukkit.getPluginManager().registerEvents(new AntiCrashSign(), this);
         Bukkit.getPluginManager().registerEvents(new AntiSpam(), this);
-        if (VersionLevel.isHigherThan(Version.MINECRAFT_1_8_R2)) Bukkit.getPluginManager().registerEvents(new ExplosionController(), this);
+        if (VersionLevel.isHigherEquals(Version.MINECRAFT_1_8_R2)) Bukkit.getPluginManager().registerEvents(new ExplosionController.BlockDetector(), this);
+        Bukkit.getPluginManager().registerEvents(new ExplosionController.EntityDetector(), this);
         Bukkit.getPluginManager().registerEvents(new AntiRedstone(), this);
         Bukkit.getPluginManager().registerEvents(new ItemClear(), this);
         Bukkit.getPluginManager().registerEvents(new ChunkUnloaderofListener(), this);

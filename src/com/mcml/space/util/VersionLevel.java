@@ -121,8 +121,16 @@ public class VersionLevel {
         return level.ordinal() > other.ordinal();
     }
     
+    public static boolean isLowerEquals(Version other) {
+        return level.ordinal() >= other.ordinal();
+    }
+    
     public static boolean isHigherThan(Version other) {
         return level.ordinal() < other.ordinal();
+    }
+    
+    public static boolean isHigherEquals(Version other) {
+        return level.ordinal() <= other.ordinal();
     }
     
     public static boolean equals(Version other) {
