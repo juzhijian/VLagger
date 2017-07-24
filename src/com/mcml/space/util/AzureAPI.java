@@ -68,6 +68,15 @@ public class AzureAPI {
         loggerPrefix = "";
     }
     
+    public static void fatal(final String context) {
+        fatal(loggerPrefix, context);
+    }
+    
+    public static void fatal(final String prefix, final String context) {
+        Bukkit.getLogger().severe(prefix + context);
+        Bukkit.shutdown();
+    }
+    
     public static void warn(final String context) {
         warn(loggerPrefix, context);
     }
